@@ -1,0 +1,6 @@
+USE UniTrac
+
+select distinct  SERVER_TX, SERVICE_NAME_TX, MAX(UPDATE_DT) from PROCESS_LOG
+where  CAST(UPDATE_DT AS DATE) = CAST(GETDATE() AS DATE) and SERVER_TX is not null
+group by SERVER_TX, SERVICE_NAME_TX
+order by MAX(UPDATE_DT) asc 

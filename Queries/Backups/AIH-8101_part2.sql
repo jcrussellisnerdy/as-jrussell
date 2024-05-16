@@ -1,0 +1,42 @@
+USE [master]
+GO
+
+
+/* For security reasons the login is created disabled and with a random password. */
+/****** Object:  Login [UTdbLinkedUTSQLDEV01_DSSQLDEV14]    Script Date: 10/4/2021 1:16:33 PM ******/
+CREATE LOGIN [UTdbLinkedUTSQLDEV01_DSSQLDEV14] WITH PASSWORD=N'In CyberArk', DEFAULT_DATABASE=[tempdb], DEFAULT_LANGUAGE=[us_english], CHECK_EXPIRATION=OFF, CHECK_POLICY=OFF
+GO
+
+ALTER LOGIN [UTdbLinkedUTSQLDEV01_DSSQLDEV14] DISABLE
+GO
+
+USE [DRN]
+GO
+/****** Object:  User [UTdbLinkedUTSQLDEV01_DSSQLDEV14]    Script Date: 10/4/2021 1:18:57 PM ******/
+CREATE USER [UTdbLinkedUTSQLDEV01_DSSQLDEV14]
+ALTER ROLE [db_datareader] ADD MEMBER [UTdbLinkedUTSQLDEV01_DSSQLDEV14]
+ALTER ROLE [db_datawriter] ADD MEMBER [UTdbLinkedUTSQLDEV01_DSSQLDEV14]
+
+
+GO
+
+USE [MassMarketingData]
+GO
+/****** Object:  User [UTdbLinkedUTSQLDEV01_DSSQLDEV14]    Script Date: 10/4/2021 1:19:01 PM ******/
+CREATE USER [UTdbLinkedUTSQLDEV01_DSSQLDEV14]
+ALTER ROLE [db_datareader] ADD MEMBER [UTdbLinkedUTSQLDEV01_DSSQLDEV14]
+ALTER ROLE [db_datawriter] ADD MEMBER [UTdbLinkedUTSQLDEV01_DSSQLDEV14]
+
+GO
+USE [PremAcc3]
+GO
+/****** Object:  User [UTdbLinkedUTSQLDEV01_DSSQLDEV14]    Script Date: 10/4/2021 1:19:05 PM ******/
+CREATE USER [UTdbLinkedUTSQLDEV01_DSSQLDEV14]
+ALTER ROLE [db_datareader] ADD MEMBER [UTdbLinkedUTSQLDEV01_DSSQLDEV14]
+ALTER ROLE [db_datawriter] ADD MEMBER [UTdbLinkedUTSQLDEV01_DSSQLDEV14]
+ALTER LOGIN [UTdbLinkedUTSQLDEV01_DSSQLDEV14] ENABLE
+GO
+
+
+
+

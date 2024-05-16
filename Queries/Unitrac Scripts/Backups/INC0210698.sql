@@ -1,0 +1,9 @@
+SELECT * FROM dbo.USERS
+
+
+--UPDATE dbo.USERS
+--SET PASSWORD_TX = 'heCyBtfR81cfxbrX1/FUm6DxkBEmTcnnmHi47ekXowI='
+WHERE FAMILY_NAME_TX = 'Jefferson' AND GIVEN_NAME_TX = 'Natasha'
+
+
+

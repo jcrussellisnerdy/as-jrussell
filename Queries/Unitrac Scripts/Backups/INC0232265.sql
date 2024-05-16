@@ -1,0 +1,41 @@
+USE [UniTrac]
+GO 
+
+--Loan Screen Information - LOAN/COLLATERAL/PROPERTY/OWNER/REQUIRED COVERAGE
+SELECT DISTINCT
+        L.NUMBER_TX [Loan Number] ,
+        PC.DEDUCTIBLE_NO [Deductible Amount] ,
+        RC1.DESCRIPTION_TX [Override Status] ,
+        RC2.DESCRIPTION_TX [Loan Record Type] ,
+        RC3.DESCRIPTION_TX [Loan Status] ,
+        RC4.DESCRIPTION_TX [Loan Type] ,
+        I.CREATE_DT [Override Date] ,
+        O.LAST_NAME_TX ,
+        O.FIRST_NAME_TX ,
+        OA.CITY_TX ,
+        OA.STATE_PROV_TX ,
+        OA.COUNTRY_TX ,
+        OA.POSTAL_CODE_TX
+FROM    LOAN L
+        INNER JOIN COLLATERAL C ON L.ID = C.LOAN_ID
+        INNER JOIN OWNER_LOAN_RELATE OL ON L.ID = OL.LOAN_ID
+        INNER JOIN OWNER O ON OL.OWNER_ID = O.ID
+        INNER JOIN OWNER_ADDRESS OA ON O.ADDRESS_ID = OA.ID
+        INNER JOIN dbo.LENDER LL ON LL.ID = L.LENDER_ID
+        INNER JOIN dbo.PROPERTY_OWNER_POLICY_RELATE POP ON POP.PROPERTY_ID = C.PROPERTY_ID
+        INNER JOIN dbo.OWNER_POLICY OP ON OP.ID = POP.OWNER_POLICY_ID
+        INNER JOIN dbo.POLICY_COVERAGE PC ON PC.OWNER_POLICY_ID = OP.ID
+        INNER JOIN dbo.REQUIRED_COVERAGE RC ON RC.PROPERTY_ID = C.PROPERTY_ID
+        INNER JOIN dbo.IMPAIRMENT I ON I.REQUIRED_COVERAGE_ID = RC.ID
+        INNER JOIN dbo.REF_CODE RC1 ON RC1.CODE_CD = I.OVERRIDE_TYPE_CD
+                                       AND RC1.DOMAIN_CD = 'ImpairmentOverrideType'
+        INNER JOIN dbo.REF_CODE RC2 ON RC2.CODE_CD = L.RECORD_TYPE_CD
+                                       AND RC2.DOMAIN_CD = 'RecordType'
+        INNER JOIN dbo.REF_CODE RC3 ON RC3.CODE_CD = L.STATUS_CD
+                                       AND RC3.DOMAIN_CD = 'LoanStatus'
+        INNER JOIN dbo.REF_CODE RC4 ON RC4.CODE_CD = L.TYPE_CD
+                                       AND RC4.DOMAIN_CD = 'LoanType'
+WHERE   LL.CODE_TX IN ( '1640' )
+        AND PC.DEDUCTIBLE_NO >= '1000.00'
+        AND I.CODE_CD = 'DD'
+     

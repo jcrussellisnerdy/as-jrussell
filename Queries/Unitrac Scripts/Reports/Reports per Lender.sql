@@ -1,0 +1,10 @@
+USE UniTrac
+
+
+
+---Place the Name in the description field
+SELECT * FROM dbo.REPORT R 
+JOIN dbo.REPORT_CONFIG RC ON RC.REPORT_ID = r.ID
+JOIN dbo.LENDER_REPORT_CONFIG LRC ON LRC.REPORT_CONFIG_ID = RC.ID
+WHERE LENDER_ID = 'XXXX' AND R.ID = 'XX'
+

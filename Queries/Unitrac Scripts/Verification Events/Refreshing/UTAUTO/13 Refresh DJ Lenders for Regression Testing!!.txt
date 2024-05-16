@@ -1,0 +1,53 @@
+Moving forward, the following lenders will be used by QA for all regression testing. 
+
+For DJs: 
+
+1) Georgia Heritage Federal Credit Union #1275 
+\\vut-app\mountain\specs\1275_Georgia_Heritage_FCU (Correlation Keystone).djs
+
+C:\LenderFileExtracts\mountain\specs\1275_Georgia_Heritage_FCU (Correlation Keystone).djs
+
+
+
+2) Hermantown Federal #1890
+
+\\vut-app\eastern\specs\1890 Hermantown_FCU (MTG).djs
+
+C:\LenderFileExtracts\eastern\specs\1890 Hermantown_FCU (MTG).djs
+
+
+\\vut-app\eastern\specs\1890 Hermantown_FCU (VEH)_title.djs
+
+C:\LenderFileExtracts\eastern\specs\1890 Hermantown_FCU (VEH)_title.djs
+
+
+3) State Financial Network #3039
+
+\\vut-app\Eastern\Specs\3039 State Financial Network New.djs
+
+C:\Conversions\DJFiles\3039 State Financial Network.djs
+
+
+
+
+
+C:\LenderFileExtracts\DJ Specs\DJ Functions.bas
+ 
+For Custom DLLs: 
+Credit Acceptance Corporation #5310 (for Vehicles) 
+IBM Southeast Employees #2250 (for Mortgage)
+
+For Informatica:
+Credit Union of the Rockies # 1862
+Penn Community Bank #2283
+Via CU # 3012
+
+We need to make sure, as part of the refresh, that the most recent DJ files for 1275,3039, & 1890 are copied over from prod
+ to the environment being refreshed and are re-mapped to that environment, as well.
+
+Thanks!
+
+
+
+
+

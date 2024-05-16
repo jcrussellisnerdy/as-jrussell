@@ -1,0 +1,15 @@
+USE [KAFC_Data]
+
+GO
+
+CREATE NONCLUSTERED INDEX [I___BatchIdFinishedBatch] ON [dbo].[FinishedBatch]
+(
+	[__BatchId] ASC
+)
+INCLUDE([__IsValidValue]) 
+WHERE ([__IsValidValue]=(0))
+WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = ON, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+
+GO
+
+

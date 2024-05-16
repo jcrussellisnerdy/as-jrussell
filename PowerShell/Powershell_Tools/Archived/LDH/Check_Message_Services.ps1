@@ -1,0 +1,1 @@
+﻿Get-Service	 -ComputerName	UNITRAC-WH08	  -Name MSGSRVREXTINFO 

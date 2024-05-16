@@ -1,0 +1,1322 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2008/01/reportdefinition">
+  <DataSources>
+    <DataSource Name="UniTrac_Reports">
+      <DataSourceReference>/Data Sources/UniTrac_Reports</DataSourceReference>
+      <rd:DataSourceID>6fa9e166-a9c3-479d-800c-db4ead82032a</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="DataSet1">
+      <Fields>
+        <Field Name="COUNT_NO">
+          <DataField>COUNT_NO</DataField>
+          <rd:TypeName>System.Int64</rd:TypeName>
+        </Field>
+        <Field Name="BALANCE_NO">
+          <DataField>BALANCE_NO</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="REPORT_HEADER_TX">
+          <DataField>REPORT_HEADER_TX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="REPORT_FOOTER_TX">
+          <DataField>REPORT_FOOTER_TX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>UniTrac_Reports</DataSourceName>
+        <CommandType>StoredProcedure</CommandType>
+        <CommandText>Report_LoanStatusTotals</CommandText>
+        <QueryParameters>
+          <QueryParameter Name="@LenderCode">
+            <Value>=Parameters!Lender.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@Branch">
+            <Value>=Join(Parameters!Branch.Value,",")</Value>
+            <rd:UserDefined>true</rd:UserDefined>
+          </QueryParameter>
+          <QueryParameter Name="@Division">
+            <Value>=Parameters!Division.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@Coverage">
+            <Value>=Parameters!Coverage.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@ReportType">
+            <Value>=Parameters!ReportType.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@FilterByCode">
+            <Value>=Parameters!FilterBy.Value</Value>
+            <rd:UserDefined>true</rd:UserDefined>
+          </QueryParameter>
+          <QueryParameter Name="@SpecificReport">
+            <Value>=Parameters!ReportConfig.Value</Value>
+            <rd:UserDefined>true</rd:UserDefined>
+          </QueryParameter>
+          <QueryParameter Name="@ReportDomainName">
+            <Value>="Report_LoanStatusTotals"</Value>
+            <rd:UserDefined>true</rd:UserDefined>
+          </QueryParameter>
+          <QueryParameter Name="@Report_History_ID">
+            <Value>=Parameters!REPORT_HISTORY_ID.Value</Value>
+            <rd:UserDefined>true</rd:UserDefined>
+          </QueryParameter>
+        </QueryParameters>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+      </Query>
+    </DataSet>
+    <DataSet Name="ReportType">
+      <Fields>
+        <Field Name="CODE_CD">
+          <DataField>CODE_CD</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="DESCRIPTION_TX">
+          <DataField>DESCRIPTION_TX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>UniTrac_Reports</DataSourceName>
+        <CommandType>StoredProcedure</CommandType>
+        <CommandText>Report_RDLReportType</CommandText>
+        <QueryParameters>
+          <QueryParameter Name="@DOMAIN_CD">
+            <Value>="Report_LoanStatusTotals"</Value>
+          </QueryParameter>
+          <QueryParameter Name="@REPORT_HISTORY_ID">
+            <Value>=Parameters!REPORT_HISTORY_ID.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+      </Query>
+    </DataSet>
+    <DataSet Name="Lender">
+      <Fields>
+        <Field Name="CODE_TX">
+          <DataField>CODE_TX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="LenderLabel">
+          <DataField>LenderLabel</DataField>
+          <rd:UserDefined>true</rd:UserDefined>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>UniTrac_Reports</DataSourceName>
+        <CommandText>If @SearchBy = ''
+BEGIN
+   IF @AgencyID &gt; 0
+   BEGIN
+	SELECT CODE_TX, CODE_TX + ' - ' + NAME_TX AS LenderLabel 
+	FROM LENDER
+	WHERE CODE_TX IS NOT NULL AND PURGE_DT IS NULL AND AGENCY_ID = @AgencyID
+	ORDER BY CODE_TX
+   END
+   ELSE
+   BEGIN
+	SELECT CODE_TX, CODE_TX + ' - ' + NAME_TX AS LenderLabel 
+	FROM LENDER
+	WHERE CODE_TX IS NOT NULL AND PURGE_DT IS NULL 
+	ORDER BY CODE_TX
+   END
+END
+ELSE
+BEGIN
+   IF @AgencyID &gt; 0
+   BEGIN
+	SELECT CODE_TX, CODE_TX + ' - ' + NAME_TX AS LenderLabel 
+	FROM LENDER
+	WHERE CODE_TX IS NOT NULL AND PURGE_DT IS NULL
+	AND ISNULL(CODE_TX,'') + ISNULL(NAME_TX,'') LIKE '%' + @SearchBy + '%'
+	AND AGENCY_ID = @AgencyID
+	ORDER BY CODE_TX
+   END
+   ELSE
+   BEGIN
+	SELECT CODE_TX, CODE_TX + ' - ' + NAME_TX AS LenderLabel 
+	FROM LENDER
+	WHERE CODE_TX IS NOT NULL AND PURGE_DT IS NULL
+	AND ISNULL(CODE_TX,'') + ISNULL(NAME_TX,'') LIKE '%' + @SearchBy + '%'
+	ORDER BY CODE_TX
+   END
+END</CommandText>
+        <QueryParameters>
+          <QueryParameter Name="@SearchBy">
+            <Value>=Parameters!SearchBy.Value</Value>
+            <rd:UserDefined>true</rd:UserDefined>
+          </QueryParameter>
+          <QueryParameter Name="@AgencyID">
+            <Value>=Parameters!AgencyID.Value</Value>
+            <rd:UserDefined>true</rd:UserDefined>
+          </QueryParameter>
+        </QueryParameters>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+      </Query>
+    </DataSet>
+    <DataSet Name="Division">
+      <Fields>
+        <Field Name="CODE_CD">
+          <DataField>CODE_CD</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="MEANING_TX">
+          <DataField>MEANING_TX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>UniTrac_Reports</DataSourceName>
+        <CommandText>Select distinct CODE_CD,MEANING_TX from REF_CODE 
+where DOMAIN_CD = 'ContractType'
+Union
+Select '1', 'All'
+order by MEANING_TX</CommandText>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+      </Query>
+    </DataSet>
+    <DataSet Name="CoverageType">
+      <Fields>
+        <Field Name="CODE_CD">
+          <DataField>CODE_CD</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="MEANING_TX">
+          <DataField>MEANING_TX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>UniTrac_Reports</DataSourceName>
+        <CommandText>select CODE_CD,MEANING_TX from REF_CODE 
+where DOMAIN_CD = 'Coverage'
+Union
+Select '1', 'All'
+order by MEANING_TX</CommandText>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+      </Query>
+    </DataSet>
+    <DataSet Name="FilterBy">
+      <Fields>
+        <Field Name="CODE_CD">
+          <DataField>CODE_CD</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="MEANING_TX">
+          <DataField>MEANING_TX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>UniTrac_Reports</DataSourceName>
+        <CommandText>Select RC.CODE_CD,RC.MEANING_TX 
+from REF_CODE RC
+join REF_CODE_ATTRIBUTE RCA on RC.CODE_CD = RCA.REF_CD
+where RC.DOMAIN_CD = 'Report_FilterBy' 
+and RCA.VALUE_TX = 'Report_LoanStatusTotals'
+Union
+Select '',''
+order by MEANING_TX</CommandText>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+      </Query>
+    </DataSet>
+    <DataSet Name="ReportConfig">
+      <Fields>
+        <Field Name="CODE_TX">
+          <DataField>CODE_TX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="MEANING_TX">
+          <DataField>MEANING_TX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ConfigSort">
+          <DataField>ConfigSort</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>UniTrac_Reports</DataSourceName>
+        <CommandText>Select CODE_TX,MEANING_TX, MEANING_TX as ConfigSort
+from REPORT_CONFIG
+where REPORT_DOMAIN_CD = 'Report_LoanStatusTotals'
+and REPORT_CD = @ReportType and DISPLAY_IN = 'Y'
+order by ConfigSort</CommandText>
+        <QueryParameters>
+          <QueryParameter Name="@ReportType">
+            <Value>=Parameters!ReportType.Value</Value>
+            <rd:UserDefined>true</rd:UserDefined>
+          </QueryParameter>
+        </QueryParameters>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+      </Query>
+    </DataSet>
+    <DataSet Name="DefaultParms">
+      <Fields>
+        <Field Name="CODE_TX">
+          <DataField>CODE_TX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="REPORT_CD">
+          <DataField>REPORT_CD</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="GROUP_TX">
+          <DataField>GROUP_TX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="SORT_TX">
+          <DataField>SORT_TX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="FILTER_TX">
+          <DataField>FILTER_TX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>UniTrac_Reports</DataSourceName>
+        <CommandType>StoredProcedure</CommandType>
+        <CommandText>GetReportDefaultParameters</CommandText>
+        <QueryParameters>
+          <QueryParameter Name="@ID">
+            <Value>=Parameters!REPORT_HISTORY_ID.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+      </Query>
+    </DataSet>
+    <DataSet Name="Branch">
+      <Fields>
+        <Field Name="BrchValue">
+          <DataField>BrchValue</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="BrchLabel">
+          <DataField>BrchLabel</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>UniTrac_Reports</DataSourceName>
+        <CommandText>SELECT LO.CODE_TX as BrchValue, LO.CODE_TX AS BrchLabel
+FROM LENDER L
+JOIN LENDER_ORGANIZATION LO ON LO.LENDER_ID = L.ID
+AND LO.PURGE_DT IS NULL
+WHERE L.CODE_TX = @Lender AND L.PURGE_DT IS NULL
+AND LO.TYPE_CD = 'BRCH'
+Union
+SELECT '1', 'All'
+ORDER BY BrchValue</CommandText>
+        <QueryParameters>
+          <QueryParameter Name="@Lender">
+            <Value>=Parameters!Lender.Value</Value>
+            <rd:UserDefined>true</rd:UserDefined>
+          </QueryParameter>
+        </QueryParameters>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+      </Query>
+    </DataSet>
+    <DataSet Name="DefaultBranch">
+      <Fields>
+        <Field Name="BrchValue">
+          <DataField>BrchValue</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="BrchLabel">
+          <DataField>BrchLabel</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>UniTrac_Reports</DataSourceName>
+        <CommandText>SELECT '1' AS BrchValue, NULL AS BrchLabel </CommandText>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+      </Query>
+    </DataSet>
+    <DataSet Name="ImpairedReasonLegend">
+      <Fields>
+        <Field Name="CODE_CD">
+          <DataField>CODE_CD</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="MEANING_TX">
+          <DataField>MEANING_TX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>UniTrac_Reports</DataSourceName>
+        <CommandText>select CODE_CD, MEANING_TX 
+from REF_CODE 
+where DOMAIN_CD = 'ImpairmentReason'
+order by CODE_CD</CommandText>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+      </Query>
+    </DataSet>
+    <DataSet Name="ReportHeader">
+      <Fields>
+        <Field Name="HEADER_TX">
+          <DataField>HEADER_TX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>UniTrac_Reports</DataSourceName>
+        <CommandText>SELECT HEADER_TX FROM REPORT_CONFIG WHERE CODE_TX =@ReportType</CommandText>
+        <QueryParameters>
+          <QueryParameter Name="@ReportType">
+            <Value>=Parameters!ReportType.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+      </Query>
+    </DataSet>
+    <DataSet Name="LenderSpecificTitleHeaderFooter">
+      <Fields>
+        <Field Name="TITLE_TX">
+          <DataField>TITLE_TX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="SUBTITLE_TX">
+          <DataField>SUBTITLE_TX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="HEADER_TX">
+          <DataField>HEADER_TX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="FOOTER_TX">
+          <DataField>FOOTER_TX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>UniTrac_Reports</DataSourceName>
+        <CommandType>StoredProcedure</CommandType>
+        <CommandText>Report_LenderSpecificReportTitle</CommandText>
+        <QueryParameters>
+          <QueryParameter Name="@REPORT_HISTORY_ID">
+            <Value>=Parameters!REPORT_HISTORY_ID.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+      </Query>
+    </DataSet>
+  </DataSets>
+  <Body>
+    <ReportItems>
+      <Textbox Name="Textbox106">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>=Iif(First(Fields!FOOTER_TX.Value, "LenderSpecificTitleHeaderFooter")  = "",First(Fields!REPORT_FOOTER_TX.Value, "DataSet1"), First(Fields!FOOTER_TX.Value, "LenderSpecificTitleHeaderFooter"))</Value>
+                <Style>
+                  <FontSize>8pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox106</rd:DefaultName>
+        <Top>0.82037in</Top>
+        <Left>0.01998in</Left>
+        <Height>0.25in</Height>
+        <Width>9.73494in</Width>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox172">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>="Total Count: "</Value>
+                <Style>
+                  <FontSize>8pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Right</TextAlign>
+            </Style>
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox172</rd:DefaultName>
+        <Top>0.3682in</Top>
+        <Left>1.38889in</Left>
+        <Height>0.25in</Height>
+        <Width>1.18118in</Width>
+        <ZIndex>1</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox39">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>="Total Balance:"</Value>
+                <Style>
+                  <FontSize>8pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Right</TextAlign>
+            </Style>
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox39</rd:DefaultName>
+        <Top>0.3682in</Top>
+        <Left>3.12644in</Left>
+        <Height>0.25in</Height>
+        <Width>1.87501in</Width>
+        <ZIndex>2</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox40">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>=First(Fields!BALANCE_NO.Value, "DataSet1")</Value>
+                <Style>
+                  <FontSize>8pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <Format>'$'#,0.00;('$'#,0.00)</Format>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox39</rd:DefaultName>
+        <Top>0.3682in</Top>
+        <Left>5.01534in</Left>
+        <Height>0.25in</Height>
+        <Width>1.30208in</Width>
+        <ZIndex>3</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+          <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox173">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>=First(Fields!COUNT_NO.Value, "DataSet1")</Value>
+                <Style>
+                  <FontSize>8pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <Format>#,0;(#,0)</Format>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox172</rd:DefaultName>
+        <Top>0.3682in</Top>
+        <Left>2.58396in</Left>
+        <Height>0.25in</Height>
+        <Width>0.55208in</Width>
+        <ZIndex>4</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Tablix Name="Tablix5">
+        <TablixBody>
+          <TablixColumns>
+            <TablixColumn>
+              <Width>8.0107in</Width>
+            </TablixColumn>
+          </TablixColumns>
+          <TablixRows>
+            <TablixRow>
+              <Height>0.17708in</Height>
+              <TablixCells>
+                <TablixCell>
+                  <CellContents>
+                    <Subreport Name="CoverPage">
+                      <ReportName>/UniTracReports/CoverPageSubReport</ReportName>
+                      <Parameters>
+                        <Parameter Name="Title">
+                          <Value>=Iif(First(Fields!TITLE_TX.Value, "LenderSpecificTitleHeaderFooter") = "",Parameters!ReportType.Label,First(Fields!TITLE_TX.Value, "LenderSpecificTitleHeaderFooter"))</Value>
+                        </Parameter>
+                        <Parameter Name="SubTitle">
+                          <Value>=Iif(First(Fields!TITLE_TX.Value, "LenderSpecificTitleHeaderFooter") &lt;&gt; "",First(Fields!SUBTITLE_TX.Value, "LenderSpecificTitleHeaderFooter"), Parameters!ReportConfig.Label)</Value>
+                        </Parameter>
+                        <Parameter Name="LenderID">
+                          <Value>=CStr(Parameters!Lender.Value)</Value>
+                        </Parameter>
+                        <Parameter Name="Lender">
+                          <Value>=Parameters!Lender.Label</Value>
+                        </Parameter>
+                        <Parameter Name="Branch">
+                          <Value>=Join(Parameters!Branch.Label,",")</Value>
+                        </Parameter>
+                        <Parameter Name="Division">
+                          <Value>=Parameters!Division.Label</Value>
+                        </Parameter>
+                        <Parameter Name="CoverageType">
+                          <Value>=Parameters!Coverage.Label</Value>
+                        </Parameter>
+                        <Parameter Name="RunDate">
+                          <Value>=FormatDateTime(Globals!ExecutionTime, DateFormat.ShortDate)</Value>
+                        </Parameter>
+                        <Parameter Name="RunTime">
+                          <Value>=FormatDateTime(Globals!ExecutionTime, 3)</Value>
+                        </Parameter>
+                        <Parameter Name="TotalNoOfRecords">
+                          <Value>=Sum(Fields!COUNT_NO.Value, "DataSet1")</Value>
+                        </Parameter>
+                      </Parameters>
+                      <NoRowsMessage>No Records Returned</NoRowsMessage>
+                      <ZIndex>7</ZIndex>
+                      <Style>
+                        <Border>
+                          <Style>None</Style>
+                        </Border>
+                      </Style>
+                    </Subreport>
+                  </CellContents>
+                </TablixCell>
+              </TablixCells>
+            </TablixRow>
+          </TablixRows>
+        </TablixBody>
+        <TablixColumnHierarchy>
+          <TablixMembers>
+            <TablixMember />
+          </TablixMembers>
+        </TablixColumnHierarchy>
+        <TablixRowHierarchy>
+          <TablixMembers>
+            <TablixMember />
+          </TablixMembers>
+        </TablixRowHierarchy>
+        <DataSetName>DataSet1</DataSetName>
+        <Left>1.49422in</Left>
+        <Height>0.17708in</Height>
+        <Width>8.0107in</Width>
+        <ZIndex>5</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+        </Style>
+      </Tablix>
+    </ReportItems>
+    <Height>1.07037in</Height>
+    <Style>
+      <Border>
+        <Style>None</Style>
+      </Border>
+    </Style>
+  </Body>
+  <ReportParameters>
+    <ReportParameter Name="REPORT_HISTORY_ID">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <DefaultValue>
+        <Values>
+          <Value />
+        </Values>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>REPORT_HISTORY_ID</Prompt>
+      <Hidden>true</Hidden>
+    </ReportParameter>
+    <ReportParameter Name="AgencyID">
+      <DataType>Integer</DataType>
+      <Nullable>true</Nullable>
+      <DefaultValue>
+        <Values>
+          <Value>=0</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>AgencyID</Prompt>
+      <Hidden>true</Hidden>
+    </ReportParameter>
+    <ReportParameter Name="SearchBy">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value />
+        </Values>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>Lender Search By</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="Lender">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <DefaultValue>
+        <Values>
+          <Value />
+        </Values>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>Lender</Prompt>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>Lender</DataSetName>
+          <ValueField>CODE_TX</ValueField>
+          <LabelField>LenderLabel</LabelField>
+        </DataSetReference>
+      </ValidValues>
+    </ReportParameter>
+    <ReportParameter Name="Branch">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>DefaultBranch</DataSetName>
+          <ValueField>BrchValue</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>Branch</Prompt>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>Branch</DataSetName>
+          <ValueField>BrchValue</ValueField>
+          <LabelField>BrchLabel</LabelField>
+        </DataSetReference>
+      </ValidValues>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+    <ReportParameter Name="Division">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <DefaultValue>
+        <Values>
+          <Value>="1"</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Division</Prompt>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>Division</DataSetName>
+          <ValueField>CODE_CD</ValueField>
+          <LabelField>MEANING_TX</LabelField>
+        </DataSetReference>
+      </ValidValues>
+    </ReportParameter>
+    <ReportParameter Name="Coverage">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>="1"</Value>
+        </Values>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>Coverage</Prompt>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>CoverageType</DataSetName>
+          <ValueField>CODE_CD</ValueField>
+          <LabelField>MEANING_TX</LabelField>
+        </DataSetReference>
+      </ValidValues>
+    </ReportParameter>
+    <ReportParameter Name="ReportType">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <DefaultValue>
+        <Values>
+          <Value>="LNSTAT1_TOTALS"</Value>
+        </Values>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>Report Type</Prompt>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>ReportType</DataSetName>
+          <ValueField>CODE_CD</ValueField>
+          <LabelField>DESCRIPTION_TX</LabelField>
+        </DataSetReference>
+      </ValidValues>
+    </ReportParameter>
+    <ReportParameter Name="FilterBy">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>DefaultParms</DataSetName>
+          <ValueField>FILTER_TX</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>Filter By</Prompt>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>FilterBy</DataSetName>
+          <ValueField>CODE_CD</ValueField>
+          <LabelField>MEANING_TX</LabelField>
+        </DataSetReference>
+      </ValidValues>
+    </ReportParameter>
+    <ReportParameter Name="ReportConfig">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>="LNSTAT1_TOTALS"</Value>
+        </Values>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>Specific Configuration</Prompt>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>ReportConfig</DataSetName>
+          <ValueField>CODE_TX</ValueField>
+          <LabelField>MEANING_TX</LabelField>
+        </DataSetReference>
+      </ValidValues>
+    </ReportParameter>
+  </ReportParameters>
+  <Width>39.63923in</Width>
+  <Page>
+    <PageHeader>
+      <Height>1.15278in</Height>
+      <PrintOnLastPage>true</PrintOnLastPage>
+      <ReportItems>
+        <Textbox Name="Textbox29">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>Lender ID:</Value>
+                  <Style>
+                    <FontSize>9pt</FontSize>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Right</TextAlign>
+              </Style>
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox4</rd:DefaultName>
+          <Left>0.03125in</Left>
+          <Height>0.25in</Height>
+          <Width>1.26316in</Width>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="LenderCode">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>=Parameters!Lender.Value</Value>
+                  <Style>
+                    <FontSize>9pt</FontSize>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style />
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>LenderCode</rd:DefaultName>
+          <Left>1.29441in</Left>
+          <Height>0.25in</Height>
+          <Width>0.80918in</Width>
+          <ZIndex>1</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="Textbox30">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>Branch ID:</Value>
+                  <Style>
+                    <FontSize>9pt</FontSize>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Right</TextAlign>
+              </Style>
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox4</rd:DefaultName>
+          <Top>0.25in</Top>
+          <Left>0.03125in</Left>
+          <Height>0.25in</Height>
+          <Width>1.26316in</Width>
+          <ZIndex>2</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="ReportTitle">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>=Iif(First(Fields!TITLE_TX.Value, "LenderSpecificTitleHeaderFooter") = "", Parameters!ReportType.Label,First(Fields!TITLE_TX.Value, "LenderSpecificTitleHeaderFooter"))</Value>
+                  <Style>
+                    <FontSize>18pt</FontSize>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Center</TextAlign>
+              </Style>
+            </Paragraph>
+          </Paragraphs>
+          <rd:WatermarkTextbox>Title</rd:WatermarkTextbox>
+          <rd:DefaultName>ReportTitle</rd:DefaultName>
+          <Top>0.25in</Top>
+          <Left>2.12095in</Left>
+          <Height>0.34723in</Height>
+          <Width>5.45819in</Width>
+          <ZIndex>3</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <VerticalAlign>Middle</VerticalAlign>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="ReportType">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>=Iif(First(Fields!SUBTITLE_TX.Value, "LenderSpecificTitleHeaderFooter") &lt;&gt; "",First(Fields!SUBTITLE_TX.Value, "LenderSpecificTitleHeaderFooter"),IIf(Parameters!ReportConfig.Label = "" OR First(Fields!TITLE_TX.Value, "LenderSpecificTitleHeaderFooter") &lt;&gt; "",Parameters!Division.Label &amp; " / " &amp; Parameters!Coverage.Label,Parameters!ReportConfig.Label))</Value>
+                  <Style>
+                    <FontSize>12pt</FontSize>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Center</TextAlign>
+              </Style>
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>ReportType</rd:DefaultName>
+          <Top>0.625in</Top>
+          <Left>2.13137in</Left>
+          <Height>0.25in</Height>
+          <Width>5.45819in</Width>
+          <ZIndex>4</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="PageNumber">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>=Globals!PageNumber</Value>
+                  <Style>
+                    <FontSize>9pt</FontSize>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Left</TextAlign>
+              </Style>
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>PageNumber</rd:DefaultName>
+          <Left>8.54789in</Left>
+          <Height>0.25in</Height>
+          <Width>1in</Width>
+          <ZIndex>5</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="Textbox129">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>Page #:</Value>
+                  <Style>
+                    <FontSize>9pt</FontSize>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Right</TextAlign>
+              </Style>
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox26</rd:DefaultName>
+          <Left>7.60345in</Left>
+          <Height>0.25in</Height>
+          <Width>0.93056in</Width>
+          <ZIndex>6</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="Division">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>=Iif(First(Fields!SUBTITLE_TX.Value, "LenderSpecificTitleHeaderFooter")  &lt;&gt; "",Parameters!Division.Label &amp; " / " &amp; Parameters!Coverage.Label,IIf(Parameters!ReportConfig.Label = "" OR (First(Fields!TITLE_TX.Value, "LenderSpecificTitleHeaderFooter") &lt;&gt; "" and First(Fields!SUBTITLE_TX.Value, "LenderSpecificTitleHeaderFooter") = "")," ",Parameters!Division.Label &amp; " / " &amp; Parameters!Coverage.Label))</Value>
+                  <Style>
+                    <FontSize>12pt</FontSize>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Center</TextAlign>
+              </Style>
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Division</rd:DefaultName>
+          <Top>0.90278in</Top>
+          <Left>2.13484in</Left>
+          <Height>0.25in</Height>
+          <Width>5.45819in</Width>
+          <ZIndex>7</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="ExecutionTime1">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>=FormatDateTime(Globals!ExecutionTime, DateFormat.ShortDate)</Value>
+                  <Style>
+                    <FontSize>9pt</FontSize>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style />
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>ExecutionTime1</rd:DefaultName>
+          <Top>0.26389in</Top>
+          <Left>8.54789in</Left>
+          <Height>0.25in</Height>
+          <Width>1in</Width>
+          <ZIndex>8</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="Textbox134">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>Run Date:</Value>
+                  <Style>
+                    <FontSize>9pt</FontSize>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Right</TextAlign>
+              </Style>
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox26</rd:DefaultName>
+          <Top>0.26389in</Top>
+          <Left>7.60345in</Left>
+          <Height>0.25in</Height>
+          <Width>0.93056in</Width>
+          <ZIndex>9</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="Textbox135">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>Run Time:</Value>
+                  <Style>
+                    <FontSize>9pt</FontSize>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Right</TextAlign>
+              </Style>
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox26</rd:DefaultName>
+          <Top>0.54167in</Top>
+          <Left>7.60345in</Left>
+          <Height>0.25in</Height>
+          <Width>0.93056in</Width>
+          <ZIndex>10</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="ExecutionTime2">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>=FormatDateTime(Globals!ExecutionTime, 3)</Value>
+                  <Style>
+                    <FontSize>9pt</FontSize>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style />
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>ExecutionTime1</rd:DefaultName>
+          <Top>0.54167in</Top>
+          <Left>8.54789in</Left>
+          <Height>0.25in</Height>
+          <Width>1in</Width>
+          <ZIndex>11</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="Textbox140">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>=First(Fields!LenderLabel.Value, "Lender")</Value>
+                  <Style>
+                    <FontSize>12pt</FontSize>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Center</TextAlign>
+              </Style>
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox1</rd:DefaultName>
+          <Left>2.13137in</Left>
+          <Height>0.25in</Height>
+          <Width>5.4443in</Width>
+          <ZIndex>12</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="BranchHeader">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>=Join(Parameters!Branch.Label,",")</Value>
+                  <Style>
+                    <FontSize>9pt</FontSize>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style />
+            </Paragraph>
+          </Paragraphs>
+          <Top>0.26389in</Top>
+          <Left>1.3083in</Left>
+          <Height>0.25in</Height>
+          <Width>0.77098in</Width>
+          <ZIndex>13</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+      </ReportItems>
+      <Style>
+        <Border>
+          <Style>None</Style>
+        </Border>
+      </Style>
+    </PageHeader>
+    <PageHeight>21.59cm</PageHeight>
+    <PageWidth>27.94cm</PageWidth>
+    <LeftMargin>0.254cm</LeftMargin>
+    <RightMargin>0.254cm</RightMargin>
+    <TopMargin>0.254cm</TopMargin>
+    <BottomMargin>0.254cm</BottomMargin>
+    <Style />
+  </Page>
+  <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
+  <rd:ReportID>b4a661ed-d664-4a36-8599-15439e7a0fb6</rd:ReportID>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+</Report>

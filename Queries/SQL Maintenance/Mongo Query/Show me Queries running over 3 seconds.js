@@ -1,0 +1,1 @@
+db.currentOp({secs_running: {$gte: 3}}) 

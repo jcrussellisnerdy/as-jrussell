@@ -1,0 +1,26 @@
+UPDATE dbo.PRIOR_CARRIER_POLICY
+SET INSURANCE_COMPANY_NAME_TX = 'PROCTOR - PC'
+WHERE POLICY_NUMBER_TX IN ('5205914')
+
+
+
+UPDATE dbo.INTERACTION_HISTORY
+SET NOTE_TX = 'PROCTOR - PC
+Policy# 5205914
+Eff Date 1/1/2015 12:00:00 AM
+Exp Date 12/31/9999 11:59:59 PM'
+WHERE ID IN (187203977)
+
+
+
+UPDATE dbo.INTERACTION_HISTORY
+SET SPECIAL_HANDLING_XML = '<SH>
+  <InsuranceCompanyName>PROCTOR - PC</InsuranceCompanyName>
+  <PolicyNumber>5205914</PolicyNumber>
+  <EffDate>1/1/2015 12:00:00 AM</EffDate>
+  <CancellationDate>10/17/2015 12:00:00 AM</CancellationDate>
+  <ExpirationDate>12/31/9999 11:59:59 PM</ExpirationDate>
+  <ReasonMeaning />
+  <RC>108906822</RC>
+</SH>'
+WHERE ID IN (187203975)

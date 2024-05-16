@@ -1,0 +1,127 @@
+USE Unitrac
+
+
+
+
+
+
+SELECT id INTO #tmpPD FROM dbo.PROCESS_DEFINITION
+WHERE --ID = 14240
+PROCESS_TYPE_CD = 'BILLING'
+AND EXECUTION_FREQ_CD <> 'RUNONCE'
+AND ACTIVE_IN = 'Y' AND ONHOLD_IN = 'N'
+
+
+SELECT pd.NAME_TX, pl.* FROM PROCESS_LOG pl
+JOIN dbo.PROCESS_DEFINITION  pd ON pd.ID = pl.PROCESS_DEFINITION_ID
+WHERE PROCESS_DEFINITION_ID IN (SELECT * FROM #tmpPD)
+AND END_DT IS NOT NULL
+AND pl.CREATE_DT >= '2017-09-18' 
+ORDER BY pl.UPDATE_DT DESC 
+
+
+SELECT * FROM #tmpPD T
+LEFT JOIN PROCESS_LOG pl ON pl.PROCESS_DEFINITION_ID = T.ID
+ LEFT JOIN dbo.PROCESS_DEFINITION  pd ON pd.ID = pl.PROCESS_DEFINITION_ID
+WHERE END_DT IS NOT NULL
+AND pl.CREATE_DT >= '2017-09-18' 
+ORDER BY pl.UPDATE_DT DESC 
+
+
+SELECT * FROM dbo.PROCESS_LOG_ITEM
+WHERE PROCESS_LOG_ID = 51487469
+
+SELECT * FROM dbo.WORK_ITEM
+WHERE CREATE_DT >= '2017-10-19 '
+AND LENDER_ID =1163
+AND WORKFLOW_DEFINITION_ID = 10
+
+SELECT * FROM PROCESS_LOG 
+WHERE PROCESS_DEFINITION_ID = 14240 
+AND CREATE_DT >= '2017-10-18' 
+ORDER BY UPDATE_DT DESC 
+
+
+SELECT * FROM dbo.PROCESS_LOG pl
+WHERE pl.UPDATE_USER_TX LIKE 'UBSProc%'
+AND pl.UPDATE_DT >= '2017-10-25 09:00'
+ORDER BY pl.UPDATE_DT DESC 
+
+
+SELECT * FROM dbo.PROCESS_LOG
+WHERE PROCESS_DEFINITION_ID IN (543431,
+543438,
+543806)
+ORDER BY UPDATE_DT DESC 
+
+SELECT * FROM dbo.PROCESS_DEFINITION
+WHERE ID IN (543431,
+543438,
+543806)
+
+
+SELECT * FROM dbo.LENDER
+WHERE CODE_TX IN ('1030', '7300', '2291')
+
+
+
+SELECT * FROM dbo.PROCESS_DEFINITION
+WHERE ID IN (14240)--, 42655,42656,586682,587345,587983,587984,588115)
+
+SELECT * FROM PROCESS_LOG 
+WHERE PROCESS_DEFINITION_ID = 14240 
+AND CREATE_DT >= '2017-10-18' 
+ORDER BY UPDATE_DT DESC 
+
+
+SELECT * FROM dbo.PROCESS_DEFINITION
+WHERE ID = 30
+
+
+UPDATE dbo.PROCESS_DEFINITION
+SET STATUS_CD = 'InQueue', SETTINGS_XML_IM = '<ProcessDefinitionSettings>
+  <LastProcessedDate />
+  <TargetServerList>
+    <TargetServer />
+  </TargetServerList>
+  <TargetServiceList>
+    <TargetService />
+  </TargetServiceList>
+  <PredecessorProcessList>
+    <PredecessorProcess />
+  </PredecessorProcessList>
+  <LDAPServer>10.10.18.186</LDAPServer>
+  <LDAPPath>ou=groups,ou=internal,dc=as,dc=net</LDAPPath>
+  <CancelRefund>Y</CancelRefund>
+  <AnticipatedNextScheduledDate>10/25/2017 4:04:00 PM</AnticipatedNextScheduledDate>
+  <TimeOfDay>06:00:00</TimeOfDay>
+  <LenderList>
+    <LenderID IsEnabled="Y">1163</LenderID>
+  </LenderList>
+  <LCGCTList>
+    <LCGCTId>3797</LCGCTId>
+    <LCGCTId>3801</LCGCTId>
+    <LCGCTId>3802</LCGCTId>
+  </LCGCTList>
+  <LenderReportConfigList>
+    <LenderReportConfigId>53095</LenderReportConfigId>
+  </LenderReportConfigList>
+  <ServiceCapabilityList>
+    <ServiceCapability>RAMMEDIUM</ServiceCapability>
+    <ServiceCapability>CPUMEDIUM</ServiceCapability>
+    <SystemRamInGB />
+    <SystemProcessorCount />
+  </ServiceCapabilityList>
+</ProcessDefinitionSettings>'
+--SELECT * FROM dbo.PROCESS_DEFINITION
+WHERE ID IN (14240)
+
+
+
+SELECT * FROM dbo.LENDER_REPORT_CONFIG
+WHERE id = 53095
+
+
+SELECT * FROM dbo.PROCESS_LOG
+WHERE PROCESS_DEFINITION_ID in (14240)
+AND UPDATE_DT >= '2017-10-23 '

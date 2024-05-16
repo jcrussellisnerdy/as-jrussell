@@ -1,0 +1,1 @@
+﻿Install-WindowsFeature -name NET-Framework-Core -source D:\sources\sxs

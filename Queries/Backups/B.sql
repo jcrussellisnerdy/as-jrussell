@@ -1,0 +1,122 @@
+USE [DBA]
+GO
+
+/****** Object:  StoredProcedure [dbo].[CREATE_IVOS_USER]    Script Date: 2/10/2022 3:07:16 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+/* 
+PARAMETER INPUT ASSISTANCE:
+@USER_LOGIN				= USERNAME USED TO LOGIN
+@USER_LAST_NAME			= LAST NAME OF THIS USER
+@USER_FIRST_NAME		= FIRST NAME OF THIS USER
+@AUTHENTICATION_METHOD	= LISTED BELOW, CURRENTLY 0 (iVos Authentication)
+@ADD_USER				= PERSON WHO IS ADDING THIS USER (Example: IAMAdmin)
+
+
+AUTHENTICATION METHODS: 
+	0 = iVos Authentication
+	1 = LDAP Authentication
+	2 = Single Signon Authentication
+
+@FAILED_LOGIN_ATTEMPTS SET TO -1 MEANS THE USER WILL BE FORCED TO CHANGE THEIR PASSWORD UPON NEXT LOGIN
+
+EXAMPLE OF HOW TO RUN THE STORED PROCEDURE: 
+ 
+AUTHENTICATION METHODS: 
+	0 = iVos Authentication
+	1 = LDAP Authentication
+	2 = Single Signon Authentication
+
+
+USE [IVOS]
+GO
+
+DECLARE
+	  @USER_LOGIN				= 'TestUser2'				-- USERNAME USED TO LOGIN
+	, @USER_LAST_NAME			= 'TestLastName'			-- LAST NAME OF THIS USER
+	, @USER_FIRST_NAME			= 'TestFirstName'			-- FIRST NAME OF THIS USER
+	, @AUTHENTICATION_METHOD	= 0							-- LISTED BELOW, CURRENTLY 0 (iVos Authentication)
+	, @ADD_USER					= 'IAMAdmin'				-- PERSON WHO IS ADDING THIS USER (Example: IAMAdmin)
+
+EXECUTE [dbo].[CREATE_IVOS_USER] 
+	  @USER_LOGIN				
+	, @USER_PASSWORD			
+	, @USER_LAST_NAME			
+	, @USER_FIRST_NAME		
+	, @AUTHENTICATION_METHOD	
+	, @ADD_USER				
+GO
+*/
+
+
+CREATE PROC [dbo].[CREATE_IVOS_USER] @USER_LOGIN VARCHAR(8000), @USER_LAST_NAME VARCHAR(8000), @USER_FIRST_NAME VARCHAR(8000), @AUTHENTICATION_METHOD INT, @ADD_USER VARCHAR(8000)
+AS
+
+SET NOCOUNT ON
+
+
+DECLARE 
+	  @USER_KEY					INT								-- usr_key
+	, @USER_PASSWORD			VARCHAR(8000)	= '813bb9fb401b9d1da4c'
+	, @FAILED_LOGIN_ATTEMPTS	INT				= -1			-- failed_login_attempts
+	, @EDIT_USER				VARCHAR(8000)	= @ADD_USER		-- edit_user
+	, @ADD_DATE					DATETIME		= GETDATE()		-- add_date	
+	, @EDIT_DATE				DATETIME		= GETDATE()		-- edit_date
+	, @DEFAULT_PARAMETERS		VARCHAR(8000)	= 'main:claimant_search=100,user_diary=500,userDocument=100,user_claim_mail=100,user_claim_mail=100,case_load=100,table_audit_log=100,batch_approval_payment=100,eventSearch=100,litigationSearch=100;claimant:correspond=5000,document_image=5000,payment_overview=5000,notepad=5000'
+	-- USE "@USER_LAST_NAME + ', ' + @USER_FIRST_NAME" FOR PRE 2012 SQL SERVER VERSIONS
+	--, @USER_FULL_NAME			VARCHAR(8000)	= @USER_LAST_NAME + ', ' + @USER_FIRST_NAME
+	-- USE "CONCAT(@USER_LAST_NAME, ', ', @USER_FIRST_NAME)" FOR 2012+ SQL SERVER VERSIONS
+	, @USER_FULL_NAME			VARCHAR(8000)	= CONCAT(@USER_LAST_NAME, ', ', @USER_FIRST_NAME)
+	, @USER_STATUS				INT				= 1
+	, @DATABASE_VERSION			INT
+
+
+-- STEP 1: GET THE MAX USER KEY
+SELECT
+	@USER_KEY = (MAX(usr_key) + 1)
+FROM 
+	[IVOS].[dbo].[pl_usr];
+
+/*
+-- STEP 2: GET DATABASE VERSION
+SELECT @DATABASE_VERSION = DATABASEPROPERTYEX('IVOS', 'Version');
+
+-- STEP 3: CONCAT FULL USERNAME DEPENDING ON DB VERSION
+-- CANNOT USE THIS VERSION BECAUSE < 2012 THROWS AN ERROR "'CONCAT' is not a recognized built-in function name"
+SELECT @USER_FULL_NAME =
+CASE 
+	WHEN @DATABASE_VERSION > 706
+		THEN CONCAT(@USER_LAST_NAME, ', ', @USER_FIRST_NAME)
+	ELSE
+		 @USER_LAST_NAME + ', ' + @USER_FIRST_NAME
+END
+*/
+
+-- STEP 4: CREATE THE USER
+INSERT INTO 
+	[IVOS].[dbo].[pl_usr] (usr_login, usr_pwd, usr_key, usr_status, usr_fname, usr_lname, usr_name, authentication_method, failed_login_attempts, add_user, edit_user, add_date, edit_date, page_row_limit) 
+VALUES 
+	(
+	  @USER_LOGIN
+	, @USER_PASSWORD
+	, @USER_KEY
+	, @USER_STATUS
+	, @USER_FIRST_NAME
+	, @USER_LAST_NAME
+	, @USER_FULL_NAME
+	, @AUTHENTICATION_METHOD
+	, @FAILED_LOGIN_ATTEMPTS
+	, @ADD_USER
+	, @EDIT_USER
+	, @ADD_DATE
+	, @EDIT_DATE
+	, @DEFAULT_PARAMETERS 
+	);
+
+GO
+
+

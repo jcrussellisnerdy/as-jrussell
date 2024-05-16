@@ -1,0 +1,25 @@
+USE [Bond_Main]
+
+		DECLARE @USER nvarchar(30) = 'Informatica_APP_ACCESS'
+		DECLARE @TABLE nvarchar(20) = 'CARDCASEDATA'
+		DECLARE @TABLE2 nvarchar(30) = 'CARDTRANSACTIONDATA'
+
+IF NOT EXISTS (SELECT 1 FROM sys.database_permissions where OBJECT_NAME(major_id) = @TABLE  AND TYPE = 'SL' AND USER_NAME(grantee_principal_id) = @USER)
+BEGIN
+		GRANT SELECT ON [info].[CARDCASEDATA] TO [Informatica_APP_ACCESS] 
+		PRINT 'SUCCESS: GRANT SELECT  was issued to ' + @USER + ' on ' + @TABLE
+END
+	ELSE 
+BEGIN
+		PRINT 'WARNING: GRANTS ALREADY EXISTS'
+END
+
+IF NOT EXISTS (SELECT 1 FROM sys.database_permissions where OBJECT_NAME(major_id) = @TABLE2  AND TYPE = 'SL' AND USER_NAME(grantee_principal_id) = @USER)
+BEGIN
+		GRANT SELECT ON [import].[CARDTRANSACTIONDATA] TO [Informatica_APP_ACCESS] 
+		PRINT 'SUCCESS: GRANT SELECT  was issued to ' + @USER + ' on ' + @TABLE2
+END	
+	ELSE 
+BEGIN
+		PRINT 'WARNING: GRANTS ALREADY EXISTS'
+END

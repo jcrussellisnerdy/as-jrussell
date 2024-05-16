@@ -1,0 +1,63 @@
+------- Cancel Lender Determine Cancel Pending, Outbound Call, VerifyData Open WI
+SELECT * FROM UniTrac..WORK_ITEM
+WHERE CONTENT_XML.value('(/Content/Lender/Code)[1]', 'varchar (50)') = '1777' 
+AND WORKFLOW_DEFINITION_ID IN (3,6,8)
+AND STATUS_CD = 'Initial'
+ORDER BY WORKFLOW_DEFINITION_ID ASC
+
+---------- Clear Cancel Pending (11 total)
+--UPDATE  UniTrac..WORK_ITEM
+--SET     STATUS_CD = 'Complete' ,
+--        UPDATE_USER_TX = 'INC0181488'
+--WHERE   ID IN ( 23554245, 23578902, 23550707, 23559412, 23549763, 23559416,
+--                23561624, 23621523, 23549764, 23571483, 23574021 )
+--        AND WORKFLOW_DEFINITION_ID = 3
+--        AND ACTIVE_IN = 'Y'
+
+-------- Clear OBC (79 total)
+UPDATE  UniTrac..WORK_ITEM
+SET     STATUS_CD = 'Complete' ,
+        UPDATE_USER_TX = 'INC0192633'
+WHERE   ID IN ( 1891526, 24888668 )
+        AND WORKFLOW_DEFINITION_ID = 6
+        AND ACTIVE_IN = 'Y'
+
+-------- Clear VerifyData (13 total)
+SELECT DISTINCT
+        WI.ID AS WI_ID ,
+        LOAN.ID AS LOAN_ID
+INTO    #TMPWI
+FROM    LOAN
+        JOIN LENDER ON LENDER.ID = LOAN.LENDER_ID
+        JOIN WORK_ITEM WI ON WI.RELATE_ID = LOAN.ID
+WHERE   LENDER.CODE_TX = '1777'
+        AND WI.WORKFLOW_DEFINITION_ID = 8
+        AND WI.STATUS_CD NOT IN ( 'COMPLETE', 'WITHDRAWN' )
+        AND WI.PURGE_DT IS NULL
+        AND LOAN.PURGE_DT IS NULL
+        AND LOAN.RECORD_TYPE_CD IN ( 'G', 'A' )
+
+SELECT  *
+FROM    #TMPWI
+
+UPDATE  LN
+SET     SPECIAL_HANDLING_XML = NULL ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0192633' ,
+        LOCK_ID = CASE WHEN LOCK_ID >= 255 THEN 1
+                       ELSE LOCK_ID + 1
+                  END
+FROM    LOAN LN
+        JOIN #TMPWI ON #TMPWI.LOAN_ID = LN.ID
+
+
+UPDATE  WI
+SET     STATUS_CD = 'WITHDRAWN' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0192633' ,
+        LOCK_ID = CASE WHEN LOCK_ID >= 255 THEN 1
+                       ELSE LOCK_ID + 1
+                  END
+FROM    WORK_ITEM WI
+        JOIN #TMPWI ON #TMPWI.WI_ID = WI.ID
+

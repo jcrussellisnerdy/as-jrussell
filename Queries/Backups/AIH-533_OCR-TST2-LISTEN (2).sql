@@ -1,0 +1,62 @@
+USE [master]
+GO
+CREATE LOGIN [ELDREDGE_A\OCR-Capture-Temp] FROM WINDOWS WITH DEFAULT_DATABASE=[master]
+GO
+USE [ACSYSTEM]
+GO
+CREATE USER [ELDREDGE_A\OCR-Capture-Temp] FOR LOGIN [ELDREDGE_A\OCR-Capture-Temp]
+GO
+USE [ACSYSTEM]
+GO
+ALTER ROLE [db_datareader] ADD MEMBER [ELDREDGE_A\OCR-Capture-Temp]
+GO
+USE [ACSYSTEM]
+GO
+ALTER ROLE [db_datawriter] ADD MEMBER [ELDREDGE_A\OCR-Capture-Temp]
+GO
+
+
+
+
+USE [master]
+GO
+CREATE LOGIN [ELDREDGE_A\OCR-Transform-Temp] FROM WINDOWS WITH DEFAULT_DATABASE=[master]
+GO
+USE [ACSYSTEM]
+GO
+CREATE USER [ELDREDGE_A\OCR-Transform-Temp] FOR LOGIN [ELDREDGE_A\OCR-Transform-Temp]
+GO
+USE [ACSYSTEM]
+GO
+ALTER ROLE [db_datareader] ADD MEMBER [ELDREDGE_A\OCR-Transform-Temp]
+GO
+USE [ACSYSTEM]
+GO
+ALTER ROLE [db_datawriter] ADD MEMBER [ELDREDGE_A\OCR-Transform-Temp]
+GO
+
+
+
+
+USE [master]
+GO
+CREATE LOGIN [ELDREDGE_A\ocr-reports-temp] FROM WINDOWS WITH DEFAULT_DATABASE=[master]
+GO
+USE [ACSYSTEM]
+GO
+CREATE USER [ELDREDGE_A\ocr-reports-temp] FOR LOGIN [ELDREDGE_A\ocr-reports-temp]
+GO
+USE [ACSYSTEM]
+GO
+ALTER ROLE [db_datareader] ADD MEMBER [ELDREDGE_A\ocr-reports-temp]
+GO
+USE [ACSYSTEM]
+GO
+ALTER ROLE [db_datawriter] ADD MEMBER [ELDREDGE_A\ocr-reports-temp]
+GO
+
+
+
+
+
+

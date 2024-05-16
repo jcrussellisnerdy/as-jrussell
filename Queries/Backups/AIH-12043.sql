@@ -1,0 +1,8 @@
+USE [master]
+
+IF EXISTS(select 1
+from sys.databases
+where name = 'ACSYSTEM') 
+BEGIN
+    ALTER DATABASE [ACSYSTEM] MODIFY FILE ( NAME = N'ACSYSTEM', MAXSIZE =106GB)
+END

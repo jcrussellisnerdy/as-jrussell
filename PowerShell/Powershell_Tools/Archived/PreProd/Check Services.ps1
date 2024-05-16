@@ -1,0 +1,19 @@
+﻿Get-Service	 -ComputerName	UTPREPROD-APP01.colo.as.local	  -Name	LDHSERV |  select machinename, name, status
+Get-Service	 -ComputerName	UTPREPROD-APP01.colo.as.local	  -Name	LDHServiceUSD |  select machinename, name, status
+Get-Service	 -ComputerName	UTPREPROD-APP01.colo.as.local	  -Name	MSGSRVRBSS |  select machinename, name, status
+Get-Service	 -ComputerName	UTPREPROD-APP01.colo.as.local	  -Name	MSGSRVRDEF |  select machinename, name, status
+Get-Service	 -ComputerName	UTPREPROD-APP01.colo.as.local	  -Name	MSGSRVREDIIDR |  select machinename, name, status
+Get-Service	 -ComputerName	UTPREPROD-APP01.colo.as.local	  -Name	MSGSRVREXTHUNT |  select machinename, name, status
+Get-Service	 -ComputerName	UTPREPROD-APP01.colo.as.local	  -Name	MSGSRVREXTINFO |  select machinename, name, status
+Get-Service	 -ComputerName	UTPREPROD-APP01.colo.as.local	  -Name	MSGSRVREXTUSD |  select machinename, name, status
+Get-Service	 -ComputerName	UTPREPROD-APP01.colo.as.local	  -Name	UnitracBusinessService |  select machinename, name, status
+Get-Service	 -ComputerName	UTPREPROD-APP01.colo.as.local	  -Name	UnitracBusinessServiceCycle |  select machinename, name, status
+Get-Service	 -ComputerName	UTPREPROD-APP01.colo.as.local	  -Name	UnitracBusinessServiceMatchIn |  select machinename, name, status
+Get-Service	 -ComputerName	UTPREPROD-APP01.colo.as.local	  -Name	UnitracBusinessServiceMatchOut |  select machinename, name, status
+Get-Service	 -ComputerName	UTPREPROD-APP01.colo.as.local	  -Name	UnitracBusinessServicePRT |  select machinename, name, status
+Get-Service	 -ComputerName	UTPREPROD-APP01.colo.as.local	  -Name	UnitracBusinessServiceRPT |  select machinename, name, status
+Get-Service	 -ComputerName	UTPREPROD-APP01.colo.as.local	  -Name	Workflow |  select machinename, name, status
+Get-Service	 -ComputerName	UTPREPROD-APP01.colo.as.local	  -Name	LetterGen  |  select machinename, name, status
+Get-Service	 -ComputerName	UTPREPROD-APP01.colo.as.local	  -Name DirectoryWatcherServerIn |  select machinename, name, status
+Get-Service	 -ComputerName	UTPREPROD-APP01.colo.as.local	  -Name DirectoryWatcherServerOut |  select machinename, name, status
+ 

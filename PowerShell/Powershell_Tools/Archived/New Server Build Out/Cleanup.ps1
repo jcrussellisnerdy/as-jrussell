@@ -1,0 +1,1 @@
+Get-ChildItem –Path "E:\logs" -Recurse | Where-Object {($_.LastWriteTime -lt (Get-Date).AddDays(-30))} | Remove-Item 

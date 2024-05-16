@@ -1,0 +1,16 @@
+---Need to connected to UTSTAGE-RPT01
+
+USE ReportServer
+
+SELECT * FROM dbo.Catalog C
+JOIN dbo.DataSource D ON D.ItemID = C.ItemID
+WHERE ParentID = '8B21A2BC-CFCC-4495-888B-0A32DD0CCBC7'
+
+
+
+UPDATE D 
+SET D.Link = '7107DF8B-8272-49DE-9DB9-48A18F9465F2', D.NAME = 'Unitrac_Snapshot'
+--SELECT *
+FROM dbo.DataSource D 
+JOIN dbo.Catalog C ON D.ItemID = C.ItemID
+WHERE C.ParentID = '8B21A2BC-CFCC-4495-888B-0A32DD0CCBC7'

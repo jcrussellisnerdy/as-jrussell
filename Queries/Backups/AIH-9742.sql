@@ -1,0 +1,16 @@
+USE [master]
+GO
+CREATE LOGIN [ELDREDGE_A\IT Support Group] FROM WINDOWS WITH DEFAULT_DATABASE=[tempdb]
+GO
+USE [IND_AlliedSolutions_157GIC109]
+GO
+CREATE USER [ELDREDGE_A\IT Support Group] FOR LOGIN [ELDREDGE_A\IT Support Group]
+GO
+USE [IND_AlliedSolutions_157GIC109]
+GO
+ALTER ROLE [db_datareader] ADD MEMBER [ELDREDGE_A\IT Support Group]
+GO
+USE [IND_AlliedSolutions_157GIC109]
+GO
+ALTER ROLE [db_denydatawriter] ADD MEMBER [ELDREDGE_A\IT Support Group]
+GO

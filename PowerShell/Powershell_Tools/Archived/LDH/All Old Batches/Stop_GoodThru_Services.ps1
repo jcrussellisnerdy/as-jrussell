@@ -1,0 +1,1 @@
+﻿Get-Service	 -ComputerName	UNITRAC-WH16	  -Name UnitracBusinessServiceGoodThru | Stop-Service

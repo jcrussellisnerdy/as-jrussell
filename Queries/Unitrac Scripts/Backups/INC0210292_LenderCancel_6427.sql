@@ -1,0 +1,153 @@
+------- Cancelled Lender Determine Cancel Pending, Outbound Call, VerifyData Open WI
+----REPLACE XXXXXXX WITH THE THE WI ID
+----REPLACE #### WITH THE THE Lender ID
+----REPLACE INC0###### WITH THE TICKET ID
+---Checking UTLs WIs
+
+
+SELECT  *
+FROM    WORK_ITEM
+WHERE   RELATE_TYPE_CD = 'Allied.UniTrac.UTLMatchResult'
+        AND RELATE_ID IN (
+        SELECT  UTL_MATCH_RESULT.ID
+        FROM    LOAN
+                INNER JOIN COLLATERAL ON LOAN.ID = COLLATERAL.LOAN_ID-- AND COLLATERAL.PURGE_DT IS NULL
+                INNER JOIN PROPERTY ON COLLATERAL.PROPERTY_ID = PROPERTY.ID
+                INNER JOIN dbo.UTL_MATCH_RESULT ON PROPERTY.ID = UTL_MATCH_RESULT.PROPERTY_ID
+                INNER JOIN LENDER ON LOAN.LENDER_ID = LENDER.ID
+        WHERE   LENDER.CODE_TX = '6427'
+                AND WORK_ITEM.STATUS_CD NOT LIKE 'Complete'
+                AND WORK_ITEM.STATUS_CD NOT LIKE 'Withdrawn' 
+			   )
+
+---Checking Verify Data, Cancel Pending , and Outbound WIs
+SELECT *
+FROM WORK_ITEM
+WHERE WORKFLOW_DEFINITION_ID IN (3,6,8)  AND RELATE_TYPE_CD = 'Allied.UniTrac.RequiredCoverage' AND RELATE_ID IN (SELECT REQUIRED_COVERAGE.ID
+FROM LOAN
+INNER JOIN COLLATERAL ON LOAN.ID = COLLATERAL.LOAN_ID-- AND COLLATERAL.PURGE_DT IS NULL
+INNER JOIN PROPERTY ON COLLATERAL.PROPERTY_ID = PROPERTY.ID
+INNER JOIN REQUIRED_COVERAGE ON PROPERTY.ID = REQUIRED_COVERAGE.PROPERTY_ID
+INNER JOIN LENDER ON LOAN.LENDER_ID = LENDER.ID
+WHERE LENDER.CODE_TX = '6427'
+AND WORK_ITEM.STATUS_CD NOT LIKE 'Complete' AND WORK_ITEM.STATUS_CD NOT LIKE 'Withdrawn' )
+ORDER BY WORK_ITEM.STATUS_CD ASC 
+
+
+SELECT * --INTO UniTracHDStorage..INC0210292
+ FROM UniTrac..WORK_ITEM
+WHERE CONTENT_XML.value('(/Content/Lender/Code)[1]', 'varchar (50)') = '6427'
+AND WORKFLOW_DEFINITION_ID IN (2,3,6,8)
+--AND STATUS_CD = 'Initial'
+AND WORK_ITEM.STATUS_CD NOT LIKE 'Complete' AND WORK_ITEM.STATUS_CD NOT LIKE 'Withdrawn'
+ORDER BY WORKFLOW_DEFINITION_ID ASC
+
+
+SELECT * FROM UniTracHDStorage..INC0210292
+where status_CD <> 'Initial'
+
+
+-------- Clear UTLs (- rows)
+UPDATE  UniTrac..WORK_ITEM
+SET     STATUS_CD = 'Complete' ,
+        UPDATE_USER_TX = 'INC0210292',
+		 LOCK_ID = CASE WHEN LOCK_ID >= 255 THEN 1
+                  ELSE LOCK_ID + 1 END
+WHERE   ID IN  ( SELECT ID FROM UniTracHDStorage..INC0210292 )
+        AND WORKFLOW_DEFINITION_ID = 2
+		--AND STATUS_CD = 'Initial'
+        AND ACTIVE_IN = 'Y'
+
+-------- Clear Cancel Pending (- rows)
+UPDATE  UniTrac..WORK_ITEM
+SET     STATUS_CD = 'Complete' ,
+        UPDATE_USER_TX = 'INC0210292'
+WHERE   ID IN (SELECT ID FROM UniTracHDStorage..INC0210292 )
+        AND WORKFLOW_DEFINITION_ID = 3
+        AND ACTIVE_IN = 'Y'
+
+-------- Clear OBC (- rows)
+UPDATE  UniTrac..WORK_ITEM
+SET     STATUS_CD = 'Complete' ,
+        UPDATE_USER_TX = 'INC0210292'
+WHERE   ID IN ( SELECT ID FROM UniTracHDStorage..INC0210292)
+        AND WORKFLOW_DEFINITION_ID = 6
+        AND ACTIVE_IN = 'Y'
+
+
+-------- Clear VerifyData (- rows)
+SELECT DISTINCT
+        WI.ID AS WI_ID ,
+        LOAN.ID AS LOAN_ID
+INTO    #TMPWI
+FROM    LOAN
+        JOIN LENDER ON LENDER.ID = LOAN.LENDER_ID
+        JOIN WORK_ITEM WI ON WI.RELATE_ID = LOAN.ID
+WHERE   LENDER.CODE_TX = '6427'
+        AND WI.WORKFLOW_DEFINITION_ID = 8
+        AND WI.STATUS_CD NOT IN ( 'COMPLETE', 'WITHDRAWN' )
+        AND WI.PURGE_DT IS NULL
+        AND LOAN.PURGE_DT IS NULL
+        AND LOAN.RECORD_TYPE_CD IN ('G','A')
+
+SELECT * FROM #TMPWI
+
+UPDATE  LN
+SET     SPECIAL_HANDLING_XML = NULL ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0210292' ,
+        LOCK_ID = CASE WHEN LOCK_ID >= 255 THEN 1
+                       ELSE LOCK_ID + 1
+                  END
+--SELECT COUNT(*)
+FROM    LOAN LN
+        JOIN #TMPWI ON #TMPWI.LOAN_ID = LN.ID
+
+
+UPDATE  WI
+SET     STATUS_CD = 'Withdrawn' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0210292' ,
+        LOCK_ID = CASE WHEN LOCK_ID >= 255 THEN 1
+                       ELSE LOCK_ID + 1
+                  END
+--SELECT COUNT(*)
+FROM    WORK_ITEM WI
+        JOIN #TMPWI ON #TMPWI.WI_ID = WI.ID
+
+
+
+
+-----Manually update VerifyData (- rows) that fail in the temp table
+----run first
+--UPDATE  dbo.WORK_ITEM
+--SET     STATUS_CD = 'WITHDRAWN' ,
+--        UPDATE_DT = GETDATE() ,
+--        UPDATE_USER_TX = 'INC0######' ,
+--        LOCK_ID = CASE WHEN LOCK_ID >= 255 THEN 1
+--                       ELSE LOCK_ID + 1
+--					     WHERE ID IN ();
+----run second
+-- UPDATE dbo.LOAN
+-- SET    SPECIAL_HANDLING_XML = NULL ,
+--        UPDATE_DT = GETDATE() ,
+--        UPDATE_USER_TX = 'INC0######' ,
+--        LOCK_ID = CASE WHEN LOCK_ID >= 255 THEN 1
+--                       ELSE LOCK_ID + 1
+--                  END
+-- WHERE  ID IN ( SELECT  RELATE_ID
+--                FROM    dbo.WORK_ITEM
+--				INNER JOIN dbo.LOAN ON LOAN.ID = WORK_ITEM.RELATE_ID
+--				INNER JOIN dbo.LENDER ON LENDER.ID = LOAN.LENDER_ID
+--                WHERE   UPDATE_USER_TX = 'INC0######' AND CODE_TX = '####')
+
+
+
+--SELECT CONTENT_XML.value('(/Content/Lender/Code)[1]', 'varchar (50)'),  * FROM dbo.WORK_ITEM
+--		WHERE WORKFLOW_DEFINITION_ID = '8' AND STATUS_CD = 'WITHDRAWN' AND  UPDATE_USER_TX = 'INC0######'
+--		ORDER BY RELATE_ID ASC
+
+--		SELECT * FROM dbo.LOAN
+--		WHERE UPDATE_USER_TX = 'INC0######' 
+--		ORDER BY ID ASC
+				

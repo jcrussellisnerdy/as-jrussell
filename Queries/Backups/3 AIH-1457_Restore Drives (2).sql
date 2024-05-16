@@ -1,0 +1,11 @@
+--On all secondaries DB servers 
+
+---Fulls
+  RESTORE DATABASE [WinAppLog]
+  FROM  DISK = N'\\IGNITE-SQL14\Restores\CP-SQLDEV-02\WinAppLog.Bak' --WITH  FILE = 1,  NOUNLOAD,  STATS = 5
+WITH  FILE = 1, NORECOVERY,  NOUNLOAD,  STATS = 5
+  GO
+
+
+
+RESTORE LOG [WinAppLog] FROM DISK =  '\\IGNITE-SQL14\Restores\CP-SQLDEV-02\WinAppLog.LOG' WITH NORECOVERY;

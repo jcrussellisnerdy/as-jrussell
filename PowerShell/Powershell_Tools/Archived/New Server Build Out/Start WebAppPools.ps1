@@ -1,0 +1,10 @@
+﻿Start-WebAppPool -Name "VehicleLookupService"
+Start-WebAppPool -Name "UnitracSSO AppPool"
+Start-WebAppPool -Name  "UnitracServerAppPool"
+Start-WebAppPool -Name "UnitracLenderServiceAppPool"
+Start-WebAppPool -Name "UnitracDataAppPool"
+Start-WebAppPool -Name "UnitracAppPool"
+Start-WebAppPool -Name "QuickPointAppPool"
+Start-WebAppPool -Name "LDHWebServiceAppPool"
+
+Start-WebAppPool -Name "Unitrac QC AppPool"

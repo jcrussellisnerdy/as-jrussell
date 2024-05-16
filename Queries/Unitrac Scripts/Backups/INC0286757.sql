@@ -1,0 +1,59 @@
+USE UniTrac
+GO
+
+declare @wi as varchar(MAX)
+DECLARE @pl AS VARCHAR(max)
+DECLARE @TranType AS varchar(max)
+
+set @pl = 42573291 
+
+SET @TranType ='UNITRAC'
+
+
+--SELECT
+--      @pl = RELATE_ID 
+--FROM
+--      dbo.WORK_ITEM WI
+--WHERE
+--      WI.id = @wi
+ 
+
+SELECT
+ --@wi = RELATE_ID 
+ *
+FROM
+      dbo.PROCESS_LOG_ITEM
+	  WHERE PROCESS_LOG_ID = @pl
+	  AND RELATE_TYPE_CD = 'Allied.UniTrac.ReportHistory'
+
+	  --SELECT * FROM dbo.WORK_ITEM
+	  --WHERE ID IN (37805065)
+
+SELECT * FROM dbo.REPORT_HISTORY
+WHERE ID IN (@wi)	  
+
+
+SELECT * FROM dbo.REPORT_HISTORY
+WHERE ID IN (11595284,
+11595285,
+11595286,
+11595287,
+11595879,
+11595880) AND DOCUMENT_CONTAINER_ID IS NULL
+
+
+
+UPDATE  [UniTrac].[dbo].[REPORT_HISTORY]
+SET     STATUS_CD = 'PEND' ,
+        RETRY_COUNT_NO = 0 ,
+        MSG_LOG_TX = NULL ,
+        RECORD_COUNT_NO = 0 ,
+        ELAPSED_RUNTIME_NO = 0,
+		UPDATE_DT = GETDATE()
+--	, REPORT_DATA_XML = ''
+--		,REPORT_ID = '27'
+--SELECT * FROM dbo.REPORT_HISTORY
+WHERE   ID IN (11595285,
+11595286,
+11595879,
+11595880)

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
+  <Relationship Type="http://schemas.microsoft.com/packaging/2010/07/manifest" Target="/AWS.Tools.RDS.nuspec" Id="R4c5b5aef88734019" />
+  <Relationship Type="http://schemas.openxmlformats.org/package/2006/relationships/metadata/core-properties" Target="/package/services/metadata/core-properties/db726a3a482d466cabd3d45a89625273.psmdcp" Id="R997738fb9ba14b76" />
+</Relationships>

@@ -1,0 +1,21 @@
+﻿
+Get-Service	 -ComputerName	Unitrac-APP02	 -Name	ldhserviceUSD |Start-Service
+Get-Service	 -ComputerName	Unitrac-WH01	 -Name	LDHServicePRCPA |Start-Service
+Get-Service	 -ComputerName	Unitrac-WH03	 -Name	LDHSERV |Start-Service
+Get-Service	 -ComputerName	Unitrac-WH04	 -Name	LDHServiceADHOC |Start-Service
+Get-Service	 -ComputerName	Unitrac-WH07	 -Name	LDHServiceHUNT |Start-Service
+Get-Service	 -ComputerName	 Unitrac-WH08	 -Name	MSGSRVRBSS |Start-Service
+Get-Service	 -ComputerName	 Unitrac-WH08	 -Name	MSGSRVREDIIDR |Start-Service
+Get-Service	 -ComputerName	 Unitrac-WH08	 -Name	MSGSRVRDEF |Start-Service
+Get-Service	 -ComputerName	 Unitrac-WH08	 -Name	MSGSRVREXTUSD |Start-Service
+Get-Service	 -ComputerName	 Unitrac-WH08	 -Name	MSGSRVREXTPENF |Start-Service
+Get-Service	 -ComputerName	 Unitrac-WH08	 -Name	MSGSRVRADHOC |Start-Service
+Get-Service	 -ComputerName	 Unitrac-WH08	 -Name	MSGSRVREXTINFO |Start-Service
+Get-Service	 -ComputerName	 Unitrac-WH08	 -Name	MSGSRVREXTHUNT |Start-Service
+Get-Service	 -ComputerName	 Unitrac-WH08	 -Name	MSGSRVREXTGATE |Start-Service
+Get-Service	 -ComputerName	 Unitrac-WH14	 -Name	DirectoryWatcherServerIn |Start-Service
+Get-Service	 -ComputerName	 Unitrac-WH14	 -Name	DirectoryWatcherServerOut |Start-Service
+Get-Service	 -ComputerName	 Unitrac-WH19	 -Name	MSGSRVREXTSANT |Start-Service
+Get-Service	 -ComputerName	 Unitrac-WH19	 -Name	LDHServiceSANT |Start-Service
+Get-Service	 -ComputerName	 Unitrac-WH21	 -Name	MSGSRVREXTWellsFargo |Start-Service
+Get-Service	 -ComputerName	 Unitrac-WH21	 -Name	LDHWellsFargo |Start-Service

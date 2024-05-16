@@ -1,0 +1,65 @@
+USE [UniTrac]
+GO 
+
+
+
+--Loan Screen Information - LOAN/COLLATERAL/PROPERTY/OWNER/REQUIRED COVERAGE
+SELECT C.Collateral_CODE_ID, C.LENDER_COLLATERAL_CODE_TX, L.* 
+INTO UNITRACHDSTORAGE..INC0357283
+FROM LOAN L
+INNER JOIN COLLATERAL C ON L.ID = C.LOAN_ID
+join COLLATERAL_CODE CC ON CC.ID = C.COLLATERAL_CODE_ID
+INNER JOIN dbo.LENDER LL ON LL.ID = L.LENDER_ID
+WHERE LL.CODE_TX IN ('4353') and C.COLLATERAL_CODE_ID IN (67,
+69,71,73,75,77,79,81,85,89,203,244,309,
+388,68,70,72,74,76,78,80,82,86,90,204,
+243,345,389)
+
+
+
+
+---Finding Collateral Code
+SELECT  CC.ID ,
+        CC.CODE_TX ,
+        CC.DESCRIPTION_TX 
+         FROM dbo.COLLATERAL_CODE CC
+INNER JOIN dbo.LCCG_COLLATERAL_CODE_RELATE CCR ON CCR.COLLATERAL_CODE_ID = CC.ID
+INNER JOIN dbo.LENDER_COLLATERAL_CODE_GROUP LCCG ON LCCG.ID = CCR.LCCG_ID
+INNER JOIN dbo.LENDER L ON L.ID = LCCG.LENDER_ID
+WHERE L.CODE_TX = '4353'
+
+
+select * 
+into
+UnitracHDStorage..INC0357283_Collateral
+from collateral
+where LOAN_ID IN (select ID from UnitracHDStorage..INC0357283Spreadsheet
+where ChangeTo = 'VEH')
+
+
+declare @rowcount int = 1000
+while @rowcount >= 1000
+BEGIN
+ BEGIN TRY
+
+ UPDATE TOP (1000) C
+SET Collateral_CODE_ID = 525 , LENDER_COLLATERAL_CODE_TX = 'Vehicle', UPDATE_DT = GETDATE(), UPDATE_USER_TX = 'INC0357283'
+--SELECT  Collateral_CODE_ID, LENDER_COLLATERAL_CODE_TX, *
+FROM Collateral C
+where ID IN (select ID from UnitracHDStorage..INC0357283_Collateral) and C.Collateral_CODE_ID <> '525'
+--88291
+
+ select @rowcount = @@rowcount
+ END TRY
+ BEGIN CATCH
+  select Error_number(),
+      error_message(),
+      error_severity(),
+    error_state(),
+    error_line()
+   THROW
+   BREAK
+ END CATCH
+END
+
+

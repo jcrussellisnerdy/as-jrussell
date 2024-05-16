@@ -1,0 +1,124 @@
+USE UniTrac
+
+-------- Check for Process Definitions With Status Code Equal To Error
+SELECT *
+--INTO UniTracHDStorage..PDErrorxxxxxxx
+ FROM UniTrac..PROCESS_DEFINITION
+WHERE STATUS_CD = 'Error'
+ORDER BY UPDATE_DT DESC
+
+-------- Reset Process Definitions (All)
+UPDATE  UniTrac..PROCESS_DEFINITION
+SET     LAST_RUN_DT = GETDATE() ,
+        LAST_SCHEDULED_DT = GETDATE() ,
+        LOCK_ID = CASE WHEN LOCK_ID < 255 THEN LOCK_ID + 1
+                       ELSE 1
+                  END ,
+        STATUS_CD = 'Complete'
+WHERE   ACTIVE_IN = 'Y' --AND ONHOLD_IN = 'N'
+        AND STATUS_CD = 'Error'
+		
+--------- Reset Process Definitions (Except Cycle)
+UPDATE  UniTrac..PROCESS_DEFINITION
+SET     LAST_RUN_DT = GETDATE() ,
+        LAST_SCHEDULED_DT = GETDATE() ,
+        LOCK_ID = CASE WHEN LOCK_ID < 255 THEN LOCK_ID + 1
+                       ELSE 1
+                  END ,
+        STATUS_CD = 'Complete'
+WHERE   ACTIVE_IN = 'Y'
+        AND STATUS_CD = 'Error'
+        and PROCESS_TYPE_CD <> 'CYCLEPRC'
+
+
+
+SELECT PD.NAME_TX, pd.* FROM dbo.PROCESS_LOG PL
+left JOIN dbo.PROCESS_DEFINITION PD ON PD.ID = PL.PROCESS_DEFINITION_ID
+WHERE CAST(PL.UPDATE_DT AS DATE) = CAST(GETDATE() AS DATE) AND PD.ID = '7920'
+ORDER BY PL. UPDATE_DT DESC 
+
+
+SELECT * FROM dbo.PROCESS_DEFINITION
+WHERE ID = '7920'
+
+
+SELECT * FROM dbo.PROCESS_DEFINITION
+WHERE PROCESS_TYPE_CD = 'MSGSRV'
+
+
+
+SELECT SETTINGS_XML_IM.value('(/ProcessDefinitionSettings/TargetServiceList/TargetService)[1]',
+                              'nvarchar(max)') [Target Service] ,
+		CAST(SETTINGS_XML_IM.value('(/ProcessDefinitionSettings/AnticipatedNextScheduledDate)[1]',
+                                   'varchar(50)') AS DATETIME),					  
+							  * FROM dbo.PROCESS_DEFINITION
+WHERE PROCESS_TYPE_CD = 'CYCLEPRC' AND ACTIVE_IN = 'Y'
+AND ONHOLD_IN = 'N' AND UPDATE_USER_TX = 'JMITCHELL'
+ORDER BY LAST_RUN_DT DESC 
+
+SELECT SETTINGS_XML_IM.value('(/ProcessDefinitionSettings/TargetServiceList/TargetService)[1]',
+                              'nvarchar(max)') [Target Service] ,* FROM dbo.PROCESS_DEFINITION
+WHERE SETTINGS_XML_IM.value('(/ProcessDefinitionSettings/TargetServiceList/TargetService)[1]',
+                              'nvarchar(max)') = 'UnitracBusinessServiceCycle'AND ACTIVE_IN = 'Y'
+AND ONHOLD_IN = 'N'
+ORDER BY LAST_RUN_DT DESC 
+
+
+
+SELECT ID INTO #tmpPD FROM dbo.PROCESS_DEFINITION
+WHERE PROCESS_TYPE_CD = 'CYCLEPRC' AND ACTIVE_IN = 'Y'
+AND ONHOLD_IN = 'N' 
+
+SELECT CAST(P.SETTINGS_XML_IM.value('(/ProcessDefinitionSettings/AnticipatedNextScheduledDate)[1]',
+                                   'varchar(50)') AS DATETIME) [Anticipated Scheduled Date],* 
+								   --SELECT id INTO #tmp5
+								    FROM  UniTracHDStorage..PD2 P
+WHERE P.PROCESS_TYPE_CD  IN ('BILLing') AND P.ACTIVE_IN = 'Y'
+AND P.ONHOLD_IN = 'N' AND P.EXECUTION_FREQ_CD <> 'RUNONCE' AND CAST(P.SETTINGS_XML_IM.value('(/ProcessDefinitionSettings/AnticipatedNextScheduledDate)[1]',
+                                       'varchar(50)') AS DATETIME) <= '2016-12-03 00:00:00' 
+									   AND CAST(P.SETTINGS_XML_IM.value('(/ProcessDefinitionSettings/AnticipatedNextScheduledDate)[1]',
+                                       'varchar(50)') AS DATETIME) >= '2016-12-02 00:00:00' AND ID NOT IN (SELECT * FROM #tmpPD)
+									  
+
+									   UPDATE dbo.PROCESS_DEFINITION
+									   SET ONHOLD_IN = 'N', LOCK_ID = LOCK_ID+1, STATUS_CD = 'Complete', OVERRIDE_DT = NULL,
+									    SETTINGS_XML_IM.modify('replace value of (/ProcessDefinitionSettings/AnticipatedNextScheduledDate/text())[1] with "2016-12-02 02:00:00.000"')
+									   --SELECT * FROM dbo.PROCESS_DEFINITION
+									   WHERE ID IN (SELECT * FROM #tmp5)  
+
+
+SELECT status_CD, CAST(SETTINGS_XML_IM.value('(/ProcessDefinitionSettings/AnticipatedNextScheduledDate)[1]',
+                                   'varchar(50)') AS DATETIME) [Anticipated Scheduled Date],
+								   SETTINGS_XML_IM.value('(/ProcessDefinitionSettings/TargetServiceList/TargetService)[1]',
+                              'nvarchar(max)') [Target Service] ,*
+								   FROM dbo.PROCESS_DEFINITION
+								    WHERE ID IN (SELECT * FROM #tmpPD2) AND STATUS_CD = 'InProcess'
+
+
+SELECT status_CD, CAST(SETTINGS_XML_IM.value('(/ProcessDefinitionSettings/AnticipatedNextScheduledDate)[1]',
+                                   'varchar(50)') AS DATETIME) [Anticipated Scheduled Date],
+								   SETTINGS_XML_IM.value('(/ProcessDefinitionSettings/TargetServiceList/TargetService)[1]',
+                              'nvarchar(max)') [Target Service] ,*
+								   FROM dbo.PROCESS_DEFINITION
+								    WHERE ID IN (SELECT * FROM #tmpPD2)AND CAST(SETTINGS_XML_IM.value('(/ProcessDefinitionSettings/AnticipatedNextScheduledDate)[1]',
+                                       'varchar(50)') AS DATETIME) <= '2016-12-02 00:00:00'
+									   --18
+
+
+									   SELECT status_CD, CAST(SETTINGS_XML_IM.value('(/ProcessDefinitionSettings/AnticipatedNextScheduledDate)[1]',
+                                   'varchar(50)') AS DATETIME) [Anticipated Scheduled Date],
+								   SETTINGS_XML_IM.value('(/ProcessDefinitionSettings/TargetServiceList/TargetService)[1]',
+                              'nvarchar(max)') [Target Service] ,*
+								   FROM dbo.PROCESS_DEFINITION
+								    WHERE ID IN (SELECT * FROM #tmp3)AND CAST(SETTINGS_XML_IM.value('(/ProcessDefinitionSettings/AnticipatedNextScheduledDate)[1]',
+                                       'varchar(50)') AS DATETIME) <= '2016-12-03 00:00:00'
+
+
+
+									      SELECT status_CD, CAST(SETTINGS_XML_IM.value('(/ProcessDefinitionSettings/AnticipatedNextScheduledDate)[1]',
+                                   'varchar(50)') AS DATETIME) [Anticipated Scheduled Date],
+								   SETTINGS_XML_IM.value('(/ProcessDefinitionSettings/TargetServiceList/TargetService)[1]',
+                              'nvarchar(max)') [Target Service] ,*
+								   FROM dbo.PROCESS_DEFINITION
+								    WHERE ID IN (SELECT * FROM #tmp5)AND CAST(SETTINGS_XML_IM.value('(/ProcessDefinitionSettings/AnticipatedNextScheduledDate)[1]',
+                                       'varchar(50)') AS DATETIME) <= '2016-12-03 00:00:00'

@@ -1,0 +1,16 @@
+
+
+SELECT * INTO UniTracHDStorage..INC0205386 FROM dbo.COLLATERAL
+WHERE ID = '103444551'
+
+
+				update C
+set
+ PURGE_DT = getdate()
+,UPDATE_DT = getdate()
+,UPDATE_USER_TX = 'INC0205386'
+,LOCK_ID = C.LOCK_ID % 255 + 1
+from COLLATERAL as C
+where C.ID = 103444551
+ 
+EXEC SaveSearchFullText 83830356

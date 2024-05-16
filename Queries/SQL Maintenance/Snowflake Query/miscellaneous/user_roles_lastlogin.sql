@@ -1,0 +1,29 @@
+USE ROLE ACCOUNTADMIN;
+
+
+
+---roles users are in and last time they logged into specific role
+
+
+
+use database DBA;
+use schema INFO;
+
+
+CREATE or replace procedure user_roles_lastlogin ( user_groups VARCHAR)
+returns TABLE (USER_NAME VARCHAR, ROLE_NAME VARCHAR,  FIRST_LOGIN TIMESTAMP_LTZ(6), LAST_LOGIN TIMESTAMP_LTZ(6), LOGINS integer )
+LANGUAGE SQL
+AS 
+DECLARE
+  res resultset default (
+  
+  
+ SELECT DISTINCT USER_NAME, ROLE_NAME,MIN(START_TIME) AS FIRST_LOGIN,MAX(END_TIME) AS LAST_LOGIN,COUNT(*) AS LOGINS
+FROM "SNOWFLAKE"."ACCOUNT_USAGE"."QUERY_HISTORY"
+WHERE  USER_NAME = :user_groups
+GROUP BY USER_NAME, ROLE_NAME       
+   ORDER BY MAX(END_TIME) DESC, COUNT(*) DESC      )
+    ;
+BEGIN
+RETURN TABLE(RES);
+END;

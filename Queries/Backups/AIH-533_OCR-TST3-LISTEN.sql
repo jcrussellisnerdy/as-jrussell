@@ -1,0 +1,26 @@
+
+
+
+
+USE [master]
+GO
+CREATE LOGIN [ELDREDGE_A\OCR-reports-temp] FROM WINDOWS WITH DEFAULT_DATABASE=[master]
+GO
+USE [OCR]
+GO
+CREATE USER [ELDREDGE_A\OCR-reports-temp] FOR LOGIN [ELDREDGE_A\OCR-reports-temp]
+GO
+USE [OCR]
+GO
+ALTER ROLE [db_datareader] ADD MEMBER [ELDREDGE_A\OCR-reports-temp]
+GO
+USE [OCR]
+GO
+ALTER ROLE [db_datawriter] ADD MEMBER [ELDREDGE_A\OCR-reports-temp]
+GO
+
+
+
+
+
+

@@ -1,0 +1,10 @@
+BEGIN
+         CASE WHEN (SELECT COUNT(*) FROM information_schema.tables WHERE table_name = 'TEST_PROCESS' AND table_schema = 'STG' ) = 1
+THEN  
+        CREATE OR REPLACE TABLE STG.TEST_PROCESS
+        (COL1 INTEGER);
+    END;
+END;
+
+CALL SYSTEM$WAIT(5,'MINUTES');
+CALL DBA.TABLESMODIFIED('');

@@ -1,0 +1,69 @@
+USE [UniTrac]
+GO 
+
+--Loan Screen Information - LOAN/COLLATERAL/PROPERTY/OWNER/REQUIRED COVERAGE
+SELECT DISTINCT
+        L.NUMBER_TX ,
+        RC2.DESCRIPTION_TX [Loan Record Type] ,
+        RC3.DESCRIPTION_TX [Loan Status] ,
+        RC4.DESCRIPTION_TX [Loan Type] ,
+        O.NAME_TX ,
+        O.LAST_NAME_TX ,
+        O.FIRST_NAME_TX ,
+        O.MIDDLE_INITIAL_TX ,
+        O.HOME_PHONE_TX ,
+        O.WORK_PHONE_TX ,
+        O.CELL_PHONE_TX ,
+        O.EMAIL_TX ,
+        O.CUSTOMER_NUMBER_TX ,
+        OA.LINE_1_TX ,
+        OA.LINE_2_TX ,
+        OA.CITY_TX ,
+        OA.STATE_PROV_TX ,
+        OA.COUNTRY_TX ,
+        OA.POSTAL_CODE_TX ,
+        OA.ATTENTION_TX ,
+        OA.ADDRESS_TYPE_CD ,
+        OA.PO_BOX_TX ,
+        OA.RURAL_ROUTE_TX ,
+        OA.UNIT_TX ,
+		POLICY_NUMBER_TX,
+        BIA.NAME_TX ,
+        BIA.AGENT_TX ,
+        BIA.PHONE_TX ,
+        BIA.PHONE_EXT_TX ,
+        BIA.FAX_TX ,
+        BIA.FAX_EXT_TX ,
+        BIA.EMAIL_TX ,
+        BIA.WEB_ADDRESS_TX ,
+        AD.LINE_1_TX ,
+        AD.LINE_2_TX ,
+        AD.CITY_TX ,
+        AD.STATE_PROV_TX ,
+        AD.COUNTRY_TX ,
+        AD.POSTAL_CODE_TX ,
+        AD.ATTENTION_TX ,
+        AD.ADDRESS_TYPE_CD ,
+        AD.PO_BOX_TX ,
+        AD.RURAL_ROUTE_TX ,
+        AD.UNIT_TX
+FROM    LOAN L
+        INNER JOIN COLLATERAL C ON L.ID = C.LOAN_ID
+        INNER JOIN REQUIRED_COVERAGE RC ON c.PROPERTY_ID = RC.PROPERTY_ID
+        INNER JOIN OWNER_LOAN_RELATE OL ON L.ID = OL.LOAN_ID
+        INNER JOIN OWNER O ON OL.OWNER_ID = O.ID
+        INNER JOIN OWNER_ADDRESS OA ON O.ADDRESS_ID = OA.ID
+        INNER JOIN dbo.LENDER LL ON LL.ID = L.LENDER_ID
+        INNER JOIN dbo.BORROWER_INSURANCE_AGENCY BIA ON BIA.ID = RC.BIA_ID
+        INNER JOIN dbo.ADDRESS AD ON AD.ID = BIA.ADDRESS_ID
+        INNER JOIN dbo.REF_CODE RC2 ON RC2.CODE_CD = L.RECORD_TYPE_CD
+                                       AND RC2.DOMAIN_CD = 'RecordType'
+        INNER JOIN dbo.REF_CODE RC3 ON RC3.CODE_CD = L.STATUS_CD
+                                       AND RC3.DOMAIN_CD = 'LoanStatus'
+        INNER JOIN dbo.REF_CODE RC4 ON RC4.CODE_CD = L.TYPE_CD
+                                       AND RC4.DOMAIN_CD = 'LoanType'
+        INNER JOIN dbo.PROPERTY_OWNER_POLICY_RELATE POP ON POP.PROPERTY_ID = C.PROPERTY_ID
+        INNER JOIN dbo.OWNER_POLICY OP ON OP.ID = POP.OWNER_POLICY_ID
+        INNER JOIN dbo.POLICY_COVERAGE PC ON PC.OWNER_POLICY_ID = OP.ID
+WHERE   LL.CODE_TX IN ( '7350' )
+

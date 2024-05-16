@@ -1,0 +1,13 @@
+NetPipeActivator
+NetTcpActivator
+NetTcpPortSharing
+MSSQLSERVER
+SQLBrowser
+MSSQLFDLauncher$SQLSERVER
+MSSQL$SQLSERVER
+SQLAgent$SQLSERVER
+MsDtsServer100
+MsDtsServer120
+ReportServer$SQLSERVER
+SQLWriter
+W3SVC

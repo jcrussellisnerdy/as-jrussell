@@ -1,0 +1,1 @@
+﻿Get-Service	 -ComputerName	UNITRAC-WH13	  -Name UnitracBusinessServiceGoodThru3 | Start-Service

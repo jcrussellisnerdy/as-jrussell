@@ -1,0 +1,58 @@
+USE UniTrac
+
+
+SELECT * FROM dbo.LENDER
+WHERE CODE_TX = '3551'
+
+SELECT * 
+INTO UniTracHDStorage..INC0331252
+FROM dbo.LOAN
+WHERE lender_id = 2238
+AND BRANCH_CODE_TX = '3551'
+
+SELECT * FROM dbo.LENDER_ORGANIZATION
+WHERE LENDER_ID = 2238
+
+
+
+
+--NON ESCROW
+
+declare @rowcount int = 5000
+while @rowcount >= 5000
+BEGIN
+ BEGIN TRY
+ UPDATE TOP (5000) L
+SET L.BRANCH_CODE_TX = 'NON ESCROW', UPDATE_DT = GETDATE(),UPDATE_USER_TX = 'INC0331252', L.LOCK_ID = CASE WHEN L.LOCK_ID >= 255 THEN 1 ELSE L.LOCK_ID + 1 END
+--SELECT  L.BRANCH_CODE_TX, I.BRANCH_CODE_TX, * 
+FROM dbo.LOAN L
+JOIN  UniTracHDStorage..INC0331252 I ON I.ID = L.ID
+WHERE L.DIVISION_CODE_TX = '4' AND L.BRANCH_CODE_TX <> 'NON ESCROW'
+
+ select @rowcount = @@rowcount
+ END TRY
+ BEGIN CATCH
+  select Error_number(),
+      error_message(),
+      error_severity(),
+    error_state(),
+    error_line()
+   THROW
+   BREAK
+ END CATCH
+END
+				 
+
+
+
+	
+INSERT INTO PROPERTY_CHANGE
+ ( ENTITY_NAME_TX , ENTITY_ID , USER_TX , ATTACHMENT_IN , 
+ CREATE_DT , AGENCY_ID , DESCRIPTION_TX ,  DETAILS_IN , FORMATTED_IN ,
+ LOCK_ID , PARENT_NAME_TX , PARENT_ID , TRANS_STATUS_CD , UTL_IN )
+ SELECT DISTINCT 'Allied.UniTrac.Loan' , L.ID , 'INC0331252' , 'N' , 
+ GETDATE() ,  1 , 
+'Moved to Branch NON ESCROW', 
+ 'Y' , 'N' , 1 ,  'Allied.UniTrac.Loan' , L.ID , 'PEND' , 'N'
+FROM LOAN L 
+WHERE L.ID IN (SELECT ID FROM UniTracHDStorage..INC0331252)

@@ -1,0 +1,11 @@
+SELECT 
+* FROM INFORMATION_SCHEMA.TABLES
+
+
+SELECT OBJECT_NAME(OBJECT_ID),* FROM  sys.partitions 
+WHERE index_id = '0'
+
+SELECT OBJECT_NAME(OBJECT_ID), * FROM SYS.indexes
+WHERE type_desc = 'HEAP'
+
+SELECT * FROM  sys.allocation_units 

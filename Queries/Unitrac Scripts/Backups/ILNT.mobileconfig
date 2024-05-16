@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+Copyright (c) 2011, 2012 IBM Corporation
+
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+* Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+* Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+* Neither the name of IBM Corporation nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY IBM CORPORATION AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED 
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; 
+LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+
+joseph.russell@alliedsolutions.net will be replaced with the user's email address
+traveler.notes.na.collabserv.com will be replaced with the server host name
+/servlet/traveler will be replaced with the servlet path name (e.g., /traveler)
+ will be replaced with the server host port when using HTTP if the port is not
+                  the default port of 80 (e.g., 81) or with an empty string when using HTTPS
+ will be replaced with the server host port when using HTTPS if the port is not
+                  the default port of 443 (e.g., 8443) or with an empty string when using HTTP
+<true/> will be replaced with the server host protocol (<false/> or <true/> for SSL off or SSL on)
+joseph.russell@alliedsolutions.net will be replaced with the user name
+
+If you are using a proxy between the client and the Traveler server,
+you should set the "External Server URL" on the "Lotus Traveler" tab in the server document
+so that the ILNT wildcards below are filled in properly.
+
+Do NOT modify any the the <key> values.  Only modify the values associated with the keys as needed.
+-->
+<plist version="1.0">
+	<dict>
+
+		<key>PayloadUUID</key>
+		<string>8B9A9E2E-53E7-44EC-A361-74EC8136B4CE-traveler.notes.na.collabserv.com-joseph.russell@alliedsolutions.net</string>
+
+		<!-- 
+		Customizable and displayed on the Apple UI.
+		On the Profile UI, this shows up as the top-most, bold line (no wrapping).
+		-->
+		<key>PayloadDisplayName</key>
+		<string>joseph.russell@alliedsolutions.net - IBM Traveler</string>
+
+		<!-- 
+		Customizable and displayed on the Apple UI.
+		On the Profile UI, this shows up right below the PayloadDisplayName (no wrapping).
+		-->
+		<key>PayloadOrganization</key>
+		<string>IBM Traveler</string>
+
+		<!-- 
+		Customizable and displayed on the Apple UI.
+		On the Profile UI, this shows up as the multi-line (up to 10) wrapped Description.
+		-->
+		<key>PayloadDescription</key>
+		<string>Configures the device for use with IBM Traveler for joseph.russell@alliedsolutions.net.</string>
+
+		<!--
+		Customizable, but not known to be displayed on the Apple UI anywhere. 
+		A reverse-DNS style identifier (com.example.myprofile, for example) that 
+		identifies the profile. This string is used to determine whether a new profile 
+		should replace an existing one or should be added.
+		-->
+		<key>PayloadIdentifier</key>
+		<string>com.lotus.sync.traveler.notes.na.collabserv.com..joseph.russell@alliedsolutions.net</string>
+
+		<key>PayloadVersion</key>
+		<integer>1</integer>
+
+		<key>PayloadType</key>
+		<string>Configuration</string>
+
+		<key>PayloadContent</key>
+		<array>
+		
+			<!-- 
+			If you want this profile to include more than just the com.apple.eas.account,
+			you should create the profile using iPhone Configuration Utility, add/replace
+			the com.apple.eas.account <dict>...</dict> in the newly created profile with
+			the com.apple.eas.account shown below, rename the newly created profile to
+			Apple.xml, and replace the existing Apple.xml file with the new Apple.xml file.
+			See the InfoCenter for more details.
+			-->
+			
+			<dict>
+
+				<key>PayloadUUID</key>
+				<string>837AE5F3-1380-4234-BAD0-8246A644AC2F-traveler.notes.na.collabserv.com-joseph.russell@alliedsolutions.net</string>
+
+				<!-- 
+				Customizable and displayed on the Apple UI.
+				During Profile installation, this shows up under More Details as the "Exchange Account"
+				along with the Host and EmailAddress values.
+				This is the account name shown at the bottom of the password prompt during Profile installation.
+				This is the account name shown under General - Mail, Contacts, Calendar - Account.
+				This is the account name shown in the Mail, Contact, and Calendar applications as needed.
+				-->
+				<key>PayloadDisplayName</key>
+				<string>joseph.russell@alliedsolutions.net - IBM Traveler</string>
+
+				<!-- Customizable, but not known to be displayed on the Apple UI anywhere. -->
+				<key>PayloadDescription</key>
+				<string>IBM Traveler for joseph.russell@alliedsolutions.net.</string>
+
+				<!-- Customizable, but not known to be displayed on the Apple UI anywhere. -->
+				<key>PayloadOrganization</key>
+				<string>IBM Traveler</string>
+
+				<key>PayloadVersion</key>
+				<integer>1</integer>
+
+				<!--
+				Customizable, but not known to be displayed on the Apple UI anywhere. 
+				A reverse-DNS style identifier (com.example.myprofile, for example) that 
+				identifies the profile. This string is used to determine whether a new profile 
+				should replace an existing one or should be added.
+				-->
+				<key>PayloadIdentifier</key>
+				<string>com.lotus.sync.eas.traveler.notes.na.collabserv.com..joseph.russell@alliedsolutions.net</string>
+
+				<key>PayloadType</key>
+				<string>com.apple.eas.account</string>
+
+				<!--
+				Whether or not the user should be prevented from creating mail using 
+				this account from apps other than the Mail app (for example, the Photos app). 
+				This only applies to iOS5 or later devices. Default: <false/>.
+				-->
+				<key>PreventAppSheet</key>
+				<false/>
+
+				<!--
+				Whether or not mails should be prevented from being moved from the 
+				Traveler (Exchange) account into a different account. This only applies to 
+				iOS5 or later devices. Default: <true/>.
+				-->
+				<key>PreventMove</key>
+				<true/>
+
+				<!--
+				Default value for the number of past days of mail to sync; this 
+				is the "Mail Days to Sync" value on the Apple UI. The user can still change the 
+				setting (higher and lower) on the Apple UI.
+				Valid values are 1, 3, 7, 14, 31, and 0 (unlimited/no limit).
+				-->
+				<key>MailNumberOfPastDaysToSync</key>
+				<integer>3</integer>
+
+				<key>UserName</key>
+				<string>joseph.russell@alliedsolutions.net</string>
+
+				<key>EmailAddress</key>
+				<string>joseph.russell@alliedsolutions.net</string>
+                
+				<!--  
+				If you are using a proxy between the client and the Traveler server,
+				you should set the "External Server URL" on the "Lotus Traveler" tab
+				in the server document and leave this as the default value
+				(traveler.notes.na.collabserv.com).
+				You should not need to modify the Host or SSL values (use the ILNT wildcards).
+				If you do modify this value, it cannot have "http://" or "https:// at 
+				the beginning as that is automatically prepended based on the SSL key's value.
+				The Apple device will automatically append the ActiveSync path (/Microsoft-Server-ActiveSync)
+				to whatever value is delivered in this profile.  By default, /Microsoft-Server-ActiveSync/*
+				should be configured to route to the main servlet (e.g., /traveler/Microsoft-Server-ActiveSync/*).
+				If something in the network path (such as a proxy) is not configured to route
+				/Microsoft-Server-ActiveSync/* to the main servlet, you may need to add /servlet/traveler back to
+				the end of this value so that the servlet path part of the External Server URL is included here.
+				-->
+				<key>Host</key>
+				<string>traveler.notes.na.collabserv.com</string>
+
+				<!-- Actual values are <true/> or <false/> if not using the <true/> wildcard. -->
+				<key>SSL</key>
+				<true/>
+
+			</dict>
+
+		</array>
+
+	</dict>
+</plist>

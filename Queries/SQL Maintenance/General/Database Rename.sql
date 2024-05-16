@@ -1,0 +1,1 @@
+--EXEC sp_renamedb 'RFPLHDStorage', 'HDTStorage'

@@ -1,0 +1,136 @@
+--1) Certs tied to purged RC
+SELECT l.number_Tx, ld.code_tx, ld.name_tx,fpc.number_tx--,c.*
+FROM FORCE_PLACED_CERTIFICATE fpc
+  left join LOAN l on fpc.LOAN_ID = l.ID --and l.PURGE_DT is null
+  INNER JOIN LENDER LD ON L.LENDER_ID = LD.ID
+  --inner join COLLATERAL C on l.ID = C.LOAN_ID
+WHERE fpc.PURGE_DT IS NULL --AND (l.ID IS NULL or l.RECORD_TYPE_CD = 'D')
+AND FPC.ID IN (4699083,4343899)
+
+--2) Certs tied to purged collateral
+SELECT l.number_Tx, ld.code_tx, ld.name_tx,fpc.number_tx--,c.*
+FROM FORCE_PLACED_CERTIFICATE fpc
+  left join LOAN l on fpc.LOAN_ID = l.ID --and l.PURGE_DT is null
+  INNER JOIN LENDER LD ON L.LENDER_ID = LD.ID
+  --inner join COLLATERAL C on l.ID = C.LOAN_ID
+WHERE fpc.PURGE_DT IS NULL --AND (l.ID IS NULL or l.RECORD_TYPE_CD = 'D')
+AND FPC.ID IN (5197938,5197938,5195166,5195165,5195164,5195163,5195162,5195161,5195159,5195158,5195157,5195156,5195154,5195152,5195144)
+
+--3) Certs tied to purged loans
+SELECT l.number_Tx, ld.code_tx, ld.name_tx,l.PURGE_DT,fpc.number_tx
+FROM FORCE_PLACED_CERTIFICATE fpc
+  left join LOAN l on fpc.LOAN_ID = l.ID --and l.PURGE_DT is null
+  INNER JOIN LENDER LD ON L.LENDER_ID = LD.ID
+WHERE fpc.PURGE_DT IS NULL --AND (l.ID IS NULL or l.RECORD_TYPE_CD = 'D')
+AND FPC.ID IN (5139648,1347817)
+
+
+
+
+
+------Start here 
+
+   --Purged RCs (All others) 
+ SELECT DISTINCT fpc.NUMBER_TX,fpc.PRODUCER_NUMBER_TX,fpc.LOAN_NUMBER_TX, fpc.ISSUE_DT,fpc.EFFECTIVE_DT,fpc.EXPIRATION_DT,fpc.CANCELLATION_DT,fpc.ID as FPC_ID,rc.purge_dt,rc.update_user_tx
+ FROM FORCE_PLACED_CERTIFICATE fpc
+  join FORCE_PLACED_CERT_REQUIRED_COVERAGE_RELATE r on fpc.ID = r.FPC_ID --AND r.PURGE_DT IS NULL
+  left join REQUIRED_COVERAGE rc on r.REQUIRED_COVERAGE_ID = rc.ID --and rc.PURGE_DT IS NULL
+  left join PROPERTY p on rc.PROPERTY_ID = p.ID --and p.PURGE_DT IS NULL
+  left join COLLATERAL c on p.ID = c.PROPERTY_ID --and c.PURGE_DT IS NULL and c.PRIMARY_LOAN_IN = 'Y'
+  where fpc.ID in (select FPC_ID from #fpcNoRelatedBO)
+and rc.PURGE_DT IS not NULL
+
+  --Purged Property
+  SELECT '8 - FPC tied to Delete/ Purged Coll/Prop/RC' AS Title, fpc.id as FPC_ID, fpc.NUMBER_TX, fpc.LOAN_ID, fpc.ISSUE_DT, fpc.EFFECTIVE_DT, fpc.CANCELLATION_DT,
+       rc.RECORD_TYPE_CD as RC_RECORD_TYPE_CD, p.RECORD_TYPE_CD as PROPERTY_RECORD_TYPE_CD, c.ID as COLLATERAL_ID, rc.id AS rc_id, p.ID AS property_id,p.PURGE_DT,p.UPDATE_USER_TX
+SELECT DISTINCT fpc.NUMBER_TX,fpc.PRODUCER_NUMBER_TX,fpc.LOAN_NUMBER_TX, fpc.ISSUE_DT,fpc.EFFECTIVE_DT,fpc.EXPIRATION_DT,fpc.CANCELLATION_DT,fpc.ID as FPC_ID,p.purge_dt,p.update_user_tx
+ FROM FORCE_PLACED_CERTIFICATE fpc
+  join FORCE_PLACED_CERT_REQUIRED_COVERAGE_RELATE r on fpc.ID = r.FPC_ID AND r.PURGE_DT IS NULL
+  left join REQUIRED_COVERAGE rc on r.REQUIRED_COVERAGE_ID = rc.ID and rc.PURGE_DT IS NULL
+  left join PROPERTY p on rc.PROPERTY_ID = p.ID --and p.PURGE_DT IS NULL
+  left join COLLATERAL c on p.ID = c.PROPERTY_ID and c.PURGE_DT IS NULL and c.PRIMARY_LOAN_IN = 'Y'
+  where fpc.ID in (select FPC_ID from #fpcNoRelatedBO)
+  and p.PURGE_DT is not null
+
+  --Deleted Property
+  SELECT '8 - FPC tied to Delete/ Purged Coll/Prop/RC' AS Title, fpc.id as FPC_ID, fpc.NUMBER_TX, fpc.LOAN_ID, fpc.ISSUE_DT, fpc.EFFECTIVE_DT, fpc.CANCELLATION_DT,
+       rc.RECORD_TYPE_CD as RC_RECORD_TYPE_CD, p.RECORD_TYPE_CD as PROPERTY_RECORD_TYPE_CD, c.ID as COLLATERAL_ID, rc.id AS rc_id, p.ID AS property_id,p.PURGE_DT,p.UPDATE_USER_TX
+SELECT DISTINCT fpc.NUMBER_TX,fpc.PRODUCER_NUMBER_TX,fpc.LOAN_NUMBER_TX, fpc.ISSUE_DT,fpc.EFFECTIVE_DT,fpc.EXPIRATION_DT,fpc.CANCELLATION_DT,fpc.ID as FPC_ID,
+p.RECORD_TYPE_CD as PROPERTY_RECORD_TYPE_CD
+ FROM FORCE_PLACED_CERTIFICATE fpc
+  join FORCE_PLACED_CERT_REQUIRED_COVERAGE_RELATE r on fpc.ID = r.FPC_ID AND r.PURGE_DT IS NULL
+  left join REQUIRED_COVERAGE rc on r.REQUIRED_COVERAGE_ID = rc.ID and rc.PURGE_DT IS NULL
+  left join PROPERTY p on rc.PROPERTY_ID = p.ID --and p.PURGE_DT IS NULL
+  left join COLLATERAL c on p.ID = c.PROPERTY_ID --and c.PURGE_DT IS NULL and c.PRIMARY_LOAN_IN = 'Y'
+  where fpc.ID in (select FPC_ID from #fpcNoRelatedBO)
+  and p.RECORD_TYPE_CD = 'D'
+
+
+--  Purged FPC RC Relationship
+SELECT '8 - FPC tied to Delete/ Purged Coll/Prop/RC' AS Title, fpc.id as FPC_ID, fpc.NUMBER_TX, fpc.LOAN_ID, fpc.ISSUE_DT, fpc.EFFECTIVE_DT, fpc.CANCELLATION_DT,
+       rc.RECORD_TYPE_CD as RC_RECORD_TYPE_CD, p.RECORD_TYPE_CD as PROPERTY_RECORD_TYPE_CD, c.ID as COLLATERAL_ID, rc.id AS rc_id, p.ID AS property_id,p.PURGE_DT,p.UPDATE_USER_TX,r.PURGE_DT
+SELECT DISTINCT fpc.NUMBER_TX,fpc.PRODUCER_NUMBER_TX,fpc.LOAN_NUMBER_TX, fpc.ISSUE_DT,fpc.EFFECTIVE_DT,fpc.EXPIRATION_DT,fpc.CANCELLATION_DT,fpc.ID as FPC_ID,r.PURGE_DT as PFCRC_RELATE_PURGE_DT,R.UPDATE_USER_TX AS PFCRC_RELATE_PURGE_USER
+FROM FORCE_PLACED_CERTIFICATE fpc
+  join FORCE_PLACED_CERT_REQUIRED_COVERAGE_RELATE r on fpc.ID = r.FPC_ID --AND r.PURGE_DT IS NULL
+  left join REQUIRED_COVERAGE rc on r.REQUIRED_COVERAGE_ID = rc.ID and rc.PURGE_DT IS NULL
+  left join PROPERTY p on rc.PROPERTY_ID = p.ID --and p.PURGE_DT IS NULL
+  left join COLLATERAL c on p.ID = c.PROPERTY_ID --and c.PURGE_DT IS NULL and c.PRIMARY_LOAN_IN = 'Y'
+  where fpc.ID in (select FPC_ID from #fpcNoRelatedBO)
+and r.PURGE_DT is not null
+
+--Purged Collateral
+SELECT '8 - FPC tied to Delete/ Purged Coll/Prop/RC' AS Title, fpc.id as FPC_ID, fpc.NUMBER_TX, fpc.LOAN_ID, fpc.ISSUE_DT, fpc.EFFECTIVE_DT, fpc.CANCELLATION_DT,
+       rc.RECORD_TYPE_CD as RC_RECORD_TYPE_CD, p.RECORD_TYPE_CD as PROPERTY_RECORD_TYPE_CD, c.ID as COLLATERAL_ID, rc.id AS rc_id, p.ID AS property_id,p.PURGE_DT,p.UPDATE_USER_TX,r.PURGE_DT,
+      c.purge_Dt
+SELECT DISTINCT fpc.NUMBER_TX,fpc.PRODUCER_NUMBER_TX,fpc.LOAN_NUMBER_TX, fpc.ISSUE_DT,fpc.EFFECTIVE_DT,fpc.EXPIRATION_DT,fpc.CANCELLATION_DT,fpc.ID as FPC_ID,c.PURGE_DT, c.UPDATE_USER_TX
+ FROM FORCE_PLACED_CERTIFICATE fpc
+  join FORCE_PLACED_CERT_REQUIRED_COVERAGE_RELATE r on fpc.ID = r.FPC_ID --AND r.PURGE_DT IS NULL
+  left join REQUIRED_COVERAGE rc on r.REQUIRED_COVERAGE_ID = rc.ID --and rc.PURGE_DT IS NULL
+  left join PROPERTY p on rc.PROPERTY_ID = p.ID --and p.PURGE_DT IS NULL
+  left join COLLATERAL c on p.ID = c.PROPERTY_ID --and c.PURGE_DT IS NULL and c.PRIMARY_LOAN_IN = 'Y'
+  where fpc.ID in (select FPC_ID from #fpcNoRelatedBO)
+and c.PURGE_DT is not null
+
+--Purged Loan
+
+SELECT DISTINCT fpc.NUMBER_TX,fpc.PRODUCER_NUMBER_TX,fpc.LOAN_NUMBER_TX, fpc.ISSUE_DT,fpc.EFFECTIVE_DT,fpc.EXPIRATION_DT,fpc.CANCELLATION_DT,fpc.ID as FPC_ID,l.PURGE_DT, l.UPDATE_USER_TX
+FROM FORCE_PLACED_CERTIFICATE fpc
+  left join LOAN l on fpc.LOAN_ID = l.ID --and l.PURGE_DT is null
+  INNER JOIN LENDER LD ON L.LENDER_ID = LD.ID
+WHERE fpc.PURGE_DT IS NULL --AND (l.ID IS NULL or l.RECORD_TYPE_CD = 'D')
+AND FPC.ID IN (5318689)
+
+  --No collateral
+  select *
+ from COLLATERAL
+ where PROPERTY_ID in (126433213,126590866,3659706 )
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,42 @@
+USE UniTrac
+
+
+SELECT VALUE_TX , TP.EXTERNAL_ID_TX ,dd.*
+from
+
+DELIVERY_DETAIL dd
+join
+
+DELIVERY_INFO_GROUP dig on dd.DELIVERY_INFO_GROUP_ID = dig.id
+JOIN dbo.DELIVERY_INFO DI ON DI.ID = dig.DELIVERY_INFO_ID
+JOIN dbo.TRADING_PARTNER TP ON TP.ID = DI.TRADING_PARTNER_ID
+where
+
+dig.NAME_TX like 'Televox%Response%'
+and
+
+dd.DELIVERY_CODE_TX = 'CreateTxn'
+
+
+
+
+SELECT * FROM dbo.LENDER
+WHERE CODE_TX = '3300'
+
+SELECT IH.SPECIAL_HANDLING_XML.value('(/SH/SubType)[1]', 'varchar (50)'),
+IH.SPECIAL_HANDLING_XML.value('(/SH/SubTypeDesc)[1]', 'varchar (50)'),
+IH.SPECIAL_HANDLING_XML.value('(/SH/FileStatus)[1]', 'varchar (50)'),
+IH.SPECIAL_HANDLING_XML.value('(/SH/RC)[1]', 'varchar (50)'), 
+IH.SPECIAL_HANDLING_XML.value('(/SH/ResponseRcvdDate)[1]', 'varchar (50)'), 
+IH.SPECIAL_HANDLING_XML.value('(/SH/OutboundCallDate)[1]', 'varchar (50)'), 
+IH.SPECIAL_HANDLING_XML.value('(/SH/OutboundCallNumber)[1]', 'varchar (50)'), 
+IH.SPECIAL_HANDLING_XML.value('(/SH/OutboundCallStatus)[1]', 'varchar (50)'),
+IH.*
+FROM LOAN L
+INNER JOIN COLLATERAL C ON L.ID = C.LOAN_ID
+INNER JOIN PROPERTY P ON C.PROPERTY_ID = P.ID
+INNER JOIN dbo.LENDER LL ON LL.ID = L.LENDER_ID
+INNER JOIN dbo.INTERACTION_HISTORY IH ON IH.PROPERTY_ID = P.ID 
+INNER JOIN dbo.OWNER_LOAN_RELATE OLR ON OLR.LOAN_ID = L.ID
+JOIN dbo.OWNER O ON O.ID = OLR.OWNER_ID
+WHERE L.LENDER_ID = 840

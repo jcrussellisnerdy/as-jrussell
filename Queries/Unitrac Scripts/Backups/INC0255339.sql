@@ -1,0 +1,95 @@
+SELECT * FROM UniTracHDStorage..sacu
+
+
+
+
+
+AND NUMBER_TX NOT IN ('111316',
+'108784',
+'106069',
+'107464',
+'102433' ,
+'300185',
+'204147',
+'204477',
+'202968',
+'203716',
+'203998',
+'204075',
+'108123',
+'108501',
+'302393',
+
+sp_columns PROPERTY
+
+
+
+SELECT LEN(Year_TX), * FROM UniTracHDStorage..sacu 
+WHERE LEN(Year_TX) <> '4'
+
+
+SELECT LEN(Make_TX), * FROM UniTracHDStorage..sacu 
+WHERE LEN(Make_TX) > '30'
+
+
+SELECT LEN(Model_TX), * FROM UniTracHDStorage..sacu 
+WHERE LEN(Model_TX) >'30'
+
+
+
+
+SELECT LEN(VIN_TX), * FROM UniTracHDStorage..sacu 
+WHERE LEN(VIN_TX) >'18'
+
+
+
+SELECT MAX(LEN(VIN_TX)) FROM dbo.PROPERTY
+SELECT MAX(LEN(YEAR_TX)) FROM dbo.PROPERTY
+SELECT MAX(LEN(MODEL_TX)) FROM dbo.PROPERTY
+SELECT MAX(LEN(MAKE_TX)) FROM dbo.PROPERTY
+
+
+SELECT MAX(LEN(MAKE_TX)) FROM UniTracHDStorage..sacu
+SELECT MAX(LEN(VIN_TX)) FROM UniTracHDStorage..sacu
+SELECT MAX(LEN(YEAR_TX)) FROM UniTracHDStorage..sacu
+SELECT MAX(LEN(MODEL_TX)) FROM UniTracHDStorage..sacu
+
+
+
+SELECT p.VIN_TX, p.MAKE_TX, P.MODEL_TX,P.YEAR_TX, P.* FROM dbo.PROPERTY P
+WHERE ID IN (SELECT ID FROM UniTracHDStorage..INC0255339)
+
+SELECT * FROM  UniTracHDStorage..INC0255339 
+
+
+
+
+UPDATE P
+SET P.YEAR_TX = LEFT(S.Year_TX, 4)
+--P.MAKE_TX = LEFT(S.MAKE_TX, 18)
+-- P.MODEL_TX = LEFT(S.MODEL_TX, 18)
+--P.VIN_TX = LEFT(S.VIN_TX, 18)
+
+--SELECT P.MODEL_TX,* 
+FROM UniTracHDStorage..INC0255339 I
+JOIN UniTracHDStorage..sacu S ON I.NUMBER_TX = S.Loan
+JOIN dbo.PROPERTY P ON P.ID = I.ID 
+WHERE P.LENDER_ID = '2333' AND LEN(S.YEAR_TX) > '4'
+
+
+SELECT LEN(Year_TX), * FROM UniTracHDStorage..sacu 
+WHERE LEN(Year_TX) <> '4'
+
+
+SELECT LEN(Make_TX), * FROM UniTracHDStorage..sacu 
+WHERE LEN(Make_TX) > '30'
+
+
+SELECT LEN(Model_TX), * FROM UniTracHDStorage..sacu 
+WHERE LEN(Model_TX) >'30'
+
+
+
+
+SELECT LEN(VIN_TX), * FROM UniTracHDStorage..sacu 
+WHERE LEN(VIN_TX) >'18'

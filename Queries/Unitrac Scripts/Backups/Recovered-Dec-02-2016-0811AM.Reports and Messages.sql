@@ -1,0 +1,88 @@
+USE [UniTrac]
+GO 
+ 
+SELECT
+COUNT(*) [Counts], STATUS_CD [Status]
+FROM REPORT_HISTORY  
+WHERE CAST(UPDATE_DT AS DATE) >= CAST(GETDATE()-1 AS DATE)
+GROUP BY	STATUS_CD
+
+
+SELECT COUNT(*)[Number of Reports Done by UBSRPT], MAX(UPDATE_DT) [Last Report Done by UBSRPT]
+FROM    REPORT_HISTORY
+WHERE   STATUS_CD = 'COMP'
+AND CAST(UPDATE_DT AS DATE) = CAST(GETDATE() AS DATE)
+		AND UPDATE_USER_TX = 'UBSRPT'
+
+	 
+---- Inbound (Message Server)
+
+
+SELECT  COUNT(*) [Count] , M.RECEIVED_STATUS_CD [Messages]
+FROM    message M 
+        JOIN TRADING_PARTNER TP  ON M.RECEIVED_FROM_TRADING_PARTNER_ID = TP.ID
+        JOIN DELIVERY_INFO DI ON M.DELIVERY_INFO_ID = DI.id
+        JOIN RELATED_DATA RD ON DI.id = RD.RELATE_ID
+        JOIN RELATED_DATA_DEF RDD ON RDD.id = RD.DEF_ID
+        LEFT JOIN WORK_ITEM WI ON WI.RELATE_ID = M.ID
+                                  AND WI.WORKFLOW_DEFINITION_ID = 1
+WHERE   M.PROCESSED_IN = 'N' 
+        AND M.RECEIVED_STATUS_CD IN ( 'RCVD', 'ADHOC', 'HOLD' )
+        AND M.MESSAGE_DIRECTION_CD = 'I'
+        AND TYPE_CD = 'LFP_TP'
+        AND RDD.NAME_TX = 'UniTracDeliveryType'
+        AND TP.EXTERNAL_ID_TX NOT IN ( '2771', '3400', '1771', '1574', '5350' )
+        AND m.DELIVER_TO_TRADING_PARTNER_ID = '2046'
+        AND rd.VALUE_TX = 'IMPORT'
+        AND M.PURGE_DT IS NULL
+		GROUP BY M.RECEIVED_STATUS_CD
+
+
+SELECT   COUNT(*) [MSG Errors] FROM MESSAGE M
+                           WHERE    M.RECEIVED_STATUS_CD = 'ERR'
+                  AND   CAST(UPDATE_DT AS DATE) = CAST(GETDATE() AS DATE)
+
+     SELECT ISNULL(COUNT(TP.EXTERNAL_ID_TX), 0) AS BSS_MSG_COUNT ,
+            MAX(m.UPDATE_DT) AS Newest_Date ,
+            MIN(m.UPDATE_DT) AS Oldest_Date
+     FROM   message M 
+            JOIN TRADING_PARTNER TP ON M.RECEIVED_FROM_TRADING_PARTNER_ID = TP.ID
+            JOIN DELIVERY_INFO DI ON M.DELIVERY_INFO_ID = DI.id
+            LEFT JOIN WORK_ITEM WI ON WI.RELATE_ID = M.ID
+                                      AND WI.WORKFLOW_DEFINITION_ID = 1
+     WHERE  M.PROCESSED_IN = 'N'
+            AND M.RECEIVED_STATUS_CD NOT IN ( 'PRSD', 'ADHOC', 'HOLD' )
+            AND M.MESSAGE_DIRECTION_CD = 'I'
+            AND TYPE_CD = 'BSS_TP'
+            AND M.PURGE_DT IS NULL
+          --and TP.EXTERNAL_ID_TX not in ('2771', '3400', '1771', '1574', '5350')
+
+
+SELECT MAX(M.UPDATE_DT) [Last BSS Message Completed]
+     FROM   message M 
+            JOIN TRADING_PARTNER TP ON M.RECEIVED_FROM_TRADING_PARTNER_ID = TP.ID
+            JOIN DELIVERY_INFO DI ON M.DELIVERY_INFO_ID = DI.id
+            LEFT JOIN WORK_ITEM WI ON WI.RELATE_ID = M.ID
+                                      AND WI.WORKFLOW_DEFINITION_ID = 1
+     WHERE  M.PROCESSED_IN = 'Y'
+            AND M.RECEIVED_STATUS_CD NOT IN ( 'PRSD', 'ADHOC', 'HOLD' )
+            AND M.MESSAGE_DIRECTION_CD = 'I'
+            AND TYPE_CD = 'BSS_TP'
+            AND M.PURGE_DT IS NULL
+
+
+SELECT COUNT(*) [WI in Approve Total]
+FROM dbo.WORK_ITEM WI
+JOIN dbo.MESSAGE M ON M.RELATE_ID_TX = WI.RELATE_ID AND WI.WORKFLOW_DEFINITION_ID = '1'
+WHERE WI.STATUS_CD = 'Approve'
+
+
+SELECT COUNT(*) [WI in Approve needs to be processed and not touched]
+FROM dbo.WORK_ITEM WI
+WHERE WI.STATUS_CD = 'Approve'
+AND CONTENT_XML.value('(/Content/Information/ProcessLogs/ProcessLog/@Id)[1]', 'varchar (50)') IS NULL
+
+
+
+
+

@@ -1,0 +1,5988 @@
+USE UniTrac
+SELECT * FROM dbo.LENDER
+WHERE CODE_TX = '2252'
+
+SELECT  * INTO UNITRAC_TEMP.dbo.LOAN_2252_1
+FROM    dbo.LOAN
+WHERE   LENDER_ID IN ( 962 )
+        AND NUMBER_TX IN ( '53806-1', '84192-1', '84962-1', '87493-1',
+                           '90932-1', '102650-1', '110117-21', '115126-61',
+                           '116150-60', '119661-1', '122056-1', '122585-1',
+                           '126558-1', '128416-21', '129316-2', '133479-2',
+                           '136411-21', '137959-2', '138152-62', '138981-22',
+                           '140368-2', '141881-1', '145374-1', '146267-2',
+                           '146780-3', '147006-21', '148020-60', '148436-1',
+                           '149421-1', '153968-22', '155477-1', '162031-1',
+                           '162608-3', '165530-2', '167239-1', '171492-2',
+                           '173869-2', '181347-25', '183314-1', '183365-61',
+                           '186568-2', '187687-60', '189407-1', '189945-1',
+                           '191991-1', '191994-1', '192849-21', '194024-1',
+                           '195831-1', '196988-2', '198913-2', '202813-60',
+                           '213518-1', '220969-21', '228269-1', '228997-1',
+                           '233501-2', '234616-26', '238244-1', '238700-21',
+                           '243424-21', '246690-2', '248794-21', '249446-3',
+                           '250752-4', '251689-1', '251738-1', '252239-1',
+                           '254570-1', '260442-1', '260995-21', '262434-2',
+                           '264500-1', '266536-21', '268568-1', '271101-1',
+                           '272302-1', '275575-21', '276285-22', '276285-23',
+                           '276350-1', '278127-1', '279186-21', '280213-2',
+                           '280301-23', '280890-60', '282322-1', '282787-1',
+                           '282952-21', '283775-1', '284217-22', '286428-1',
+                           '288531-1', '289436-2', '290249-1', '291453-2',
+                           '292306-1', '293749-1', '298936-2', '300244-4',
+                           '303655-1', '303955-22', '308813-1', '315217-2',
+                           '320922-3', '321167-4', '323487-60', '325507-1',
+                           '333858-1', '337489-1', '339907-1', '347419-2',
+                           '354982-1', '356188-1', '357433-1', '358977-60',
+                           '362382-2', '367948-1', '371471-2', '374841-2',
+                           '375560-1', '376481-1', '377937-4', '378377-1',
+                           '381507-2', '382750-1', '386232-1', '388084-3',
+                           '388576-1', '388698-1', '390266-60', '390526-1',
+                           '392305-3', '394784-1', '395772-1', '397634-1',
+                           '399817-2', '400158-1', '401353-2', '401353-4',
+                           '404072-2', '404396-3', '404396-4', '404797-2',
+                           '407330-61', '409394-1', '410861-23', '411906-1',
+                           '412455-1', '414733-2', '415079-22', '415385-2',
+                           '415618-60', '415927-1', '419615-1', '420133-2',
+                           '423123-1', '426556-60', '428875-60', '430618-1',
+                           '431917-1', '434053-1', '435818-1', '435918-1',
+                           '440621-1', '441479-2', '445673-2', '447127-1',
+                           '447619-21', '447734-3', '447796-1', '451305-1',
+                           '452169-2', '457463-1', '459042-22', '459323-1',
+                           '460956-2', '465504-1', '466759-1', '467435-2',
+                           '467644-2', '468357-1', '469396-2', '477102-2',
+                           '477332-1', '478158-1', '479407-1', '479521-1',
+                           '482197-1', '483589-1', '486303-1', '486381-1',
+                           '489391-1', '490161-1', '490449-1', '490807-1',
+                           '491356-2', '493398-1', '497244-1', '497902-1',
+                           '497947-1', '497990-1', '508868-1', '509503-1',
+                           '515096-2', '517122-1', '519012-1', '521543-2',
+                           '526254-1', '526254-2', '527730-1', '531546-1',
+                           '531578-1', '538123-1', '542910-1', '543591-1',
+                           '543720-1', '543725-1', '543730-1', '543737-1',
+                           '543740-1', '543755-1', '543763-1', '543767-1',
+                           '543767-2', '543768-1', '543801-1', '543802-1',
+                           '543813-1', '543816-1', '543821-1', '543827-1',
+                           '543868-1', '545805-21', '546095-60', '546204-1',
+                           '546496-23', '548791-1', '551361-1', '551871-23',
+                           '561966-21', '562191-1', '563210-25', '563493-1',
+                           '564079-22', '565145-22', '569677-60', '572884-1',
+                           '576093-1', '581817-21', '582186-1', '582186-60',
+                           '587084-1', '588757-22', '591912-2', '592985-22',
+                           '600134-1', '600302-21', '608070-21', '610498-1',
+                           '611207-22', '611356-62', '614014-1', '616754-60',
+                           '617702-60', '620357-1', '621133-1', '622338-60',
+                           '622649-1', '625817-1', '626775-61', '626955-60',
+                           '628539-24', '628539-25', '629189-1', '631726-1',
+                           '639466-60', '640303-21', '640741-1', '641797-23',
+                           '643494-60', '643776-24', '643833-60', '644898-21',
+                           '644978-60', '647427-60', '648344-60', '656611-21',
+                           '659312-60', '664894-60', '665719-22', '665915-21',
+                           '668026-60', '671899-60', '675574-60', '675574-61',
+                           '675976-21', '677033-21', '678355-21', '678362-21',
+                           '678383-22', '678386-21', '678410-21', '678450-21',
+                           '678511-21', '678516-21', '678519-21', '678526-21',
+                           '678598-21', '678612-21', '678671-21', '678718-21',
+                           '678872-21', '679065-21', '679137-21', '679158-21',
+                           '679189-21', '679249-21', '679314-21', '679428-21',
+                           '679429-21', '679437-21', '679533-21', '679565-21',
+                           '679582-21', '679597-21', '683232-60', '683241-60',
+                           '685472-60', '692220-60', '700497-60', '700888-60',
+                           '702109-60', '703661-60', '706650-60', '709275-60',
+                           '720488-21', '722176-61', '723239-1', '724313-21',
+                           '724814-1', '724900-21', '725356-1', '726487-1',
+                           '727654-1', '731295-21', '733406-60', '733406-61',
+                           '733406-63', '733406-64', '4880000-1', '16480005-1',
+                           '37256003-1', '43695000-1', '45667002-21',
+                           '45965008-1', '46526047-22', '48065004-1',
+                           '48187004-21', '52064004-1', '53111005-21',
+                           '62488004-21', '80215608-21', '80220347-1',
+                           '80225546-1', '80227654-21', '80230340-1',
+                           '80340476-21', '80342144-63', '87009251-21',
+                           '90027666-1', '90064302-1', '90208320-21',
+                           '90421787-2', '91719753-1', '91757485-1',
+                           '91813374-1', '91856399-1', '91893145-1',
+                           '91911108-1', '91927891-1', '91928078-1',
+                           '91954673-1', '91972914-60', '91974446-1',
+                           '91976305-1', '91990954-1', '92090521-21',
+                           '92113775-22', '92263914-1', '92307771-61',
+                           '92308992-1', '92312556-1', '92313051-1',
+                           '92313821-1', '92370416-21', '92371692-1',
+                           '92392064-1', '92467546-1', '92520555-1',
+                           '92524284-1', '92532325-1', '92544436-1',
+                           '92651026-21', '92666910-61', '92675578-22',
+                           '92677327-2', '92794312-1', '92807743-2',
+                           '92826190-1', '92832207-1', '92842140-22',
+                           '92917314-1', '92930173-60', '92963074-1',
+                           '92965516-1', '93020868-1', '93043946-1',
+                           '93081786-1', '93104127-21', '93145344-21',
+                           '93189234-1', '93209716-21', '93222333-1',
+                           '93254761-21', '93264606-1', '93277322-1',
+                           '93307363-1', '93326074-1', '93335864-1',
+                           '93353728-60', '93361780-2', '93399554-1',
+                           '93400984-1', '93409025-2', '93440034-1',
+                           '93521643-1', '93560517-1', '93573794-21',
+                           '93580746-1', '93592912-1', '93595849-2',
+                           '93616529-1', '93632050-21', '93669582-22',
+                           '93682727-1', '93717058-61', '93719863-1',
+                           '93723845-1', '93725781-1', '93725781-21',
+                           '93767647-1', '93798480-21', '93825485-1',
+                           '93825980-1', '93869276-21', '93886777-61',
+                           '93899922-1', '93909778-22', '93933604-1',
+                           '93937564-21', '93939489-1', '94010032-1',
+                           '94015774-22', '94031757-1', '94050237-22',
+                           '94075185-1', '94107008-1', '94126148-21',
+                           '94130416-60', '94181104-1', '94185570-1',
+                           '94221760-1', '94227821-1', '94236819-1',
+                           '94250668-1', '94319374-1', '94321112-1',
+                           '94369402-1', '94392469-1', '94409596-1',
+                           '94428395-1', '94452793-1', '94461923-1',
+                           '94468237-1', '94545127-1', '94594627-1',
+                           '94606309-1', '94647317-1', '94647317-2',
+                           '94708598-1', '94709665-1', '94727804-1',
+                           '94731665-22', '94733634-1', '94744777-1',
+                           '94799370-1', '94822635-21', '94858253-1',
+                           '94863027-1', '94897237-1', '94938091-1',
+                           '94949256-1', '94959233-1', '94968264-1',
+                           '95031987-21', '95079628-1', '95094522-1',
+                           '95157090-63', '95203510-1', '95227182-21',
+                           '95232352-1', '95285031-1', '95287539-1',
+                           '95341813-1', '95345245-2', '95347038-60',
+                           '95350228-60', '95359765-21', '95384658-1',
+                           '95391511-1', '95404491-1', '95413819-21',
+                           '95448480-1', '95466630-1', '95472372-1',
+                           '95473406-1', '95477762-1', '95488806-1',
+                           '95567346-1', '95604196-1', '95605362-1',
+                           '95605384-1', '95610290-1', '95631179-1',
+                           '95640936-1', '95658338-1', '95661044-21',
+                           '95693065-1', '95723612-1', '95730707-1',
+                           '95762959-1', '95779547-1', '95789084-21',
+                           '95801437-1', '95810138-1', '95811810-1',
+                           '95812019-1', '95813108-1', '95831137-1',
+                           '95876413-1', '95885928-1', '95898798-1',
+                           '95945592-1', '95949420-60', '95954678-1',
+                           '95967273-1', '96000405-1', '96023725-1',
+                           '96033328-21', '96061620-1', '96093212-1',
+                           '96110746-1', '96428943-1', '96431484-1',
+                           '96452450-1', '96495900-1', '96498067-1',
+                           '96513599-60', '96518340-1', '96520628-1',
+                           '96525391-1', '96532057-1', '96553474-1',
+                           '96554189-1', '96557467-1', '96582195-21',
+                           '96589609-1', '96599256-21', '96626877-1',
+                           '96636722-21', '96648305-1', '96658326-21',
+                           '96670019-1', '96691381-1', '96701248-1',
+                           '96726328-21', '96730926-1', '96732576-1',
+                           '96759372-1', '96786696-1', '96793065-1',
+                           '96799577-1', '96808861-21', '96812260-1',
+                           '96853488-1', '96871286-1', '96874047-1',
+                           '96875048-1', '96878843-21', '96879371-22',
+                           '96882935-1', '96932512-1', '96946273-1',
+                           '96967118-1', '96982265-21', '97004991-1',
+                           '97016519-1', '97046296-1', '97069363-1',
+                           '97122383-1', '97127300-1', '97222329-60',
+                           '97293070-1', '97299549-1', '97341415-1',
+                           '97443968-1', '97493864-1', '97495085-21',
+                           '97531000-1', '97531506-21', '97549447-1',
+                           '97674891-22', '97726019-1', '97739296-1',
+                           '97739923-61', '97767687-1', '97772362-21',
+                           '102569420-60', '265735914-21', '310561929-62' )
+
+SELECT * FROM UNITRAC_TEMP.dbo.LOAN_2252_1
+
+UPDATE  Loan
+SET     NUMBER_TX = '200005380601' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '53806-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200008419201' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '84192-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200008496201' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '84962-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200008749301' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '87493-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200009093201' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '90932-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200010265001' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '102650-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200011011721' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '110117-21'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200011512661' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '115126-61'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200011615060' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '116150-60'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200011966101' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '119661-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200012205601' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '122056-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200012258501' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '122585-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200012655801' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '126558-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200012841621' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '128416-21'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200012931602' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '129316-2'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200013347902' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '133479-2'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200013641121' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '136411-21'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200013795902' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '137959-2'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200013815262' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '138152-62'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200013898122' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '138981-22'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200014036802' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '140368-2'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200014188101' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '141881-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200014537401' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '145374-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200014626702' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '146267-2'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200014678003' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '146780-3'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200014700621' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '147006-21'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200014802060' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '148020-60'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200014843601' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '148436-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200014942101' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '149421-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200015396822' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '153968-22'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200015547701' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '155477-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200016203101' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '162031-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200016260803' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '162608-3'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200016553002' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '165530-2'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200016723901' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '167239-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200017149202' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '171492-2'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200017386902' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '173869-2'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200018134725' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '181347-25'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200018331401' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '183314-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200018336561' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '183365-61'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200018656802' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '186568-2'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200018768760' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '187687-60'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200018940701' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '189407-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200018994501' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '189945-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200019199101' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '191991-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200019199401' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '191994-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200019284921' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '192849-21'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200019402401' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '194024-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200019583101' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '195831-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200019698802' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '196988-2'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200019891302' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '198913-2'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200020281360' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '202813-60'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200021351801' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '213518-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200022096921' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '220969-21'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200022826901' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '228269-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200022899701' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '228997-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200023350102' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '233501-2'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200023461626' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '234616-26'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200023824401' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '238244-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200023870021' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '238700-21'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200024342421' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '243424-21'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200024669002' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '246690-2'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200024879421' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '248794-21'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200024944603' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '249446-3'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200025075204' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '250752-4'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200025168901' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '251689-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200025173801' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '251738-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200025223901' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '252239-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200025457001' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '254570-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200026044201' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '260442-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200026099521' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '260995-21'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200026243402' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '262434-2'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200026450001' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '264500-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200026653621' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '266536-21'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200026856801' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '268568-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200027110101' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '271101-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200027230201' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '272302-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200027557521' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '275575-21'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200027628522' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '276285-22'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200027628523' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '276285-23'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200027635001' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '276350-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200027812701' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '278127-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200027918621' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '279186-21'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200028021302' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '280213-2'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200028030123' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '280301-23'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200028089060' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '280890-60'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200028232201' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '282322-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200028278701' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '282787-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200028295221' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '282952-21'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200028377501' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '283775-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200028421722' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '284217-22'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200028642801' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '286428-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200028853101' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '288531-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200028943602' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '289436-2'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200029024901' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '290249-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200029145302' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '291453-2'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200029230601' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '292306-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200029374901' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '293749-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200029893602' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '298936-2'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200030024404' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '300244-4'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200030365501' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '303655-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200030395522' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '303955-22'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200030881301' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '308813-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200031521702' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '315217-2'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200032092203' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '320922-3'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200032116704' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '321167-4'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200032348760' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '323487-60'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200032550701' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '325507-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200033385801' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '333858-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200033748901' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '337489-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200033990701' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '339907-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200034741902' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '347419-2'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200035498201' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '354982-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200035618801' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '356188-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200035743301' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '357433-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200035897760' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '358977-60'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200036238202' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '362382-2'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200036794801' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '367948-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200037147102' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '371471-2'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200037484102' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '374841-2'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200037556001' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '375560-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200037648101' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '376481-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200037793704' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '377937-4'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200037837701' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '378377-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200038150702' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '381507-2'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200038275001' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '382750-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200038623201' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '386232-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200038808403' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '388084-3'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200038857601' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '388576-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200038869801' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '388698-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200039026660' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '390266-60'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200039052601' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '390526-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200039230503' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '392305-3'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200039478401' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '394784-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200039577201' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '395772-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200039763401' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '397634-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200039981702' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '399817-2'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200040015801' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '400158-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200040135302' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '401353-2'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200040135304' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '401353-4'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200040407202' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '404072-2'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200040439603' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '404396-3'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200040439604' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '404396-4'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200040479702' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '404797-2'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200040733061' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '407330-61'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200040939401' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '409394-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200041086123' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '410861-23'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200041190601' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '411906-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200041245501' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '412455-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200041473302' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '414733-2'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200041507922' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '415079-22'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200041538502' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '415385-2'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200041561860' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '415618-60'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200041592701' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '415927-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200041961501' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '419615-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200042013302' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '420133-2'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200042312301' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '423123-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200042655660' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '426556-60'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200042887560' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '428875-60'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200043061801' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '430618-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200043191701' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '431917-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200043405301' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '434053-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200043581801' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '435818-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200043591801' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '435918-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200044062101' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '440621-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200044147902' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '441479-2'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200044567302' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '445673-2'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200044712701' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '447127-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200044761921' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '447619-21'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200044773403' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '447734-3'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200044779601' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '447796-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200045130501' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '451305-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200045216902' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '452169-2'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200045746301' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '457463-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200045904222' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '459042-22'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200045932301' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '459323-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200046095602' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '460956-2'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200046550401' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '465504-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200046675901' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '466759-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200046743502' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '467435-2'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200046764402' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '467644-2'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200046835701' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '468357-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200046939602' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '469396-2'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200047710202' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '477102-2'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200047733201' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '477332-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200047815801' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '478158-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200047940701' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '479407-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200047952101' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '479521-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200048219701' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '482197-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200048358901' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '483589-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200048630301' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '486303-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200048638101' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '486381-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200048939101' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '489391-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200049016101' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '490161-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200049044901' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '490449-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200049080701' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '490807-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200049135602' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '491356-2'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200049339801' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '493398-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200049724401' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '497244-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200049790201' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '497902-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200049794701' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '497947-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200049799001' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '497990-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200050886801' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '508868-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200050950301' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '509503-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200051509602' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '515096-2'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200051712201' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '517122-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200051901201' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '519012-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200052154302' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '521543-2'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200052625401' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '526254-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200052625402' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '526254-2'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200052773001' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '527730-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200053154601' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '531546-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200053157801' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '531578-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200053812301' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '538123-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200054291001' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '542910-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200054359101' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '543591-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200054372001' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '543720-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200054372501' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '543725-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200054373001' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '543730-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200054373701' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '543737-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200054374001' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '543740-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200054375501' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '543755-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200054376301' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '543763-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200054376701' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '543767-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200054376702' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '543767-2'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200054376801' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '543768-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200054380101' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '543801-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200054380201' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '543802-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200054381301' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '543813-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200054381601' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '543816-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200054382101' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '543821-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200054382701' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '543827-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200054386801' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '543868-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200054580521' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '545805-21'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200054609560' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '546095-60'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200054620401' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '546204-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200054649623' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '546496-23'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200054879101' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '548791-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200055136101' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '551361-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200055187123' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '551871-23'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200056196621' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '561966-21'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200056219101' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '562191-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200056321025' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '563210-25'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200056349301' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '563493-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200056407922' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '564079-22'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200056514522' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '565145-22'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200056967760' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '569677-60'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200057288401' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '572884-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200057609301' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '576093-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200058181721' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '581817-21'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200058218601' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '582186-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200058218660' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '582186-60'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200058708401' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '587084-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200058875722' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '588757-22'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200059191202' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '591912-2'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200059298522' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '592985-22'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200060013401' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '600134-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200060030221' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '600302-21'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200060807021' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '608070-21'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200061049801' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '610498-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200061120722' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '611207-22'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200061135662' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '611356-62'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200061401401' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '614014-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200061675460' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '616754-60'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200061770260' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '617702-60'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200062035701' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '620357-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200062113301' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '621133-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200062233860' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '622338-60'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200062264901' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '622649-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200062581701' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '625817-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200062677561' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '626775-61'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200062695560' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '626955-60'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200062853924' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '628539-24'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200062853925' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '628539-25'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200062918901' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '629189-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200063172601' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '631726-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200063946660' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '639466-60'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200064030321' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '640303-21'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200064074101' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '640741-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200064179723' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '641797-23'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200064349460' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '643494-60'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200064377624' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '643776-24'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200064383360' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '643833-60'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200064489821' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '644898-21'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200064497860' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '644978-60'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200064742760' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '647427-60'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200064834460' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '648344-60'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200065661121' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '656611-21'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200065931260' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '659312-60'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200066489460' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '664894-60'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200066571922' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '665719-22'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200066591521' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '665915-21'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200066802660' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '668026-60'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200067189960' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '671899-60'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200067557460' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '675574-60'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200067557461' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '675574-61'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200067597621' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '675976-21'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200067703321' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '677033-21'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200067835521' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '678355-21'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200067836221' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '678362-21'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200067838322' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '678383-22'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200067838621' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '678386-21'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200067841021' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '678410-21'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200067845021' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '678450-21'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200067851121' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '678511-21'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200067851621' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '678516-21'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200067851921' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '678519-21'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200067852621' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '678526-21'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200067859821' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '678598-21'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200067861221' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '678612-21'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200067867121' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '678671-21'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200067871821' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '678718-21'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200067887221' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '678872-21'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200067906521' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '679065-21'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200067913721' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '679137-21'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200067915821' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '679158-21'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200067918921' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '679189-21'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200067924921' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '679249-21'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200067931421' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '679314-21'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200067942821' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '679428-21'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200067942921' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '679429-21'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200067943721' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '679437-21'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200067953321' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '679533-21'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200067956521' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '679565-21'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200067958221' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '679582-21'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200067959721' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '679597-21'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200068323260' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '683232-60'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200068324160' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '683241-60'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200068547260' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '685472-60'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200069222060' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '692220-60'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200070049760' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '700497-60'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200070088860' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '700888-60'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200070210960' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '702109-60'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200070366160' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '703661-60'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200070665060' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '706650-60'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200070927560' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '709275-60'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200072048821' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '720488-21'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200072217661' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '722176-61'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200072323901' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '723239-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200072431321' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '724313-21'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200072481401' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '724814-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200072490021' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '724900-21'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200072535601' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '725356-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200072648701' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '726487-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200072765401' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '727654-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200073129521' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '731295-21'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200073340660' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '733406-60'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200073340661' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '733406-61'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200073340663' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '733406-63'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200073340664' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '733406-64'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '200488000001' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '4880000-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '201648000501' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '16480005-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '203725600301' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '37256003-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '204369500001' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '43695000-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '204566700221' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '45667002-21'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '204596500801' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '45965008-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '204652604722' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '46526047-22'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '204806500401' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '48065004-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '204818700421' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '48187004-21'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '205206400401' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '52064004-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '205311100521' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '53111005-21'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '206248800421' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '62488004-21'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '208021560821' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '80215608-21'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '208022034701' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '80220347-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '208022554601' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '80225546-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '208022765421' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '80227654-21'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '208023034001' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '80230340-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '208034047621' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '80340476-21'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '208034214463' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '80342144-63'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '208700925121' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '87009251-21'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209002766601' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '90027666-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209006430201' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '90064302-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209020832021' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '90208320-21'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '280000064102' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '90421787-2'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209171975301' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '91719753-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209175748501' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '91757485-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209181337401' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '91813374-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209185639901' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '91856399-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209189314501' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '91893145-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209191110801' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '91911108-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209192789101' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '91927891-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209192807801' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '91928078-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209195467301' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '91954673-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209197291460' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '91972914-60'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209197444601' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '91974446-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209197630501' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '91976305-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209199095401' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '91990954-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209209052121' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '92090521-21'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209211377522' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '92113775-22'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209226391401' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '92263914-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209230777161' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '92307771-61'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209230899201' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '92308992-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209231255601' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '92312556-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209231305101' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '92313051-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209231382101' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '92313821-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209237041621' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '92370416-21'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209237169201' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '92371692-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209239206401' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '92392064-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209246754601' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '92467546-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209252055501' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '92520555-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209252428401' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '92524284-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209253232501' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '92532325-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209254443601' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '92544436-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209265102621' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '92651026-21'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209266691061' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '92666910-61'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209267557822' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '92675578-22'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209267732702' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '92677327-2'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209279431201' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '92794312-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209280774302' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '92807743-2'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209282619001' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '92826190-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209283220701' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '92832207-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209284214022' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '92842140-22'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209291731401' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '92917314-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209293017360' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '92930173-60'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209296307401' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '92963074-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209296551601' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '92965516-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209302086801' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '93020868-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209304394601' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '93043946-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209308178601' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '93081786-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209310412721' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '93104127-21'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209314534421' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '93145344-21'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209318923401' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '93189234-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209320971621' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '93209716-21'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209322233301' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '93222333-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209325476121' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '93254761-21'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209326460601' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '93264606-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209327732201' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '93277322-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209330736301' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '93307363-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209332607401' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '93326074-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209333586401' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '93335864-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209335372860' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '93353728-60'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209336178002' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '93361780-2'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209339955401' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '93399554-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209340098401' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '93400984-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209340902502' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '93409025-2'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209344003401' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '93440034-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209352164301' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '93521643-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209356051701' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '93560517-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209357379421' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '93573794-21'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209358074601' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '93580746-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209359291201' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '93592912-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209359584902' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '93595849-2'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209361652901' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '93616529-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209363205021' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '93632050-21'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209366958222' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '93669582-22'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209368272701' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '93682727-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209371705861' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '93717058-61'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209371986301' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '93719863-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209372384501' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '93723845-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209372578101' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '93725781-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209372578121' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '93725781-21'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209376764701' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '93767647-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209379848021' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '93798480-21'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209382548501' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '93825485-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209382598001' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '93825980-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209386927621' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '93869276-21'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209388677761' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '93886777-61'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209389992201' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '93899922-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209390977822' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '93909778-22'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209393360401' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '93933604-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209393756421' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '93937564-21'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209393948901' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '93939489-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209401003201' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '94010032-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209401577422' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '94015774-22'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209403175701' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '94031757-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209405023722' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '94050237-22'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209407518501' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '94075185-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209410700801' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '94107008-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209412614821' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '94126148-21'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209413041660' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '94130416-60'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209418110401' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '94181104-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209418557001' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '94185570-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209422176001' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '94221760-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209422782101' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '94227821-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209423681901' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '94236819-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209425066801' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '94250668-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209431937401' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '94319374-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209432111201' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '94321112-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209436940201' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '94369402-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209439246901' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '94392469-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209440959601' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '94409596-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209442839501' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '94428395-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209445279301' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '94452793-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209446192301' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '94461923-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209446823701' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '94468237-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209454512701' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '94545127-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209459462701' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '94594627-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209460630901' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '94606309-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209464731701' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '94647317-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209464731702' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '94647317-2'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209470859801' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '94708598-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209470966501' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '94709665-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209472780401' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '94727804-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209473166522' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '94731665-22'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209473363401' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '94733634-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209474477701' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '94744777-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209479937001' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '94799370-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209482263521' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '94822635-21'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209485825301' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '94858253-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209486302701' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '94863027-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209489723701' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '94897237-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209493809101' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '94938091-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209494925601' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '94949256-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209495923301' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '94959233-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209496826401' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '94968264-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209503198721' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '95031987-21'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209507962801' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '95079628-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209509452201' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '95094522-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209515709063' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '95157090-63'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209520351001' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '95203510-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209522718221' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '95227182-21'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209523235201' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '95232352-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209528503101' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '95285031-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209528753901' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '95287539-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209534181301' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '95341813-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209534524502' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '95345245-2'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209534703860' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '95347038-60'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209535022860' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '95350228-60'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209535976521' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '95359765-21'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209538465801' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '95384658-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209539151101' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '95391511-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209540449101' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '95404491-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209541381921' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '95413819-21'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209544848001' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '95448480-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209546663001' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '95466630-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209547237201' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '95472372-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209547340601' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '95473406-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209547776201' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '95477762-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209548880601' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '95488806-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209556734601' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '95567346-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209560419601' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '95604196-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209560536201' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '95605362-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209560538401' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '95605384-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209561029001' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '95610290-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209563117901' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '95631179-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209564093601' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '95640936-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209565833801' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '95658338-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209566104421' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '95661044-21'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209569306501' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '95693065-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209572361201' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '95723612-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209573070701' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '95730707-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209576295901' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '95762959-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209577954701' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '95779547-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209578908421' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '95789084-21'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209580143701' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '95801437-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209581013801' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '95810138-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209581181001' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '95811810-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209581201901' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '95812019-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209581310801' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '95813108-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209583113701' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '95831137-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209587641301' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '95876413-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209588592801' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '95885928-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209589879801' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '95898798-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209594559201' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '95945592-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209594942060' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '95949420-60'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209595467801' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '95954678-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209596727301' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '95967273-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209600040501' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '96000405-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209602372501' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '96023725-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209603332821' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '96033328-21'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209606162001' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '96061620-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209609321201' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '96093212-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209611074601' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '96110746-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209642894301' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '96428943-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209643148401' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '96431484-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209645245001' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '96452450-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209649590001' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '96495900-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209649806701' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '96498067-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209651359960' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '96513599-60'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209651834001' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '96518340-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209652062801' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '96520628-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209652539101' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '96525391-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209653205701' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '96532057-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209655347401' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '96553474-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209655418901' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '96554189-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209655746701' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '96557467-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209658219521' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '96582195-21'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209658960901' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '96589609-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209659925621' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '96599256-21'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209662687701' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '96626877-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209663672221' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '96636722-21'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209664830501' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '96648305-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209665832621' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '96658326-21'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209667001901' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '96670019-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209669138101' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '96691381-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209670124801' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '96701248-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209672632821' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '96726328-21'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209673092601' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '96730926-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209673257601' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '96732576-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209675937201' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '96759372-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209678669601' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '96786696-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209679306501' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '96793065-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209679957701' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '96799577-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209680886121' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '96808861-21'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209681226001' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '96812260-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209685348801' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '96853488-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209687128601' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '96871286-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209687404701' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '96874047-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209687504801' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '96875048-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209687884321' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '96878843-21'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209687937122' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '96879371-22'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209688293501' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '96882935-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209693251201' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '96932512-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209694627301' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '96946273-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209696711801' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '96967118-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209698226521' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '96982265-21'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209700499101' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '97004991-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209701651901' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '97016519-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209704629601' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '97046296-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209706936301' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '97069363-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209712238301' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '97122383-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209712730001' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '97127300-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209722232960' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '97222329-60'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209729307001' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '97293070-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209729954901' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '97299549-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209734141501' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '97341415-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209744396801' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '97443968-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209749386401' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '97493864-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209749508521' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '97495085-21'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209753100001' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '97531000-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209753150621' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '97531506-21'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209754944701' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '97549447-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209767489122' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '97674891-22'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209772601901' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '97726019-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209773929601' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '97739296-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209773992361' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '97739923-61'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209776768701' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '97767687-1'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '209777236221' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '97772362-21'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '280000073960' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '102569420-60'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '280000347921' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '265735914-21'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+UPDATE  Loan
+SET     NUMBER_TX = '280000464962' ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0252255'
+WHERE   NUMBER_TX = '310561929-62'
+        AND LENDER_ID = 962
+        AND PURGE_DT IS NULL;
+
+
+
+
+--2) INSERT into PROPERTY_CHANGE table
+INSERT INTO PROPERTY_CHANGE (ENTITY_NAME_TX,ENTITY_ID,USER_TX,ATTACHMENT_IN,CREATE_DT,AGENCY_ID,DETAILS_IN,FORMATTED_IN,LOCK_ID,PARENT_NAME_TX,PARENT_ID,TRANS_STATUS_CD,UTL_IN)
+SELECT 'Allied.UniTrac.Loan',LOAN.ID,'INC0252255','N','2016-10-31 00:00:00.000',1,'Y','N',1,'Allied.UniTrac.Loan',LOAN.ID,'PEND','N'
+FROM LOAN
+WHERE ID IN (SELECT ID FROM UNITRAC_TEMP.dbo.LOAN_2252_1)
+--42
+
+
+--3) INSERT into PROPERTY_CHANGE_UPDATE table
+INSERT INTO PROPERTY_CHANGE_UPDATE (CHANGE_ID, TABLE_NAME_TX, TABLE_ID, COLUMN_NM, FROM_VALUE_TX,TO_VALUE_TX,DATATYPE_NO,CREATE_DT,DISPLAY_IN,OPERATION_CD)
+select PROPERTY_CHANGE.ID,'LOAN',ENTITY_ID,'NUMBER_TX',UNITRAC_TEMP.dbo.LOAN_2252_1.NUMBER_TX,LOAN.NUMBER_TX,1,'2016-10-31 00:00:00.000','Y','U'
+from PROPERTY_CHANGE
+INNER JOIN LOAN ON PROPERTY_CHANGE.ENTITY_ID = LOAN.ID AND ENTITY_NAME_TX = 'Allied.UniTrac.Loan' 
+INNER JOIN UNITRAC_TEMP.dbo.LOAN_2252_1 ON LOAN.ID = UNITRAC_TEMP.dbo.LOAN_2252_1.ID --AND ENTITY_NAME_TX = 'Allied.UniTrac.Loan' 
+WHERE PROPERTY_CHANGE.CREATE_DT = '2016-10-31 00:00:00.000'
+AND ENTITY_ID IN (SELECT ID FROM UNITRAC_TEMP.dbo.LOAN_2252_1)
+--0
+
+---4) Insert into LOAN_NUMBER Table (Leave old numbers for matching purposes)
+
+INSERT INTO LOAN_NUMBER (LOAN_ID,NUMBER_TX,EFFECTIVE_DT,CREATE_DT,UPDATE_DT,UPDATE_USER_TX, LOCK_ID)
+SELECT dbo.LOAN.ID, dbo.LOAN.NUMBER_TX,dbo.LOAN.EFFECTIVE_DT,GETDATE(),GETDATE(),'INC0252255',1
+FROM UNITRAC_TEMP.dbo.LOAN_2252_1 HD INNER JOIN dbo.LOAN ON HD.ID = LOAN.ID AND LOAN.EFFECTIVE_DT IS NOT NULL
+--42
+
+--5) Full Text Search Updates
+
+--Create updates
+SELECT 'EXEC SaveSearchFullText', PROPERTY.ID 
+FROM PROPERTY
+INNER JOIN COLLATERAL ON PROPERTY.ID = COLLATERAL.PROPERTY_ID
+AND LOAN_ID in (select ID FROM UNITRAC_TEMP.dbo.LOAN_2252_1)
+--42
+
+
+
+EXEC SaveSearchFullText	5122631
+EXEC SaveSearchFullText	5122631
+EXEC SaveSearchFullText	5122737
+EXEC SaveSearchFullText	5122964
+EXEC SaveSearchFullText	5122987
+EXEC SaveSearchFullText	5123232
+EXEC SaveSearchFullText	5123324
+EXEC SaveSearchFullText	5123324
+EXEC SaveSearchFullText	5123377
+EXEC SaveSearchFullText	5123377
+EXEC SaveSearchFullText	5123786
+EXEC SaveSearchFullText	5124033
+EXEC SaveSearchFullText	5124198
+EXEC SaveSearchFullText	5124228
+EXEC SaveSearchFullText	5124228
+EXEC SaveSearchFullText	5124246
+EXEC SaveSearchFullText	5124297
+EXEC SaveSearchFullText	5124339
+EXEC SaveSearchFullText	5124342
+EXEC SaveSearchFullText	5124404
+EXEC SaveSearchFullText	5125756
+EXEC SaveSearchFullText	5125769
+EXEC SaveSearchFullText	5125842
+EXEC SaveSearchFullText	5125842
+EXEC SaveSearchFullText	5125859
+EXEC SaveSearchFullText	5126356
+EXEC SaveSearchFullText	5126368
+EXEC SaveSearchFullText	5126625
+EXEC SaveSearchFullText	5126717
+EXEC SaveSearchFullText	5127177
+EXEC SaveSearchFullText	5127177
+EXEC SaveSearchFullText	5127192
+EXEC SaveSearchFullText	5127251
+EXEC SaveSearchFullText	5127718
+EXEC SaveSearchFullText	5127718
+EXEC SaveSearchFullText	5127759
+EXEC SaveSearchFullText	5127803
+EXEC SaveSearchFullText	5128041
+EXEC SaveSearchFullText	5128045
+EXEC SaveSearchFullText	5128206
+EXEC SaveSearchFullText	5128206
+EXEC SaveSearchFullText	5128236
+EXEC SaveSearchFullText	5128261
+EXEC SaveSearchFullText	5128668
+EXEC SaveSearchFullText	5128669
+EXEC SaveSearchFullText	5128770
+EXEC SaveSearchFullText	5129045
+EXEC SaveSearchFullText	5129310
+EXEC SaveSearchFullText	5129941
+EXEC SaveSearchFullText	5130026
+EXEC SaveSearchFullText	5130035
+EXEC SaveSearchFullText	5130217
+EXEC SaveSearchFullText	5130247
+EXEC SaveSearchFullText	5130264
+EXEC SaveSearchFullText	5130274
+EXEC SaveSearchFullText	5130274
+EXEC SaveSearchFullText	5130292
+EXEC SaveSearchFullText	5130311
+EXEC SaveSearchFullText	5130425
+EXEC SaveSearchFullText	5130425
+EXEC SaveSearchFullText	5213798
+EXEC SaveSearchFullText	5213801
+EXEC SaveSearchFullText	5213804
+EXEC SaveSearchFullText	5213813
+EXEC SaveSearchFullText	5213822
+EXEC SaveSearchFullText	5235948
+EXEC SaveSearchFullText	5270701
+EXEC SaveSearchFullText	5421351
+EXEC SaveSearchFullText	5421351
+EXEC SaveSearchFullText	5421375
+EXEC SaveSearchFullText	5421375
+EXEC SaveSearchFullText	5421509
+EXEC SaveSearchFullText	5421514
+EXEC SaveSearchFullText	5421531
+EXEC SaveSearchFullText	5421541
+EXEC SaveSearchFullText	5421576
+EXEC SaveSearchFullText	5421620
+EXEC SaveSearchFullText	5421768
+EXEC SaveSearchFullText	5421799
+EXEC SaveSearchFullText	5421911
+EXEC SaveSearchFullText	5421936
+EXEC SaveSearchFullText	5421936
+EXEC SaveSearchFullText	5421964
+EXEC SaveSearchFullText	5421979
+EXEC SaveSearchFullText	5422021
+EXEC SaveSearchFullText	5422022
+EXEC SaveSearchFullText	5422059
+EXEC SaveSearchFullText	5422059
+EXEC SaveSearchFullText	5422061
+EXEC SaveSearchFullText	5422142
+EXEC SaveSearchFullText	5422165
+EXEC SaveSearchFullText	5422213
+EXEC SaveSearchFullText	5422223
+EXEC SaveSearchFullText	5422242
+EXEC SaveSearchFullText	5422244
+EXEC SaveSearchFullText	5422276
+EXEC SaveSearchFullText	5422291
+EXEC SaveSearchFullText	5422349
+EXEC SaveSearchFullText	5422352
+EXEC SaveSearchFullText	5422354
+EXEC SaveSearchFullText	5422461
+EXEC SaveSearchFullText	5422461
+EXEC SaveSearchFullText	5422471
+EXEC SaveSearchFullText	5422471
+EXEC SaveSearchFullText	5422473
+EXEC SaveSearchFullText	5422473
+EXEC SaveSearchFullText	5422501
+EXEC SaveSearchFullText	5422559
+EXEC SaveSearchFullText	5422668
+EXEC SaveSearchFullText	5422675
+EXEC SaveSearchFullText	5422679
+EXEC SaveSearchFullText	5422684
+EXEC SaveSearchFullText	5422684
+EXEC SaveSearchFullText	5422714
+EXEC SaveSearchFullText	5422715
+EXEC SaveSearchFullText	5422723
+EXEC SaveSearchFullText	5422763
+EXEC SaveSearchFullText	5422791
+EXEC SaveSearchFullText	5422801
+EXEC SaveSearchFullText	5422887
+EXEC SaveSearchFullText	5422918
+EXEC SaveSearchFullText	5422968
+EXEC SaveSearchFullText	5422981
+EXEC SaveSearchFullText	5423141
+EXEC SaveSearchFullText	5423228
+EXEC SaveSearchFullText	5423228
+EXEC SaveSearchFullText	5423241
+EXEC SaveSearchFullText	5423254
+EXEC SaveSearchFullText	5423382
+EXEC SaveSearchFullText	5423451
+EXEC SaveSearchFullText	5423465
+EXEC SaveSearchFullText	5423495
+EXEC SaveSearchFullText	5423495
+EXEC SaveSearchFullText	5423613
+EXEC SaveSearchFullText	5423652
+EXEC SaveSearchFullText	5423712
+EXEC SaveSearchFullText	5423721
+EXEC SaveSearchFullText	5423721
+EXEC SaveSearchFullText	5423752
+EXEC SaveSearchFullText	5423771
+EXEC SaveSearchFullText	5423786
+EXEC SaveSearchFullText	5423814
+EXEC SaveSearchFullText	5423815
+EXEC SaveSearchFullText	5423815
+EXEC SaveSearchFullText	5423917
+EXEC SaveSearchFullText	5423918
+EXEC SaveSearchFullText	5424109
+EXEC SaveSearchFullText	5424160
+EXEC SaveSearchFullText	5424165
+EXEC SaveSearchFullText	5424179
+EXEC SaveSearchFullText	5424207
+EXEC SaveSearchFullText	5424226
+EXEC SaveSearchFullText	5424267
+EXEC SaveSearchFullText	5424319
+EXEC SaveSearchFullText	5424319
+EXEC SaveSearchFullText	5424406
+EXEC SaveSearchFullText	5424524
+EXEC SaveSearchFullText	5424549
+EXEC SaveSearchFullText	5424557
+EXEC SaveSearchFullText	5424571
+EXEC SaveSearchFullText	5424571
+EXEC SaveSearchFullText	5424629
+EXEC SaveSearchFullText	5424682
+EXEC SaveSearchFullText	5424743
+EXEC SaveSearchFullText	5424743
+EXEC SaveSearchFullText	5424889
+EXEC SaveSearchFullText	5424924
+EXEC SaveSearchFullText	5425058
+EXEC SaveSearchFullText	5425201
+EXEC SaveSearchFullText	5425228
+EXEC SaveSearchFullText	5425273
+EXEC SaveSearchFullText	5425345
+EXEC SaveSearchFullText	5425368
+EXEC SaveSearchFullText	5425445
+EXEC SaveSearchFullText	5425463
+EXEC SaveSearchFullText	5425463
+EXEC SaveSearchFullText	5425547
+EXEC SaveSearchFullText	5425548
+EXEC SaveSearchFullText	5425550
+EXEC SaveSearchFullText	5425575
+EXEC SaveSearchFullText	5425580
+EXEC SaveSearchFullText	5425718
+EXEC SaveSearchFullText	5425720
+EXEC SaveSearchFullText	5425743
+EXEC SaveSearchFullText	5425861
+EXEC SaveSearchFullText	5425891
+EXEC SaveSearchFullText	5425952
+EXEC SaveSearchFullText	5426020
+EXEC SaveSearchFullText	5426083
+EXEC SaveSearchFullText	5426085
+EXEC SaveSearchFullText	5426085
+EXEC SaveSearchFullText	5426094
+EXEC SaveSearchFullText	5426104
+EXEC SaveSearchFullText	5426135
+EXEC SaveSearchFullText	5426158
+EXEC SaveSearchFullText	5426158
+EXEC SaveSearchFullText	5426193
+EXEC SaveSearchFullText	5426303
+EXEC SaveSearchFullText	5426355
+EXEC SaveSearchFullText	5426355
+EXEC SaveSearchFullText	5426434
+EXEC SaveSearchFullText	5426446
+EXEC SaveSearchFullText	5426446
+EXEC SaveSearchFullText	5426459
+EXEC SaveSearchFullText	5426471
+EXEC SaveSearchFullText	5426610
+EXEC SaveSearchFullText	5426642
+EXEC SaveSearchFullText	5426671
+EXEC SaveSearchFullText	5426671
+EXEC SaveSearchFullText	5426705
+EXEC SaveSearchFullText	5426705
+EXEC SaveSearchFullText	5426747
+EXEC SaveSearchFullText	5426859
+EXEC SaveSearchFullText	5426859
+EXEC SaveSearchFullText	5426868
+EXEC SaveSearchFullText	5427119
+EXEC SaveSearchFullText	5427144
+EXEC SaveSearchFullText	5427144
+EXEC SaveSearchFullText	5427186
+EXEC SaveSearchFullText	5430434
+EXEC SaveSearchFullText	5430506
+EXEC SaveSearchFullText	5430532
+EXEC SaveSearchFullText	5430537
+EXEC SaveSearchFullText	5430731
+EXEC SaveSearchFullText	5430742
+EXEC SaveSearchFullText	5430756
+EXEC SaveSearchFullText	5430789
+EXEC SaveSearchFullText	5430839
+EXEC SaveSearchFullText	5430850
+EXEC SaveSearchFullText	5430866
+EXEC SaveSearchFullText	5431194
+EXEC SaveSearchFullText	5431198
+EXEC SaveSearchFullText	5431211
+EXEC SaveSearchFullText	5431260
+EXEC SaveSearchFullText	5431388
+EXEC SaveSearchFullText	5431423
+EXEC SaveSearchFullText	5431492
+EXEC SaveSearchFullText	5431497
+EXEC SaveSearchFullText	5431640
+EXEC SaveSearchFullText	5431648
+EXEC SaveSearchFullText	5431734
+EXEC SaveSearchFullText	5431753
+EXEC SaveSearchFullText	5431898
+EXEC SaveSearchFullText	5431906
+EXEC SaveSearchFullText	5432065
+EXEC SaveSearchFullText	5432073
+EXEC SaveSearchFullText	5432194
+EXEC SaveSearchFullText	5432436
+EXEC SaveSearchFullText	5432442
+EXEC SaveSearchFullText	5432456
+EXEC SaveSearchFullText	5432690
+EXEC SaveSearchFullText	5432703
+EXEC SaveSearchFullText	5432715
+EXEC SaveSearchFullText	5432715
+EXEC SaveSearchFullText	5432814
+EXEC SaveSearchFullText	5432823
+EXEC SaveSearchFullText	5432877
+EXEC SaveSearchFullText	5432910
+EXEC SaveSearchFullText	5433011
+EXEC SaveSearchFullText	5433019
+EXEC SaveSearchFullText	5433031
+EXEC SaveSearchFullText	5433032
+EXEC SaveSearchFullText	5433051
+EXEC SaveSearchFullText	5433065
+EXEC SaveSearchFullText	5433085
+EXEC SaveSearchFullText	5433096
+EXEC SaveSearchFullText	5433169
+EXEC SaveSearchFullText	5433182
+EXEC SaveSearchFullText	5433199
+EXEC SaveSearchFullText	5445544
+EXEC SaveSearchFullText	5445547
+EXEC SaveSearchFullText	5445547
+EXEC SaveSearchFullText	5445548
+EXEC SaveSearchFullText	5445549
+EXEC SaveSearchFullText	5445552
+EXEC SaveSearchFullText	5445553
+EXEC SaveSearchFullText	5445556
+EXEC SaveSearchFullText	5451644
+EXEC SaveSearchFullText	5465389
+EXEC SaveSearchFullText	5468516
+EXEC SaveSearchFullText	5468516
+EXEC SaveSearchFullText	5486702
+EXEC SaveSearchFullText	5498798
+EXEC SaveSearchFullText	5498802
+EXEC SaveSearchFullText	5522601
+EXEC SaveSearchFullText	5538758
+EXEC SaveSearchFullText	5546094
+EXEC SaveSearchFullText	5546105
+EXEC SaveSearchFullText	5553062
+EXEC SaveSearchFullText	5553064
+EXEC SaveSearchFullText	5553066
+EXEC SaveSearchFullText	5553067
+EXEC SaveSearchFullText	5553074
+EXEC SaveSearchFullText	5560526
+EXEC SaveSearchFullText	5560528
+EXEC SaveSearchFullText	5560530
+EXEC SaveSearchFullText	5641468
+EXEC SaveSearchFullText	5641468
+EXEC SaveSearchFullText	5648429
+EXEC SaveSearchFullText	5662194
+EXEC SaveSearchFullText	5727923
+EXEC SaveSearchFullText	5727934
+EXEC SaveSearchFullText	5728426
+EXEC SaveSearchFullText	5728434
+EXEC SaveSearchFullText	5729861
+EXEC SaveSearchFullText	5729876
+EXEC SaveSearchFullText	6382051
+EXEC SaveSearchFullText	6732480
+EXEC SaveSearchFullText	6732494
+EXEC SaveSearchFullText	6732495
+EXEC SaveSearchFullText	7387264
+EXEC SaveSearchFullText	7387281
+EXEC SaveSearchFullText	7713211
+EXEC SaveSearchFullText	7713212
+EXEC SaveSearchFullText	7713214
+EXEC SaveSearchFullText	7713215
+EXEC SaveSearchFullText	7713216
+EXEC SaveSearchFullText	7713217
+EXEC SaveSearchFullText	7713217
+EXEC SaveSearchFullText	7713218
+EXEC SaveSearchFullText	7713223
+EXEC SaveSearchFullText	7713224
+EXEC SaveSearchFullText	7713225
+EXEC SaveSearchFullText	7713226
+EXEC SaveSearchFullText	7713228
+EXEC SaveSearchFullText	7713231
+EXEC SaveSearchFullText	7713234
+EXEC SaveSearchFullText	7713235
+EXEC SaveSearchFullText	7713236
+EXEC SaveSearchFullText	7713237
+EXEC SaveSearchFullText	7713241
+EXEC SaveSearchFullText	7713242
+EXEC SaveSearchFullText	7713244
+EXEC SaveSearchFullText	7713245
+EXEC SaveSearchFullText	7713249
+EXEC SaveSearchFullText	7713250
+EXEC SaveSearchFullText	7713251
+EXEC SaveSearchFullText	7713252
+EXEC SaveSearchFullText	7713253
+EXEC SaveSearchFullText	7713254
+EXEC SaveSearchFullText	7713255
+EXEC SaveSearchFullText	7713256
+EXEC SaveSearchFullText	7713258
+EXEC SaveSearchFullText	7713259
+EXEC SaveSearchFullText	6732474
+EXEC SaveSearchFullText	6020712
+EXEC SaveSearchFullText	5731223
+EXEC SaveSearchFullText	5731192
+EXEC SaveSearchFullText	5730317
+EXEC SaveSearchFullText	5730312
+EXEC SaveSearchFullText	5730311
+EXEC SaveSearchFullText	5730304
+EXEC SaveSearchFullText	5730302
+EXEC SaveSearchFullText	5730299
+EXEC SaveSearchFullText	5727020
+EXEC SaveSearchFullText	5726191
+EXEC SaveSearchFullText	5664209
+EXEC SaveSearchFullText	5643063
+EXEC SaveSearchFullText	5643052
+EXEC SaveSearchFullText	5643051
+EXEC SaveSearchFullText	5643046
+EXEC SaveSearchFullText	5643046
+EXEC SaveSearchFullText	5630693
+EXEC SaveSearchFullText	5626611
+EXEC SaveSearchFullText	5626602
+EXEC SaveSearchFullText	5607280
+EXEC SaveSearchFullText	5607280
+EXEC SaveSearchFullText	5577989
+EXEC SaveSearchFullText	5577980
+EXEC SaveSearchFullText	5568144
+EXEC SaveSearchFullText	5560534
+EXEC SaveSearchFullText	5543433
+EXEC SaveSearchFullText	5543427
+EXEC SaveSearchFullText	5543418
+EXEC SaveSearchFullText	5543398
+EXEC SaveSearchFullText	5539858
+EXEC SaveSearchFullText	5534080
+EXEC SaveSearchFullText	5534077
+EXEC SaveSearchFullText	5498862
+EXEC SaveSearchFullText	5498861
+EXEC SaveSearchFullText	5498777
+EXEC SaveSearchFullText	5472697
+EXEC SaveSearchFullText	5452316
+EXEC SaveSearchFullText	5452316
+EXEC SaveSearchFullText	5445564
+EXEC SaveSearchFullText	5436248
+EXEC SaveSearchFullText	5436242
+EXEC SaveSearchFullText	5432781
+EXEC SaveSearchFullText	5432531
+EXEC SaveSearchFullText	5432525
+EXEC SaveSearchFullText	5432490
+EXEC SaveSearchFullText	5432415
+EXEC SaveSearchFullText	5432384
+EXEC SaveSearchFullText	5432357
+EXEC SaveSearchFullText	5432338
+EXEC SaveSearchFullText	5432239
+EXEC SaveSearchFullText	5432229
+EXEC SaveSearchFullText	5432209
+EXEC SaveSearchFullText	5432127
+EXEC SaveSearchFullText	5431976
+EXEC SaveSearchFullText	5431712
+EXEC SaveSearchFullText	5431595
+EXEC SaveSearchFullText	5431284
+EXEC SaveSearchFullText	5427056
+EXEC SaveSearchFullText	5427056
+EXEC SaveSearchFullText	5427043
+EXEC SaveSearchFullText	5426984
+EXEC SaveSearchFullText	5426984
+EXEC SaveSearchFullText	5426984
+EXEC SaveSearchFullText	5426896
+EXEC SaveSearchFullText	5426896
+EXEC SaveSearchFullText	5426845
+EXEC SaveSearchFullText	5426842
+EXEC SaveSearchFullText	5426842
+EXEC SaveSearchFullText	5426835
+EXEC SaveSearchFullText	5426686
+EXEC SaveSearchFullText	5426540
+EXEC SaveSearchFullText	5426540
+EXEC SaveSearchFullText	5426413
+EXEC SaveSearchFullText	5426413
+EXEC SaveSearchFullText	5426282
+EXEC SaveSearchFullText	5425830
+EXEC SaveSearchFullText	5425807
+EXEC SaveSearchFullText	5425796
+EXEC SaveSearchFullText	5425793
+EXEC SaveSearchFullText	5425785
+EXEC SaveSearchFullText	5425783
+EXEC SaveSearchFullText	5425704
+EXEC SaveSearchFullText	5425692
+EXEC SaveSearchFullText	5425595
+EXEC SaveSearchFullText	5425595
+EXEC SaveSearchFullText	5425297
+EXEC SaveSearchFullText	5425290
+EXEC SaveSearchFullText	5425289
+EXEC SaveSearchFullText	5425153
+EXEC SaveSearchFullText	5425139
+EXEC SaveSearchFullText	5425139
+EXEC SaveSearchFullText	5425123
+EXEC SaveSearchFullText	5425010
+EXEC SaveSearchFullText	5425009
+EXEC SaveSearchFullText	5425003
+EXEC SaveSearchFullText	5424991
+EXEC SaveSearchFullText	5424991
+EXEC SaveSearchFullText	5424826
+EXEC SaveSearchFullText	5424820
+EXEC SaveSearchFullText	5424820
+EXEC SaveSearchFullText	5424817
+EXEC SaveSearchFullText	5424805
+EXEC SaveSearchFullText	5424803
+EXEC SaveSearchFullText	5424793
+EXEC SaveSearchFullText	5424781
+EXEC SaveSearchFullText	5424658
+EXEC SaveSearchFullText	5424651
+EXEC SaveSearchFullText	5424651
+EXEC SaveSearchFullText	5424611
+EXEC SaveSearchFullText	5424501
+EXEC SaveSearchFullText	5424501
+EXEC SaveSearchFullText	5424475
+EXEC SaveSearchFullText	5424389
+EXEC SaveSearchFullText	5424389
+EXEC SaveSearchFullText	5424379
+EXEC SaveSearchFullText	5424070
+EXEC SaveSearchFullText	5424066
+EXEC SaveSearchFullText	5424066
+EXEC SaveSearchFullText	5424044
+EXEC SaveSearchFullText	5424038
+EXEC SaveSearchFullText	5424038
+EXEC SaveSearchFullText	5424025
+EXEC SaveSearchFullText	5423966
+EXEC SaveSearchFullText	5423966
+EXEC SaveSearchFullText	5423622
+EXEC SaveSearchFullText	5423570
+EXEC SaveSearchFullText	5423563
+EXEC SaveSearchFullText	5423552
+EXEC SaveSearchFullText	5423548
+EXEC SaveSearchFullText	5423548
+EXEC SaveSearchFullText	5423524
+EXEC SaveSearchFullText	5423524
+EXEC SaveSearchFullText	5423330
+EXEC SaveSearchFullText	5423295
+EXEC SaveSearchFullText	5423199
+EXEC SaveSearchFullText	5423179
+EXEC SaveSearchFullText	5423164
+EXEC SaveSearchFullText	5423164
+EXEC SaveSearchFullText	5423157
+EXEC SaveSearchFullText	5423092
+EXEC SaveSearchFullText	5423048
+EXEC SaveSearchFullText	5423033
+EXEC SaveSearchFullText	5423030
+EXEC SaveSearchFullText	5423030
+EXEC SaveSearchFullText	5422377
+EXEC SaveSearchFullText	5422377
+EXEC SaveSearchFullText	5422375
+EXEC SaveSearchFullText	5422373
+EXEC SaveSearchFullText	5422373
+EXEC SaveSearchFullText	5421688
+EXEC SaveSearchFullText	5421687
+EXEC SaveSearchFullText	5406310
+EXEC SaveSearchFullText	5340686
+EXEC SaveSearchFullText	5326092
+EXEC SaveSearchFullText	5275827
+EXEC SaveSearchFullText	5270684
+EXEC SaveSearchFullText	5270678
+EXEC SaveSearchFullText	5249334
+EXEC SaveSearchFullText	5238173
+EXEC SaveSearchFullText	5238173
+EXEC SaveSearchFullText	5222443
+EXEC SaveSearchFullText	5213843
+EXEC SaveSearchFullText	5200750
+EXEC SaveSearchFullText	5189901
+EXEC SaveSearchFullText	5180692
+EXEC SaveSearchFullText	5180656
+EXEC SaveSearchFullText	5177379
+EXEC SaveSearchFullText	5177379
+EXEC SaveSearchFullText	5174423
+EXEC SaveSearchFullText	5174423
+EXEC SaveSearchFullText	5164441
+EXEC SaveSearchFullText	5164223
+EXEC SaveSearchFullText	5155726
+EXEC SaveSearchFullText	5148728
+EXEC SaveSearchFullText	5148645
+EXEC SaveSearchFullText	5130357
+EXEC SaveSearchFullText	5130046
+EXEC SaveSearchFullText	5129933
+EXEC SaveSearchFullText	5129625
+EXEC SaveSearchFullText	5129510
+EXEC SaveSearchFullText	5129501
+EXEC SaveSearchFullText	5129207
+EXEC SaveSearchFullText	5129009
+EXEC SaveSearchFullText	5129009
+EXEC SaveSearchFullText	5128357
+EXEC SaveSearchFullText	5128344
+EXEC SaveSearchFullText	5128344
+EXEC SaveSearchFullText	5128319
+EXEC SaveSearchFullText	5128111
+EXEC SaveSearchFullText	5128102
+EXEC SaveSearchFullText	5127949
+EXEC SaveSearchFullText	5127949
+EXEC SaveSearchFullText	5127862
+EXEC SaveSearchFullText	5127706
+EXEC SaveSearchFullText	5127620
+EXEC SaveSearchFullText	5127563
+EXEC SaveSearchFullText	5127563
+EXEC SaveSearchFullText	5127554
+EXEC SaveSearchFullText	5127483
+EXEC SaveSearchFullText	5127483
+EXEC SaveSearchFullText	5127467
+EXEC SaveSearchFullText	5127451
+EXEC SaveSearchFullText	5127430
+EXEC SaveSearchFullText	5127414
+EXEC SaveSearchFullText	5127355
+EXEC SaveSearchFullText	5126975
+EXEC SaveSearchFullText	5126657
+EXEC SaveSearchFullText	5126645
+EXEC SaveSearchFullText	5126567
+EXEC SaveSearchFullText	5126556
+EXEC SaveSearchFullText	5126517
+EXEC SaveSearchFullText	5126517
+EXEC SaveSearchFullText	5126289
+EXEC SaveSearchFullText	5126269
+EXEC SaveSearchFullText	5126228
+EXEC SaveSearchFullText	5125929
+EXEC SaveSearchFullText	5125699
+EXEC SaveSearchFullText	5125699
+EXEC SaveSearchFullText	5125681
+EXEC SaveSearchFullText	5125547
+EXEC SaveSearchFullText	5125547
+EXEC SaveSearchFullText	5125454
+EXEC SaveSearchFullText	5125454
+EXEC SaveSearchFullText	5125446
+EXEC SaveSearchFullText	5125431
+EXEC SaveSearchFullText	5125244
+EXEC SaveSearchFullText	5125029
+EXEC SaveSearchFullText	5125029
+EXEC SaveSearchFullText	5124971
+EXEC SaveSearchFullText	5124885
+EXEC SaveSearchFullText	5124650
+EXEC SaveSearchFullText	5124602
+EXEC SaveSearchFullText	5124591
+EXEC SaveSearchFullText	5124523
+EXEC SaveSearchFullText	5124392
+EXEC SaveSearchFullText	5124392
+EXEC SaveSearchFullText	5124353
+EXEC SaveSearchFullText	5124295
+EXEC SaveSearchFullText	5124293
+EXEC SaveSearchFullText	5124007
+EXEC SaveSearchFullText	5123629
+EXEC SaveSearchFullText	5123585
+EXEC SaveSearchFullText	5123268
+EXEC SaveSearchFullText	5123186
+EXEC SaveSearchFullText	5122929
+EXEC SaveSearchFullText	5122921
+EXEC SaveSearchFullText	5122674
+EXEC SaveSearchFullText	7713206
+EXEC SaveSearchFullText	7713205
+EXEC SaveSearchFullText	7713204
+EXEC SaveSearchFullText	7713201
+EXEC SaveSearchFullText	7713197
+EXEC SaveSearchFullText	7713194
+EXEC SaveSearchFullText	7713193
+EXEC SaveSearchFullText	7713191
+EXEC SaveSearchFullText	7713189
+EXEC SaveSearchFullText	7712200
+EXEC SaveSearchFullText	7712198
+EXEC SaveSearchFullText	7712196
+EXEC SaveSearchFullText	7712195
+EXEC SaveSearchFullText	7712194
+EXEC SaveSearchFullText	6382049
+EXEC SaveSearchFullText	6382048
+EXEC SaveSearchFullText	6382036
+EXEC SaveSearchFullText	6382030
+EXEC SaveSearchFullText	6382028
+EXEC SaveSearchFullText	6382027
+EXEC SaveSearchFullText	6382018
+EXEC SaveSearchFullText	6382011
+EXEC SaveSearchFullText	6382004
+EXEC SaveSearchFullText	7713261
+EXEC SaveSearchFullText	7713262
+EXEC SaveSearchFullText	7713264
+EXEC SaveSearchFullText	7713265
+EXEC SaveSearchFullText	7713266
+EXEC SaveSearchFullText	7713268
+EXEC SaveSearchFullText	7713269
+EXEC SaveSearchFullText	7713271
+EXEC SaveSearchFullText	7713272
+EXEC SaveSearchFullText	7713274
+EXEC SaveSearchFullText	7713275
+EXEC SaveSearchFullText	7713276
+EXEC SaveSearchFullText	7713277
+EXEC SaveSearchFullText	7713280
+EXEC SaveSearchFullText	7713282
+EXEC SaveSearchFullText	7713284
+EXEC SaveSearchFullText	7713285
+EXEC SaveSearchFullText	7713286
+EXEC SaveSearchFullText	7713287
+EXEC SaveSearchFullText	7713288
+EXEC SaveSearchFullText	7713289
+EXEC SaveSearchFullText	7713290
+EXEC SaveSearchFullText	7713291
+EXEC SaveSearchFullText	7713292
+EXEC SaveSearchFullText	7713294
+EXEC SaveSearchFullText	8033632
+EXEC SaveSearchFullText	8033636
+EXEC SaveSearchFullText	8033637
+EXEC SaveSearchFullText	8033643
+EXEC SaveSearchFullText	8328887
+EXEC SaveSearchFullText	8328896
+EXEC SaveSearchFullText	8328899
+EXEC SaveSearchFullText	8328903
+EXEC SaveSearchFullText	8691143
+EXEC SaveSearchFullText	8753627
+EXEC SaveSearchFullText	8753637
+EXEC SaveSearchFullText	8753644
+EXEC SaveSearchFullText	8753652
+EXEC SaveSearchFullText	8753653
+EXEC SaveSearchFullText	8794443
+EXEC SaveSearchFullText	8836357
+EXEC SaveSearchFullText	8836365
+EXEC SaveSearchFullText	8836365
+EXEC SaveSearchFullText	8861015
+EXEC SaveSearchFullText	8861017
+EXEC SaveSearchFullText	8861035
+EXEC SaveSearchFullText	8951255
+EXEC SaveSearchFullText	9041207
+EXEC SaveSearchFullText	9041223
+EXEC SaveSearchFullText	9041232
+EXEC SaveSearchFullText	9041235
+EXEC SaveSearchFullText	9065775
+EXEC SaveSearchFullText	9078937
+EXEC SaveSearchFullText	10369721
+EXEC SaveSearchFullText	10369722
+EXEC SaveSearchFullText	10369723
+EXEC SaveSearchFullText	10369725
+EXEC SaveSearchFullText	10369727
+EXEC SaveSearchFullText	10369728
+EXEC SaveSearchFullText	10369729
+EXEC SaveSearchFullText	10369730
+EXEC SaveSearchFullText	10369731
+EXEC SaveSearchFullText	10369732
+EXEC SaveSearchFullText	10369733
+EXEC SaveSearchFullText	10369734
+EXEC SaveSearchFullText	10369735
+EXEC SaveSearchFullText	10369736
+EXEC SaveSearchFullText	10369737
+EXEC SaveSearchFullText	10369738
+EXEC SaveSearchFullText	10369739
+EXEC SaveSearchFullText	10369740
+EXEC SaveSearchFullText	10369741
+EXEC SaveSearchFullText	10369742
+EXEC SaveSearchFullText	10369743
+EXEC SaveSearchFullText	10369744
+EXEC SaveSearchFullText	10369745
+EXEC SaveSearchFullText	10369746
+EXEC SaveSearchFullText	10369747
+EXEC SaveSearchFullText	10369748
+EXEC SaveSearchFullText	10369754
+EXEC SaveSearchFullText	10369756
+EXEC SaveSearchFullText	11906224
+EXEC SaveSearchFullText	11906228
+EXEC SaveSearchFullText	11906247
+EXEC SaveSearchFullText	12222797
+EXEC SaveSearchFullText	12825537
+EXEC SaveSearchFullText	14320728
+EXEC SaveSearchFullText	14320734
+EXEC SaveSearchFullText	14322585
+EXEC SaveSearchFullText	14322623
+EXEC SaveSearchFullText	14322651
+EXEC SaveSearchFullText	14322724
+EXEC SaveSearchFullText	14322748
+EXEC SaveSearchFullText	14322754
+EXEC SaveSearchFullText	14322787
+EXEC SaveSearchFullText	14322811
+EXEC SaveSearchFullText	14322833
+EXEC SaveSearchFullText	14322851
+EXEC SaveSearchFullText	14322851
+EXEC SaveSearchFullText	14801976
+EXEC SaveSearchFullText	14801978
+EXEC SaveSearchFullText	14801979
+EXEC SaveSearchFullText	14801980
+EXEC SaveSearchFullText	15093705
+EXEC SaveSearchFullText	15093707
+EXEC SaveSearchFullText	15093739
+EXEC SaveSearchFullText	15093740
+EXEC SaveSearchFullText	15093743
+EXEC SaveSearchFullText	15093744
+EXEC SaveSearchFullText	15226166
+EXEC SaveSearchFullText	15229387
+EXEC SaveSearchFullText	15812415
+EXEC SaveSearchFullText	15812448
+EXEC SaveSearchFullText	15812458
+EXEC SaveSearchFullText	16489290
+EXEC SaveSearchFullText	16489290
+EXEC SaveSearchFullText	17320160
+EXEC SaveSearchFullText	17320184
+EXEC SaveSearchFullText	17320186
+EXEC SaveSearchFullText	17320187
+EXEC SaveSearchFullText	17320188
+EXEC SaveSearchFullText	17320192
+EXEC SaveSearchFullText	17320196
+EXEC SaveSearchFullText	17320200
+EXEC SaveSearchFullText	17320203
+EXEC SaveSearchFullText	17320205
+EXEC SaveSearchFullText	17320206
+EXEC SaveSearchFullText	17320209
+EXEC SaveSearchFullText	17754030
+EXEC SaveSearchFullText	17754031
+EXEC SaveSearchFullText	17754034
+EXEC SaveSearchFullText	17754055
+EXEC SaveSearchFullText	17754069
+EXEC SaveSearchFullText	17754076
+EXEC SaveSearchFullText	18516214
+EXEC SaveSearchFullText	18516214
+EXEC SaveSearchFullText	18516238
+EXEC SaveSearchFullText	18516239
+EXEC SaveSearchFullText	18516240
+EXEC SaveSearchFullText	18516241
+EXEC SaveSearchFullText	18516242
+EXEC SaveSearchFullText	18516244
+EXEC SaveSearchFullText	18516244
+EXEC SaveSearchFullText	18516245
+EXEC SaveSearchFullText	18651007
+EXEC SaveSearchFullText	18651047
+EXEC SaveSearchFullText	19946407
+EXEC SaveSearchFullText	19946445
+EXEC SaveSearchFullText	19946462
+EXEC SaveSearchFullText	19946474
+EXEC SaveSearchFullText	19946477
+EXEC SaveSearchFullText	19946478
+EXEC SaveSearchFullText	19946480
+EXEC SaveSearchFullText	19946483
+EXEC SaveSearchFullText	20258977
+EXEC SaveSearchFullText	20899033
+EXEC SaveSearchFullText	21522002
+EXEC SaveSearchFullText	21758354
+EXEC SaveSearchFullText	21758354
+EXEC SaveSearchFullText	21759542
+EXEC SaveSearchFullText	21759555
+EXEC SaveSearchFullText	21759561
+EXEC SaveSearchFullText	22412730
+EXEC SaveSearchFullText	22413013
+EXEC SaveSearchFullText	22413019
+EXEC SaveSearchFullText	22727367
+EXEC SaveSearchFullText	23308093
+EXEC SaveSearchFullText	23308094
+EXEC SaveSearchFullText	23587647
+EXEC SaveSearchFullText	23587647
+EXEC SaveSearchFullText	23587660
+EXEC SaveSearchFullText	23923719
+EXEC SaveSearchFullText	23923719
+EXEC SaveSearchFullText	24921220
+EXEC SaveSearchFullText	25281382
+EXEC SaveSearchFullText	25281388
+EXEC SaveSearchFullText	25281389
+EXEC SaveSearchFullText	25281391
+EXEC SaveSearchFullText	25281398
+EXEC SaveSearchFullText	25281409
+EXEC SaveSearchFullText	25281410
+EXEC SaveSearchFullText	25633141
+EXEC SaveSearchFullText	25633182
+EXEC SaveSearchFullText	25633187
+EXEC SaveSearchFullText	25633197
+EXEC SaveSearchFullText	25633205
+EXEC SaveSearchFullText	26526018
+EXEC SaveSearchFullText	26526031
+EXEC SaveSearchFullText	26526039
+EXEC SaveSearchFullText	26526043
+EXEC SaveSearchFullText	27279938
+EXEC SaveSearchFullText	27279940
+EXEC SaveSearchFullText	27279941
+EXEC SaveSearchFullText	27279942
+EXEC SaveSearchFullText	27279945
+EXEC SaveSearchFullText	27543001
+EXEC SaveSearchFullText	27543008
+EXEC SaveSearchFullText	28329717
+EXEC SaveSearchFullText	28329720
+EXEC SaveSearchFullText	28814343
+EXEC SaveSearchFullText	28814346
+EXEC SaveSearchFullText	29567154
+EXEC SaveSearchFullText	29567161
+EXEC SaveSearchFullText	29567203
+EXEC SaveSearchFullText	29567211
+EXEC SaveSearchFullText	29567212
+EXEC SaveSearchFullText	29567217
+EXEC SaveSearchFullText	30040618
+EXEC SaveSearchFullText	30040670
+EXEC SaveSearchFullText	30662582
+EXEC SaveSearchFullText	30662585
+EXEC SaveSearchFullText	30663594
+EXEC SaveSearchFullText	31326830
+EXEC SaveSearchFullText	31794324
+EXEC SaveSearchFullText	31794332
+EXEC SaveSearchFullText	32257932
+EXEC SaveSearchFullText	32950339
+EXEC SaveSearchFullText	32950339
+EXEC SaveSearchFullText	32951824
+EXEC SaveSearchFullText	33426984
+EXEC SaveSearchFullText	33426984
+EXEC SaveSearchFullText	34135836
+EXEC SaveSearchFullText	34135836
+EXEC SaveSearchFullText	34135854
+EXEC SaveSearchFullText	34135859
+EXEC SaveSearchFullText	34135865
+EXEC SaveSearchFullText	34517603
+EXEC SaveSearchFullText	34517620
+EXEC SaveSearchFullText	34517643
+EXEC SaveSearchFullText	34517652
+EXEC SaveSearchFullText	34517661
+EXEC SaveSearchFullText	34517662
+EXEC SaveSearchFullText	34517663
+EXEC SaveSearchFullText	35221841
+EXEC SaveSearchFullText	35221844
+EXEC SaveSearchFullText	35221869
+EXEC SaveSearchFullText	35221883
+EXEC SaveSearchFullText	35221928
+EXEC SaveSearchFullText	35992743
+EXEC SaveSearchFullText	36711080
+EXEC SaveSearchFullText	37192151
+EXEC SaveSearchFullText	37192153
+EXEC SaveSearchFullText	37192157
+EXEC SaveSearchFullText	37192160
+EXEC SaveSearchFullText	37193544
+EXEC SaveSearchFullText	37193544
+EXEC SaveSearchFullText	37626528
+EXEC SaveSearchFullText	37626528
+EXEC SaveSearchFullText	37627113
+EXEC SaveSearchFullText	37627123
+EXEC SaveSearchFullText	37972410
+EXEC SaveSearchFullText	37972412
+EXEC SaveSearchFullText	38840619
+EXEC SaveSearchFullText	38840675
+EXEC SaveSearchFullText	38840678
+EXEC SaveSearchFullText	39109244
+EXEC SaveSearchFullText	39489433
+EXEC SaveSearchFullText	39921761
+EXEC SaveSearchFullText	40301323
+EXEC SaveSearchFullText	40689442
+EXEC SaveSearchFullText	41138789
+EXEC SaveSearchFullText	41143379
+EXEC SaveSearchFullText	41143379
+EXEC SaveSearchFullText	41143409
+EXEC SaveSearchFullText	41910028
+EXEC SaveSearchFullText	42435746
+EXEC SaveSearchFullText	42435746
+EXEC SaveSearchFullText	42731410
+EXEC SaveSearchFullText	45335647
+EXEC SaveSearchFullText	45618290
+EXEC SaveSearchFullText	45618291
+EXEC SaveSearchFullText	45618292
+EXEC SaveSearchFullText	45618293
+EXEC SaveSearchFullText	45618295
+EXEC SaveSearchFullText	45618297
+EXEC SaveSearchFullText	45618298
+EXEC SaveSearchFullText	45618299
+EXEC SaveSearchFullText	45618300
+EXEC SaveSearchFullText	45618302
+EXEC SaveSearchFullText	45618303
+EXEC SaveSearchFullText	45618304
+EXEC SaveSearchFullText	45618305
+EXEC SaveSearchFullText	45618311
+EXEC SaveSearchFullText	45618314
+EXEC SaveSearchFullText	45618316
+EXEC SaveSearchFullText	45618317
+EXEC SaveSearchFullText	45618318
+EXEC SaveSearchFullText	45618319
+EXEC SaveSearchFullText	45618326
+EXEC SaveSearchFullText	45640479
+EXEC SaveSearchFullText	48025837
+EXEC SaveSearchFullText	48025837
+EXEC SaveSearchFullText	48025838
+EXEC SaveSearchFullText	48025838
+EXEC SaveSearchFullText	49269599
+EXEC SaveSearchFullText	49269599
+EXEC SaveSearchFullText	49269620
+EXEC SaveSearchFullText	50555776
+EXEC SaveSearchFullText	50555776
+EXEC SaveSearchFullText	52400640
+EXEC SaveSearchFullText	52400640
+EXEC SaveSearchFullText	52839796
+EXEC SaveSearchFullText	52839796
+EXEC SaveSearchFullText	54076992
+EXEC SaveSearchFullText	54076992
+EXEC SaveSearchFullText	55645819
+EXEC SaveSearchFullText	56090960
+EXEC SaveSearchFullText	56090960
+EXEC SaveSearchFullText	56091103
+EXEC SaveSearchFullText	56624747
+EXEC SaveSearchFullText	57336676
+EXEC SaveSearchFullText	58916008
+EXEC SaveSearchFullText	58935938
+EXEC SaveSearchFullText	58935938
+EXEC SaveSearchFullText	58944663
+EXEC SaveSearchFullText	58944663
+EXEC SaveSearchFullText	62325984
+EXEC SaveSearchFullText	62325984
+EXEC SaveSearchFullText	62326152
+EXEC SaveSearchFullText	62326152
+EXEC SaveSearchFullText	62326161
+EXEC SaveSearchFullText	62326161
+EXEC SaveSearchFullText	62326164
+EXEC SaveSearchFullText	62326164
+EXEC SaveSearchFullText	63139591
+EXEC SaveSearchFullText	63139591
+EXEC SaveSearchFullText	63139603
+EXEC SaveSearchFullText	63139603
+EXEC SaveSearchFullText	68766751
+EXEC SaveSearchFullText	68766751
+EXEC SaveSearchFullText	72473262
+EXEC SaveSearchFullText	72473262
+EXEC SaveSearchFullText	72473305
+EXEC SaveSearchFullText	72473305
+EXEC SaveSearchFullText	72473306
+EXEC SaveSearchFullText	72473307
+EXEC SaveSearchFullText	72473308
+EXEC SaveSearchFullText	72474582
+EXEC SaveSearchFullText	72474582
+EXEC SaveSearchFullText	73105356
+EXEC SaveSearchFullText	73105357
+EXEC SaveSearchFullText	73105359
+EXEC SaveSearchFullText	129813991
+EXEC SaveSearchFullText	130567789
+EXEC SaveSearchFullText	122323317
+EXEC SaveSearchFullText	71085422
+EXEC SaveSearchFullText	71085422
+EXEC SaveSearchFullText	69454405
+EXEC SaveSearchFullText	69454405
+EXEC SaveSearchFullText	69454400
+EXEC SaveSearchFullText	69454400
+EXEC SaveSearchFullText	64396466
+EXEC SaveSearchFullText	64396466
+EXEC SaveSearchFullText	63690608
+EXEC SaveSearchFullText	63690608
+EXEC SaveSearchFullText	60751268
+EXEC SaveSearchFullText	60751268
+EXEC SaveSearchFullText	57857995
+EXEC SaveSearchFullText	57856614
+EXEC SaveSearchFullText	57336767
+EXEC SaveSearchFullText	57336767
+EXEC SaveSearchFullText	57328054
+EXEC SaveSearchFullText	57328054
+EXEC SaveSearchFullText	56626169
+EXEC SaveSearchFullText	56626156
+EXEC SaveSearchFullText	56626099
+EXEC SaveSearchFullText	56626099
+EXEC SaveSearchFullText	56625746
+EXEC SaveSearchFullText	56079869
+EXEC SaveSearchFullText	55255441
+EXEC SaveSearchFullText	55255309
+EXEC SaveSearchFullText	55255309
+EXEC SaveSearchFullText	51552091
+EXEC SaveSearchFullText	51552091
+EXEC SaveSearchFullText	50966413
+EXEC SaveSearchFullText	50966413
+EXEC SaveSearchFullText	50042078
+EXEC SaveSearchFullText	50042078
+EXEC SaveSearchFullText	47571385
+EXEC SaveSearchFullText	47571385
+EXEC SaveSearchFullText	47367499
+EXEC SaveSearchFullText	47367499
+EXEC SaveSearchFullText	46017006
+EXEC SaveSearchFullText	46017000
+EXEC SaveSearchFullText	46016150
+EXEC SaveSearchFullText	46016150
+EXEC SaveSearchFullText	45851227
+EXEC SaveSearchFullText	45851226
+EXEC SaveSearchFullText	45851225
+EXEC SaveSearchFullText	45851224
+EXEC SaveSearchFullText	45851223
+EXEC SaveSearchFullText	45851222
+EXEC SaveSearchFullText	45851221
+EXEC SaveSearchFullText	45851219
+EXEC SaveSearchFullText	45851217
+EXEC SaveSearchFullText	45851215
+EXEC SaveSearchFullText	45851214
+EXEC SaveSearchFullText	45851213
+EXEC SaveSearchFullText	45851212
+EXEC SaveSearchFullText	45851211
+EXEC SaveSearchFullText	45851210
+EXEC SaveSearchFullText	45851209
+EXEC SaveSearchFullText	45851208
+EXEC SaveSearchFullText	45851207
+EXEC SaveSearchFullText	45851206
+EXEC SaveSearchFullText	45851205
+EXEC SaveSearchFullText	45851203
+EXEC SaveSearchFullText	45851202
+EXEC SaveSearchFullText	45851201
+EXEC SaveSearchFullText	45851200
+EXEC SaveSearchFullText	45851198
+EXEC SaveSearchFullText	45851196
+EXEC SaveSearchFullText	45851194
+EXEC SaveSearchFullText	45851192
+EXEC SaveSearchFullText	45851191
+EXEC SaveSearchFullText	45851190
+EXEC SaveSearchFullText	45672912
+EXEC SaveSearchFullText	45672901
+EXEC SaveSearchFullText	45672899
+EXEC SaveSearchFullText	45672898
+EXEC SaveSearchFullText	45672895
+EXEC SaveSearchFullText	45672894
+EXEC SaveSearchFullText	45672891
+EXEC SaveSearchFullText	45672889
+EXEC SaveSearchFullText	45672888
+EXEC SaveSearchFullText	45672887
+EXEC SaveSearchFullText	45672885
+EXEC SaveSearchFullText	45672884
+EXEC SaveSearchFullText	45672881
+EXEC SaveSearchFullText	45672880
+EXEC SaveSearchFullText	45672874
+EXEC SaveSearchFullText	45672872
+EXEC SaveSearchFullText	45672870
+EXEC SaveSearchFullText	45672867
+EXEC SaveSearchFullText	45672865
+EXEC SaveSearchFullText	45672864
+EXEC SaveSearchFullText	45672863
+EXEC SaveSearchFullText	45672862
+EXEC SaveSearchFullText	45672859
+EXEC SaveSearchFullText	45672858
+EXEC SaveSearchFullText	45672856
+EXEC SaveSearchFullText	45672853
+EXEC SaveSearchFullText	45672852
+EXEC SaveSearchFullText	45672850
+EXEC SaveSearchFullText	45672849
+EXEC SaveSearchFullText	45672847
+EXEC SaveSearchFullText	45640399
+EXEC SaveSearchFullText	45618289
+EXEC SaveSearchFullText	45618288
+EXEC SaveSearchFullText	45618287
+EXEC SaveSearchFullText	45618286
+EXEC SaveSearchFullText	45618285
+EXEC SaveSearchFullText	45618281
+EXEC SaveSearchFullText	45618280
+EXEC SaveSearchFullText	45618279
+EXEC SaveSearchFullText	45618278
+EXEC SaveSearchFullText	45618275
+EXEC SaveSearchFullText	45618274
+EXEC SaveSearchFullText	45618274
+EXEC SaveSearchFullText	45618273
+EXEC SaveSearchFullText	45618273
+EXEC SaveSearchFullText	45618270
+EXEC SaveSearchFullText	45618270
+EXEC SaveSearchFullText	45618266
+EXEC SaveSearchFullText	45618266
+EXEC SaveSearchFullText	45618264
+EXEC SaveSearchFullText	45618264
+EXEC SaveSearchFullText	45618263
+EXEC SaveSearchFullText	45618263
+EXEC SaveSearchFullText	45618261
+EXEC SaveSearchFullText	45618261
+EXEC SaveSearchFullText	45618259
+EXEC SaveSearchFullText	45618259
+EXEC SaveSearchFullText	45618258
+EXEC SaveSearchFullText	45618258
+EXEC SaveSearchFullText	45618255
+EXEC SaveSearchFullText	45618255
+EXEC SaveSearchFullText	45618254
+EXEC SaveSearchFullText	45618254
+EXEC SaveSearchFullText	45618251
+EXEC SaveSearchFullText	45618251
+EXEC SaveSearchFullText	45618246
+EXEC SaveSearchFullText	45618246
+EXEC SaveSearchFullText	45618245
+EXEC SaveSearchFullText	45618245
+EXEC SaveSearchFullText	45618243
+EXEC SaveSearchFullText	45618243
+EXEC SaveSearchFullText	45618242
+EXEC SaveSearchFullText	45618242
+EXEC SaveSearchFullText	45618239
+EXEC SaveSearchFullText	45618239
+EXEC SaveSearchFullText	45618230
+EXEC SaveSearchFullText	45618230
+EXEC SaveSearchFullText	45618229
+EXEC SaveSearchFullText	45618229
+EXEC SaveSearchFullText	45618228
+EXEC SaveSearchFullText	45618228
+EXEC SaveSearchFullText	45618227
+EXEC SaveSearchFullText	45618227
+EXEC SaveSearchFullText	45618226
+EXEC SaveSearchFullText	45618226
+EXEC SaveSearchFullText	45618225
+EXEC SaveSearchFullText	45618225
+EXEC SaveSearchFullText	45618224
+EXEC SaveSearchFullText	45618224
+EXEC SaveSearchFullText	45618224
+EXEC SaveSearchFullText	43594527
+EXEC SaveSearchFullText	43594527
+EXEC SaveSearchFullText	43593422
+EXEC SaveSearchFullText	43593422
+EXEC SaveSearchFullText	43186705
+EXEC SaveSearchFullText	43186695
+EXEC SaveSearchFullText	43184425
+EXEC SaveSearchFullText	43182622
+EXEC SaveSearchFullText	43034270
+EXEC SaveSearchFullText	43034270
+EXEC SaveSearchFullText	41364063
+EXEC SaveSearchFullText	41364057
+EXEC SaveSearchFullText	41364013
+EXEC SaveSearchFullText	41363998
+EXEC SaveSearchFullText	41363995
+EXEC SaveSearchFullText	41363993
+EXEC SaveSearchFullText	40301292
+EXEC SaveSearchFullText	40301286
+EXEC SaveSearchFullText	40301281
+EXEC SaveSearchFullText	39921726
+EXEC SaveSearchFullText	39489482
+EXEC SaveSearchFullText	38402730
+EXEC SaveSearchFullText	38402697
+EXEC SaveSearchFullText	37972401
+EXEC SaveSearchFullText	37972003
+EXEC SaveSearchFullText	37972003
+EXEC SaveSearchFullText	37971795
+EXEC SaveSearchFullText	37971795
+EXEC SaveSearchFullText	36710983
+EXEC SaveSearchFullText	35992711
+EXEC SaveSearchFullText	35546355
+EXEC SaveSearchFullText	35546349
+EXEC SaveSearchFullText	35221950
+EXEC SaveSearchFullText	34834323
+EXEC SaveSearchFullText	34834320
+EXEC SaveSearchFullText	34834319
+EXEC SaveSearchFullText	34834303
+EXEC SaveSearchFullText	34834302
+EXEC SaveSearchFullText	33837130
+EXEC SaveSearchFullText	33837092
+EXEC SaveSearchFullText	32951732
+EXEC SaveSearchFullText	32951717
+EXEC SaveSearchFullText	32257917
+EXEC SaveSearchFullText	32257916
+EXEC SaveSearchFullText	32257912
+EXEC SaveSearchFullText	32257912
+EXEC SaveSearchFullText	32257911
+EXEC SaveSearchFullText	32257910
+EXEC SaveSearchFullText	32257909
+EXEC SaveSearchFullText	32257907
+EXEC SaveSearchFullText	32257905
+EXEC SaveSearchFullText	32257903
+EXEC SaveSearchFullText	32257902
+EXEC SaveSearchFullText	32257901
+EXEC SaveSearchFullText	32257897
+EXEC SaveSearchFullText	32257890
+EXEC SaveSearchFullText	32257856
+EXEC SaveSearchFullText	31794297
+EXEC SaveSearchFullText	31794266
+EXEC SaveSearchFullText	31794244
+EXEC SaveSearchFullText	31704189
+EXEC SaveSearchFullText	31704148
+EXEC SaveSearchFullText	31704086
+EXEC SaveSearchFullText	31704074
+EXEC SaveSearchFullText	31703884
+EXEC SaveSearchFullText	31703882
+EXEC SaveSearchFullText	31703880
+EXEC SaveSearchFullText	31703862
+EXEC SaveSearchFullText	31703834
+EXEC SaveSearchFullText	31703833
+EXEC SaveSearchFullText	31703824
+EXEC SaveSearchFullText	31620077
+EXEC SaveSearchFullText	31620033
+EXEC SaveSearchFullText	31619314
+EXEC SaveSearchFullText	31618937
+EXEC SaveSearchFullText	31618544
+EXEC SaveSearchFullText	31618022
+EXEC SaveSearchFullText	31617722
+EXEC SaveSearchFullText	28814304
+EXEC SaveSearchFullText	28814291
+EXEC SaveSearchFullText	27542981
+EXEC SaveSearchFullText	27542972
+EXEC SaveSearchFullText	27542951
+EXEC SaveSearchFullText	27279870
+EXEC SaveSearchFullText	27279862
+EXEC SaveSearchFullText	27042598
+EXEC SaveSearchFullText	27042544
+EXEC SaveSearchFullText	27042516
+EXEC SaveSearchFullText	27042478
+EXEC SaveSearchFullText	27042426
+EXEC SaveSearchFullText	27042399
+EXEC SaveSearchFullText	27032560
+EXEC SaveSearchFullText	27032554
+EXEC SaveSearchFullText	27032553
+EXEC SaveSearchFullText	27032548
+EXEC SaveSearchFullText	25281470
+EXEC SaveSearchFullText	25281468
+EXEC SaveSearchFullText	25281460
+EXEC SaveSearchFullText	25281458
+EXEC SaveSearchFullText	25281454
+EXEC SaveSearchFullText	25281450
+EXEC SaveSearchFullText	25281446
+EXEC SaveSearchFullText	25281444
+EXEC SaveSearchFullText	25281441
+EXEC SaveSearchFullText	25281440
+EXEC SaveSearchFullText	25281439
+EXEC SaveSearchFullText	25281438
+EXEC SaveSearchFullText	25281437
+EXEC SaveSearchFullText	25281432
+EXEC SaveSearchFullText	25281430
+EXEC SaveSearchFullText	25281427
+EXEC SaveSearchFullText	25281425
+EXEC SaveSearchFullText	25281424
+EXEC SaveSearchFullText	25281423
+EXEC SaveSearchFullText	25281422
+EXEC SaveSearchFullText	25281421
+EXEC SaveSearchFullText	25281419
+EXEC SaveSearchFullText	25281376
+EXEC SaveSearchFullText	25281375
+EXEC SaveSearchFullText	25281372
+EXEC SaveSearchFullText	25281368
+EXEC SaveSearchFullText	25281365
+EXEC SaveSearchFullText	25281362
+EXEC SaveSearchFullText	25281361
+EXEC SaveSearchFullText	25281358
+EXEC SaveSearchFullText	25281356
+EXEC SaveSearchFullText	25281355
+EXEC SaveSearchFullText	25281354
+EXEC SaveSearchFullText	25281353
+EXEC SaveSearchFullText	25281351
+EXEC SaveSearchFullText	25281345
+EXEC SaveSearchFullText	25281337
+EXEC SaveSearchFullText	25281336
+EXEC SaveSearchFullText	25280413
+EXEC SaveSearchFullText	25280413
+EXEC SaveSearchFullText	25280412
+EXEC SaveSearchFullText	24572305
+EXEC SaveSearchFullText	24572288
+EXEC SaveSearchFullText	24270365
+EXEC SaveSearchFullText	23381257
+EXEC SaveSearchFullText	23308019
+EXEC SaveSearchFullText	23051739
+EXEC SaveSearchFullText	23051738
+EXEC SaveSearchFullText	22413880
+EXEC SaveSearchFullText	22413879
+EXEC SaveSearchFullText	22413871
+EXEC SaveSearchFullText	22413867
+EXEC SaveSearchFullText	22413864
+EXEC SaveSearchFullText	22413840
+EXEC SaveSearchFullText	22413840
+EXEC SaveSearchFullText	22413828
+EXEC SaveSearchFullText	22413828
+EXEC SaveSearchFullText	21614159
+EXEC SaveSearchFullText	21614149
+EXEC SaveSearchFullText	21614140
+EXEC SaveSearchFullText	21614128
+EXEC SaveSearchFullText	21614117
+EXEC SaveSearchFullText	21521976
+EXEC SaveSearchFullText	21520951
+EXEC SaveSearchFullText	21520951
+EXEC SaveSearchFullText	21160441
+EXEC SaveSearchFullText	21160440
+EXEC SaveSearchFullText	21160439
+EXEC SaveSearchFullText	21160397
+EXEC SaveSearchFullText	21160386
+EXEC SaveSearchFullText	20580994
+EXEC SaveSearchFullText	20580975
+EXEC SaveSearchFullText	20580966
+EXEC SaveSearchFullText	20580958
+EXEC SaveSearchFullText	19946487
+EXEC SaveSearchFullText	19946329
+EXEC SaveSearchFullText	19946287
+EXEC SaveSearchFullText	19661260
+EXEC SaveSearchFullText	18996608
+EXEC SaveSearchFullText	18996578
+EXEC SaveSearchFullText	18996576
+EXEC SaveSearchFullText	18651065
+EXEC SaveSearchFullText	18651058
+EXEC SaveSearchFullText	18516207
+EXEC SaveSearchFullText	18516205
+EXEC SaveSearchFullText	18516191
+EXEC SaveSearchFullText	18250197
+EXEC SaveSearchFullText	18245302
+EXEC SaveSearchFullText	18244253
+EXEC SaveSearchFullText	18241634
+EXEC SaveSearchFullText	18220848
+EXEC SaveSearchFullText	17320150
+EXEC SaveSearchFullText	17320147
+EXEC SaveSearchFullText	17320143
+EXEC SaveSearchFullText	17320139
+EXEC SaveSearchFullText	17320130
+EXEC SaveSearchFullText	17320115
+EXEC SaveSearchFullText	17320113
+EXEC SaveSearchFullText	17320110
+EXEC SaveSearchFullText	16803689
+EXEC SaveSearchFullText	16803687
+EXEC SaveSearchFullText	16803673
+EXEC SaveSearchFullText	16803658
+EXEC SaveSearchFullText	16487816
+EXEC SaveSearchFullText	16487807
+EXEC SaveSearchFullText	16487784
+EXEC SaveSearchFullText	16487783
+EXEC SaveSearchFullText	16101404
+EXEC SaveSearchFullText	16101402
+EXEC SaveSearchFullText	16101400
+EXEC SaveSearchFullText	16101385
+EXEC SaveSearchFullText	16101371
+EXEC SaveSearchFullText	16101370
+EXEC SaveSearchFullText	15812466
+EXEC SaveSearchFullText	15812461
+EXEC SaveSearchFullText	15812384
+EXEC SaveSearchFullText	15810056
+EXEC SaveSearchFullText	31688840
+EXEC SaveSearchFullText	31688433
+EXEC SaveSearchFullText	31683005
+EXEC SaveSearchFullText	31675631
+EXEC SaveSearchFullText	31670020
+EXEC SaveSearchFullText	31663524

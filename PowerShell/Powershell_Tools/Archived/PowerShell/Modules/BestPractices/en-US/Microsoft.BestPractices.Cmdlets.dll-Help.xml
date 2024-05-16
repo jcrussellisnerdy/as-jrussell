@@ -1,0 +1,879 @@
+﻿<?xml version = "1.0" encoding = "utf-8" ?>
+<helpItems schema="maml">
+<!-- v 1.1.0.9 -->
+<command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10">
+	<command:details>
+		<command:name>
+                   Get-BPAModel
+		</command:name>
+		<maml:description>
+			<maml:para>The Get-BPAModel cmdlet allows you to retrieve and view the list of roles supported by Best Practices Analyzer (BPA) that are installed on a computer.</maml:para>
+		</maml:description>
+		<maml:copyright>
+			<maml:para></maml:para>
+		</maml:copyright>
+		<command:verb>Get</command:verb>
+		<command:noun>BPAModel</command:noun>
+		<dev:version></dev:version>
+	</command:details>
+	<maml:description>
+		<maml:para>The Get-BPAModel cmdlet allows you to retrieve and view the list of models that are supported by Best Practices Analyzer (BPA) and installed on the computer. If no parameter is specified, Get-BPAModel returns all models that are  installed on the computer. If a model is specified by using the -BestPracticesModelId parameter, the specified model is returned.</maml:para>
+	</maml:description>
+	<!-- Cmdlet syntax section-->
+	<command:syntax>
+		<command:syntaxItem>
+			<maml:name>Get-BPAModel</maml:name>
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="true (ByValue, ByPropertyName)" position="2">
+				<maml:name>BestPracticesModelId</maml:name>
+				<maml:description>
+					<maml:para>Specifies the command ID of the Best Practices Analyzer model for which you want to view details. You can also use the short form of the -BestPracticesModelId parameter, -Id.</maml:para>
+				</maml:description>
+				<command:parameterValue required="true" variableLength="false">string</command:parameterValue>
+			</command:parameter>
+		</command:syntaxItem>
+	</command:syntax>
+	<!-- Cmdlet parameter section  -->
+	<command:parameters>
+		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="true (ByValue, ByPropertyName)" position="2">
+			<maml:name>BestPracticesModelId</maml:name>
+			<maml:description>
+				<maml:para>Specifies the command ID of the Best Practices Analyzer model for which you want to view details. You can also use the short form of the -BestPracticesModelId parameter, -Id.</maml:para>
+								
+			</maml:description>
+			<command:parameterValue required="true" variableLength="false">string</command:parameterValue>
+			<dev:type>
+				<maml:name>string</maml:name>
+				<maml:uri/>
+			</dev:type>
+			<dev:defaultValue></dev:defaultValue>
+		</command:parameter>
+	</command:parameters>
+	<!-- Input - Output section-->
+	<command:inputTypes>
+		<command:inputType>
+			<dev:type>
+				<maml:name></maml:name>
+				<maml:uri/>
+				<maml:description />
+			</dev:type>
+			<maml:description>
+				<maml:para>
+					<!-- description  -->
+					
+				</maml:para>
+			</maml:description>
+		</command:inputType>
+	</command:inputTypes>
+	<command:returnValues>
+		<command:returnValue>
+			<dev:type>
+				<maml:name></maml:name>
+				<maml:uri />
+				<maml:description />
+			</dev:type>   
+			<maml:description>
+				<maml:para>
+					<!-- description  -->
+					
+				</maml:para>
+			</maml:description> 
+		</command:returnValue>
+	</command:returnValues>
+	<!-- Error section-->
+	<command:terminatingErrors />
+	<command:nonTerminatingErrors />
+		<!-- Notes section  -->
+	<maml:alertSet>
+		<maml:title></maml:title>
+		<maml:alert>
+			<maml:para>
+                          
+                        </maml:para>
+		</maml:alert>
+		<maml:alert>
+			<maml:para></maml:para>
+		</maml:alert>
+	</maml:alertSet>
+	<!-- Example section  --> 
+	<command:examples>
+
+		<command:example>
+			<maml:title>
+				-------------------------- EXAMPLE 1 --------------------------
+			</maml:title> 
+			<maml:introduction>
+				<maml:para>C:\PS&gt;</maml:para>
+			</maml:introduction> 
+  			<dev:code>
+Get-BPAModel -BestPracticesModelId &lt;Specified Model Id&gt;
+
+Id                       Last Scan Time
+---                      --------------     
+&lt;Specified Model Id&gt;     &lt;Short Date&gt; &lt;Time&gt;                        </dev:code>
+       			<dev:remarks>
+                                <maml:para>Description</maml:para>
+                                <maml:para>-----------</maml:para>
+  			        <maml:para>The preceding example can be used to return details about the BPA model that is specified in the -BestPracticesModelId parameter, represented by &quot;Specified Model Id.&quot; You can also use the short form of the -BestPracticesModelId parameter, -Id.</maml:para>
+	                        <maml:para></maml:para>
+	                        <maml:para></maml:para>
+	                        <maml:para></maml:para>
+	                        <maml:para></maml:para>
+  			</dev:remarks>
+			<command:commandLines>
+				<command:commandLine>
+					<command:commandText></command:commandText>
+				</command:commandLine>
+			</command:commandLines>
+		</command:example>
+
+		<command:example>
+			<maml:title>
+				-------------------------- EXAMPLE 2 --------------------------
+			</maml:title> 
+			<maml:introduction>
+				<maml:para>C:\PS&gt;</maml:para>
+			</maml:introduction> 
+  			<dev:code>
+Get-BPAModel &lt;Specified Model Id&gt;
+
+Id                       Last Scan Time
+---                      --------------     
+&lt;Specified Model Id&gt;     &lt;Short Date&gt; &lt;Time&gt;                        </dev:code>
+       			<dev:remarks>
+                                <maml:para>Description</maml:para>
+                                <maml:para>-----------</maml:para>
+  			        <maml:para>The preceding example can be used to return details about BPA scans for the model that is represented by &quot;Specified Model Id.&quot;</maml:para>
+	                        <maml:para></maml:para>
+	                        <maml:para></maml:para>
+	                        <maml:para></maml:para>
+	                        <maml:para></maml:para>
+  			</dev:remarks>
+			<command:commandLines>
+				<command:commandLine>
+					<command:commandText></command:commandText>
+				</command:commandLine>
+			</command:commandLines>
+		</command:example>
+
+		<command:example>
+			<maml:title>
+				-------------------------- EXAMPLE 3 --------------------------
+			</maml:title> 
+			<maml:introduction>
+				<maml:para>C:\PS&gt;</maml:para>
+			</maml:introduction> 
+  			<dev:code>
+Get-BPAModel
+
+Id                       Last Scan Time
+---                      --------------
+&lt;Model Id 1&gt;             &lt;Short Date1&gt; &lt;Time1&gt;
+&lt;Model Id 2&gt;             Never
+&lt;Model Id 3&gt;             &lt;Short Date3&gt; &lt;Time3&gt;                        </dev:code>
+       			<dev:remarks>
+                                <maml:para>Description</maml:para>
+                                <maml:para>-----------</maml:para>
+  			        <maml:para>In the preceding example, Get-BPAModel, with no parameters added, returns details about BPA scans for all models that are installed on the computer.</maml:para>
+	                        <maml:para></maml:para>
+	                        <maml:para></maml:para>
+	                        <maml:para></maml:para>
+	                        <maml:para></maml:para>
+  			</dev:remarks>
+			<command:commandLines>
+				<command:commandLine>
+					<command:commandText></command:commandText>
+				</command:commandLine>
+			</command:commandLines>
+		</command:example>
+	</command:examples>
+	<!-- Link section  -->
+	<maml:relatedLinks>
+		<maml:navigationLink>
+			<maml:linkText>Online version:</maml:linkText>
+			<maml:uri>http://go.microsoft.com/fwlink/?LinkId=141488</maml:uri>
+		</maml:navigationLink>
+		<maml:navigationLink>
+			<maml:linkText>Invoke-BPAModel</maml:linkText>
+			<maml:uri/>
+		</maml:navigationLink>
+		<maml:navigationLink>
+			<maml:linkText>Get-BPAResult</maml:linkText>
+			<maml:uri/>
+		</maml:navigationLink>
+		<maml:navigationLink>
+			<maml:linkText>Set-BPAResult</maml:linkText>
+			<maml:uri/>
+		</maml:navigationLink>
+	</maml:relatedLinks>
+</command:command>
+
+<!-- v 1.1.0.9 -->
+<command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10">
+	<command:details>
+		<command:name>
+                   Get-BPAResult
+		</command:name>
+		<maml:description>
+			<maml:para>The Get-BPAResult cmdlet allows you to retrieve and view the results of the most recent Best Practices Analyzer (BPA) scan for a specific model.</maml:para>
+		</maml:description>
+		<maml:copyright>
+			<maml:para></maml:para>
+		</maml:copyright>
+		<command:verb>Get</command:verb>
+		<command:noun>BPAResult</command:noun>
+		<dev:version></dev:version>
+	</command:details>
+	<maml:description>
+		<maml:para>The Get-BPAResult cmdlet allows you to retrieve and view the results of the latest Best Practices Analyzer (BPA) scan for a specific model that is installed on a computer. To use the command, add the BestPracticesModelId parameter, and specify the model ID for which you want to view the most recent BPA scan results.</maml:para>
+	</maml:description>
+	<!-- Cmdlet syntax section-->
+	<command:syntax>
+		<command:syntaxItem>
+			<maml:name>Get-BPAResult</maml:name>
+			<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="true (ByValue, ByPropertyName)" position="2">
+				<maml:name>BestPracticesModelId</maml:name>
+				<maml:description>
+					<maml:para>Specifies the command ID of the Best Practices Analyzer model for which you want to view scan results. Note that the Get-BPAResult cmdlet does not start a new scan. You can also use the short form of the -BestPracticesModelId parameter, -Id.</maml:para>
+				</maml:description>
+				<command:parameterValue required="true" variableLength="false">string</command:parameterValue>
+			</command:parameter>
+		</command:syntaxItem>
+	</command:syntax>
+	<!-- Cmdlet parameter section  -->
+	<command:parameters>
+		<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="true (ByValue, ByPropertyName)" position="2">
+			<maml:name>BestPracticesModelId</maml:name>
+			<maml:description>
+				<maml:para>Specifies the command ID of the Best Practices Analyzer model for which you want to view scan results. Note that the Get-BPAResult cmdlet does not start a new scan. You can also use the short form of the -BestPracticesModelId parameter, -Id.</maml:para>
+								
+			</maml:description>
+			<command:parameterValue required="true" variableLength="false">string</command:parameterValue>
+			<dev:type>
+				<maml:name>string</maml:name>
+				<maml:uri/>
+			</dev:type>
+			<dev:defaultValue></dev:defaultValue>
+		</command:parameter>
+	</command:parameters>
+	<!-- Input - Output section-->
+	<command:inputTypes>
+		<command:inputType>
+			<dev:type>
+				<maml:name></maml:name>
+				<maml:uri/>
+				<maml:description />
+			</dev:type>
+			<maml:description>
+				<maml:para>
+					<!-- description  -->
+					
+				</maml:para>
+			</maml:description>
+		</command:inputType>
+	</command:inputTypes>
+	<command:returnValues>
+		<command:returnValue>
+			<dev:type>
+				<maml:name></maml:name>
+				<maml:uri />
+				<maml:description />
+			</dev:type>   
+			<maml:description>
+				<maml:para>
+					<!-- description  -->
+					
+				</maml:para>
+			</maml:description> 
+		</command:returnValue>
+	</command:returnValues>
+	<!-- Error section-->
+	<command:terminatingErrors />
+	<command:nonTerminatingErrors />
+		<!-- Notes section  -->
+	<maml:alertSet>
+		<maml:title></maml:title>
+		<maml:alert>
+			<maml:para>
+                          The Get-BPAResult cmdlet does not start a new scan.
+                        </maml:para>
+		</maml:alert>
+		<maml:alert>
+			<maml:para></maml:para>
+		</maml:alert>
+	</maml:alertSet>
+	<!-- Example section  --> 
+	<command:examples>
+
+		<command:example>
+			<maml:title>
+				-------------------------- EXAMPLE 1 --------------------------
+			</maml:title> 
+			<maml:introduction>
+				<maml:para>C:\PS&gt;</maml:para>
+			</maml:introduction> 
+  			<dev:code>
+Get-BPAResult -BestPracticesModelId &lt;Specified Model Id&gt;                        </dev:code>
+       			<dev:remarks>
+                                <maml:para>Description</maml:para>
+                                <maml:para>-----------</maml:para>
+  			        <maml:para>The preceding example returns the most recent Best Practices Analyzer scan results for the model that is represented by &quot;Specified Model Id.&quot; You can also use the short form of the -BestPracticesModelId parameter, -Id.</maml:para>
+	                        <maml:para></maml:para>
+	                        <maml:para></maml:para>
+	                        <maml:para></maml:para>
+	                        <maml:para></maml:para>
+  			</dev:remarks>
+			<command:commandLines>
+				<command:commandLine>
+					<command:commandText></command:commandText>
+				</command:commandLine>
+			</command:commandLines>
+		</command:example>
+
+		<command:example>
+			<maml:title>
+				-------------------------- EXAMPLE 2 --------------------------
+			</maml:title> 
+			<maml:introduction>
+				<maml:para>C:\PS&gt;</maml:para>
+			</maml:introduction> 
+  			<dev:code>
+Get-BPAResult &lt;Specified Model Id&gt;                        </dev:code>
+       			<dev:remarks>
+                                <maml:para>Description</maml:para>
+                                <maml:para>-----------</maml:para>
+  			        <maml:para>The preceding example returns the most recent Best Practices Analyzer scan results for the model that is represented by &quot;Specified Model Id.&quot;</maml:para>
+	                        <maml:para></maml:para>
+	                        <maml:para></maml:para>
+	                        <maml:para></maml:para>
+	                        <maml:para></maml:para>
+  			</dev:remarks>
+			<command:commandLines>
+				<command:commandLine>
+					<command:commandText></command:commandText>
+				</command:commandLine>
+			</command:commandLines>
+		</command:example>
+
+		<command:example>
+			<maml:title>
+				-------------------------- EXAMPLE 3 --------------------------
+			</maml:title> 
+			<maml:introduction>
+				<maml:para>C:\PS&gt;</maml:para>
+			</maml:introduction> 
+  			<dev:code>
+Get-BPAModel | Get-BPAResult                        </dev:code>
+       			<dev:remarks>
+                                <maml:para>Description</maml:para>
+                                <maml:para>-----------</maml:para>
+  			        <maml:para>In the preceding example, Get-BPAModel is used to return a list of all BPA models that are installed on the computer. The results of the Get-BPAModel cmdlet are piped to the Get-BPAResult cmdlet to retrieve the most recent Best Practices Analyzer scan results for all models that are supported by BPA.</maml:para>
+	                        <maml:para></maml:para>
+	                        <maml:para></maml:para>
+	                        <maml:para></maml:para>
+	                        <maml:para></maml:para>
+  			</dev:remarks>
+			<command:commandLines>
+				<command:commandLine>
+					<command:commandText></command:commandText>
+				</command:commandLine>
+			</command:commandLines>
+		</command:example>
+	</command:examples>
+	<!-- Link section  -->
+	<maml:relatedLinks>
+		<maml:navigationLink>
+			<maml:linkText>Online version:</maml:linkText>
+			<maml:uri>http://go.microsoft.com/fwlink/?LinkId=141489</maml:uri>
+		</maml:navigationLink>
+		<maml:navigationLink>
+			<maml:linkText>Invoke-BPAModel</maml:linkText>
+			<maml:uri/>
+		</maml:navigationLink>
+		<maml:navigationLink>
+			<maml:linkText>Get-BPAModel</maml:linkText>
+			<maml:uri/>
+		</maml:navigationLink>
+		<maml:navigationLink>
+			<maml:linkText>Set-BPAResult</maml:linkText>
+			<maml:uri/>
+		</maml:navigationLink>
+	</maml:relatedLinks>
+</command:command>
+
+<!-- v 1.1.0.9 -->
+<command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10">
+	<command:details>
+		<command:name>
+                   Invoke-BPAModel
+		</command:name>
+		<maml:description>
+			<maml:para>The Invoke-BPAModel cmdlet allows you to start a Best Practices Analyzer (BPA) scan for a specific model that is installed on your computer.</maml:para>
+		</maml:description>
+		<maml:copyright>
+			<maml:para></maml:para>
+		</maml:copyright>
+		<command:verb>Invoke</command:verb>
+		<command:noun>BPAModel</command:noun>
+		<dev:version></dev:version>
+	</command:details>
+	<maml:description>
+		<maml:para>The Invoke-BPAModel cmdlet allows you to start a Best Practices Analyzer (BPA) scan for a specific model that is installed on your Windows-based computer. The model is specified either by using the parameter BestPracticesModelId, or by piping the results of the Get-BPAModel cmdlet into an Invoke-BPAModel cmdlet. If a model is specified in the command, after the BPA scan has been performed, the results of the scan are available as an XML file. </maml:para>
+	</maml:description>
+	<!-- Cmdlet syntax section-->
+	<command:syntax>
+		<command:syntaxItem>
+			<maml:name>Invoke-BPAModel</maml:name>
+			<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="true (ByValue, ByPropertyName)" position="2">
+				<maml:name>BestPracticesModelId</maml:name>
+				<maml:description>
+					<maml:para>Specifies the command ID of the Best Practices Analyzer model on which you want to start a scan. You can also use the short form of the -BestPracticesModelId parameter, -Id.</maml:para>
+				</maml:description>
+				<command:parameterValue required="true" variableLength="false">string</command:parameterValue>
+			</command:parameter>
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="3">
+				<maml:name>ArgumentTable</maml:name>
+				<maml:description>
+					<maml:para>Specifies model-specific instructions with which to start BPA scans. For example, the ArgumentTable parameter can allow an administrator to pass parameters to the model as expected by the model author.  These arguments, passed as a set of name-value pairs, change how a BPA scan runs.</maml:para>
+				</maml:description>
+				<command:parameterValue required="true" variableLength="false">hashtable</command:parameterValue>
+			</command:parameter>
+		</command:syntaxItem>
+	</command:syntax>
+	<!-- Cmdlet parameter section  -->
+	<command:parameters>
+		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="3">
+			<maml:name>ArgumentTable</maml:name>
+			<maml:description>
+				<maml:para>Specifies model-specific instructions with which to start BPA scans. For example, the ArgumentTable parameter can allow an administrator to pass parameters to the model as expected by the model author.  These arguments, passed as a set of name-value pairs, change how a BPA scan runs.</maml:para>
+								
+			</maml:description>
+			<command:parameterValue required="true" variableLength="false">hashtable</command:parameterValue>
+			<dev:type>
+				<maml:name>hashtable</maml:name>
+				<maml:uri/>
+			</dev:type>
+			<dev:defaultValue></dev:defaultValue>
+		</command:parameter>
+		<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="true (ByValue, ByPropertyName)" position="2">
+			<maml:name>BestPracticesModelId</maml:name>
+			<maml:description>
+				<maml:para>Specifies the command ID of the Best Practices Analyzer model on which you want to start a scan. You can also use the short form of the -BestPracticesModelId parameter, -Id.</maml:para>
+								
+			</maml:description>
+			<command:parameterValue required="true" variableLength="false">string</command:parameterValue>
+			<dev:type>
+				<maml:name>string</maml:name>
+				<maml:uri/>
+			</dev:type>
+			<dev:defaultValue></dev:defaultValue>
+		</command:parameter>
+	</command:parameters>
+	<!-- Input - Output section-->
+	<command:inputTypes>
+		<command:inputType>
+			<dev:type>
+				<maml:name></maml:name>
+				<maml:uri/>
+				<maml:description />
+			</dev:type>
+			<maml:description>
+				<maml:para>
+					<!-- description  -->
+					
+				</maml:para>
+			</maml:description>
+		</command:inputType>
+	</command:inputTypes>
+	<command:returnValues>
+		<command:returnValue>
+			<dev:type>
+				<maml:name>System.Collections.Generic.List&lt;Microsoft.BestPractices.CoreInterface.InvokeBpaModelOutput&gt;</maml:name>
+				<maml:uri />
+				<maml:description />
+			</dev:type>   
+			<maml:description>
+				<maml:para>
+					<!-- description  -->
+					The output object encapsulates the results of the cmdlet that you entered. It contains information such as the BPA model ID, the success or failure of the cmdlet, and other details.
+				</maml:para>
+			</maml:description> 
+		</command:returnValue>
+	</command:returnValues>
+	<!-- Error section-->
+	<command:terminatingErrors />
+	<command:nonTerminatingErrors />
+		<!-- Notes section  -->
+	<maml:alertSet>
+		<maml:title></maml:title>
+		<maml:alert>
+			<maml:para>
+                          The Invoke-BPAModel cmdlet cannot be canceled after it has been started.
+
+If the cmdlet is used to perform a single-model scan, and the cmdlet is canceled (by using CTRL+C) before the temporary results file is copied to its final location, the temporary file is discarded, and any previous scan results file for the role is preserved. The message &quot;Processing of Invoke-BPAModel canceled by user&quot; is displayed, if the command is canceled before existing scan results files are overwritten.
+
+If the cmdlet is used to perform a scan of multiple models by piping in results from the Get-BPAModel cmdlet, and the command is canceled, scans that were completed before the cancel command was entered cannot be canceled. A scan in progress behaves as described above in the single-model scan cancellation scenario. Subsequent scans in the pipeline are canceled.
+                        </maml:para>
+		</maml:alert>
+		<maml:alert>
+			<maml:para></maml:para>
+		</maml:alert>
+	</maml:alertSet>
+	<!-- Example section  --> 
+	<command:examples>
+
+		<command:example>
+			<maml:title>
+				-------------------------- EXAMPLE 1 --------------------------
+			</maml:title> 
+			<maml:introduction>
+				<maml:para>C:\PS&gt;</maml:para>
+			</maml:introduction> 
+  			<dev:code>
+Invoke-BPAModel -BestPracticesModelId &lt;Specified Model Id&gt;                        </dev:code>
+       			<dev:remarks>
+                                <maml:para>Description</maml:para>
+                                <maml:para>-----------</maml:para>
+  			        <maml:para>The preceding example starts a BPA scan on the model that is represented by &lt;Specified Model Id&gt;.
+
+Alternatively, you can complete the same task by running either of the two following cmdlets:
+
+Invoke-BPAModel -Id &lt;Specified Model Id&gt;
+
+- OR -
+
+Invoke-BPAModel &lt;Specified Model Id&gt;</maml:para>
+	                        <maml:para></maml:para>
+	                        <maml:para></maml:para>
+	                        <maml:para></maml:para>
+	                        <maml:para></maml:para>
+  			</dev:remarks>
+			<command:commandLines>
+				<command:commandLine>
+					<command:commandText></command:commandText>
+				</command:commandLine>
+			</command:commandLines>
+		</command:example>
+
+		<command:example>
+			<maml:title>
+				-------------------------- EXAMPLE 2 --------------------------
+			</maml:title> 
+			<maml:introduction>
+				<maml:para>C:\PS&gt;</maml:para>
+			</maml:introduction> 
+  			<dev:code>
+Invoke-BPAModel &lt;Specified Model Id&gt; -ArgumentTable @{context=domain; name=redmond.microsoft.com;}                        </dev:code>
+       			<dev:remarks>
+                                <maml:para>Description</maml:para>
+                                <maml:para>-----------</maml:para>
+  			        <maml:para>This example starts a BPA scan on the specified model ID. The -ArgumentTable parameter helps the administrator start a BPA scan with additional model-specific instructions; for example, by using the -ArgumentTable parameter on a model which requires other model parameters (context and name, for examples) to be passed to it, the administrator can specify the values of these model parameters by using the ArgumentTable parameter.</maml:para>
+	                        <maml:para></maml:para>
+	                        <maml:para></maml:para>
+	                        <maml:para></maml:para>
+	                        <maml:para></maml:para>
+  			</dev:remarks>
+			<command:commandLines>
+				<command:commandLine>
+					<command:commandText></command:commandText>
+				</command:commandLine>
+			</command:commandLines>
+		</command:example>
+
+		<command:example>
+			<maml:title>
+				-------------------------- EXAMPLE 3 --------------------------
+			</maml:title> 
+			<maml:introduction>
+				<maml:para>C:\PS&gt;</maml:para>
+			</maml:introduction> 
+  			<dev:code>
+Get-BPAModel | Invoke-BPAModel                        </dev:code>
+       			<dev:remarks>
+                                <maml:para>Description</maml:para>
+                                <maml:para>-----------</maml:para>
+  			        <maml:para>The preceding example gets all BPA models that are installed on the computer, and then pipes the results of the Get-BPAModel cmdlet to Invoke-BPAModel to start a BPA scan on all models.</maml:para>
+	                        <maml:para></maml:para>
+	                        <maml:para></maml:para>
+	                        <maml:para></maml:para>
+	                        <maml:para></maml:para>
+  			</dev:remarks>
+			<command:commandLines>
+				<command:commandLine>
+					<command:commandText></command:commandText>
+				</command:commandLine>
+			</command:commandLines>
+		</command:example>
+
+		<command:example>
+			<maml:title>
+				-------------------------- EXAMPLE 4 --------------------------
+			</maml:title> 
+			<maml:introduction>
+				<maml:para>C:\PS&gt;</maml:para>
+			</maml:introduction> 
+  			<dev:code>
+$BPAObj =  Invoke-BPAModel &lt;Specified Model Id&gt;
+C:\PS&gt;$BPAObj[0].Detail
+
+ModelId             : &lt;Specified Model Id&gt;
+Success             : True
+ScanTime            : 10/21/2008 3:08:47 PM
+InformationMessages : 5
+WarningMessages     : 4
+ErrorMessages       : 0
+Description         :                        </dev:code>
+       			<dev:remarks>
+                                <maml:para>Description</maml:para>
+                                <maml:para>-----------</maml:para>
+  			        <maml:para>In the preceding example, the Invoke-BPAModel cmdlet starts a BPA scan on the model specified by Specified Model Id, and saves the results of the command as a variable, BPAObj.
+
+The second line of the command allows the administrator to view results of any specific object in the first line of the cmdlet by calling the variable into which the entire first line's results were saved, and then specifying the following:  which object's results the administrator wants (in this example, the 0, or first, object), and which field of the results of that object (in this example, the Detail field) the administrator wants to view. The example shown returns the Detail field results of the Invoke-PAModel cmdlet that is run in the first line.</maml:para>
+	                        <maml:para></maml:para>
+	                        <maml:para></maml:para>
+	                        <maml:para></maml:para>
+	                        <maml:para></maml:para>
+  			</dev:remarks>
+			<command:commandLines>
+				<command:commandLine>
+					<command:commandText></command:commandText>
+				</command:commandLine>
+			</command:commandLines>
+		</command:example>
+	</command:examples>
+	<!-- Link section  -->
+	<maml:relatedLinks>
+		<maml:navigationLink>
+			<maml:linkText>Online version:</maml:linkText>
+			<maml:uri>http://go.microsoft.com/fwlink/?LinkId=141491</maml:uri>
+		</maml:navigationLink>
+		<maml:navigationLink>
+			<maml:linkText>Get-BPAModel</maml:linkText>
+			<maml:uri/>
+		</maml:navigationLink>
+		<maml:navigationLink>
+			<maml:linkText>Get-BPAResult</maml:linkText>
+			<maml:uri/>
+		</maml:navigationLink>
+		<maml:navigationLink>
+			<maml:linkText>Set-BPAResult</maml:linkText>
+			<maml:uri/>
+		</maml:navigationLink>
+	</maml:relatedLinks>
+</command:command>
+
+<!-- v 1.1.0.9 -->
+<command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10">
+	<command:details>
+		<command:name>
+                   Set-BPAResult
+		</command:name>
+		<maml:description>
+			<maml:para>The Set-BPAResult cmdlet allows you to exclude or include existing results of a Best Practices Analyzer (BPA) scan to show you only the scan results that you want to see.</maml:para>
+		</maml:description>
+		<maml:copyright>
+			<maml:para></maml:para>
+		</maml:copyright>
+		<command:verb>Set</command:verb>
+		<command:noun>BPAResult</command:noun>
+		<dev:version></dev:version>
+	</command:details>
+	<maml:description>
+		<maml:para>The Set-BPAResult cmdlet allows you to exclude or include existing results of a Best Practices Analyzer (BPA) scan to show you only the scan results that you want to see. The action specified in the cmdlet (Exclude, for example) determines how the existing results of a BPA scan are updated. Set-BPAResult is typically applied after using the Get-BPAResult cmdlet to return a collection of scan results.  You can apply filters to results returned by the Get-BPAResult cmdlet, and then pipe the filtered collection of results to the Set-BPAResult cmdlet, specifying either to include or exclude filtered scan results.</maml:para>
+	</maml:description>
+	<!-- Cmdlet syntax section-->
+	<command:syntax>
+		<command:syntaxItem>
+			<maml:name>Set-BPAResult</maml:name>
+			<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="2">
+				<maml:name>BestPracticesModelId</maml:name>
+				<maml:description>
+					<maml:para>Specifies the command ID of the Best Practices Analyzer model for which you want to modify scan results. Note that the Set-BPAResult cmdlet does not start a new scan. You can also use the short form of the -BestPracticesModelId parameter, -Id.</maml:para>
+				</maml:description>
+				<command:parameterValue required="true" variableLength="false">string</command:parameterValue>
+			</command:parameter>
+			<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="true (ByValue)" position="4">
+				<maml:name>Results</maml:name>
+				<maml:description>
+					<maml:para>Specifies the result collection to be updated in the result file returned by the Set-BPAResults cmdlet.  The -Results parameter is typically used to specify a filtered subset of scan results that has already been stored in a variable; the variable name is provided as the valid value for the -Results parameter.  For example, if you have created a variable $allPerformance to store all the Performance category results for a BPA scan of all roles on a computer, and you want to exclude those Performance results from the complete collection of scan results, you add the parameter -Results $allPerformance to a Set-BPAResult cmdlet.  For more detailed examples, see the Examples section.</maml:para>
+				</maml:description>
+				<command:parameterValue required="true" variableLength="false">Result></command:parameterValue>
+			</command:parameter>
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="3">
+				<maml:name>Exclude</maml:name>
+				<maml:description>
+					<maml:para>Removes any BPA scan results from a results file that are specified by a filter added to the Set-BPAResults command. The Exclude action applies to all results returned by the Set-BPAResult command.  To exclude results by using the -Exclude parameter, add the value $true following the parameter, as shown:
+
+-Exclude $true</maml:para>
+				</maml:description>
+			</command:parameter>
+		</command:syntaxItem>
+	</command:syntax>
+	<!-- Cmdlet parameter section  -->
+	<command:parameters>
+		<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="2">
+			<maml:name>BestPracticesModelId</maml:name>
+			<maml:description>
+				<maml:para>Specifies the command ID of the Best Practices Analyzer model for which you want to modify scan results. Note that the Set-BPAResult cmdlet does not start a new scan. You can also use the short form of the -BestPracticesModelId parameter, -Id.</maml:para>
+								
+			</maml:description>
+			<command:parameterValue required="true" variableLength="false">string</command:parameterValue>
+			<dev:type>
+				<maml:name>string</maml:name>
+				<maml:uri/>
+			</dev:type>
+			<dev:defaultValue></dev:defaultValue>
+		</command:parameter>
+		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="3">
+			<maml:name>Exclude</maml:name>
+			<maml:description>
+				<maml:para>Removes any BPA scan results from a results file that are specified by a filter added to the Set-BPAResults command. The Exclude action applies to all results returned by the Set-BPAResult command.  To exclude results by using the -Exclude parameter, add the value $true following the parameter, as shown:
+
+-Exclude $true</maml:para>
+								
+			</maml:description>
+			<command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+			<dev:type>
+				<maml:name>SwitchParameter</maml:name>
+				<maml:uri/>
+			</dev:type>
+			<dev:defaultValue></dev:defaultValue>
+		</command:parameter>
+		<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="true (ByValue)" position="4">
+			<maml:name>Results</maml:name>
+			<maml:description>
+				<maml:para>Specifies the result collection to be updated in the result file returned by the Set-BPAResults cmdlet.  The -Results parameter is typically used to specify a filtered subset of scan results that has already been stored in a variable; the variable name is provided as the valid value for the -Results parameter.  For example, if you have created a variable $allPerformance to store all the Performance category results for a BPA scan of all roles on a computer, and you want to exclude those Performance results from the complete collection of scan results, you add the parameter -Results $allPerformance to a Set-BPAResult cmdlet.  For more detailed examples, see the Examples section.</maml:para>
+								
+			</maml:description>
+			<command:parameterValue required="true" variableLength="false">Result></command:parameterValue>
+			<dev:type>
+				<maml:name>Result></maml:name>
+				<maml:uri/>
+			</dev:type>
+			<dev:defaultValue></dev:defaultValue>
+		</command:parameter>
+	</command:parameters>
+	<!-- Input - Output section-->
+	<command:inputTypes>
+		<command:inputType>
+			<dev:type>
+				<maml:name></maml:name>
+				<maml:uri/>
+				<maml:description />
+			</dev:type>
+			<maml:description>
+				<maml:para>
+					<!-- description  -->
+					
+				</maml:para>
+			</maml:description>
+		</command:inputType>
+	</command:inputTypes>
+	<command:returnValues>
+		<command:returnValue>
+			<dev:type>
+				<maml:name></maml:name>
+				<maml:uri />
+				<maml:description />
+			</dev:type>   
+			<maml:description>
+				<maml:para>
+					<!-- description  -->
+					
+				</maml:para>
+			</maml:description> 
+		</command:returnValue>
+	</command:returnValues>
+	<!-- Error section-->
+	<command:terminatingErrors />
+	<command:nonTerminatingErrors />
+		<!-- Notes section  -->
+	<maml:alertSet>
+		<maml:title></maml:title>
+		<maml:alert>
+			<maml:para>
+                          If the Set-BPAResult command is canceled before the results are written to a file, the operation is canceled and the results file is not modified. If cancellation occurs after the results file has been modified, the command's actions are carried out, and the command cannot be canceled.
+                        </maml:para>
+		</maml:alert>
+		<maml:alert>
+			<maml:para></maml:para>
+		</maml:alert>
+	</maml:alertSet>
+	<!-- Example section  --> 
+	<command:examples>
+
+		<command:example>
+			<maml:title>
+				-------------------------- EXAMPLE 1 --------------------------
+			</maml:title> 
+			<maml:introduction>
+				<maml:para>C:\PS&gt;</maml:para>
+			</maml:introduction> 
+  			<dev:code>
+Get-BPAResult -BestPracticesModelId &lt;Specified Model Id&gt; | Where { $_.Category -eq &quot;Performance&quot; } | Set-BPAResult -Id &lt;Specified Model Id&gt; -Exclude $true                        </dev:code>
+       			<dev:remarks>
+                                <maml:para>Description</maml:para>
+                                <maml:para>-----------</maml:para>
+  			        <maml:para>The first section of the preceding example, to the left of the first pipe character (|), uses the Get-BPAResult cmdlet to retrieve Best Practices Analyzer scan results for the model ID represented by &quot;Specified Model Id.&quot; The second section of the command filters the results of the Get-BPAResult cmdlet to get only those scan results for which the category name is equal to &quot;Performance.&quot; The final section of the example, following the second pipe character, excludes the Performance results filtered by the previous section of the example.</maml:para>
+	                        <maml:para></maml:para>
+	                        <maml:para></maml:para>
+	                        <maml:para></maml:para>
+	                        <maml:para></maml:para>
+  			</dev:remarks>
+			<command:commandLines>
+				<command:commandLine>
+					<command:commandText></command:commandText>
+				</command:commandLine>
+			</command:commandLines>
+		</command:example>
+
+		<command:example>
+			<maml:title>
+				-------------------------- EXAMPLE 2 --------------------------
+			</maml:title> 
+			<maml:introduction>
+				<maml:para>C:\PS&gt;</maml:para>
+			</maml:introduction> 
+  			<dev:code>
+$rcPolicy = Get-BPAResult -BestPracticesModelId &lt;Specified Model Id&gt; | Where { $_.Category -eq &quot;Policy&quot; }
+Set-BPAResult -Id &lt;Specified Model Id&gt; -Exclude $true -Results $rcPolicy                        </dev:code>
+       			<dev:remarks>
+                                <maml:para>Description</maml:para>
+                                <maml:para>-----------</maml:para>
+  			        <maml:para>The first line of the preceding example, to the left of the pipe character (|), instructs the Get-BPAResult cmdlet to retrieve Best Practices Analyzer scan results for the model represented by &quot;Specified Model Id.&quot; The second section of the example, after the pipe character, filters the results of the Get-BPAResult cmdlet to return only those scan results for which the category name is equal to (note the -eq option) Policy. The variable $rcPolicy is created to store the filtered results of the Get-BPAResult cmdlet; this variable can be used in subsequent commands to represent those results.
+
+The second line of the command uses the Set-BPAResult cmdlet to exclude the set of results stored in the $rcPolicy variable, for the specified model ID. In this example, the -Results parameter is added because the administrator wants to exclude a specific subset of scan results for that model, and has created the variable $rcPolicy to represent that subset of results.</maml:para>
+	                        <maml:para></maml:para>
+	                        <maml:para></maml:para>
+	                        <maml:para></maml:para>
+	                        <maml:para></maml:para>
+  			</dev:remarks>
+			<command:commandLines>
+				<command:commandLine>
+					<command:commandText></command:commandText>
+				</command:commandLine>
+			</command:commandLines>
+		</command:example>
+	</command:examples>
+	<!-- Link section  -->
+	<maml:relatedLinks>
+		<maml:navigationLink>
+			<maml:linkText>Online version:</maml:linkText>
+			<maml:uri>http://go.microsoft.com/fwlink/?LinkId=141492</maml:uri>
+		</maml:navigationLink>
+		<maml:navigationLink>
+			<maml:linkText>Invoke-BPAModel</maml:linkText>
+			<maml:uri/>
+		</maml:navigationLink>
+		<maml:navigationLink>
+			<maml:linkText>Get-BPAModel</maml:linkText>
+			<maml:uri/>
+		</maml:navigationLink>
+		<maml:navigationLink>
+			<maml:linkText>Get-BPAResult</maml:linkText>
+			<maml:uri/>
+		</maml:navigationLink>
+	</maml:relatedLinks>
+</command:command>
+
+</helpItems>
+

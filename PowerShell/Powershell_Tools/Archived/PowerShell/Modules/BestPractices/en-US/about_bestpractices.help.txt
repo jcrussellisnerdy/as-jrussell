@@ -1,0 +1,119 @@
+﻿TOPIC
+    about_BestPractices
+
+
+SHORT DESCRIPTION
+    Best Practices Analyzer (BPA) includes a set of Windows PowerShell cmdlets
+    that allow you to scan some of the technologies that are installed on your
+    Windows operating system for compliance with best practices. You can also
+    use BPA cmdlets to view and filter scan results.
+
+
+LONG DESCRIPTION
+    Best Practices Analyzer (BPA) includes a set of Windows PowerShell cmdlets
+    that allow you to scan some of the technologies (often called "models" in
+    cmdlet Help) that are installed on your Windows operating system for
+    compliance with best practices. You can use cmdlets to get a list of all
+    models that are installed on the computer that can by scanned by using BPA,
+    perform scans, and view, filter, or archive scan results.
+
+
+HOW TO ACCESS BEST PRACTICES ANALYZER CMDLETS
+
+    Before you can work with BPA cmdlets, you must import the BestPractices
+    module into your Windows PowerShell session. Type the following cmdlet, and
+    then press Enter.
+
+    Import-Module BestPractices
+
+    Importing the BestPractices module allows you to run the following cmdlets:
+
+    Get-BPAModel
+    Invoke-BPAModel
+    Get-BPAResult
+    Set-BPAResult
+
+
+HOW TO VIEW INSTALLED BPA MODELS
+
+    To view a list of installed models, type the following, and then press
+    Enter.
+
+    Get-BPAModel
+
+    The Get-BPAModel cmdlet returns details about the BPA-supported models that
+    are installed on the computer.
+
+    For more information about Get-BPAModel, type the following, and then press
+    Enter.
+
+    Get-Help Get-BPAModel -full
+
+
+HOW TO START A SCAN
+
+    The output of the Get-BPAModel cmdlet shows model IDs for all BPA-supported
+    models that are installed on the computer. Enter the model ID as part of the
+    Invoke-BPAModel cmdlet to start a BPA scan on that model, as shown in the
+    following example.
+
+    Invoke-BPAModel -BestPracticesModelId <ID from output of Get-BPAModel>
+
+    To scan all installed models at the same time, type the following, and then
+    press Enter.
+
+    Get-BPAModel | Invoke-BPAModel
+
+    For more information about Invoke-BPAModel, type the following, and then
+    press Enter.
+
+    Get-Help Invoke-BPAModel -full
+
+
+HOW TO VIEW AND FILTER RESULTS
+
+    To get the results from the most recent BPA scan for a specific model, type
+    the following, and then press Enter, in which Model Id represents the ID of
+    the model for which you want to get scan results.
+
+    Get-BPAResult <Model Id>
+
+    Because you might not have to see some scan results, especially if you run
+    frequent scans, you can use the Set-BPAResult cmdlet to exclude scan results
+    that you do not want to see, or that are not relevant to your scan. Excluded
+    scan results can be included again at any time.
+
+    For more information about Set-BPAResult, type the following, and then press
+    Enter.
+
+    Get-Help Set-BPAResult -full
+
+
+HOW TO ARCHIVE RESULTS
+
+    You can archive the result of a BPA scan into an HTML-based report. Although
+    a default cascading style sheet (CSS) is included with Best Practices
+    Analyzer cmdlets to format BPA reports, you can specify another CSS to apply
+    formatting to your report, if you prefer.
+
+    The following is an example of how to archive results for a single model,
+    applying the default CSS.
+
+    Get-BPAResult -BestPracticesModelId <Model Id> | ConvertTo-Html -As List -
+    CssUri
+    $env:windir\system32\WindowsPowerShell\v1.0\Modules\BestPractices\BestPracti
+    cesReportFormat.css > <path to HTML report file>
+
+    The following is an example of how to archive results from the most recent
+    BPA scans for all models, applying the default CSS.
+
+    Get-BPAModels| Get-BPAResult | ConvertTo-Html -As List -CssUri
+    $env:windir\system32\WindowsPowerShell\v1.0\Modules\BestPractices\BestPracti
+    cesReportFormat.css > <path to HTML report file>
+
+
+SEE ALSO
+    Get-BPAModel
+    Invoke-BPAModel
+    Get-BPAResult
+    Set-BPAResult

@@ -1,0 +1,18 @@
+use master
+
+IF EXISTS (SELECT 1 FROM sys.server_file_audits where name = 'Audit-20180403-123205')
+BEGIN 
+		ALTER SERVER AUDIT [Audit-20180403-123205] WITH (STATE = OFF)
+		PRINT 'Audit-20180403-123205 TURNED OFF'
+
+END 
+
+	ELSE
+
+BEGIN
+	PRINT 'Audit-20180403-123205 was not modified'
+
+
+END
+
+

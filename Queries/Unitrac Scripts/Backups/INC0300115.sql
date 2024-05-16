@@ -1,0 +1,34 @@
+USE UniTrac
+
+
+SELECT  WI.CONTENT_XML.value('(/Content/Lender/Code)[1]', 'varchar (50)') Lender,
+WI.CONTENT_XML.value('(/Content/Information/ProcessLogs/ProcessLog/@Id)[1]', 'varchar (50)') ProcessID,
+WI.CONTENT_XML.value('(/Content/Information/ProcessLogs/ProcessLog/@Id)[2]', 'varchar (50)') ProcessID,
+WI.CONTENT_XML.value('(/Content/Information/ProcessLogs/ProcessLog/@Id)[3]', 'varchar (50)') ProcessID, * FROM dbo.WORK_ITEM wi
+WHERE ID = 39342098
+
+
+
+SELECT RELATE_ID INTO #tmpPLI FROM dbo.PROCESS_LOG_ITEM
+WHERE PROCESS_LOG_ID IN ('45366445', '45366499') AND RELATE_TYPE_CD = 'Allied.UniTrac.Loan'
+
+
+--Loan Screen Information - LOAN/COLLATERAL/PROPERTY/OWNER/REQUIRED COVERAGE
+SELECT ol.* 
+--INTO UnitracHDStorage..INC0300115
+FROM LOAN L
+INNER JOIN COLLATERAL C ON L.ID = C.LOAN_ID
+INNER JOIN PROPERTY P ON C.PROPERTY_ID = P.ID
+INNER JOIN REQUIRED_COVERAGE RC ON P.ID = RC.PROPERTY_ID
+INNER JOIN OWNER_LOAN_RELATE OL ON L.ID = OL.LOAN_ID
+INNER JOIN OWNER O ON OL.OWNER_ID = O.ID
+INNER JOIN OWNER_ADDRESS OA ON O.ADDRESS_ID = OA.ID
+INNER JOIN dbo.LENDER LL ON LL.ID = L.LENDER_ID
+WHERE L.ID IN (SELECT * FROM #tmpPLI) AND ol.OWNER_TYPE_CD = 'cs'
+
+
+
+UPDATE OL
+SET PURGE_DT = GETDATE(), lock_id = locK_id+1, upddate_dt = GETDATE(), update_user_tx = 'INC0300115'
+FROM dbo.OWNER_LOAN_RELATE OL 
+WHERE ID IN (SELECT ID FROM UnitracHDStorage..INC0300115)

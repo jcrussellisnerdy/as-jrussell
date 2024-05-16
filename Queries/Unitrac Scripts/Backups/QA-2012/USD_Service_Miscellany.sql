@@ -1,0 +1,74 @@
+select * from UniTrac..PROCESS_DEFINITION
+where ACTIVE_IN = 'Y'
+and STATUS_CD = 'Error'
+
+update UniTrac..PROCESS_DEFINITION
+set UPDATE_DT = '2014-12-05 15:03:15.370',LAST_RUN_DT = '2014-12-05 15:03:15.370', LAST_SCHEDULED_DT = '2014-12-05 15:03:15.370' , STATUS_CD = 'Complete'
+where ACTIVE_IN = 'Y' and STATUS_CD = 'Error'
+
+--UPDATE UniTrac..PROCESS_DEFINITION
+--SET ACTIVE_IN = 'N'
+--WHERE ACTIVE_IN = 'Y'
+
+------- EXCLUDE CERTAIN GENERIC UBS PROCESS DEFINTIONS -------
+SELECT  *
+FROM    UniTrac..PROCESS_DEFINITION
+WHERE   PROCESS_TYPE_CD NOT IN ('CYCLEPRC','EVTEVALPRC','BILLING','AUTOOBC','ESCROW','LNDRCNCL','INSBCKFD','FISERVOBU',
+		'EOMRPTG','GOODTHRUDT')
+		AND EXECUTION_FREQ_CD NOT IN ('RUNONCE')
+        AND SETTINGS_XML_IM.value('(/ProcessDefinitionSettings/TargetServiceList/TargetService/text())[1]',
+                                  'varchar(50)') = 'UniTracBusinessService'
+
+--------- EXAMINE SERVICE ACCOUNTS -------
+SELECT * FROM UniTrac..USERS
+WHERE FAMILY_NAME_TX = 'Server'
+and USER_NAME_TX = 'UBSPRT'
+
+SELECT * FROM UniTrac..AGENCY_USER_RELATE
+
+--------- TURN ON PROCESS DEFINITIONS FOR HISTFORM, LDAPSYNC, LETGEN, AND PDUNLOCK
+UPDATE UniTrac..PROCESS_DEFINITION
+SET ACTIVE_IN = 'Y'
+WHERE   PROCESS_TYPE_CD NOT IN ('CYCLEPRC','EVTEVALPRC','BILLING','AUTOOBC','ESCROW','LNDRCNCL','INSBCKFD','FISERVOBU',
+		'EOMRPTG','GOODTHRUDT')
+		AND EXECUTION_FREQ_CD NOT IN ('RUNONCE')
+        AND SETTINGS_XML_IM.value('(/ProcessDefinitionSettings/TargetServiceList/TargetService/text())[1]',
+                                  'varchar(50)') = 'UniTracBusinessService'
+
+----- STOP UTTOVUT (NOT NEEDED) AND KEYIMAGE (CAN NOT DO LINKED SERVER TO SQL2000 DATABASE)
+update UniTrac..PROCESS_DEFINITION
+set ACTIVE_IN = 'N'
+WHERE ID IN (4,40)
+
+GRANT VIEW SERVER STATE TO UTdbLDHsvcPRCPAQA
+
+select * from UniTrac..PROCESS_DEFINITION
+where ACTIVE_IN = 'Y'
+
+select * from UniTrac..PROCESS_DEFINITION
+where UPDATE_USER_TX = 'LDHUSD'
+
+update UniTrac..PROCESS_DEFINITION
+set active_in = 'Y'
+where ID in (51,83)
+
+----------------------------- Update 12/17/2014 ------------------------
+select * from UniTrac..PROCESS_DEFINITION
+where ACTIVE_IN = 'Y'
+
+SELECT * FROM UniTrac..PROCESS_DEFINITION
+WHERE PROCESS_TYPE_CD LIKE 'ut%'
+
+update UniTrac..PROCESS_DEFINITION
+set ACTIVE_IN = 'Y'
+where ID IN (36) AND PROCESS_TYPE_CD = 'WFEVAL'
+
+UPDATE  UniTrac..PROCESS_DEFINITION
+SET     LAST_RUN_DT = GETDATE() ,
+        LAST_SCHEDULED_DT = GETDATE() ,
+        LOCK_ID = CASE WHEN LOCK_ID < 255 THEN LOCK_ID + 1
+                       ELSE 1
+                  END ,
+        STATUS_CD = 'Complete'
+WHERE   ACTIVE_IN = 'Y'
+        AND STATUS_CD = 'Error'

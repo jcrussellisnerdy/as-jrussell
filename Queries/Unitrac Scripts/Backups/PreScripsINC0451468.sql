@@ -1,0 +1,82 @@
+use unitrac
+
+select l.record_type_cd, l.status_cd, c.LENDER_COLLATERAL_CODE_TX, CC.CODE_TX, 
+L.* from collateral c
+join loan l on l.id = c.loan_id
+join COLLATERAL_CODE CC on CC.ID = C.COLLATERAL_CODE_ID
+join lender le on le.id = l.lender_id
+where 
+ l.record_type_cd = 'A' and le.code_tx = '1844'
+ and  c.COLLATERAL_CODE_ID in (SELECT  CC.ID FROM dbo.COLLATERAL_CODE CC
+INNER JOIN dbo.LCCG_COLLATERAL_CODE_RELATE CCR ON CCR.COLLATERAL_CODE_ID = CC.ID
+INNER JOIN dbo.LENDER_COLLATERAL_CODE_GROUP LCCG ON LCCG.ID = CCR.LCCG_ID
+INNER JOIN dbo.LENDER L ON L.ID = LCCG.LENDER_ID
+WHERE L.CODE_TX = '1844' and ( CC.CODE_TX like '%-OT' or  CC.CODE_TX like '%-A') )
+
+select DISTINCT CC.CODE_TX, COUNT(*)
+from collateral c
+join loan l on l.id = c.loan_id
+join COLLATERAL_CODE CC on CC.ID = C.COLLATERAL_CODE_ID
+join lender le on le.id = l.lender_id
+where 
+ l.record_type_cd = 'A' and le.code_tx = '1844'
+ and  c.COLLATERAL_CODE_ID in (SELECT  CC.ID FROM dbo.COLLATERAL_CODE CC
+INNER JOIN dbo.LCCG_COLLATERAL_CODE_RELATE CCR ON CCR.COLLATERAL_CODE_ID = CC.ID
+INNER JOIN dbo.LENDER_COLLATERAL_CODE_GROUP LCCG ON LCCG.ID = CCR.LCCG_ID
+INNER JOIN dbo.LENDER L ON L.ID = LCCG.LENDER_ID
+WHERE L.CODE_TX = '1844' and ( CC.CODE_TX like '%-OT' or  CC.CODE_TX like '%-A') )
+GROUP BY CC.CODE_TX
+
+
+
+ ---Finding Collateral Code
+SELECT  CC.ID ,
+        CC.CODE_TX ,
+        CC.DESCRIPTION_TX , CC.SECONDARY_CLASS_CD
+         FROM dbo.COLLATERAL_CODE CC
+INNER JOIN dbo.LCCG_COLLATERAL_CODE_RELATE CCR ON CCR.COLLATERAL_CODE_ID = CC.ID
+INNER JOIN dbo.LENDER_COLLATERAL_CODE_GROUP LCCG ON LCCG.ID = CCR.LCCG_ID
+INNER JOIN dbo.LENDER L ON L.ID = LCCG.LENDER_ID
+WHERE L.CODE_TX = '1844' 
+
+SELECT  CC.ID ,
+        CC.CODE_TX ,
+        CC.DESCRIPTION_TX , CC.SECONDARY_CLASS_CD
+         FROM dbo.COLLATERAL_CODE CC
+INNER JOIN dbo.LCCG_COLLATERAL_CODE_RELATE CCR ON CCR.COLLATERAL_CODE_ID = CC.ID
+INNER JOIN dbo.LENDER_COLLATERAL_CODE_GROUP LCCG ON LCCG.ID = CCR.LCCG_ID
+INNER JOIN dbo.LENDER L ON L.ID = LCCG.LENDER_ID
+WHERE L.CODE_TX = '1844' and 
+( CC.CODE_TX like '%-OT' or  CC.CODE_TX  like '%-A') 
+
+
+select distinct CC.CODE_TX, count(*)
+from collateral c
+join loan l on l.id = c.loan_id
+join COLLATERAL_CODE CC on CC.ID = C.COLLATERAL_CODE_ID
+join lender le on le.id = l.lender_id
+where 
+ l.record_type_cd = 'A' and le.code_tx = '1844'
+ and  c.COLLATERAL_CODE_ID in (SELECT  CC.ID FROM dbo.COLLATERAL_CODE CC
+INNER JOIN dbo.LCCG_COLLATERAL_CODE_RELATE CCR ON CCR.COLLATERAL_CODE_ID = CC.ID
+INNER JOIN dbo.LENDER_COLLATERAL_CODE_GROUP LCCG ON LCCG.ID = CCR.LCCG_ID
+INNER JOIN dbo.LENDER L ON L.ID = LCCG.LENDER_ID
+WHERE L.CODE_TX = '1844' and ( CC.CODE_TX like '%-OT' or  CC.CODE_TX like '%-A') )
+GROUP BY CC.CODE_TX
+ORDER BY count(*) DESC
+
+
+
+select L.NUMBER_TX, C.* 
+into unitrachdstorage..INC0451468_collateralcodes
+from collateral c
+join loan l on l.id = c.loan_id
+join COLLATERAL_CODE CC on CC.ID = C.COLLATERAL_CODE_ID
+join lender le on le.id = l.lender_id
+where 
+ l.record_type_cd = 'A' and le.code_tx = '1844'
+ and  c.COLLATERAL_CODE_ID in (SELECT  CC.ID FROM dbo.COLLATERAL_CODE CC
+INNER JOIN dbo.LCCG_COLLATERAL_CODE_RELATE CCR ON CCR.COLLATERAL_CODE_ID = CC.ID
+INNER JOIN dbo.LENDER_COLLATERAL_CODE_GROUP LCCG ON LCCG.ID = CCR.LCCG_ID
+INNER JOIN dbo.LENDER L ON L.ID = LCCG.LENDER_ID
+WHERE L.CODE_TX = '1844' and ( CC.CODE_TX like '%-OT' or  CC.CODE_TX like '%-A') )

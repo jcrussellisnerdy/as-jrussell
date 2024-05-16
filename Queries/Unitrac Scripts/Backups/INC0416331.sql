@@ -1,0 +1,70 @@
+﻿use unitrac
+
+
+select * into unitrachdstorage..INC0416331
+from loan L
+where id in (
+'224068238',
+'224132539',
+'224073795',
+'224164134',
+'224164304',
+'224079211',
+'224151827',
+'224081178',
+'224169154',
+'224170262',
+'224155559',
+'224172432',
+'224175580',
+'224176840',
+'224118638',
+'224134047',
+'224185756',
+'224189382',
+'230271050',
+'262523726',
+'264542124',
+'271929050',
+'271858603',
+'271858607',
+'271858608',
+'271375546',
+'271929129',
+'271715232',
+'224191498',
+'224129688')
+
+
+update L
+set status_cd ='U', update_dt = GETDATE(), update_user_tx = 'INC0416331', LOCK_ID = CASE WHEN LOCK_ID >= 255 THEN 1 ELSE LOCK_ID + 1 END
+--select *
+from loan L
+WHERE L.ID IN (SELECT ID FROM UniTracHDStorage..INC0416331)
+and status_cd !='U'
+
+
+INSERT INTO PROPERTY_CHANGE
+ ( ENTITY_NAME_TX , ENTITY_ID , USER_TX , ATTACHMENT_IN , 
+ CREATE_DT , AGENCY_ID , DESCRIPTION_TX ,  DETAILS_IN , FORMATTED_IN ,
+ LOCK_ID , PARENT_NAME_TX , PARENT_ID , TRANS_STATUS_CD , UTL_IN )
+ SELECT DISTINCT 'Allied.UniTrac.Loan' , L.ID , 'INC0416331' , 'N' , 
+ GETDATE() ,  1 , 
+'Make Loan set to Unmatch', 
+ 'Y' , 'N' , 1 ,  'Allied.UniTrac.Loan' , L.ID , 'PEND' , 'N'
+FROM LOAN L 
+WHERE L.ID IN (SELECT ID FROM UniTracHDStorage..INC0416331)
+
+
+
+
+select * from loan
+where id in (SELECT ID FROM UniTracHDStorage..INC0416331)
+
+
+SELECT * FROM UniTracHDStorage..INC0416331
+
+
+
+
+

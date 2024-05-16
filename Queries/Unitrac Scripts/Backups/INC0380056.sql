@@ -1,0 +1,54 @@
+USE [UniTrac]
+GO 
+
+--Loan Screen Information - LOAN/COLLATERAL/PROPERTY/OWNER/REQUIRED COVERAGE
+SELECT L.* --into unitrachdstorage..INC0380056_Loan 
+FROM LOAN L
+INNER JOIN dbo.LENDER LL ON LL.ID = L.LENDER_ID
+WHERE  LL.CODE_TX IN ( '1771', '1534') AND L.branch_code_tx = 'cmd'
+
+
+
+---Finding Division
+SELECT DISTINCT LO.TYPE_CD, LO.CODE_TX , Lo.NAME_TX
+FROM LENDER L
+INNER JOIN LENDER_ORGANIZATION LO ON L.ID = LO.LENDER_ID
+INNER JOIN RELATED_DATA RD ON LO.ID = RD.RELATE_ID --AND RD.DEF_ID = '105'
+WHERE L.CODE_TX IN ( '1771', '1534') AND Lo.TYPE_CD = 'BRCH'
+
+
+
+update L
+set L.branch_code_tx = '1771', L.[UPDATE_USER_TX] = 'INC0380056', L.update_dt = GETDATE(), L.LOCK_ID = L.LOCK_ID+1
+--SELECT branch_code_tx, * 
+FROM LOAN L
+INNER JOIN dbo.LENDER LL ON LL.ID = L.LENDER_ID
+WHERE  LL.CODE_TX IN ( '1771') AND L.branch_code_tx = 'cmd'
+--2543
+
+
+update L
+set L.branch_code_tx = '1534',L.[UPDATE_USER_TX] = 'INC0380056', L.update_dt = GETDATE(), L.LOCK_ID = L.LOCK_ID+1
+--SELECT branch_code_tx, * 
+FROM LOAN L
+INNER JOIN dbo.LENDER LL ON LL.ID = L.LENDER_ID
+WHERE  LL.CODE_TX IN ('1534') AND L.branch_code_tx = 'cmd'
+--465
+
+
+INSERT INTO PROPERTY_CHANGE
+ ( ENTITY_NAME_TX , ENTITY_ID , USER_TX , ATTACHMENT_IN , 
+ CREATE_DT , AGENCY_ID , DESCRIPTION_TX ,  DETAILS_IN , FORMATTED_IN ,
+ LOCK_ID , PARENT_NAME_TX , PARENT_ID , TRANS_STATUS_CD , UTL_IN )
+ SELECT DISTINCT 'Allied.UniTrac.Loan' , L.ID , 'INC0380056' , 'N' , 
+ GETDATE() ,  1 , 
+'Resolved Branch to correct Branch Code', 
+ 'Y' , 'N' , 1 ,  'Allied.UniTrac.Loan' , L.ID , 'PEND' , 'N'
+FROM LOAN L 
+WHERE L.ID IN (SELECT ID FROM UniTracHDStorage..INC0380056_Loan)
+
+
+
+select * from WORK_ITEM
+where id in (50446096)
+

@@ -1,0 +1,18 @@
+--On Primary DB
+
+--Full
+BACKUP DATABASE [WinAppLog] TO
+DISK = '\\IGNITE-SQL14\Restores\CP-SQLDEV-02\WinAppLog.Bak'
+WITH INIT , NOUNLOAD , NAME = 'WinAppLog_Backup', NOSKIP , STATS = 10, COMPRESSION, NOFORMAT
+
+
+
+
+
+
+
+--Logs
+BACKUP LOG [WinAppLog]
+TO DISK = '\\IGNITE-SQL14\Restores\CP-SQLDEV-02\WinAppLog.LOG'
+
+

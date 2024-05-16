@@ -1,0 +1,50 @@
+USE [UniTrac]
+GO 
+
+
+--drop table #TMPPLCY_01
+
+
+
+SELECT distinct
+rc.id into #TMPPLCY_01
+ FROM dbo.PROPERTY_CHANGE PC
+join REQUIRED_COVERAGE RC on RC.ID = PC.ENTITY_ID AND pc.ENTITY_NAME_TX = 'Allied.UniTrac.RequiredCoverage'
+INNER JOIN  PROPERTY P ON P.ID = RC.PROPERTY_ID
+INNER JOIN  COLLATERAL C ON C.PROPERTY_ID = P.ID
+INNER JOIN LOAN L ON L.ID = C.LOAN_ID
+LEFT JOIN dbo.PROPERTY_CHANGE_UPDATE PCU ON PC.ID = PCU.CHANGE_ID
+WHERE  pc.ENTITY_NAME_TX = 'Allied.UniTrac.RequiredCoverage'
+AND l.effective_dt >= '2015-08-02'
+and L.LENDER_ID = 2425 and insurance_status_cd = 'F' and insurance_sub_status_cd = 'D'
+
+
+
+
+
+
+UPDATE RC SET GOOD_THRU_DT = NULL , 
+INSURANCE_STATUS_CD = 'F' , 
+INSURANCE_SUB_STATUS_CD = 'D' , 
+SUMMARY_STATUS_CD = 'F' , 
+SUMMARY_SUB_STATUS_CD = 'D' , 
+--NOTICE_DT = NULL , 
+--NOTICE_SEQ_NO = NULL , 
+--NOTICE_TYPE_CD = NULL , 
+--LAST_EVENT_DT = NULL , 
+--LAST_EVENT_SEQ_ID = NULL , 
+--LAST_SEQ_CONTAINER_ID = NULL ,
+--CPI_QUOTE_ID = NULL , 
+UPDATE_DT = GETDATE() , 
+UPDATE_USER_TX = 'INC0368902' , 
+LOCK_ID = RC.LOCK_ID % 255 + 1
+---- SELECT *
+FROM REQUIRED_COVERAGE RC JOIN #TMPPLCY_01 T1 ON T1.ID = RC.ID
+
+
+
+
+select * from vut..lkuvinlookup
+where source_cd = 'NADA.NET'
+and createddate >= '2018-08-12'
+

@@ -1,0 +1,19 @@
+USE UniTrac	
+
+
+SELECT * FROM  UniTracHDStorage..SACU3769
+
+SELECT  RE.* INTO UniTracHDStorage..INC0271510
+FROM dbo.REQUIRED_ESCROW RE
+JOIN  UniTracHDStorage..SACU3769 S ON S.[Required Escrow ID] = RE.ID
+
+UPDATE RE
+SET UPDATE_DT = GETDATE(), UPDATE_USER_TX = 'INC0271510',
+PAID_THRU_DT = [Set Paid Thru Date], LOCK_ID = LOCK_ID+1
+--SELECT  RE.PAID_THRU_DT, S.[Set Paid Thru Date],  * 
+FROM dbo.REQUIRED_ESCROW RE
+JOIN  UniTracHDStorage..SACU3769 S ON S.[Required Escrow ID] = RE.ID
+
+
+
+

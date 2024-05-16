@@ -1,0 +1,16 @@
+USE Unitrac
+
+---Tracking Rules and Options
+SELECT * FROM dbo.BUSINESS_RULE_BASE brb 
+ JOIN dbo.RULE_CONDITION_BASE rcb ON brb.id = rcb.BUSINESS_RULE_BASE_ID
+JOIN dbo.BUSINESS_OPTION_GROUP bog ON bog.id = brb.BUSINESS_OPTION_GROUP_ID
+JOIN dbo.LENDER_PRODUCT lp ON lp.id = bog.RELATE_ID AND bog.RELATE_CLASS_NM = 'Allied.UniTrac.LenderProduct'
+JOIN dbo.LENDER LL ON LL.ID = lp.LENDER_ID
+WHERE   LL.STATUS_CD = 'ACTIVE' --AND L.CODE_TX = ''
+        AND LL.PURGE_DT IS NULL
+        AND LL.TEST_IN = 'N'
+        AND LP.PURGE_DT IS NULL
+        AND bog.PURGE_DT IS NULL
+        AND brb.PURGE_DT IS NULL
+        AND rcb.PURGE_DT IS NULL
+		--AND rcb.CONDITION_TYPE_CD = 'VRC'

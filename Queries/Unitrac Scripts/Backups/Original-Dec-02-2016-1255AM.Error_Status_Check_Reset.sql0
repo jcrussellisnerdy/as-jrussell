@@ -1,0 +1,40 @@
+USE UniTrac
+
+-------- Check for Process Definitions With Status Code Equal To Error
+SELECT *
+--INTO UniTracHDStorage..PDErrorxxxxxxx
+ FROM UniTrac..PROCESS_DEFINITION
+WHERE STATUS_CD = 'Error'
+ORDER BY UPDATE_DT DESC
+
+-------- Reset Process Definitions (All)
+UPDATE  UniTrac..PROCESS_DEFINITION
+SET     LAST_RUN_DT = GETDATE() ,
+        LAST_SCHEDULED_DT = GETDATE() ,
+        LOCK_ID = CASE WHEN LOCK_ID < 255 THEN LOCK_ID + 1
+                       ELSE 1
+                  END ,
+        STATUS_CD = 'Complete'
+WHERE   ACTIVE_IN = 'Y'
+        AND STATUS_CD = 'Error'
+		
+--------- Reset Process Definitions (Except Cycle)
+UPDATE  UniTrac..PROCESS_DEFINITION
+SET     LAST_RUN_DT = GETDATE() ,
+        LAST_SCHEDULED_DT = GETDATE() ,
+        LOCK_ID = CASE WHEN LOCK_ID < 255 THEN LOCK_ID + 1
+                       ELSE 1
+                  END ,
+        STATUS_CD = 'Complete'
+WHERE   ACTIVE_IN = 'Y'
+        AND STATUS_CD = 'Error'
+        and PROCESS_TYPE_CD <> 'CYCLEPRC'
+
+
+
+SELECT PD.NAME_TX, PL.* FROM dbo.PROCESS_LOG PL
+INNER JOIN dbo.PROCESS_DEFINITION PD ON PD.ID = PL.PROCESS_DEFINITION_ID
+WHERE CAST(PL.UPDATE_DT AS DATE) = CAST(GETDATE() AS DATE) AND PD.ID = 'XXXX'
+ORDER BY PL. UPDATE_DT DESC 
+
+

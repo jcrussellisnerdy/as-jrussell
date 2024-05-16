@@ -1,0 +1,1 @@
+db.custom_data.find({"application_id" : 36530,"class_name" : "Logs","UniqueId" : "a6f338db7ea728e0"}).explain('executionStats')

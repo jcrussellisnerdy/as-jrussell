@@ -1,0 +1,30 @@
+USE UniTrac
+
+
+SELECT * FROM UniTracHDStorage..['3769Data']
+
+
+SELECT RE.PAID_THRU_DT,d.[Set Paid Thru Date],* FROM dbo.REQUIRED_ESCROW RE
+JOIN UniTracHDStorage..['3769Data'] D ON D.[Required Escrow ID] = RE.ID
+
+
+
+SELECT RE.* 
+INTO UniTracHDStorage..INC0254575
+FROM dbo.REQUIRED_ESCROW RE
+JOIN UniTracHDStorage..['3769Data'] D ON D.[Required Escrow ID] = RE.ID
+
+
+UPDATE RE
+SET RE.UPDATE_DT= GETDATE(), RE.UPDATE_USER_TX = 'INC0254575', RE.PAID_THRU_DT = d.[Set Paid Thru Date],
+RE.LOCK_ID = CASE WHEN RE.LOCK_ID >= 255 THEN 1 ELSE RE.LOCK_ID + 1 END
+--SELECT * 
+FROM dbo.REQUIRED_ESCROW RE
+JOIN UniTracHDStorage..['3769Data'] D ON D.[Required Escrow ID] = RE.ID
+
+
+
+
+
+
+

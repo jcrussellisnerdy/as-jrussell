@@ -1,0 +1,150 @@
+USE [UniTrac]
+GO 
+
+--Loan Screen Information - LOAN/COLLATERAL/PROPERTY/OWNER/REQUIRED COVERAGE
+SELECT DISTINCT
+        L.NUMBER_TX ,
+        LEN(OA.LINE_1_TX) [Count Line 1] ,
+        LEN(OA.LINE_2_TX) [Count Line 2] ,
+        OA.LINE_1_TX ,
+        OA.LINE_2_TX ,
+        RC2.DESCRIPTION_TX [Loan Record Type] ,
+        RC3.DESCRIPTION_TX [Loan Status] ,
+        RC4.DESCRIPTION_TX [Loan Type] ,
+        O.ID [Owner_ID] ,
+        O.ADDRESS_ID ,
+        O.NAME_TX ,
+        O.LAST_NAME_TX ,
+        O.FIRST_NAME_TX ,
+        O.MIDDLE_INITIAL_TX ,
+        O.CREDIT_SCORE_TX ,
+        O.PREFERRED_CUSTOMER_IN ,
+        O.SPECIAL_PERSON_IN ,
+        O.HOME_PHONE_TX ,
+        O.WORK_PHONE_TX ,
+        O.CELL_PHONE_TX ,
+        O.EMAIL_TX ,
+        O.ALLOW_EMAIL_IN ,
+        O.CUSTOMER_NUMBER_TX ,
+        O.REO_IN ,
+        OA.ID [Owner_Address_ID] ,
+        OA.CITY_TX ,
+        OA.STATE_PROV_TX ,
+        OA.COUNTRY_TX ,
+        OA.POSTAL_CODE_TX ,
+        OA.ATTENTION_TX ,
+        OA.ADDRESS_TYPE_CD ,
+        OA.PO_BOX_TX ,
+        OA.RURAL_ROUTE_TX ,
+        OA.UNIT_TX ,
+        OA.PARSED_STATUS_CD ,
+        OA.CERTIFIED_IN
+--INTO    UniTracHDStorage..INC0232724
+FROM    LOAN L
+        INNER JOIN COLLATERAL C ON L.ID = C.LOAN_ID
+        INNER JOIN PROPERTY P ON C.PROPERTY_ID = P.ID
+        INNER JOIN REQUIRED_COVERAGE RC ON P.ID = RC.PROPERTY_ID
+        INNER JOIN OWNER_LOAN_RELATE OL ON L.ID = OL.LOAN_ID
+        INNER JOIN OWNER O ON OL.OWNER_ID = O.ID
+        INNER JOIN OWNER_ADDRESS OA ON O.ADDRESS_ID = OA.ID
+        INNER JOIN dbo.LENDER LL ON LL.ID = L.LENDER_ID
+        INNER JOIN dbo.REF_CODE RC2 ON RC2.CODE_CD = L.RECORD_TYPE_CD
+                                       AND RC2.DOMAIN_CD = 'RecordType'
+        INNER JOIN dbo.REF_CODE RC3 ON RC3.CODE_CD = L.STATUS_CD
+                                       AND RC3.DOMAIN_CD = 'LoanStatus'
+        INNER JOIN dbo.REF_CODE RC4 ON RC4.CODE_CD = L.TYPE_CD
+                                       AND RC4.DOMAIN_CD = 'LoanType'
+WHERE   LL.CODE_TX IN ( '1764' )
+        AND L.RECORD_TYPE_CD = 'G'
+        AND L.STATUS_CD = 'U'
+        --AND L.PURGE_DT IS NULL
+        AND OL.OWNER_TYPE_CD = 'CS'
+ORDER BY O.LAST_NAME_TX ASC
+
+
+
+
+
+
+
+
+SELECT len(OA.LINE_1_TX)[Count], OA.LINE_1_TX, OA.ID 
+INTO #tmpOA_0
+FROM dbo.OWNER_ADDRESS OA
+INNER JOIN UniTracHDStorage..INC0232724 D ON OA.ID = D.Owner_Address_ID
+ORDER BY [Count] DESC
+
+SELECT * FROM UniTracHDStorage..INC0232724 D
+
+SELECT * FROM #tmpOA_1
+
+SELECT * FROM #tmpOA_0
+
+UPDATE OA
+SET OA.LINE_2_TX = '', OA.UPDATE_DT = GETDATE(), OA.LOCK_ID= OA.LOCK_ID+1,
+OA.UPDATE_USER_TX = 'INC0232724'
+--SELECT DISTINCT OA.*
+FROM dbo.OWNER_ADDRESS OA
+INNER JOIN #tmpOA_1 D ON D.ID = OA.ID 
+WHERE D.[Count] >= '28'
+
+
+
+
+UPDATE OA
+SET OA.LINE_1_TX = '', OA.UPDATE_DT = GETDATE(), OA.LOCK_ID= OA.LOCK_ID+1,
+OA.UPDATE_USER_TX = 'INC0232724'
+--SELECT DISTINCT OA.*
+FROM dbo.OWNER_ADDRESS OA
+INNER JOIN #tmpOA_0 D ON D.ID = OA.ID 
+WHERE D.[Count] >= '30'
+
+
+
+
+
+--DROP TABLE #tmp
+SELECT  L.NUMBER_TX , L.STATUS_CD, L.RECORD_TYPE_CD,
+OL.OWNER_TYPE_CD,
+        LEN(OA.LINE_1_TX) [Count Line 1] ,
+        LEN(OA.LINE_2_TX) [Count Line 2] ,
+        OA.*
+INTO    #tmp
+FROM    dbo.LOAN L
+        INNER JOIN OWNER_LOAN_RELATE OL ON L.ID = OL.LOAN_ID
+        INNER JOIN OWNER O ON OL.OWNER_ID = O.ID
+        INNER JOIN OWNER_ADDRESS OA ON O.ADDRESS_ID = OA.ID
+        INNER JOIN dbo.LENDER LL ON LL.ID = L.LENDER_ID
+WHERE   LL.CODE_TX = '1764' and L.STATUS_CD = 'A' AND L.RECORD_TYPE_CD = 'G'
+
+
+
+SELECT * 
+ FROM #tmp
+ WHERE ([Count Line 2]  >= '29'
+ OR [Count Line 1]  >= '30')
+
+
+ SELECT * 
+ FROM #tmp
+ WHERE  [Count Line 1]  >= '30'
+
+
+
+ UPDATE OA
+SET OA.LINE_2_TX = '', OA.UPDATE_DT = GETDATE(), OA.LOCK_ID= OA.LOCK_ID+1,
+OA.UPDATE_USER_TX = 'INC0232724'
+--SELECT DISTINCT OA.*
+FROM dbo.OWNER_ADDRESS OA
+INNER JOIN #tmp D ON D.ID = OA.ID 
+WHERE D.LINE_2_TX IN ('Return To Sender')
+
+
+SELECT * FROM #tmp
+--WHERE 
+--STATUS_CD = 'A' AND RECORD_TYPE_CD = 'G'
+--AND LINE_2_TX <> 'Not Deliverable AS Addressed'
+--AND OWNER_TYPE_CD <> 'CS'
+ORDER BY [Count Line 2], [Count Line 1] DESC 
+
+

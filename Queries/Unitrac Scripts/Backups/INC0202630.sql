@@ -1,0 +1,8 @@
+UPDATE  UniTrac..WORK_ITEM
+SET     STATUS_CD = 'Complete' ,
+        UPDATE_USER_TX = 'INC0202630',
+		 LOCK_ID = CASE WHEN LOCK_ID >= 255 THEN 1
+                  ELSE LOCK_ID + 1 END
+WHERE   ID IN  ( 26601263)
+        AND WORKFLOW_DEFINITION_ID = 2
+        AND ACTIVE_IN = 'Y'

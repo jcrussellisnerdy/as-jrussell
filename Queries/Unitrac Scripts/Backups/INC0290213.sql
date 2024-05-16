@@ -1,0 +1,37 @@
+USE UniTrac 
+
+CREATE TABLE #tmp (Value_TX NVARCHAR(255), [Y/N] NVARCHAR(255))
+
+INSERT #tmp
+VALUES  ( N'0', N'N'),
+ ( N'1', N'Y')
+
+
+
+SELECT DISTINCT
+        L.NAME_TX ,
+        CODE_TX ,
+        LP.NAME_TX ,
+        BASIC_TYPE_CD ,
+        BO.NAME_TX ,
+        BO.DESCRIPTION_TX ,
+        T.[Y/N]
+FROM    dbo.BUSINESS_OPTION BO
+        JOIN dbo.BUSINESS_OPTION_GROUP BG ON BO.BUSINESS_OPTION_GROUP_ID = BG.ID
+        LEFT JOIN dbo.BUSINESS_RULE_BASE BR ON BR.ID = BO.BUSINESS_RULE_ID
+        LEFT JOIN dbo.LENDER_PRODUCT LP ON LP.ID = BG.RELATE_ID
+                                           AND BG.RELATE_CLASS_NM = 'Allied.UniTrac.LenderProduct'
+        LEFT JOIN dbo.LENDER L ON L.ID = LP.LENDER_ID
+        JOIN #tmp T ON T.Value_TX = DEFAULT_VALUE_TX
+WHERE   BO.Name_tx = 'ForcedPlcyOptUseCertAuth'
+        AND L.STATUS_CD = 'ACTIVE'
+        AND L.PURGE_DT IS NULL
+        AND LP.PURGE_DT IS NULL
+        AND BO.PURGE_DT IS NULL
+        AND BG.PURGE_DT IS NULL
+        AND BR.PURGE_DT IS NULL
+        AND L.TEST_IN = 'N'
+		AND BO.DEFAULT_VALUE_TX = '1'
+ORDER BY L.CODE_TX ASC 
+
+

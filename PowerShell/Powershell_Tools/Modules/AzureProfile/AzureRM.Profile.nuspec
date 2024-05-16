@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>AzureRM.Profile</id>
+    <version>5.8.4</version>
+    <authors>Microsoft Corporation</authors>
+    <owners>Microsoft Corporation</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <licenseUrl>https://aka.ms/azps-license</licenseUrl>
+    <projectUrl>https://github.com/Azure/azure-powershell</projectUrl>
+    <description>Microsoft Azure PowerShell - Profile credential management cmdlets for Azure Resource Manager</description>
+    <releaseNotes>Microsoft Azure PowerShell - Profile service cmdlets.
+This module is outdated and will go out of support on 29 February 2024.
+The Az.Accounts module has all the capabilities of AzureRM.Profile and provides the following improvements:
+* Az.Accounts takes advantage of greater security with token cache encryption and improved authentication.
+* Availability in Azure Cloud Shell and on Linux and macOS.
+We encourage you to start using the Az module as soon as possible to take advantage of these improvements.
+[Update your scripts](https://aka.ms/azpsmigrate) that use AzureRM PowerShell modules to use Az PowerShell modules by 29 February 2024. To automatically update your scripts, follow the [quickstart guide](https://aka.ms/azpsmigratequick).</releaseNotes>
+    <copyright>Microsoft Corporation. All rights reserved.</copyright>
+    <tags>Azure ResourceManager ARM Profile Authentication Environment Subscription PSModule PSIncludes_Cmdlet PSCmdlet_Disable-AzureRmDataCollection PSCmdlet_Disable-AzureRmContextAutosave PSCmdlet_Enable-AzureRmDataCollection PSCmdlet_Enable-AzureRmContextAutosave PSCmdlet_Remove-AzureRmEnvironment PSCmdlet_Get-AzureRmEnvironment PSCmdlet_Set-AzureRmEnvironment PSCmdlet_Add-AzureRmEnvironment PSCmdlet_Get-AzureRmSubscription PSCmdlet_Connect-AzureRmAccount PSCmdlet_Get-AzureRmContext PSCmdlet_Set-AzureRmContext PSCmdlet_Import-AzureRmContext PSCmdlet_Save-AzureRmContext PSCmdlet_Get-AzureRmTenant PSCmdlet_Send-Feedback PSCmdlet_Resolve-AzureRmError PSCmdlet_Select-AzureRmContext PSCmdlet_Rename-AzureRmContext PSCmdlet_Remove-AzureRmContext PSCmdlet_Clear-AzureRmContext PSCmdlet_Disconnect-AzureRmAccount PSCmdlet_Get-AzureRmContextAutosaveSetting PSCmdlet_Set-AzureRmDefault PSCmdlet_Get-AzureRmDefault PSCmdlet_Clear-AzureRmDefault PSCommand_Disable-AzureRmDataCollection PSCommand_Disable-AzureRmContextAutosave PSCommand_Enable-AzureRmDataCollection PSCommand_Enable-AzureRmContextAutosave PSCommand_Remove-AzureRmEnvironment PSCommand_Get-AzureRmEnvironment PSCommand_Set-AzureRmEnvironment PSCommand_Add-AzureRmEnvironment PSCommand_Get-AzureRmSubscription PSCommand_Connect-AzureRmAccount PSCommand_Get-AzureRmContext PSCommand_Set-AzureRmContext PSCommand_Import-AzureRmContext PSCommand_Save-AzureRmContext PSCommand_Get-AzureRmTenant PSCommand_Send-Feedback PSCommand_Resolve-AzureRmError PSCommand_Select-AzureRmContext PSCommand_Rename-AzureRmContext PSCommand_Remove-AzureRmContext PSCommand_Clear-AzureRmContext PSCommand_Disconnect-AzureRmAccount PSCommand_Get-AzureRmContextAutosaveSetting PSCommand_Set-AzureRmDefault PSCommand_Get-AzureRmDefault PSCommand_Clear-AzureRmDefault PSCommand_Add-AzureRmAccount PSCommand_Login-AzAccount PSCommand_Login-AzureRmAccount PSCommand_Remove-AzureRmAccount PSCommand_Logout-AzAccount PSCommand_Logout-AzureRmAccount PSCommand_Select-AzureRmSubscription PSCommand_Resolve-Error PSCommand_Save-AzureRmProfile</tags>
+  </metadata>
+</package>

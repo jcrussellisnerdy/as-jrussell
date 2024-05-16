@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<coreProperties xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.openxmlformats.org/package/2006/metadata/core-properties">
+  <dc:creator>Joel "Jaykul" Bennett</dc:creator>
+  <dc:description>A module providing converters for HTML to XML, various core XML commands and a DSL for generating XML documents.</dc:description>
+  <dc:identifier>Xml</dc:identifier>
+  <version>7.0</version>
+  <keywords>Xml PSModule PSIncludes_Function PSFunction_New-XDocument PSFunction_New-XAttribute PSFunction_New-XElement PSFunction_Remove-XmlNamespace PSFunction_Remove-XmlElement PSFunction_Get-XmlContent PSFunction_Set-XmlContent PSFunction_Convert-Xml PSFunction_Select-Xml PSFunction_Update-Xml PSFunction_Format-Xml PSFunction_ConvertTo-CliXml PSFunction_ConvertFrom-CliXml PSFunction_Import-Html PSFunction_ConvertFrom-Html PSCommand_New-XDocument PSCommand_New-XAttribute PSCommand_New-XElement PSCommand_Remove-XmlNamespace PSCommand_Remove-XmlElement PSCommand_Get-XmlContent PSCommand_Set-XmlContent PSCommand_Convert-Xml PSCommand_Select-Xml PSCommand_Update-Xml PSCommand_Format-Xml PSCommand_ConvertTo-CliXml PSCommand_ConvertFrom-CliXml PSCommand_Import-Html PSCommand_ConvertFrom-Html PSCommand_cvxml PSCommand_epx PSCommand_epxml PSCommand_Export-Xml PSCommand_fx PSCommand_fxml PSCommand_Get-Xml PSCommand_gx PSCommand_gxml PSCommand_Import-Xml PSCommand_ipx PSCommand_ipxml PSCommand_New-Xml PSCommand_New-XmlAttribute PSCommand_New-XmlElement PSCommand_rmns PSCommand_rmxns PSCommand_Set-Xml PSCommand_slx PSCommand_slxml PSCommand_sx PSCommand_sxml PSCommand_ux PSCommand_uxml PSCommand_xa PSCommand_xe PSCommand_xml</keywords>
+  <lastModifiedBy>NuGet, Version=3.4.4.1321, Culture=neutral, PublicKeyToken=31bf3856ad364e35;Microsoft Windows NT 6.2.9200.0;.NET Framework 4.5</lastModifiedBy>
+</coreProperties>

@@ -1,0 +1,208 @@
+--/*Debug/Test:
+--INC0381319-47809::
+--USE PremAcc3
+DECLARE @ESCPREPROC Int
+
+IF OBJECT_ID('tempdb..#ESCPREPROC') IS NOT NULL
+	DROP TABLE #ESCPREPROC
+
+CREATE TABLE #ESCPREPROC(
+	[LOAN_BRANCHCODE_TX] [nvarchar](20) NULL,
+	[LOAN_DIVISIONCODE_TX] [nvarchar](20) NULL,
+	[LOAN_TYPE_TX] [nvarchar](1000) NULL,
+	[REQUIREDCOVERAGE_CODE_TX] [nvarchar](30) NULL,
+	[REQUIREDCOVERAGE_TYPE_TX] [nvarchar](1000) NULL,
+--LOAN
+	[LOAN_NUMBER_TX] [nvarchar](18) NOT NULL,
+	[LOAN_NUMBERSORT_TX] [nvarchar](18) NULL,
+--LENDER
+	[LENDER_CODE_TX] [nvarchar](10) NULL,	
+	[LENDER_NAME_TX] [nvarchar](40) NULL,	
+--LOAN RELATED DATA
+    [MISC1_TX] [nvarchar] (50) NULL,	
+--OWNER
+	[OWNER_LASTNAME_TX] [nvarchar](30) NULL,
+	[OWNER_FIRSTNAME_TX] [nvarchar](30) NULL,
+	[OWNER_MIDDLEINITIAL_TX] [char](1) NULL,
+	[OWNER_NAME_TX] [nvarchar](100) NULL,
+	[OWNER_LINE1_TX] [nvarchar](100) NULL,
+	[OWNER_LINE2_TX] [nvarchar](100) NULL,
+	[OWNER_CITY_TX] [nvarchar](40) NULL,
+	[OWNER_STATE_TX] [nvarchar](30) NULL,
+	[OWNER_ZIP_TX] [nvarchar](30) NULL,
+--PROPERTY
+	[COLLATERAL_LINE1_TX] [nvarchar](100) NULL,
+	[COLLATERAL_LINE2_TX] [nvarchar](100) NULL,
+	[COLLATERAL_CITY_TX] [nvarchar](40) NULL,
+	[COLLATERAL_STATE_TX] [nvarchar](30) NULL,
+	[COLLATERAL_ZIP_TX] [nvarchar](30) NULL,
+--COVERAGE
+	[COVERAGE_STATUS_TX] [nvarchar](1000) NULL,
+	[NOTICE_DT] [datetime2](7) NULL,
+	[NOTICE_TYPE_TX] [nvarchar](1000) NULL,
+	[NOTICE_SEQ_NO] [int] NULL,
+--BORROWER INSURANCE
+	[BORRINSCOMPANY_NAME_TX] [nvarchar](100) NULL,
+	[BORRINSCOMPANY_LINE1_TX] [nvarchar](100) NULL,
+	[BORRINSCOMPANY_LINE2_TX] [nvarchar](100) NULL,
+	[BORRINSCOMPANY_CITY_TX] [nvarchar](40) NULL,
+	[BORRINSCOMPANY_STATE_TX] [nvarchar](30) NULL,
+	[BORRINSCOMPANY_ZIP_TX] [nvarchar](30) NULL,
+	[BORRINSCOMPANY_POLICY_NO] [nvarchar](30) NULL,
+	[BORRINSCOMPANY_EFF_DT] [datetime2](7) NULL,
+	[BORRINSCOMPANY_EXP_DT] [datetime2](7) NULL,
+	[BORRINSCOMPANY_EXPCXL_DT] [datetime2](7) NULL,
+	[POL_CXL_DATE_TX] [nvarchar](50) NULL,
+	[INSAGENCY_NAME_TX] [nvarchar](100) NULL,
+	[INSAGENCY_PHONE_TX] [nvarchar](40) NULL,
+	[OP_CANCEL_REASON_CD] [nvarchar] (50) NULL,
+--ESCROW
+	[ESCROW_STATUS_CD] [nvarchar](4) NULL,
+	[ESCROW_SUB_STATUS_CD] [nvarchar](10) NULL,
+ESCROW_SUB_STATUS_MEANING NVARCHAR(1000),
+	[ESCROW_DUE_DT] [datetime2](7) NULL,
+	[ESCROW_END_DT] [datetime2](7) NULL,
+	[ESCROW_PREMIUM_NO] [decimal](18, 2) NULL,
+	[ESCROW_OTHER_NO] [decimal](18, 2) NULL,
+	[ESCROW_FEE_NO] [decimal](18, 2) NULL,
+	[ESCROW_TOTAL_NO] [decimal](18, 2) NULL,
+	[ESCROW_PRIOR_TOTAL_NO] [decimal](18,2) NULL,
+	[ESCROW_PAYEE_CODE_TX] [nvarchar](20) NULL,
+	[ESCROW_TOTAL_AMT_CHG_DT] [datetime2] (7) NULL,
+	[MORT_OPTION_PRM_VARIANCE][decimal](10,5) NULL,
+	[LEND_PAYEE_CODE_MATCH_NO] [bigint] NULL,
+	[LAST_ESCROW_EVENT_TX][nvarchar] (10) NULL,
+	[LAST_ESCROW_EVENT_DT] [datetime2](7) NULL,
+	[ESCROW_EXCEPTION][nvarchar](100) NULL,
+	[ESCROW_PAID_THROUGH_DT_NO][int] NULL,
+	[ESCROW_PAID_THRU_SORT_TX] [nvarchar] (20) NULL,
+	[ESCROW_TYPE_CD] [nvarchar](20) NULL,
+	[ESCROW_SUB_TYPE_CD] [nvarchar](20) NULL,
+	[ESCROW_EXCESS_IN] [char] (1) NULL,
+--IDs, STATUS
+    [ESCROW_ID] [bigint] NULL,
+	[LOAN_ID] [bigint] NULL,
+	[COLLATERAL_ID] [bigint] NULL,
+	[PROPERTY_ID] [bigint] NULL,
+	[REQUIREDCOVERAGE_ID] [bigint] NULL,
+	[LOAN_STATUSCODE] [nvarchar] (2) NULL,
+	[LOAN_STATUSMEANING_TX] [nvarchar](1000) NULL,
+	[COLLATERAL_STATUSCODE] [nvarchar] (2) NULL,
+	[COLLATERAL_STATUSMEANING_TX] [nvarchar](1000) NULL,
+	[REQUIREDCOVERAGE_STATUSCODE] [nvarchar] (2) NULL,
+	[REQUIREDCOVERAGE_STATUSMEANING_TX] [nvarchar](1000) NULL,
+	[REQUIREDCOVERAGE_SUBSTATUSCODE] [nvarchar] (2) NULL,
+	[REQUIREDCOVERAGE_INSSTATUSCODE] [nvarchar] (2) NULL,
+	[REQUIREDCOVERAGE_INSSTATUSMEANING_TX] [nvarchar](1000) NULL,
+	[REQUIREDCOVERAGE_INSSUBSTATUSCODE] [nvarchar] (2) NULL,
+	[REQUIREDCOVERAGE_INSSUBSTATUSMEANING_TX] [nvarchar](1000) NULL,
+--OTHER
+	[OWNER_POLICY_CANCEL_DT] [datetime2](7) NULL,
+	[OWNER_POLICY_EXP_DT] [datetime2](7) NULL,
+	[OPTION_TRACK_ESCROW_TX] [nvarchar](2) NULL,
+	[OPTION_PREM_DUE_DAYS_TX][int] NULL,
+-- PARAMETERS
+	[REPORT_GROUPBY_TX] [nvarchar](1000) NULL,
+	[REPORT_SORTBY_TX] [nvarchar](1000) NULL,
+	[REPORT_HEADER_TX] [nvarchar](1000) NULL,
+	[REPORT_FOOTER_TX] [nvarchar](1000) NULL,
+
+--OutBoundCall attempts
+--including agent email/faxes
+--within the last 45 days
+	[OBC_ATTEMPTS_45_NO] [int] NULL,
+
+--BackGround color of the row
+	BG_COLOR [nvarchar](20) NULL DEFAULT 'White',
+	BG_COLOR_ORDER [int]  NULL DEFAULT 0,
+-- Columns for Dynamic SQL
+/*
+	OWNER_ADDRESS_ID bigint NULL,
+	PROPERTY_ADDRESS_ID bigint NULL,
+	RCPROPERTY_ID bigint NULL,
+	RCID BIGINT null,
+	LNDID BIGINT NULL,
+	RCEscrowCollectionTimeWindow int null
+*/
+) ON [PRIMARY]
+
+SET NOCOUNT ON;
+
+print '@@SERVERNAME: ' + @@SERVERNAME
+print 'DB_NAME():    ' + DB_NAME()
+
+DECLARE @LinkedServer NVarChar(40)
+	select @LinkedServer=case @@SERVERNAME when 'DS-SQLTEST-14' then N'[UTSTAGE01.AS.LOCAL]' else N'[UNITRAC-PROD1.COLO.AS.LOCAL]' end
+DECLARE @basestmt NVarChar(4000)
+DECLARE @stmt NVarChar(4000)
+	select @basestmt = N'UniTrac..Report_PreEscrow @ReportType=''ESCPREPROC'', @ReportConfig=''ESCPREPROC'''
+	select @stmt = iif(DB_NAME() = 'PremAcc3', @LinkedServer + N'.' + @basestmt, @basestmt)
+
+	select @stmt = @stmt + N',@top='' top 5 '''
+-- @debug=1 causes the error 'Column name or number of supplied values does not match table definition.',
+-- because of the "extra debug" resultsets
+	--select @stmt = @stmt + N',@debug=1'
+
+print '@basestmt:'
+print @basestmt
+print '@stmt:'
+print @stmt
+
+INSERT INTO #ESCPREPROC
+	EXEC @ESCPREPROC = sp_ExecuteSQL @stmt
+
+print '@ESCPREPROC:'
+print @ESCPREPROC
+
+SET NOCOUNT ON;
+--/*
+SELECT --'FinalResult:' as [FinalResult],
+ OwnAddr as [Name/Address]
+,EscPreProc.LOAN_NUMBER_TX as [Loan #]
+,EscPreProc.LOAN_BRANCHCODE_TX as [Loan Branch]
+,PropAddr as [Property Address]
+,EscPreProc.REQUIREDCOVERAGE_TYPE_TX as [Coverage Type]
+,EscPreProc.BORRINSCOMPANY_NAME_TX as [Borrower Insurance Company]
+,EscPreProc.BORRINSCOMPANY_POLICY_NO as [Policy Number]
+,EscPreProc.BORRINSCOMPANY_EXP_DT as [Policy Expiration Date]
+,EscPreProc.ESCROW_END_DT as [Escrow paid thru date]
+,EscPreProc.ESCROW_PAID_THROUGH_DT_NO as [escrow paid thru # of days]
+,EscPreProc.INSAGENCY_NAME_TX + ' - ' + CrLf + EscPreProc.INSAGENCY_PHONE_TX as [Agent Name-Phone]
+,EscPreProc.COVERAGE_STATUS_TX as [Insurance/Notice Status]
+,EscPreProc.OP_CANCEL_REASON_CD as [Cancel Reason]
+,EscPreProc.OBC_ATTEMPTS_45_NO as [#OBC Attempts/last 45 days]
+FROM #ESCPREPROC
+--FROM OPENQUERY([UNITRAC-PROD1.COLO.AS.LOCAL]
+--, 'EXEC @ESCPREPROC = UniTrac..Report_PreEscrow @ReportType=''ESCPREPROC'', @ReportConfig=''ESCPREPROC''')
+--FROM OPENROWSET('SQLNCLI', 'Server=[UNITRAC-PROD1.COLO.AS.LOCAL];Trusted_Connection=yes;'
+--, 'EXEC UniTrac..Report_PreEscrow @ReportType=''ESCPREPROC'', @ReportConfig=''ESCPREPROC''')
+  AS EscPreProc
+CROSS Apply(
+	select
+	 CrLf = Char(13) + Char(10) --Carriage return Line feed
+) as const
+CROSS Apply(
+	select
+	 OwnName = COALESCE(OWNER_NAME_TX, IsNull(OWNER_FIRSTNAME_TX + ' ','') + IsNull(OWNER_MIDDLEINITIAL_TX + ' ','') + IsNull(OWNER_LASTNAME_TX,''))
+) AS OwnName
+CROSS Apply(
+	select OwnAddr = 
+	 OwnName + CrLf
+	+ IsNull([OWNER_LINE1_TX] + CrLf, '')
+	+ IsNull([OWNER_LINE2_TX] + CrLf, '')
+	+ IsNull([OWNER_CITY_TX] + ', ', '')
+	+ IsNull([OWNER_STATE_TX] + '  ', '')
+	+ IsNull([OWNER_ZIP_TX], '')
+) AS OwnAddr
+CROSS Apply(
+	select PropAddr = 
+	 Coalesce(NullIf(''
+	+ IsNull([COLLATERAL_LINE1_TX] + CrLf, '')
+	+ IsNull([COLLATERAL_LINE2_TX] + CrLf, '')
+	+ IsNull([COLLATERAL_CITY_TX] + ', ', '')
+	+ IsNull([COLLATERAL_STATE_TX] + '  ', '')
+	+ IsNull([COLLATERAL_ZIP_TX], '')
+	,''), OwnAddr)
+) AS PropAddr
+--*/
+--*/

@@ -1,0 +1,120 @@
+SELECT * FROM dbo.REPORT_HISTORY
+WHERE UPDATE_USER_TX = 'UBSRPT'
+AND CAST(UPDATE_DT AS DATE) = CAST(GETDATE() AS DATE)
+	ORDER BY UPDATE_DT DESC
+
+
+SELECT * FROM dbo.PROCESS_LOG
+WHERE UPDATE_USER_TX = 'UBSRPT' --AND ID = '31807407'
+AND CAST(UPDATE_DT AS DATE) = CAST(GETDATE() AS DATE)
+	ORDER BY UPDATE_DT DESC
+
+
+
+SELECT * FROM dbo.REPORT_HISTORY
+		WHERE 
+CAST(UPDATE_DT AS DATE) = CAST(GETDATE() AS DATE) AND REPORT_ID = '35'
+		ORDER BY CREATE_DT DESC	
+
+
+
+		--- By Report ID
+SELECT DISTINCT
+	REPORT_ID,
+	REPORT_DOMAIN_CD INTO #tmptable
+FROM REPORT_CONFIG
+
+
+SELECT
+	rh.REPORT_ID,
+	tt.REPORT_DOMAIN_CD,
+	MIN(CREATE_DT) EarliestCreateDate, COUNT(*) PendingCount
+FROM REPORT_HISTORY rh
+JOIN #tmptable tt
+	ON rh.REPORT_ID = tt.REPORT_ID
+WHERE STATUS_CD = 'pend' 
+--AND rh.REPORT_ID NOT IN (48, 54, 35,38,47,71,32,37,46,50,51,52,53,69,58,68,80)
+GROUP BY	rh.REPORT_ID,
+			tt.REPORT_DOMAIN_CD
+			ORDER BY rh.REPORT_ID
+
+			SELECT top 50 ID, 
+rh.REPORT_ID 
+FROM REPORT_HISTORY rh
+WHERE rh.STATUS_CD = 'pend'                           
+Order by  (CASE WHEN REPORT_DATA_XML.value('(//ReportData/Report/SourceReportConfigID/@value)[1]', 'bigint') IS NULL then 0     ELSE 1 END) desc,                                           
+(CASE when report_id in (48) then 1 WHEN report_id in (35,54, 38, 47,71) THEN 2                                                
+when report_id in (32,37,58,50,51,52,53,69,68,80) then 3                                                
+when report_id in (45,44,46,85,75) then 4 else 5 END), ID 
+
+
+
+
+
+
+
+-----Error Status
+SELECT *
+--ID INTO #tmp
+FROM    REPORT_HISTORY
+WHERE   STATUS_CD = 'ERR'
+        AND CAST(UPDATE_DT AS DATE) = CAST(GETDATE() AS DATE)
+        AND GENERATION_SOURCE_CD = 'u'
+        AND MSG_LOG_TX IS NOT NULL
+		ORDER BY MSG_LOG_TX DESC  
+
+
+-----Error Status
+SELECT RH.*
+FROM    REPORT_HISTORY RH
+INNER JOIN dbo.LENDER L ON L.ID = RH.LENDER_ID
+WHERE   RH.STATUS_CD = 'PEND'
+        AND CAST(RH.UPDATE_DT AS DATE) = CAST(GETDATE() AS DATE)
+        AND L.CODE_TX = '3585'
+        
+		ORDER BY MSG_LOG_TX DESC  
+
+		--DROP TABLE #tmp
+
+		            ---------------- Setting Report to Re-Pend/Re-Try -------------------
+UPDATE  [UniTrac].[dbo].[REPORT_HISTORY]
+SET     STATUS_CD = 'PEND' ,
+        RETRY_COUNT_NO = 0 ,
+        MSG_LOG_TX = NULL ,
+        RECORD_COUNT_NO = 0 ,
+        ELAPSED_RUNTIME_NO = 0,
+		UPDATE_DT = GETDATE()
+WHERE   ID IN (SELECT * FROM #tmp) 
+
+
+
+
+
+------Show all Reports
+
+
+-----Find a report and where document lives
+SELECT DM.SERVER_SHARE_TX,DC.RELATIVE_PATH_TX, DC.ORIGINAL_FILE_NAME_TX, 
+DC.RELATE_CLASS_NAME_TX, DM.STORAGE_TYPE_CD, RH.*
+FROM dbo.REPORT_HISTORY RH
+INNER JOIN dbo.DOCUMENT_CONTAINER DC ON RH.DOCUMENT_CONTAINER_ID = DC.ID
+INNER JOIN dbo.DOCUMENT_MANAGEMENT DM ON DM.ID = DC.DOCUMENT_MANAGEMENT_ID
+WHERE RH.ID IN (XXXXXXXX) 
+
+SELECT * FROM dbo.REPORT_HISTORY
+WHERE ID IN (XXXXXXXX) 
+
+
+
+
+
+------Group of counts by user
+--SELECT  UPDATE_USER_TX [User], COUNT(*) [Counts]
+--FROM    REPORT_HISTORY
+--WHERE   STATUS_CD = 'COMP'
+--		AND CAST(UPDATE_DT AS DATE) = CAST(GETDATE()-1 AS DATE)
+--        AND GENERATION_SOURCE_CD = 'u'
+--        AND MSG_LOG_TX IS NOT NULL
+--GROUP BY UPDATE_USER_TX
+--ORDER BY COUNT(*) DESC
+

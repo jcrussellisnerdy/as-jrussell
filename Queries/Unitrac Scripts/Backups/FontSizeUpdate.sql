@@ -1,0 +1,25 @@
+USE UNITRAC
+GO
+
+BEGIN TRY
+	BEGIN TRANSACTION
+
+	update cbd
+	set STYLE_NAME_TX = 'ArialNarrow9pt'
+	from CONTENT_BLOCK_DEFINITION cbd
+	where cbd.NAME_TX = 'FirstPageFooter'
+
+	COMMIT TRANSACTION
+END TRY
+BEGIN CATCH
+	   ROLLBACK TRANSACTION
+	   RAISERROR ('ROLLBACK for FirstPageFooter Font Size Update. NO RECORDS Updated', 16, 1) WITH LOG
+	   SELECT
+		ERROR_NUMBER() AS ErrorNumber
+		,ERROR_SEVERITY() AS ErrorSeverity
+		,ERROR_STATE() AS ErrorState
+		,ERROR_PROCEDURE() AS ErrorProcedure
+		,ERROR_LINE() AS ErrorLine
+		,ERROR_MESSAGE() AS ErrorMessage;
+END CATCH
+GO

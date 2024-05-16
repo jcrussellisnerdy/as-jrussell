@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>SqlServer</id>
+    <version>21.1.18121</version>
+    <authors>Microsoft Corporation</authors>
+    <owners>Microsoft Corporation</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <licenseUrl>https://docs.microsoft.com/sql/relational-databases/scripting/sql-server-powershell-license-terms</licenseUrl>
+    <iconUrl>https://go.microsoft.com/fwlink/?linkid=842808</iconUrl>
+    <description>This module allows SQL Server developers, administrators and business intelligence professionals to automate database development and server administration, as well as both multidimensional and tabular cube processing.
+
+For Release Notes, expand the Package Details section on this page.
+
+For automation with SSRS &amp; Power BI Report Server, use the ReportingServicesTools module available at https://www.powershellgallery.com/packages/ReportingServicesTools</description>
+    <releaseNotes>## 21.1.18121
+Fixes:
+* Fixed in issue in Set-SqlColumnEncryption where the cmdlet was failing
+  to encrypt columns in a table that was not within the default schema.
+* Minor fixes to Invoke-Sqlcmd for PowerShell 6.x (better parity with PowerShell 5.x)
+* Fixed Null Reference Exception in Invoke-Sqlcmd when the script had multiple
+  blanks after the last GO
+
+Note: this version of the module will be the last on to support PowerShell 6.1. After that,
+      PowerShell 6.2 will be required.
+
+## 21.1.18102
+Updates:
+* Added support for Vulnerability Assessment cmdlets on SQL Data Warehouse databases.
+* Added support for "Registered Servers" on .Net Core in SQL provider (SQLSERVER:\SQLRegistration)
+* Initial support for Invoke-Sqlcmd on .Net Core (-DisableCommand not supported yet). Not all sqlcmd command supported
+  on PS5 are available yet. Requires PowerShell 6.2+.
+* Ported Restore-SqlDatabase cmdlet to .Net Core.
+* Added new parameter -AutoRelocateFile to Restore-SqlDatabase cmdlet. When this parameter is used,
+  all the logical files in the backup (for whch there is no explicit relocation requested via the -RelocateFile)
+  are going to be relocated using the server defaults paths.
+* Updated the display format of SMO Server objects (e.g. what you see when invoking
+  Get-SqlInstance) to present both the HostPlatform and the HostDistribution properties.
+
+## 21.1.18080
+Fixes:
+* Fixed "format" of the "Machine" object emitted when doing "dir SQLSERVER:\SQL"
+
+Updates:
+* Updated "format" for SSAS database objects to display the
+  "Estimated Size" and "Last Processed" properties.
+* Added support for Vulnerability Assessment cmdlets for SQL Database Managed Instance.
+* Added Data Classification cmdlets:
+    Get-SqlSensitivityClassification
+    Get-SqlSensitivityRecommendations
+    Remove-SqlSensitivityClassification
+    Set-SqlSensitivityClassification
+
+## 21.1.18068
+Fixes:
+* Fixed Invoke-SqlCmd cmdlet to report useful information like Msg, Level, State,
+  Procedure, and Line when SQL Exceptions happens.
+* Fixed some issues with Invoke-SqlVulnerabilityAssessmentScan
+
+Updates:
+* Upgraded SMO dependencies to version 15.100.0.0, hence the minor version change
+  to 21.1.
+* Included Microsoft.SqlServer.ConnectionInfoExtended.dll as part of the module.
+* Updated Always Encrypted cmdlets to support enclave computations.
+* Updated offline documentation for some cmdlets.
+* Updated the display format of SMO Server objects (e.g. what you see when invoking
+  Get-SqlInstance) to present both the ProductLevel and the ProductUpdateLevel properties.
+  Note: the ProductUpdateLevel property on the SMO object is aliased to "UpdateLevel".
+
+## 21.0.17279
+Fixes:
+* Fixed issue in Invoke-ProcessASdatabase which was throwing an exception when
+  processing large tables.
+
+Updates:
+* Name parameter on Get-SqlDatabase has been aliased as Database.
+* Added -ErrorLogSizeKb parameter to Set-SqlErrorLog cmdlet.
+
+## 21.0.17262
+Fixes:
+* Added StatementTimeout parameter in Backup-SqlDatabase cmdlet with default
+  as 0 (no timeout). This fixes the case where Backup operations running longer
+  than 10 mins used to timeout.
+* Fixed issue with Always Encrypted cmdlets, where NewtonSoft.Json assembly did
+  not load.
+* Fixed the issue where Instance name was showing up as empty string on directly
+  creating a SMO.Server object after SqlServer module is imported.
+
+Updates:
+* Updated Get-SqlInstance cmdlet. This cmdlet now utilizes SMO and supports
+  all server instances exposed via SMO.
+  This cmdlet is now supported on PowerShell 6 as well
+* Important: Get-SqlInstance no longer uses CloudAdapter for Sql IaaS instances
+  as CloudAdapter stopped shipping from SQL 2016 onwards.
+  Users that still use this cmdlet for Sql 2014 IaaS instances
+  should revert to an older version of the SqlServer module.
+* Added the following Vulnerability Assessment cmdlets:
+    Export-SqlVulnerabilityAssessmentBaselineSet
+    Export-SqlVulnerabilityAssessmentScan
+    Import-SqlVulnerabilityAssessmentBaselineSet
+    Invoke-SqlVulnerabilityAssessmentScan
+    New-SqlVulnerabilityAssessmentBaseline
+    New-SqlVulnerabilityAssessmentBaselineSet
+
+## 21.0.17240
+Fixes:
+* Fixed issue where PowerShell was not able to find cmdlets in the module
+  unless the user did an explicit ''Import-Module SQLServer''
+
+Updates:
+* Support using Service Principal Name to connect Azure Analysis Services
+* Added Get-SqlBackupHistory cmdlet
+* Ported PS Provider to .NET Core for PowerShell 6 support
+* Ported a subset of cmdlets to .NET Core for PowerShell 6 support
+* Powershell 6 support on macOS and Linux in Preview.
+* To use SqlServer provider on macOS and Linux mount it using a new PSDrive.
+  Examples in documentation.
+* Removed restriction of 64-bit OS for this module. Note: Invoke-Sqlcmd
+  cmdlet is the only cmdlet not supported on 32-bit OS.
+
+## 21.0.17224
+Fixes:
+* Added logic to prevent the module from being installed on PowerShell Core
+* Fixed SqlServer Provider for SSIS
+
+Updates:
+* Added support for PSCredential to Invoke-Sqlcmd
+
+## 21.0.17199
+Fixes:
+* Fixed issue in New-SqlAvailabilityGroup cmdlet when targeting SQL Server 2014
+
+Updates:
+* Updated SQL Server provider (SQLRegistration) to display AS/IS/RS groups
+* Added -LoadBalancedReadOnlyRoutingList parameter to Set-SqlAvailabilityReplica
+  and New-SqlAvailabilityReplica
+
+## 21.0.17178
+Updates:
+* Updated AnalysisService Cmdlet to use cached login token from Login-AzureAsAccount for Azure Analysis Services.
+* Update Backup-ASDatabase and Restore-ASDatabase to support Azure Analysis Services.
+
+## 21.0.17152
+Bug Fixes:
+* Fixed issue where Invoke-SqlCmd was throwing an error due to
+  missing MSVCR120.dll (now included with the module).
+* Fixed issue where 'Deploy to Azure Automation' was not working.
+* Fixed issue where the SQL Provider was unable to enumerate some containers
+  (e.g. Databases) when the module was loaded by passing Import-Module any
+  of the -Version/-MinimumVersion/-MaximumVersion parameters.
+* Fixed issue in Set-SqlColumnEncryption where the -LogFileDirectory option
+  was not dumping DacFx logs.
+* Updated Tags and Description in the manifest file.
+* Updated link to License.
+
+Updates:
+* Added new parameter '-CertificateThumbprint' to Add-SqlAzureAuthenticationContext
+  cmdlet.
+
+## 21.0.17099
+First version of SQL PowerShell Module on PSGallery.</releaseNotes>
+    <copyright>Copyright (c) 2019 Microsoft. All rights reserved.</copyright>
+    <tags>SQL SqlServer SQLPS Databases SqlAgent Jobs SSAS AnalysisServices Tabular Cubes SSIS ExtendedEvents xEvents VulnerabilityAssessment DataClassification PSModule PSIncludes_Cmdlet PSCmdlet_Add-RoleMember PSCmdlet_Add-SqlAvailabilityDatabase PSCmdlet_Add-SqlAvailabilityGroupListenerStaticIp PSCmdlet_Add-SqlAzureAuthenticationContext PSCmdlet_Add-SqlColumnEncryptionKeyValue PSCmdlet_Add-SqlFirewallRule PSCmdlet_Add-SqlLogin PSCmdlet_Backup-ASDatabase PSCmdlet_Backup-SqlDatabase PSCmdlet_Complete-SqlColumnMasterKeyRotation PSCmdlet_ConvertFrom-EncodedSqlName PSCmdlet_ConvertTo-EncodedSqlName PSCmdlet_Convert-UrnToPath PSCmdlet_Disable-SqlAlwaysOn PSCmdlet_Enable-SqlAlwaysOn PSCmdlet_Export-SqlVulnerabilityAssessmentBaselineSet PSCmdlet_Export-SqlVulnerabilityAssessmentScan PSCmdlet_Get-SqlAgent PSCmdlet_Get-SqlAgentJob PSCmdlet_Get-SqlAgentJobHistory PSCmdlet_Get-SqlAgentJobSchedule PSCmdlet_Get-SqlAgentJobStep PSCmdlet_Get-SqlAgentSchedule PSCmdlet_Get-SqlBackupHistory PSCmdlet_Get-SqlColumnEncryptionKey PSCmdlet_Get-SqlColumnMasterKey PSCmdlet_Get-SqlCredential PSCmdlet_Get-SqlDatabase PSCmdlet_Get-SqlErrorLog PSCmdlet_Get-SqlInstance PSCmdlet_Get-SqlLogin PSCmdlet_Get-SqlSensitivityClassification PSCmdlet_Get-SqlSensitivityRecommendations PSCmdlet_Get-SqlSmartAdmin PSCmdlet_Grant-SqlAvailabilityGroupCreateAnyDatabase PSCmdlet_Import-SqlVulnerabilityAssessmentBaselineSet PSCmdlet_Invoke-ASCmd PSCmdlet_Invoke-PolicyEvaluation PSCmdlet_Invoke-ProcessASDatabase PSCmdlet_Invoke-ProcessCube PSCmdlet_Invoke-ProcessDimension PSCmdlet_Invoke-ProcessPartition PSCmdlet_Invoke-ProcessTable PSCmdlet_Invoke-Sqlcmd PSCmdlet_Invoke-SqlColumnMasterKeyRotation PSCmdlet_Invoke-SqlVulnerabilityAssessmentScan PSCmdlet_Join-SqlAvailabilityGroup PSCmdlet_Merge-Partition PSCmdlet_New-RestoreFolder PSCmdlet_New-RestoreLocation PSCmdlet_New-SqlAvailabilityGroup PSCmdlet_New-SqlAvailabilityGroupListener PSCmdlet_New-SqlAvailabilityReplica PSCmdlet_New-SqlAzureKeyVaultColumnMasterKeySettings PSCmdlet_New-SqlBackupEncryptionOption PSCmdlet_New-SqlCertificateStoreColumnMasterKeySettings PSCmdlet_New-SqlCngColumnMasterKeySettings PSCmdlet_New-SqlColumnEncryptionKey PSCmdlet_New-SqlColumnEncryptionKeyEncryptedValue PSCmdlet_New-SqlColumnEncryptionSettings PSCmdlet_New-SqlColumnMasterKey PSCmdlet_New-SqlColumnMasterKeySettings PSCmdlet_New-SqlCredential PSCmdlet_New-SqlCspColumnMasterKeySettings PSCmdlet_New-SqlHADREndpoint PSCmdlet_New-SqlVulnerabilityAssessmentBaseline PSCmdlet_New-SqlVulnerabilityAssessmentBaselineSet PSCmdlet_Read-SqlTableData PSCmdlet_Read-SqlViewData PSCmdlet_Remove-RoleMember PSCmdlet_Remove-SqlAvailabilityDatabase PSCmdlet_Remove-SqlAvailabilityGroup PSCmdlet_Remove-SqlAvailabilityReplica PSCmdlet_Remove-SqlColumnEncryptionKey PSCmdlet_Remove-SqlColumnEncryptionKeyValue PSCmdlet_Remove-SqlColumnMasterKey PSCmdlet_Remove-SqlCredential PSCmdlet_Remove-SqlFirewallRule PSCmdlet_Remove-SqlLogin PSCmdlet_Remove-SqlSensitivityClassification PSCmdlet_Restore-ASDatabase PSCmdlet_Restore-SqlDatabase PSCmdlet_Resume-SqlAvailabilityDatabase PSCmdlet_Revoke-SqlAvailabilityGroupCreateAnyDatabase PSCmdlet_Save-SqlMigrationReport PSCmdlet_Set-SqlAuthenticationMode PSCmdlet_Set-SqlAvailabilityGroup PSCmdlet_Set-SqlAvailabilityGroupListener PSCmdlet_Set-SqlAvailabilityReplica PSCmdlet_Set-SqlAvailabilityReplicaRoleToSecondary PSCmdlet_Set-SqlColumnEncryption PSCmdlet_Set-SqlCredential PSCmdlet_Set-SqlErrorLog PSCmdlet_Set-SqlHADREndpoint PSCmdlet_Set-SqlNetworkConfiguration PSCmdlet_Set-SqlSensitivityClassification PSCmdlet_Set-SqlSmartAdmin PSCmdlet_Start-SqlInstance PSCmdlet_Stop-SqlInstance PSCmdlet_Suspend-SqlAvailabilityDatabase PSCmdlet_Switch-SqlAvailabilityGroup PSCmdlet_Test-SqlAvailabilityGroup PSCmdlet_Test-SqlAvailabilityReplica PSCmdlet_Test-SqlDatabaseReplicaState PSCmdlet_Test-SqlSmartAdmin PSCmdlet_Write-SqlTableData PSIncludes_Function PSFunction_SQLSERVER: PSCommand_Add-RoleMember PSCommand_Add-SqlAvailabilityDatabase PSCommand_Add-SqlAvailabilityGroupListenerStaticIp PSCommand_Add-SqlAzureAuthenticationContext PSCommand_Add-SqlColumnEncryptionKeyValue PSCommand_Add-SqlFirewallRule PSCommand_Add-SqlLogin PSCommand_Backup-ASDatabase PSCommand_Backup-SqlDatabase PSCommand_Complete-SqlColumnMasterKeyRotation PSCommand_ConvertFrom-EncodedSqlName PSCommand_ConvertTo-EncodedSqlName PSCommand_Convert-UrnToPath PSCommand_Disable-SqlAlwaysOn PSCommand_Enable-SqlAlwaysOn PSCommand_Export-SqlVulnerabilityAssessmentBaselineSet PSCommand_Export-SqlVulnerabilityAssessmentScan PSCommand_Get-SqlAgent PSCommand_Get-SqlAgentJob PSCommand_Get-SqlAgentJobHistory PSCommand_Get-SqlAgentJobSchedule PSCommand_Get-SqlAgentJobStep PSCommand_Get-SqlAgentSchedule PSCommand_Get-SqlBackupHistory PSCommand_Get-SqlColumnEncryptionKey PSCommand_Get-SqlColumnMasterKey PSCommand_Get-SqlCredential PSCommand_Get-SqlDatabase PSCommand_Get-SqlErrorLog PSCommand_Get-SqlInstance PSCommand_Get-SqlLogin PSCommand_Get-SqlSensitivityClassification PSCommand_Get-SqlSensitivityRecommendations PSCommand_Get-SqlSmartAdmin PSCommand_Grant-SqlAvailabilityGroupCreateAnyDatabase PSCommand_Import-SqlVulnerabilityAssessmentBaselineSet PSCommand_Invoke-ASCmd PSCommand_Invoke-PolicyEvaluation PSCommand_Invoke-ProcessASDatabase PSCommand_Invoke-ProcessCube PSCommand_Invoke-ProcessDimension PSCommand_Invoke-ProcessPartition PSCommand_Invoke-ProcessTable PSCommand_Invoke-Sqlcmd PSCommand_Invoke-SqlColumnMasterKeyRotation PSCommand_Invoke-SqlVulnerabilityAssessmentScan PSCommand_Join-SqlAvailabilityGroup PSCommand_Merge-Partition PSCommand_New-RestoreFolder PSCommand_New-RestoreLocation PSCommand_New-SqlAvailabilityGroup PSCommand_New-SqlAvailabilityGroupListener PSCommand_New-SqlAvailabilityReplica PSCommand_New-SqlAzureKeyVaultColumnMasterKeySettings PSCommand_New-SqlBackupEncryptionOption PSCommand_New-SqlCertificateStoreColumnMasterKeySettings PSCommand_New-SqlCngColumnMasterKeySettings PSCommand_New-SqlColumnEncryptionKey PSCommand_New-SqlColumnEncryptionKeyEncryptedValue PSCommand_New-SqlColumnEncryptionSettings PSCommand_New-SqlColumnMasterKey PSCommand_New-SqlColumnMasterKeySettings PSCommand_New-SqlCredential PSCommand_New-SqlCspColumnMasterKeySettings PSCommand_New-SqlHADREndpoint PSCommand_New-SqlVulnerabilityAssessmentBaseline PSCommand_New-SqlVulnerabilityAssessmentBaselineSet PSCommand_Read-SqlTableData PSCommand_Read-SqlViewData PSCommand_Remove-RoleMember PSCommand_Remove-SqlAvailabilityDatabase PSCommand_Remove-SqlAvailabilityGroup PSCommand_Remove-SqlAvailabilityReplica PSCommand_Remove-SqlColumnEncryptionKey PSCommand_Remove-SqlColumnEncryptionKeyValue PSCommand_Remove-SqlColumnMasterKey PSCommand_Remove-SqlCredential PSCommand_Remove-SqlFirewallRule PSCommand_Remove-SqlLogin PSCommand_Remove-SqlSensitivityClassification PSCommand_Restore-ASDatabase PSCommand_Restore-SqlDatabase PSCommand_Resume-SqlAvailabilityDatabase PSCommand_Revoke-SqlAvailabilityGroupCreateAnyDatabase PSCommand_Save-SqlMigrationReport PSCommand_Set-SqlAuthenticationMode PSCommand_Set-SqlAvailabilityGroup PSCommand_Set-SqlAvailabilityGroupListener PSCommand_Set-SqlAvailabilityReplica PSCommand_Set-SqlAvailabilityReplicaRoleToSecondary PSCommand_Set-SqlColumnEncryption PSCommand_Set-SqlCredential PSCommand_Set-SqlErrorLog PSCommand_Set-SqlHADREndpoint PSCommand_Set-SqlNetworkConfiguration PSCommand_Set-SqlSensitivityClassification PSCommand_Set-SqlSmartAdmin PSCommand_Start-SqlInstance PSCommand_Stop-SqlInstance PSCommand_Suspend-SqlAvailabilityDatabase PSCommand_Switch-SqlAvailabilityGroup PSCommand_Test-SqlAvailabilityGroup PSCommand_Test-SqlAvailabilityReplica PSCommand_Test-SqlDatabaseReplicaState PSCommand_Test-SqlSmartAdmin PSCommand_Write-SqlTableData PSCommand_SQLSERVER: PSCommand_Decode-SqlName PSCommand_Encode-SqlName</tags>
+  </metadata>
+</package>

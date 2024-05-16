@@ -1,0 +1,20 @@
+SELECT  WI.CONTENT_XML.value('(/Content/Lender/Code)[1]', 'varchar (50)') [Lender Code],L.NAME_TX,
+        *
+FROM    dbo.WORK_ITEM WI
+INNER JOIN dbo.LENDER L ON L.ID = CONTENT_XML.value('(/Content/Lender/Code)[1]', 'varchar (50)')
+WHERE   WORKFLOW_DEFINITION_ID = '8'
+        AND WI.STATUS_CD = 'WITHDRAWN'
+        AND (WI.UPDATE_USER_TX = 'INC0201670'
+        OR WI.UPDATE_USER_TX = 'INC0201619'
+        OR WI.UPDATE_USER_TX = 'INC0201641')
+		ORDER BY WI.UPDATE_USER_TX 
+
+
+
+		SELECT * FROM loan 
+		WHERE UPDATE_USER_TX = 'INC0201670'
+        OR UPDATE_USER_TX = 'INC0201619'
+        OR UPDATE_USER_TX = 'INC0201641'
+		ORDER BY UPDATE_USER_TX 
+
+

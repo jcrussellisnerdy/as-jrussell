@@ -1,0 +1,25 @@
+USE UniTrac 
+
+SELECT DISTINCT
+        CODE_TX [Lender Code],
+        L.NAME_TX [Lender Name],
+        A.NAME_TX [Agency],
+        BASIC_TYPE_CD [Basic Type],
+        BASIC_SUB_TYPE_CD [Sub Type] ,
+        LP.NAME_TX [Branch Type] ,
+        LP.START_DT ,
+        LP.END_DT ,
+        LP.DESCRIPTION_TX [Description] INTO jcs..INC0293140
+FROM    dbo.BUSINESS_OPTION BO
+        JOIN dbo.BUSINESS_OPTION_GROUP BG ON BO.BUSINESS_OPTION_GROUP_ID = BG.ID
+        LEFT JOIN dbo.BUSINESS_RULE_BASE BR ON BR.ID = BO.BUSINESS_RULE_ID
+        LEFT JOIN dbo.LENDER_PRODUCT LP ON LP.ID = BG.RELATE_ID
+                                           AND BG.RELATE_CLASS_NM = 'Allied.UniTrac.LenderProduct'
+        LEFT JOIN dbo.LENDER L ON L.ID = LP.LENDER_ID
+        LEFT JOIN dbo.AGENCY A ON A.ID = L.AGENCY_ID
+WHERE   A.ID = '4' AND L.STATUS_CD = 'ACTIVE' AND L.PURGE_DT IS NULL AND L.TEST_IN = 'N'
+        AND LP.NAME_TX LIKE '%FLOOD%' AND LP.BASIC_TYPE_CD = 'FLTRK' AND LP.PURGE_DT IS NULL
+		AND BASIC_SUB_TYPE_CD  = 'WNTC' AND bo.PURGE_DT IS NULL AND br.PURGE_DT IS NULL
+		AND bg.PURGE_DT IS NULL
+
+

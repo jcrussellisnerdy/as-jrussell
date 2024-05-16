@@ -1,0 +1,272 @@
+---To see current messages that are being worked from the Inbound for USD
+SELECT TP.EXTERNAL_ID_TX ,
+        *
+FROM    TRADING_PARTNER_LOG TPL ( NOLOCK )
+        JOIN TRADING_PARTNER TP ON TP.ID = TPL.TRADING_PARTNER_ID
+WHERE   --CAST(TPL.CREATE_DT AS date) = CAST(GETDATE()  AS date) 
+--AND TPL.PROCESS_CD = 'DW' 
+        TPL.UPDATE_USER_TX = 'MsgSrvrEXTUSD' 
+--AND TPL.UPDATE_USER_TX = 'MsgSrvradhoc' 
+--AND TPL.UPDATE_USER_TX = 'MsgSrvrEXTHUNT'
+--AND TPL.UPDATE_USER_TX = 'MsgSrvrEXTPENF' 
+--AND TPL.UPDATE_USER_TX = 'DWSrvrOUT' 
+--AND (TPL.LOG_MESSAGE = 'Started Processing Message') 
+--AND TPL.LOG_TYPE_CD = 'ERROR' 
+--AND tp.EXTERNAL_ID_TX = '1833'
+        AND MESSAGE_ID IN (
+        SELECT  M.ID
+        FROM    message M ( NOLOCK )
+                JOIN TRADING_PARTNER TP ( NOLOCK ) ON M.RECEIVED_FROM_TRADING_PARTNER_ID = TP.ID
+                JOIN DELIVERY_INFO DI ON M.DELIVERY_INFO_ID = DI.id
+                JOIN RELATED_DATA RD ON DI.id = RD.RELATE_ID
+                JOIN RELATED_DATA_DEF RDD ON RDD.id = RD.DEF_ID
+                LEFT JOIN WORK_ITEM WI ON WI.RELATE_ID = M.ID
+                                          AND WI.WORKFLOW_DEFINITION_ID = 1
+        WHERE   M.PROCESSED_IN = 'N' 
+--AND M.RECEIVED_STATUS_CD = 'ADHOC' 
+                AND M.RECEIVED_STATUS_CD = 'RCVD'
+                AND M.MESSAGE_DIRECTION_CD = 'I'
+                AND TYPE_CD = 'LFP_TP'
+                AND RDD.NAME_TX = 'UniTracDeliveryType'
+                AND TP.EXTERNAL_ID_TX NOT IN ( '2771', '3400', '1771', '1574',
+                                               '5350' )
+                AND m.DELIVER_TO_TRADING_PARTNER_ID = '2046'
+                AND rd.VALUE_TX = 'IMPORT'
+                AND M.PURGE_DT IS NULL --AND TP.EXTERNAL_ID_TX IN ('1001') 
+)
+ORDER BY MESSAGE_ID,TPL.CREATE_DT ASC
+
+---To see current messages that are being worked from the Inbound for ADHOC
+SELECT TP.EXTERNAL_ID_TX ,
+        *
+FROM    TRADING_PARTNER_LOG TPL ( NOLOCK )
+        JOIN TRADING_PARTNER TP ON TP.ID = TPL.TRADING_PARTNER_ID
+WHERE   --CAST(TPL.CREATE_DT AS date) = CAST(GETDATE()  AS date) 
+--AND TPL.PROCESS_CD = 'DW' 
+    --    TPL.UPDATE_USER_TX = 'MsgSrvrEXTUSD' 
+TPL.UPDATE_USER_TX = 'MsgSrvradhoc' 
+--AND TPL.UPDATE_USER_TX = 'MsgSrvrEXTHUNT'
+--AND TPL.UPDATE_USER_TX = 'MsgSrvrEXTPENF' 
+--AND TPL.UPDATE_USER_TX = 'DWSrvrOUT' 
+--AND (TPL.LOG_MESSAGE = 'Started Processing Message') 
+--AND TPL.LOG_TYPE_CD = 'ERROR' 
+--AND tp.EXTERNAL_ID_TX = '1833'
+        AND MESSAGE_ID IN (
+        SELECT  M.ID
+        FROM    message M ( NOLOCK )
+                JOIN TRADING_PARTNER TP ( NOLOCK ) ON M.RECEIVED_FROM_TRADING_PARTNER_ID = TP.ID
+                JOIN DELIVERY_INFO DI ON M.DELIVERY_INFO_ID = DI.id
+                JOIN RELATED_DATA RD ON DI.id = RD.RELATE_ID
+                JOIN RELATED_DATA_DEF RDD ON RDD.id = RD.DEF_ID
+                LEFT JOIN WORK_ITEM WI ON WI.RELATE_ID = M.ID
+                                          AND WI.WORKFLOW_DEFINITION_ID = 1
+        WHERE   M.PROCESSED_IN = 'N' 
+AND M.RECEIVED_STATUS_CD = 'ADHOC' 
+              --  AND M.RECEIVED_STATUS_CD = 'RCVD'
+                AND M.MESSAGE_DIRECTION_CD = 'I'
+                AND TYPE_CD = 'LFP_TP'
+                AND RDD.NAME_TX = 'UniTracDeliveryType'
+                AND TP.EXTERNAL_ID_TX NOT IN ( '2771', '3400', '1771', '1574',
+                                               '5350' )
+                AND m.DELIVER_TO_TRADING_PARTNER_ID = '2046'
+                AND rd.VALUE_TX = 'IMPORT'
+                AND M.PURGE_DT IS NULL --AND TP.EXTERNAL_ID_TX IN ('1001') 
+)
+ORDER BY MESSAGE_ID,TPL.CREATE_DT ASC
+
+
+
+-- Pending USD
+SELECT  'INBOUND' AS 'DIRECTION' ,
+        TP.EXTERNAL_ID_TX ,
+        TP.NAME_TX ,
+        WI.ID AS WI_ID ,
+        M.*
+FROM    message M ( NOLOCK )
+        JOIN TRADING_PARTNER TP ( NOLOCK ) ON M.RECEIVED_FROM_TRADING_PARTNER_ID = TP.ID
+        JOIN DELIVERY_INFO DI ON M.DELIVERY_INFO_ID = DI.id
+        JOIN RELATED_DATA RD ON DI.id = RD.RELATE_ID
+        JOIN RELATED_DATA_DEF RDD ON RDD.id = RD.DEF_ID
+        LEFT JOIN WORK_ITEM WI ON WI.RELATE_ID = M.ID
+                                  AND WI.WORKFLOW_DEFINITION_ID = 1
+WHERE   M.PROCESSED_IN = 'N' 
+--AND M.RECEIVED_STATUS_CD = 'ADHOC' 
+        AND M.RECEIVED_STATUS_CD = 'RCVD'
+        AND M.MESSAGE_DIRECTION_CD = 'I'
+        AND TYPE_CD = 'LFP_TP'
+        AND RDD.NAME_TX = 'UniTracDeliveryType'
+        AND TP.EXTERNAL_ID_TX NOT IN ( '2771', '3400', '1771', '1574', '5350' )
+        AND m.DELIVER_TO_TRADING_PARTNER_ID = '2046'
+        AND rd.VALUE_TX = 'IMPORT'
+        AND M.PURGE_DT IS NULL
+		--AND EXTERNAL_ID_TX = '7515'
+--AND TP.EXTERNAL_ID_TX IN ('1001')
+--AND WI.ID IS NOT NULL
+ORDER BY  M.UPDATE_DT, M.ID ,
+        EXTERNAL_ID_TX; 
+		--15
+
+-- Pending ADHOC
+
+
+SELECT  'INBOUND' AS 'DIRECTION' ,
+        TP.EXTERNAL_ID_TX ,
+        TP.NAME_TX ,
+        WI.ID AS WI_ID ,
+        M.*
+FROM    message M ( NOLOCK )
+        JOIN TRADING_PARTNER TP ( NOLOCK ) ON M.RECEIVED_FROM_TRADING_PARTNER_ID = TP.ID
+        JOIN DELIVERY_INFO DI ON M.DELIVERY_INFO_ID = DI.id
+        JOIN RELATED_DATA RD ON DI.id = RD.RELATE_ID
+        JOIN RELATED_DATA_DEF RDD ON RDD.id = RD.DEF_ID
+        LEFT JOIN WORK_ITEM WI ON WI.RELATE_ID = M.ID
+                                  AND WI.WORKFLOW_DEFINITION_ID = 1
+WHERE   M.PROCESSED_IN = 'N'
+        AND M.RECEIVED_STATUS_CD = 'ADHOC' 
+--AND M.RECEIVED_STATUS_CD = 'RCVD' 
+        AND M.MESSAGE_DIRECTION_CD = 'I'
+        AND TYPE_CD = 'LFP_TP'
+        AND RDD.NAME_TX = 'UniTracDeliveryType'
+        AND TP.EXTERNAL_ID_TX NOT IN ( '2771', '3400', '1771', '1574', '5350' )
+        AND m.DELIVER_TO_TRADING_PARTNER_ID = '2046'
+        AND rd.VALUE_TX = 'IMPORT'
+        AND M.PURGE_DT IS NULL
+		--AND WI.ID IS NOT NULL
+--AND TP.EXTERNAL_ID_TX IN ('1001')
+ORDER BY  M.UPDATE_DT, M.ID ,
+        EXTERNAL_ID_TX; 
+		--14
+
+
+-- Pending USD that are have NOT been started by process
+SELECT  'INBOUND' AS 'DIRECTION' ,
+        TP.EXTERNAL_ID_TX ,
+        TP.NAME_TX ,
+        WI.ID AS WI_ID ,
+        M.*
+FROM    message M ( NOLOCK )
+        JOIN TRADING_PARTNER TP ( NOLOCK ) ON M.RECEIVED_FROM_TRADING_PARTNER_ID = TP.ID
+        JOIN DELIVERY_INFO DI ON M.DELIVERY_INFO_ID = DI.id
+        JOIN RELATED_DATA RD ON DI.id = RD.RELATE_ID
+        JOIN RELATED_DATA_DEF RDD ON RDD.id = RD.DEF_ID
+        LEFT JOIN WORK_ITEM WI ON WI.RELATE_ID = M.ID
+                                  AND WI.WORKFLOW_DEFINITION_ID = 1
+WHERE   M.PROCESSED_IN = 'N' 
+--AND M.RECEIVED_STATUS_CD = 'ADHOC' 
+        AND M.RECEIVED_STATUS_CD = 'RCVD'
+        AND M.MESSAGE_DIRECTION_CD = 'I'
+        AND TYPE_CD = 'LFP_TP'
+        AND RDD.NAME_TX = 'UniTracDeliveryType'
+        AND TP.EXTERNAL_ID_TX NOT IN ( '2771', '3400', '1771', '1574', '5350' )
+        AND m.DELIVER_TO_TRADING_PARTNER_ID = '2046'
+        AND rd.VALUE_TX = 'IMPORT'
+        AND M.PURGE_DT IS NULL
+--AND TP.EXTERNAL_ID_TX IN ('1001')
+AND WI.ID IS  NULL
+ORDER BY M.ID ,
+        EXTERNAL_ID_TX
+
+
+---Pending USD that are have been started by process
+SELECT  'INBOUND' AS 'DIRECTION' ,
+        TP.EXTERNAL_ID_TX ,
+        TP.NAME_TX ,
+        WI.ID AS WI_ID ,
+        M.*
+FROM    message M ( NOLOCK )
+        JOIN TRADING_PARTNER TP ( NOLOCK ) ON M.RECEIVED_FROM_TRADING_PARTNER_ID = TP.ID
+        JOIN DELIVERY_INFO DI ON M.DELIVERY_INFO_ID = DI.id
+        JOIN RELATED_DATA RD ON DI.id = RD.RELATE_ID
+        JOIN RELATED_DATA_DEF RDD ON RDD.id = RD.DEF_ID
+        LEFT JOIN WORK_ITEM WI ON WI.RELATE_ID = M.ID
+                                  AND WI.WORKFLOW_DEFINITION_ID = 1
+WHERE   M.PROCESSED_IN = 'N' 
+--AND M.RECEIVED_STATUS_CD = 'ADHOC' 
+        AND M.RECEIVED_STATUS_CD = 'RCVD'
+        AND M.MESSAGE_DIRECTION_CD = 'I'
+        AND TYPE_CD = 'LFP_TP'
+        AND RDD.NAME_TX = 'UniTracDeliveryType'
+        AND TP.EXTERNAL_ID_TX NOT IN ( '2771', '3400', '1771', '1574', '5350' )
+        AND m.DELIVER_TO_TRADING_PARTNER_ID = '2046'
+        AND rd.VALUE_TX = 'IMPORT'
+        AND M.PURGE_DT IS NULL
+--AND TP.EXTERNAL_ID_TX IN ('1001')
+AND WI.ID IS NOT NULL
+ORDER BY M.ID ,
+        EXTERNAL_ID_TX
+
+----------Check logs for USD
+
+SELECT MESSAGE_ID,* FROM dbo.TRADING_PARTNER_LOG
+		WHERE MESSAGE_ID IN ( 
+       SELECT  M.ID
+        FROM    message M ( NOLOCK )
+                JOIN TRADING_PARTNER TP ( NOLOCK ) ON M.RECEIVED_FROM_TRADING_PARTNER_ID = TP.ID
+                JOIN DELIVERY_INFO DI ON M.DELIVERY_INFO_ID = DI.id
+                JOIN RELATED_DATA RD ON DI.id = RD.RELATE_ID
+                JOIN RELATED_DATA_DEF RDD ON RDD.id = RD.DEF_ID
+                LEFT JOIN WORK_ITEM WI ON WI.RELATE_ID = M.ID
+                                          AND WI.WORKFLOW_DEFINITION_ID = 1
+        WHERE   M.PROCESSED_IN = 'N' 
+--AND M.RECEIVED_STATUS_CD = 'ADHOC' 
+                AND M.RECEIVED_STATUS_CD = 'RCVD'
+                AND M.MESSAGE_DIRECTION_CD = 'I'
+                AND TYPE_CD = 'LFP_TP'
+                AND RDD.NAME_TX = 'UniTracDeliveryType'
+                AND TP.EXTERNAL_ID_TX NOT IN ( '2771', '3400', '1771', '1574',
+                                               '5350' )
+                AND m.DELIVER_TO_TRADING_PARTNER_ID = '2046'
+                AND rd.VALUE_TX = 'IMPORT'
+                AND M.PURGE_DT IS NULL --AND TP.EXTERNAL_ID_TX IN ('1001') 
+				)
+				ORDER BY TRADING_PARTNER_LOG.MESSAGE_ID ASC
+
+----------Check Log for ADHOC
+
+SELECT MESSAGE_ID,* FROM dbo.TRADING_PARTNER_LOG
+		WHERE MESSAGE_ID IN ( 
+        SELECT  M.ID
+        FROM    message M ( NOLOCK )
+                JOIN TRADING_PARTNER TP ( NOLOCK ) ON M.RECEIVED_FROM_TRADING_PARTNER_ID = TP.ID
+                JOIN DELIVERY_INFO DI ON M.DELIVERY_INFO_ID = DI.id
+                JOIN RELATED_DATA RD ON DI.id = RD.RELATE_ID
+                JOIN RELATED_DATA_DEF RDD ON RDD.id = RD.DEF_ID
+                LEFT JOIN WORK_ITEM WI ON WI.RELATE_ID = M.ID
+                                          AND WI.WORKFLOW_DEFINITION_ID = 1
+        WHERE   M.PROCESSED_IN = 'N' 
+AND M.RECEIVED_STATUS_CD = 'ADHOC' 
+              --  AND M.RECEIVED_STATUS_CD = 'RCVD'
+                AND M.MESSAGE_DIRECTION_CD = 'I'
+                AND TYPE_CD = 'LFP_TP'
+                AND RDD.NAME_TX = 'UniTracDeliveryType'
+                AND TP.EXTERNAL_ID_TX NOT IN ( '2771', '3400', '1771', '1574',
+                                               '5350' )
+                AND m.DELIVER_TO_TRADING_PARTNER_ID = '2046'
+                AND rd.VALUE_TX = 'IMPORT'
+                AND M.PURGE_DT IS NULL --AND TP.EXTERNAL_ID_TX IN ('1001') 
+				)
+				ORDER BY TRADING_PARTNER_LOG.MESSAGE_ID ASC
+
+
+-----To see messages that are being worked by message #
+SELECT TP.EXTERNAL_ID_TX ,
+        *
+FROM    TRADING_PARTNER_LOG TPL ( NOLOCK )
+        JOIN TRADING_PARTNER TP ON TP.ID = TPL.TRADING_PARTNER_ID
+WHERE   --CAST(TPL.CREATE_DT AS date) = CAST(GETDATE()  AS date) 
+--AND TPL.PROCESS_CD = 'DW' 
+       -- TPL.UPDATE_USER_TX = 'MsgSrvrEXTUSD' AND
+ --TPL.UPDATE_USER_TX = 'MsgSrvradhoc' and
+ --TPL.UPDATE_USER_TX = 'MsgSrvrEXTHUNT' and
+--AND TPL.UPDATE_USER_TX = 'MsgSrvrEXTPENF' 
+--AND TPL.UPDATE_USER_TX = 'DWSrvrOUT' 
+--AND (TPL.LOG_MESSAGE = 'Started Processing Message') 
+--AND TPL.LOG_TYPE_CD = 'ERROR' 
+--AND tp.EXTERNAL_ID_TX = '1833'
+MESSAGE_ID IN (4808199)
+AND CAST(TPL.CREATE_DT AS DATE) = CAST(GETDATE() AS DATE) 
+ORDER BY MESSAGE_ID,TPL.CREATE_DT DESC
+
+
+
+

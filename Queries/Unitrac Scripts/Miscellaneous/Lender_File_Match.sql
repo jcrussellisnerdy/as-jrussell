@@ -1,0 +1,17 @@
+USE UniTrac
+
+
+
+
+SELECT  PAYEE_CODE_TX ,
+        COMP_NAME_TX ,
+        LINE_1_TX ,
+        LINE_2_TX ,
+        CITY_TX ,
+        STATE_PROV_TX ,
+        COUNTRY_TX ,
+        POSTAL_CODE_TX PHONE_TX
+FROM    dbo.LENDER L
+        JOIN dbo.LENDER_PAYEE_CODE_FILE LL ON LL.LENDER_ID = L.ID
+        JOIN dbo.ADDRESS A ON A.ID = LL.PAYEE_ADDRESS_ID
+WHERE   L.CODE_TX = 'XXXX'

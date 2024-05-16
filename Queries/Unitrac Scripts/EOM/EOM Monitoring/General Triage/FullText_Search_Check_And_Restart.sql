@@ -1,0 +1,7 @@
+---- Check Fulltext Search Progress
+SELECT OBJECTPROPERTY(OBJECT_ID('SEARCH_FULLTEXT'), 'TableFulltextPendingChanges') AS 'Full Text Pending Changes'
+
+--RESUME POPULATION
+ALTER FULLTEXT INDEX ON dbo.SEARCH_FULLTEXT RESUME POPULATION;
+
+

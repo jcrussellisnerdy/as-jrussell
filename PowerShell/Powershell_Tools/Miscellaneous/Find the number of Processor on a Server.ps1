@@ -1,0 +1,1 @@
+﻿Invoke-Command -ComputerName UT-STGAPP-02 -ScriptBlock {Get-WmiObject Win32_ComputerSystem | Select NumberOfProcessors,NumberOfLogicalProcessors}

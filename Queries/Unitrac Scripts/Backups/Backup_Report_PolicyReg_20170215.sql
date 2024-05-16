@@ -1,0 +1,727 @@
+USE [UniTrac]
+GO
+
+/****** Object:  StoredProcedure [dbo].[Report_PolicyReg]    Script Date: 2/15/2017 1:50:57 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+ALTER PROCEDURE [dbo].[Report_PolicyReg] 
+	(@LenderCode as nvarchar(10)=NULL,
+	@Branch as nvarchar(max)=NULL,
+	@Division as nvarchar(10)=NULL,
+	@Coverage as nvarchar(100)=NULL,
+	@ReportType as nvarchar(50)=NULL,
+	@GroupByCode as nvarchar(50)=NULL,
+	@SortByCode as nvarchar(50)=NULL,
+	@FilterByCode as nvarchar(50)=NULL,
+	@SpecificReport as varchar(50)=NULL,
+	@Report_History_ID as bigint=NULL,
+	@ProcessLogID as bigint=0)
+
+AS
+BEGIN
+SET NOCOUNT ON
+--Get rid of residual #temp tables
+IF OBJECT_ID(N'tempdb..#tmpfilter',N'U') IS NOT NULL
+  DROP TABLE #tmpfilter
+IF OBJECT_ID(N'tempdb..#tmptable',N'U') IS NOT NULL
+  DROP TABLE #tmptable
+ IF OBJECT_ID(N'tempdb..#t1',N'U') IS NOT NULL
+  DROP TABLE #t1
+
+DECLARE @DEBUGGING AS VARCHAR(1) = 'F'
+Declare @LenderID as bigint
+DECLARE @Regenerated as bit
+DECLARE @WorkItemID as bigint
+
+IF @Report_History_ID IS NOT NULL
+BEGIN
+	SELECT	@ProcessLogID=REPORT_DATA_XML.value('(/ReportData/Report/ProcessLogID/@value)[1]', 'bigint'),
+			@WorkItemID=REPORT_DATA_XML.value('(/ReportData/Report/WorkItemId/@value)[1]', 'bigint')
+	FROM REPORT_HISTORY WHERE ID = @Report_History_ID
+END
+
+DECLARE @BranchTable AS TABLE(ID int, STRVALUE nvarchar(30))
+			INSERT INTO @BranchTable SELECT * FROM SplitFunction(@Branch, ',')  
+
+--Set the variable to indicate if the report was regenerated
+--Check if the regenerate flag is set in ReportHistory
+SELECT @Regenerated = 
+	CASE WHEN RH.REPORT_DATA_XML.exist('(/ReportData/Report/CertsSubmitted)') = 1 THEN 
+		CASE WHEN RH.REPORT_DATA_XML.value('(/ReportData/Report/CertsSubmitted/@value)[1]', 'varchar(1)') = 'Y' THEN 'True' ELSE 'False' END
+	END
+	FROM REPORT_HISTORY RH where RH.ID = @Report_History_ID
+
+--If regenerate flag not set in ReportHistory, then check the work item XML
+IF @Regenerated IS NULL 
+BEGIN
+	if ISNULL(@WorkItemID,'') <> ''
+		SELECT @Regenerated = 
+			CASE WHEN WI.CONTENT_XML.value('(/Content/Cycle/PolicyRegisterRegenerated)[1]', 'nvarchar(10)') = 'YES' THEN 'True' ELSE 'False' END 
+		FROM WORK_ITEM WI 
+		WHERE WI.ID = @WorkItemID
+	else
+		SELECT @Regenerated = 
+			CASE WHEN WI.CONTENT_XML.value('(/Content/Cycle/PolicyRegisterRegenerated)[1]', 'nvarchar(10)') = 'YES' THEN 'True' ELSE 'False' END 
+		FROM WORK_ITEM WI 
+		WHERE WI.RELATE_TYPE_CD='Osprey.ProcessMgr.ProcessLog' 
+		AND WI.RELATE_ID=@ProcessLogID
+		AND WI.ID IN (select WORK_ITEM_ID from WORK_ITEM_PROCESS_LOG_ITEM_RELATE REL 
+					 WHERE REL.WORK_ITEM_ID = WI.ID and REL.PARENT_WORK_ITEM_ID IS NULL
+					 AND REL.PURGE_DT IS NULL)
+		AND WI.PURGE_DT IS NULL
+END
+
+
+CREATE TABLE [dbo].[#tmptable](
+	[LOAN_BRANCHCODE_TX] [nvarchar](20) NULL,
+	[LOAN_PAGEBREAKTYPE_TX] [nvarchar](20) NULL,
+	[LOAN_PAGEBREAK_TX] [nvarchar](1000) NULL,
+	[LOAN_DIVISIONCODE_TX] [nvarchar](20) NULL,
+	[LOAN_TYPE_TX] [nvarchar](1000) NULL,
+	[REQUIREDCOVERAGE_CODE_TX] [nvarchar](30) NULL,
+	[REQUIREDCOVERAGE_TYPE_TX] [nvarchar](1000) NULL,
+--LOAN
+	[LOAN_NUMBER_TX] [nvarchar](18) NOT NULL,
+	[LOAN_NUMBERSORT_TX] [nvarchar](18) NULL,
+	[LOAN_EFFECTIVE_DT] [datetime] NULL,
+	[LOAN_MATURITY_DT] [datetime] NULL,
+	[LOAN_BALANCE_NO] [decimal](19, 2) NULL,
+	[LOAN_OFFICERCODE_TX] [nvarchar](20) NULL,
+	[LOAN_CREDITSCORECODE_TX] [nvarchar](20) NULL,
+--LENDER
+	[LENDER_CODE_TX] [nvarchar](10) NULL,	
+	[LENDER_NAME_TX] [nvarchar](40) NULL,	
+--COLLATERAL
+	[COLLATERAL_NUMBER_NO] [int] NULL,
+	[COLLATERAL_CODE_TX] [nvarchar](10) NULL,
+	[LENDER_COLLATERAL_CODE_TX] [nvarchar](10) NULL,
+	[LEGAL_STATUS_CODE_TX] [nvarchar](6) NULL,
+	[PURPOSE_CODE_TX] [nvarchar](10) NULL,
+--OWNER
+	[OWNER_LASTNAME_TX] [nvarchar](30) NULL,
+	[OWNER_FIRSTNAME_TX] [nvarchar](30) NULL,
+	[OWNER_MIDDLEINITIAL_TX] [char](1) NULL,
+	[OWNER_LINE1_TX] [nvarchar](100) NULL,
+	[OWNER_LINE2_TX] [nvarchar](100) NULL,
+	[OWNER_STATE_TX] [nvarchar](30) NULL,
+	[OWNER_CITY_TX] [nvarchar](40) NULL,
+	[OWNER_ZIP_TX] [nvarchar](30) NULL,
+--PROPERTY
+	[COLLATERAL_YEAR_TX] [nvarchar](4) NULL,
+	[COLLATERAL_MAKE_TX] [nvarchar](30) NULL,
+	[COLLATERAL_MODEL_TX] [nvarchar](30) NULL,
+	[COLLATERAL_VIN_TX] [nvarchar](18) NULL,
+	[COLLATERAL_EQUIP_TX] [nvarchar](100) NULL,
+	[COLLATERAL_LINE1_TX] [nvarchar](100) NULL,
+	[COLLATERAL_LINE2_TX] [nvarchar](100) NULL,
+	[COLLATERAL_STATE_TX] [nvarchar](30) NULL,
+	[COLLATERAL_CITY_TX] [nvarchar](40) NULL,
+	[COLLATERAL_ZIP_TX] [nvarchar](30) NULL,
+	[PROPERTY_TYPE_CD] [nvarchar](30) NULL,
+--COVERAGE
+	[COVERAGE_STATUS_TX] [nvarchar](1000) NULL,
+--CPI
+	[INSCOMPANY_NAME_TX] [nvarchar](50) NULL,
+	[INSCOMPANY_POLICY_NO] [nvarchar](30) NULL,
+	[INSCOMPANY_EFF_DT] [datetime2](7) NULL,
+	[INSCOMPANY_EFFDTSORT_TX] [nvarchar](8) NULL,
+	[INSCOMPANY_EXP_DT] [datetime2](7) NULL,
+	[INSCOMPANY_CAN_DT] [datetime2](7) NULL,
+	[INSCOMPANY_EXPCXL_DT] [datetime2](7) NULL,
+	[INSCOMPANY_ISSUE_DT] [datetime2](7) NULL,
+	[CPI_QUOTE_TERM_NO] [int] NULL,
+--BORROWER INSURANCE
+	[BORRINSCOMPANY_NAME_TX] [nvarchar](50) NULL,
+	[BORRINSCOMPANY_POLICY_NO] [nvarchar](30) NULL,
+--IDs, STATUS
+	[LOAN_ID] [bigint] NULL,
+	[COLLATERAL_ID] [bigint] NULL,
+	[PROPERTY_ID] [bigint] NULL,
+	[REQUIREDCOVERAGE_ID] [bigint] NULL,
+	[LOAN_STATUSCODE] [nvarchar] (2) NULL,
+	[LOAN_STATUSMEANING_TX] [nvarchar](1000) NULL,
+	[COLLATERAL_STATUSCODE] [nvarchar] (2) NULL,
+	[COLLATERAL_STATUSMEANING_TX] [nvarchar](1000) NULL,
+	[REQUIREDCOVERAGE_STATUSCODE] [nvarchar] (2) NULL,
+	[REQUIREDCOVERAGE_STATUSMEANING_TX] [nvarchar](1000) NULL,
+	[REQUIREDCOVERAGE_SUBSTATUSCODE] [nvarchar] (2) NULL,
+	[REQUIREDCOVERAGE_INSSTATUSCODE] [nvarchar] (2) NULL,
+	[REQUIREDCOVERAGE_INSSTATUSMEANING_TX] [nvarchar](1000) NULL,
+	[REQUIREDCOVERAGE_INSSUBSTATUSCODE] [nvarchar] (2) NULL,
+	[REQUIREDCOVERAGE_INSSUBSTATUSMEANING_TX] [nvarchar](1000) NULL,
+	[PROPERTY_DESCRIPTION] [nvarchar](100) NULL,
+	[ISS_REASON_TX] [nvarchar](10) NOT NULL,
+	[OWNER_NAME] [nvarchar](64) NULL,
+	[LOAN_LENDERNAME_TX] [nvarchar](40) NOT NULL,
+	[INS_EXP_DT_RANGE] [nvarchar](13) NULL,
+	[INS_ISS_DT_RANGE] [nvarchar](13) NULL,
+	[PRIOR_CPI_CNT_NO] [int] NULL,
+	[FPC_LOAN_ID] [bigint] NULL,
+	[INS_PRINT_DT] [datetime] NULL,
+	[OWNER_COSIGN_TX] [varchar](1) NOT NULL, 
+	[CPI_BILL_DT] [datetime2] NULL,
+	[CPI_PREM_DUE_NO] [int] NULL,
+	[CPI_DUE_DAYS_NO] [int] NULL,
+	[CPI_WNP_DT] [datetime2] NULL,
+	[WV_START_DT] [datetime2] NULL,
+	[CPI_QUOTE_BASIS_NO] [decimal](18, 2) NOT NULL,
+	[CPI_POL_CD] [nvarchar] (1) NOT NULL,
+	[CPI_HOLD_IN] [nvarchar] (1) NULL,
+	[CPI_MAX_BILL_DATE_IN] [nvarchar] (1) NULL,
+	[CPI_NET_CHARGES] [decimal](18, 2) NULL,
+	[IMPAIRMENT_CODE_TX] [nvarchar](8) NULL,
+	[IMPAIRMENT_MEANING_TX] [nvarchar](1000) NULL,
+--STD
+	[REPORT_GROUPBY_CD] [nvarchar](50) NULL,
+	[REPORT_GROUPBY_TX] [nvarchar](1000) NULL,
+	[REPORT_SORTBY_TX] [nvarchar](1000) NULL,
+	[REPORT_HEADER_TX] [nvarchar](1000) NULL,
+	[REPORT_FOOTER_TX] [nvarchar](1000) NULL
+) ON [PRIMARY]
+
+CREATE TABLE [dbo].[#tmpfilter](
+	[ATTRIBUTE_CD] [nvarchar](50) NULL,
+	[VALUE_TX] [nvarchar](50) NULL
+) ON [PRIMARY]
+
+Select @LenderID=ID from LENDER where CODE_TX = @LenderCode and PURGE_DT is null
+
+Declare @LoanStatus as varchar(5)
+Declare @CollateralStatus as varchar(5)
+Declare @RequiredCoverageStatus as varchar(5)
+--Declare @RequiredCoverageSubStatus as varchar(5)
+Declare @SummaryStatus as varchar(5)
+Declare @SummarySubStatus as varchar(5)
+Declare @GroupBySQL as varchar(1000)
+Declare @SortBySQL as varchar(1000)
+Declare @FilterBySQL as varchar(1000)
+Declare @HeaderTx as varchar(1000)
+Declare @FooterTx as varchar(1000)
+Declare @FillerZero as varchar(18)
+Declare @RecordCount as bigint
+Declare @GroupByCodeDF as varchar(50) 
+
+Set @LoanStatus = NULL
+Set @CollateralStatus = NULL
+Set @RequiredCoverageStatus = NULL
+--Set @RequiredCoverageSubStatus = NULL
+Set @SummaryStatus = NULL
+Set @SummarySubStatus = NULL
+Set @FillerZero = '000000000000000000'
+Set @RecordCount = 0
+Set @GroupByCodeDF = NULL
+
+Insert into #tmpfilter (
+	ATTRIBUTE_CD,
+	VALUE_TX)
+
+Select 
+RAD.ATTRIBUTE_CD,
+Case 
+  when Custom.VALUE_TX is not NULL then Custom.VALUE_TX
+  when RA.VALUE_TX is not NULL then RA.VALUE_TX
+  else RAD.VALUE_TX
+End as VALUE_TX
+from REF_CODE RC 
+Join REF_CODE_ATTRIBUTE RAD on RAD.DOMAIN_CD = RC.DOMAIN_CD and RAD.REF_CD = 'DEFAULT' and RAD.ATTRIBUTE_CD like 'FIL%'
+left Join REF_CODE_ATTRIBUTE RA on RA.DOMAIN_CD = RC.DOMAIN_CD and RA.REF_CD = RC.CODE_CD and RA.ATTRIBUTE_CD = RAD.ATTRIBUTE_CD
+left Join 
+  (
+  Select CODE_TX,REPORT_CD,REPORT_DOMAIN_CD,REPORT_REF_ATTRIBUTE_CD,VALUE_TX from REPORT_CONFIG RC
+  Join REPORT_CONFIG_ATTRIBUTE RCA on RCA.REPORT_CONFIG_ID = RC.ID
+  ) Custom
+   on Custom.CODE_TX = @SpecificReport and Custom.REPORT_DOMAIN_CD = RAD.DOMAIN_CD and Custom.REPORT_REF_ATTRIBUTE_CD = RAD.ATTRIBUTE_CD and Custom.REPORT_CD = @ReportType
+where RC.DOMAIN_CD = 'Report_PolicyReg' and RC.CODE_CD = @ReportType
+
+Select @LoanStatus =  Value_TX from #tmpfilter where ATTRIBUTE_CD = 'FIL_LNStatus'
+Select @CollateralStatus = Value_TX from #tmpfilter where ATTRIBUTE_CD = 'FIL_CLStatus'
+Select @RequiredCoverageStatus =  Value_TX from #tmpfilter where ATTRIBUTE_CD = 'FIL_RCStatus'
+--Select @RequiredCoverageSubStatus =  Value_TX from #tmpfilter where ATTRIBUTE_CD = 'FIL_RCSubStatus'
+Select @SummaryStatus =  Value_TX from #tmpfilter where ATTRIBUTE_CD = 'FIL_INSStatus'
+Select @SummarySubStatus =  Value_TX from #tmpfilter where ATTRIBUTE_CD = 'FIL_INSSubStatus'
+
+DECLARE @PAGEBREAK AS VARCHAR(1) = 'F'
+DECLARE @PAGEBREAK_COLUMN AS VARCHAR(20) = ''
+SELECT @PAGEBREAK = ISNULL(VALUE_TX,'F') FROM #tmpfilter WHERE ATTRIBUTE_CD = 'FIL_PAGEBREAK'
+SELECT @PAGEBREAK_COLUMN = ISNULL(VALUE_TX,'') FROM #tmpfilter WHERE ATTRIBUTE_CD = 'FIL_PAGEBREAK_COLUMN'
+
+if @SpecificReport is NULL or @SpecificReport = '' or @SpecificReport = '0000'
+  Begin
+	IF @GroupByCode IS NULL OR @GroupByCode = ''
+		BEGIN
+			Select @GroupBySQL=GROUP_TX from REPORT_CONFIG where CODE_TX = @ReportType
+			Select @GroupByCodeDF = CODE_CD FROM REF_CODE WHERE DOMAIN_CD = 'Report_GroupBy' AND DESCRIPTION_TX = @GroupBySQL
+		END
+	ELSE
+		BEGIN
+			Select @GroupBySQL=DESCRIPTION_TX from REF_CODE where DOMAIN_CD = 'Report_GroupBy' and CODE_CD = @GroupByCode
+			SET @GroupByCodeDF = @GroupByCode
+		END 
+	IF @SortByCode IS NULL OR @SortByCode = ''
+		SELECT @SortBySQL=SORT_TX FROM REPORT_CONFIG WHERE CODE_TX = @ReportType
+	ELSE
+		SELECT @SortBySQL=DESCRIPTION_TX FROM REF_CODE WHERE DOMAIN_CD = 'Report_SortBy' AND CODE_CD = @SortByCode
+	IF @FilterByCode IS NULL OR @FilterByCode = ''
+		SELECT @FilterBySQL=FILTER_TX FROM REPORT_CONFIG WHERE CODE_TX = @ReportType
+	Else
+		SELECT @FilterBySQL=DESCRIPTION_TX FROM REF_CODE WHERE DOMAIN_CD = 'Report_FilterBy' AND CODE_CD = @FilterByCode
+
+	Select @HeaderTx=HEADER_TX from REPORT_CONFIG where CODE_TX = @ReportType
+	Select @FooterTx=FOOTER_TX from REPORT_CONFIG where CODE_TX = @ReportType
+  End
+else
+  Begin
+	IF @GroupByCode IS NULL OR @GroupByCode = ''
+		BEGIN
+			Select @GroupBySQL=GROUP_TX from REPORT_CONFIG where CODE_TX = @SpecificReport
+			Select @GroupByCodeDF = CODE_CD FROM REF_CODE WHERE DOMAIN_CD = 'Report_GroupBy' AND DESCRIPTION_TX = @GroupBySQL
+		END
+	ELSE
+		BEGIN
+			Select @GroupBySQL=DESCRIPTION_TX from REF_CODE where DOMAIN_CD = 'Report_GroupBy' and CODE_CD = @GroupByCode
+			SET @GroupByCodeDF = @GroupByCode
+		END 
+	IF @SortByCode IS NULL OR @SortByCode = ''
+		SELECT @SortBySQL=SORT_TX FROM REPORT_CONFIG WHERE CODE_TX = @SpecificReport
+	ELSE
+		SELECT @SortBySQL=DESCRIPTION_TX FROM REF_CODE WHERE DOMAIN_CD = 'Report_SortBy' AND CODE_CD = @SortByCode
+	IF @FilterByCode IS NULL OR @FilterByCode = ''
+		SELECT @FilterBySQL=FILTER_TX FROM REPORT_CONFIG WHERE CODE_TX = @SpecificReport
+	Else
+		SELECT @FilterBySQL=DESCRIPTION_TX FROM REF_CODE WHERE DOMAIN_CD = 'Report_FilterBy' AND CODE_CD = @FilterByCode
+
+	Select @HeaderTx=HEADER_TX from REPORT_CONFIG where CODE_TX = @SpecificReport
+	Select @FooterTx=FOOTER_TX from REPORT_CONFIG where CODE_TX = @SpecificReport
+  End
+
+
+Insert into #tmptable (
+LOAN_BRANCHCODE_TX, LOAN_PAGEBREAKTYPE_TX, LOAN_PAGEBREAK_TX, LOAN_DIVISIONCODE_TX, LOAN_TYPE_TX, REQUIREDCOVERAGE_CODE_TX, REQUIREDCOVERAGE_TYPE_TX, 
+--LOAN
+LOAN_NUMBER_TX, LOAN_NUMBERSORT_TX, LOAN_EFFECTIVE_DT, LOAN_MATURITY_DT, LOAN_BALANCE_NO, LOAN_OFFICERCODE_TX, LOAN_CREDITSCORECODE_TX,
+--LENDER
+LENDER_CODE_TX, LENDER_NAME_TX,
+--COLLATERAL
+COLLATERAL_NUMBER_NO, 
+COLLATERAL_CODE_TX, 
+LENDER_COLLATERAL_CODE_TX,
+LEGAL_STATUS_CODE_TX,
+PURPOSE_CODE_TX,
+--OWNER
+OWNER_LASTNAME_TX, OWNER_FIRSTNAME_TX, OWNER_MIDDLEINITIAL_TX,
+OWNER_LINE1_TX, OWNER_LINE2_TX, OWNER_STATE_TX, OWNER_CITY_TX, OWNER_ZIP_TX,
+--PROPERTY
+COLLATERAL_YEAR_TX, COLLATERAL_MAKE_TX, COLLATERAL_MODEL_TX, COLLATERAL_VIN_TX, COLLATERAL_EQUIP_TX, 
+COLLATERAL_LINE1_TX, COLLATERAL_LINE2_TX, COLLATERAL_STATE_TX, COLLATERAL_CITY_TX, COLLATERAL_ZIP_TX, PROPERTY_TYPE_CD,
+--COVERAGE
+COVERAGE_STATUS_TX,
+--CPI
+INSCOMPANY_NAME_TX, INSCOMPANY_POLICY_NO, INSCOMPANY_EFF_DT, INSCOMPANY_EFFDTSORT_TX, INSCOMPANY_EXP_DT, INSCOMPANY_CAN_DT, INSCOMPANY_EXPCXL_DT, 
+INSCOMPANY_ISSUE_DT, CPI_QUOTE_TERM_NO, 
+--BORROWER INSURANCE
+BORRINSCOMPANY_NAME_TX, BORRINSCOMPANY_POLICY_NO,
+--IDs, STATUS
+LOAN_ID, COLLATERAL_ID, PROPERTY_ID, REQUIREDCOVERAGE_ID, 
+LOAN_STATUSCODE, LOAN_STATUSMEANING_TX, COLLATERAL_STATUSCODE, COLLATERAL_STATUSMEANING_TX,
+REQUIREDCOVERAGE_STATUSCODE, REQUIREDCOVERAGE_STATUSMEANING_TX, REQUIREDCOVERAGE_SUBSTATUSCODE,
+REQUIREDCOVERAGE_INSSTATUSCODE, REQUIREDCOVERAGE_INSSTATUSMEANING_TX,
+REQUIREDCOVERAGE_INSSUBSTATUSCODE, REQUIREDCOVERAGE_INSSUBSTATUSMEANING_TX,
+[PROPERTY_DESCRIPTION], [ISS_REASON_TX], 
+[OWNER_NAME], [LOAN_LENDERNAME_TX], [INS_EXP_DT_RANGE], [INS_ISS_DT_RANGE], [PRIOR_CPI_CNT_NO], [FPC_LOAN_ID], [INS_PRINT_DT], [OWNER_COSIGN_TX],
+[CPI_BILL_DT], [CPI_PREM_DUE_NO], [CPI_DUE_DAYS_NO], [CPI_WNP_DT], [WV_START_DT], [CPI_QUOTE_BASIS_NO], [CPI_POL_CD], [CPI_HOLD_IN], [CPI_MAX_BILL_DATE_IN], [CPI_NET_CHARGES], [IMPAIRMENT_CODE_TX], [IMPAIRMENT_MEANING_TX],[REPORT_GROUPBY_CD] )
+
+Select 
+		CASE when ISNULL(L.BRANCH_CODE_TX,'') = '' 
+			THEN 'No Branch' 
+			ELSE L.BRANCH_CODE_TX 
+		END as [LOAN_BRANCHCODE_TX],
+		CASE WHEN @PAGEBREAK = 'T' 
+			THEN @PAGEBREAK_COLUMN
+			ELSE ''
+		END AS [LOAN_PAGEBREAKTYPE_TX],
+		CASE WHEN @PAGEBREAK = 'T'
+			THEN (CASE  WHEN @PAGEBREAK_COLUMN = 'Branch'
+						THEN (	CASE WHEN ISNULL(L.BRANCH_CODE_TX,'') = '' 
+									 THEN 'No Branch'
+									 ELSE L.BRANCH_CODE_TX 
+								END) 
+						ELSE '' 
+				  END)
+			ELSE '' 
+		END AS [LOAN_PAGEBREAK_TX],
+	   CASE WHEN ISNULL(L.DIVISION_CODE_TX,'') = ''
+			THEN '0'
+			ELSE L.DIVISION_CODE_TX
+	   END AS LOAN_DIVISIONCODE_TX,
+	   ISNULL(RC_DIVISION.DESCRIPTION_TX,RC_SC.DESCRIPTION_TX) AS LOAN_TYPE_TX,
+	   RC.TYPE_CD as REQUIREDCOVERAGE_CODE_TX,
+	   RC_COVERAGETYPE.MEANING_TX as REQUIREDCOVERAGE_TYPE_TX,
+--LOAN
+	   L.NUMBER_TX AS LOAN_NUMBER_TX, 
+	   SUBSTRING(@FillerZero, 1, 18 - len(L.NUMBER_TX)) + CAST(L.NUMBER_TX AS nvarchar(18)) AS LOAN_NUMBERSORT_TX,
+       L.EFFECTIVE_DT AS LOAN_EFFECTIVE_DT, 
+       L.MATURITY_DT AS LOAN_MATURITY_DT, 
+       C.LOAN_BALANCE_NO AS LOAN_BALANCE_NO, 
+	   (CASE when ISNULL(L.OFFICER_CODE_TX,'') = '' then 'No Loan Officer' else L.OFFICER_CODE_TX END) as [LOAN_OFFICERCODE_TX],
+	   L.CREDIT_SCORE_CD as [LOAN_CREDITSCORECODE_TX],
+--LENDER
+	   LND.CODE_TX AS LENDER_CODE_TX, 
+	   LND.NAME_TX AS LENDER_NAME_TX,
+--COLLATERAL
+	   C.COLLATERAL_NUMBER_NO AS COLLATERAL_NUMBER_NO,
+	   CC.CODE_TX as COLLATERAL_CODE_TX,
+	   C.LENDER_COLLATERAL_CODE_TX AS LENDER_COLLATERAL_CODE_TX, 
+	   C.LEGAL_STATUS_CODE_TX AS LEGAL_STATUS_CODE_TX,		
+	   C.PURPOSE_CODE_TX AS PURPOSE_CODE_TX,
+--OWNER
+       O.LAST_NAME_TX AS OWNER_LASTNAME_TX, 
+       O.FIRST_NAME_TX AS OWNER_FIRSTNAME_TX, 
+       O.MIDDLE_INITIAL_TX AS OWNER_MIDDLEINITIAL_TX,
+       AO.LINE_1_TX as OWNER_LINE1_TX,
+       AO.LINE_2_TX as OWNER_LINE2_TX,
+       AO.STATE_PROV_TX as OWNER_STATE_TX,
+       AO.CITY_TX as OWNER_CITY_TX,
+       AO.POSTAL_CODE_TX as OWNER_ZIP_TX,
+--PROPERTY
+       P.YEAR_TX AS COLLATERAL_YEAR_TX, 
+       P.MAKE_TX AS COLLATERAL_MAKE_TX, 
+       P.MODEL_TX AS COLLATERAL_MODEL_TX, 
+       P.VIN_TX AS COLLATERAL_VIN_TX, 
+       P.DESCRIPTION_TX AS COLLATERAL_EQUIP_TX, 
+       AM.LINE_1_TX as COLLATERAL_LINE1_TX,
+       AM.LINE_2_TX as COLLATERAL_LINE2_TX,
+       AM.STATE_PROV_TX as COLLATERAL_STATE_TX,
+       AM.CITY_TX as COLLATERAL_CITY_TX,
+       AM.POSTAL_CODE_TX as COLLATERAL_ZIP_TX,
+	   RCA_PROP.VALUE_TX AS [PROPERTY_TYPE_CD],
+--COVERAGE
+	   CASE 
+		 WHEN RC.NOTICE_DT is not null and RC.NOTICE_SEQ_NO > 0 
+				THEN cast(RC.NOTICE_SEQ_NO as char(1)) +  ' ' + NRef.MEANING_TX + ' ' + CONVERT(nvarchar(10), RC.NOTICE_DT, 101) 
+	   ELSE CASE 
+		WHEN L.STATUS_CD in ('N','O','P') THEN LSRef.MEANING_TX
+		WHEN C.STATUS_CD in ('R','S','X') THEN CSRef.MEANING_TX
+		WHEN L.STATUS_CD = 'B' and C.STATUS_CD = 'Z' and RC.STATUS_CD in ('A','D') and RC.SUMMARY_STATUS_CD in ('A','N') 
+				THEN LSRef.MEANING_TX + ' ' + CSRef.MEANING_TX + ' ' + RCISRef.MEANING_TX
+		WHEN L.STATUS_CD = 'B' and C.STATUS_CD = 'Z' and RC.STATUS_CD in ('A','D') and RC.SUMMARY_STATUS_CD not in ('A','N') 
+				THEN LSRef.MEANING_TX + ' ' + CSRef.MEANING_TX + ' ' + RCISSRef.MEANING_TX + ' ' + RCISRef.MEANING_TX
+		WHEN L.STATUS_CD = 'B' and C.STATUS_CD = 'Z' and RC.STATUS_CD = 'T' and RC.SUMMARY_STATUS_CD in ('A','N') 
+				THEN LSRef.MEANING_TX + ' ' + CSRef.MEANING_TX + ' ' + RCSRef.MEANING_TX + ' ' + RCISRef.MEANING_TX
+		WHEN L.STATUS_CD = 'B' and C.STATUS_CD = 'Z' and RC.STATUS_CD = 'T' and RC.SUMMARY_STATUS_CD not in ('A','N') 
+				THEN LSRef.MEANING_TX + ' ' + CSRef.MEANING_TX + ' ' + RCSRef.MEANING_TX + ' ' + RCISSRef.MEANING_TX + ' ' + RCISRef.MEANING_TX
+		WHEN L.STATUS_CD = 'B' and C.STATUS_CD = 'Z' and RC.STATUS_CD not in ('A','D','T')
+				THEN LSRef.MEANING_TX + ' ' + CSRef.MEANING_TX + ' ' + RCSRef.MEANING_TX
+		WHEN C.STATUS_CD = 'Z' and RC.STATUS_CD in ('A','D') and RC.SUMMARY_STATUS_CD in ('A','N') 
+				THEN CSRef.MEANING_TX + ' ' + RCISRef.MEANING_TX
+		WHEN C.STATUS_CD = 'Z' and RC.STATUS_CD in ('A','D') and RC.SUMMARY_STATUS_CD not in ('A','N') 
+				THEN CSRef.MEANING_TX + ' ' + RCISSRef.MEANING_TX + ' ' + RCISRef.MEANING_TX
+		WHEN C.STATUS_CD = 'Z' and RC.STATUS_CD = 'T' and RC.SUMMARY_STATUS_CD in ('A','N') 
+				THEN CSRef.MEANING_TX + ' ' + RCSRef.MEANING_TX + ' ' + RCISRef.MEANING_TX
+		WHEN C.STATUS_CD = 'Z' and RC.STATUS_CD = 'T' and RC.SUMMARY_STATUS_CD not in ('A','N') 
+				THEN CSRef.MEANING_TX + ' ' + RCSRef.MEANING_TX + ' ' + RCISSRef.MEANING_TX + ' ' + RCISRef.MEANING_TX
+		WHEN C.STATUS_CD = 'Z' and RC.STATUS_CD not in ('A','D','T')
+				THEN CSRef.MEANING_TX + ' ' + RCSRef.MEANING_TX
+		WHEN L.STATUS_CD = 'A' and RC.STATUS_CD in ('A','D') and RC.SUMMARY_STATUS_CD in ('A','N') 
+				THEN RCISRef.MEANING_TX
+		WHEN L.STATUS_CD = 'A' and RC.STATUS_CD in ('A','D') and RC.SUMMARY_STATUS_CD not in ('A','N') 
+				THEN RCISSRef.MEANING_TX + ' ' + RCISRef.MEANING_TX
+		WHEN L.STATUS_CD = 'A' and RC.STATUS_CD = 'T' and RC.SUMMARY_STATUS_CD in ('A','N') 
+				THEN RCSRef.MEANING_TX + ' ' + RCISRef.MEANING_TX
+		WHEN L.STATUS_CD = 'A' and RC.STATUS_CD = 'T' and RC.SUMMARY_STATUS_CD not in ('A','N') 
+				THEN RCSRef.MEANING_TX + ' ' + RCISSRef.MEANING_TX + ' ' + RCISRef.MEANING_TX
+		WHEN L.STATUS_CD = 'A' and RC.STATUS_CD not in ('A','D','T')
+				THEN RCSRef.MEANING_TX
+		WHEN L.STATUS_CD = 'B' and RC.STATUS_CD in ('A','D') and RC.SUMMARY_STATUS_CD in ('A','N') 
+				THEN LSRef.MEANING_TX + ' ' + RCISRef.MEANING_TX
+		WHEN L.STATUS_CD = 'B' and RC.STATUS_CD in ('A','D') and RC.SUMMARY_STATUS_CD not in ('A','N') 
+				THEN LSRef.MEANING_TX + ' ' + RCISSRef.MEANING_TX + ' ' + RCISRef.MEANING_TX
+		WHEN L.STATUS_CD = 'B' and RC.STATUS_CD = 'T' and RC.SUMMARY_STATUS_CD in ('A','N') 
+				THEN LSRef.MEANING_TX + ' ' + RCSRef.MEANING_TX + ' ' + RCISRef.MEANING_TX
+		WHEN L.STATUS_CD = 'B' and RC.STATUS_CD = 'T' and RC.SUMMARY_STATUS_CD not in ('A','N') 
+				THEN LSRef.MEANING_TX + ' ' + RCSRef.MEANING_TX + ' ' + RCISSRef.MEANING_TX + ' ' + RCISRef.MEANING_TX
+		WHEN L.STATUS_CD = 'B' and RC.STATUS_CD not in ('A','D','T')
+				THEN LSRef.MEANING_TX + ' ' + RCSRef.MEANING_TX
+	   END
+	   END as COVERAGE_STATUS_TX,
+--CPI
+       CR.NAME_TX as INSCOMPANY_NAME_TX,
+       FPC.NUMBER_TX as INSCOMPANY_POLICY_NO,
+       FPC.EFFECTIVE_DT as INSCOMPANY_EFF_DT,
+       CONVERT(nvarchar(8), FPC.EFFECTIVE_DT, 112) as INSCOMPANY_EFFDTSORT_TX,
+       FPC.EXPIRATION_DT as INSCOMPANY_EXP_DT,
+       FPC.CANCELLATION_DT as INSCOMPANY_CAN_DT,
+       isnull(FPC.CANCELLATION_DT,FPC.EXPIRATION_DT) as INSCOMPANY_EXPCXL_DT,
+       FPC.ISSUE_DT as INSCOMPANY_ISSUE_DT,
+       CPQ.TERM_NO as CPI_QUOTE_TERM_NO,
+--BORROWER INSURANCE
+       OP.BIC_NAME_TX as [BORRINSCOMPANY_NAME_TX], 
+       OP.POLICY_NUMBER_TX as [BORRINSCOMPANY_POLICY_NO], 
+--IDs, STATUS
+       L.ID as LOAN_ID,
+       C.ID as COLLATERAL_ID,
+       P.ID as PROPERTY_ID,
+       RC.ID as REQUIREDCOVERAGE_ID,
+       L.STATUS_CD as LOAN_STATUSCODE,
+       LSRef.MEANING_TX as LOAN_STATUSMEANING_TX,
+       C.STATUS_CD as COLLATERAL_STATUSCODE,
+       CSRef.MEANING_TX as COLLATERAL_STATUSMEANING_TX,
+       RC.STATUS_CD as REQUIREDCOVERAGE_STATUSCODE,
+       RCSRef.MEANING_TX as REQUIREDCOVERAGE_STATUSMEANING_TX,
+       RC.SUB_STATUS_CD as REQUIREDCOVERAGE_SUBSTATUSCODE,
+       RC.SUMMARY_STATUS_CD as REQUIREDCOVERAGE_INSSTATUSCODE,
+       RCISRef.MEANING_TX as REQUIREDCOVERAGE_INSSTATUSMEANING_TX,
+       RC.SUMMARY_SUB_STATUS_CD as REQUIREDCOVERAGE_INSSUBSTATUSCODE,
+       RCISSRef.MEANING_TX as REQUIREDCOVERAGE_INSSUBSTATUSMEANING_TX,
+	   dbo.fn_GetPropertyDescriptionForReports(C.ID) PROPERTY_DESCRIPTION,
+	   IsNull(CPA_I.REASON_CD, '') AS [ISS_REASON_TX],
+      CASE WHEN O.FIRST_NAME_TX IS NULL 
+		THEN O.LAST_NAME_TX 
+		ELSE RTRIM(O.LAST_NAME_TX + ', ' + ISNULL(O.FIRST_NAME_TX,'') + ' ' + ISNULL(O.MIDDLE_INITIAL_TX,'')) END AS [OWNER_NAME],
+      LND.NAME_TX AS	[LOAN_LENDERNAME_TX],
+	CASE 
+		WHEN DATEDIFF(dd,GETDATE(),FPC.EXPIRATION_DT) <= 30 THEN ' 0-30 Days'
+		WHEN DATEDIFF(dd,GETDATE(),FPC.EXPIRATION_DT) <= 60 THEN '31-60 Days'
+		WHEN DATEDIFF(dd,GETDATE(),FPC.EXPIRATION_DT) <= 90 THEN '61-90 Days'
+		WHEN DATEDIFF(dd,GETDATE(),FPC.EXPIRATION_DT) <= 120 THEN '91-120 Days'
+		ELSE 'Over 120 Days'
+	END AS [INS_EXP_DT_RANGE],
+	CASE
+		WHEN DATEDIFF(dd,FPC.EFFECTIVE_DT,GETDATE()) <= 30 THEN ' 0-30 Days'
+		WHEN DATEDIFF(dd,FPC.EFFECTIVE_DT,GETDATE()) <= 60 THEN '31- 60 Days'
+		WHEN DATEDIFF(dd,FPC.EFFECTIVE_DT,GETDATE()) <= 90 THEN '61-90 Days'
+		WHEN DATEDIFF(dd,FPC.EFFECTIVE_DT,GETDATE()) <= 120 THEN '91-120 Days'
+		ELSE 'Over 120 Days'
+	END AS [INS_ISS_DT_RANGE],
+	0 AS [PRIOR_CPI_CNT_NO],
+	FPC.LOAN_ID AS [FPC_LOAN_ID],
+	RC.NOTICE_DT AS [INS_PRINT_DT],
+	CASE WHEN SUBSTRING(OL.OWNER_TYPE_CD,1,1) = 'C' THEN 'C' ELSE '' END AS [OWNER_COSIGN_TX],
+	FPC.AUTH_REQ_DT	AS [CPI_BILL_DT], 
+	0 AS [CPI_PREM_DUE_NO],
+	0 AS [CPI_DUE_DAYS_NO],
+	RC.START_DT AS [CPI_WNP_DT],
+	RC.START_DT AS [WV_START_DT],
+	ISNULL(CPQ.BASIS_NO,0) AS [CPI_QUOTE_BASIS_NO],
+	CASE WHEN FPC.CANCELLATION_DT IS NULL THEN 'I' ELSE 'C' END as [CPI_POL_CD],
+	FPC.HOLD_IN as [CPI_HOLD_IN],
+	CASE WHEN (SELECT SUM(AMOUNT_NO) FROM FINANCIAL_TXN WHERE FINANCIAL_TXN.FPC_ID = FPC.ID) = 0 THEN '0' ELSE '1' END AS [CPI_MAX_BILL_DATE_IN],
+	ISNULL(CPA_I.TOTAL_PREMIUM_NO,0) - abs(ISNULL(CPA_C.TOTAL_PREMIUM_NO,0)) AS [CPI_NET_CHARGES],
+	CI.CODE_CD as [IMPAIRMENT_CODE_TX], IRRef.MEANING_TX as [IMPAIRMENT_MEANING_TX], 
+	@GroupByCodeDF AS [REPORT_GROUPBY_CD]
+
+FROM PROPERTY P 
+Join COLLATERAL C on C.PROPERTY_ID = P.ID AND C.PURGE_DT IS NULL
+Join LOAN L on L.ID = C.LOAN_ID and L.LENDER_ID = P.LENDER_ID AND L.PURGE_DT IS NULL
+Join LENDER LND on LND.ID = L.LENDER_ID AND LND.PURGE_DT IS NULL
+Join OWNER_LOAN_RELATE OL on OL.LOAN_ID = L.ID and OL.PRIMARY_IN = 'Y' AND OL.PURGE_DT IS NULL
+Join [OWNER] O on O.ID = OL.OWNER_ID AND O.PURGE_DT IS NULL
+left Join [OWNER_ADDRESS] AO on AO.ID = O.ADDRESS_ID AND AO.PURGE_DT IS NULL 
+left Join [OWNER_ADDRESS] AM on AM.ID = P.ADDRESS_ID AND AM.PURGE_DT IS NULL
+left Join REQUIRED_COVERAGE RC on RC.PROPERTY_ID = P.ID AND RC.PURGE_DT IS NULL
+
+OUTER APPLY
+(SELECT TOP 1 * FROM dbo.GetCurrentCoverage(P.ID, RC.ID, RC.TYPE_CD)
+where @SpecificReport = 'PLCYREG_INS'
+ORDER BY ISNULL(UNIT_OWNERS_IN, 'N') DESC
+) OP
+
+LEFT JOIN COLLATERAL_CODE CC ON CC.ID = C.COLLATERAL_CODE_ID AND CC.PURGE_DT IS NULL
+left join FORCE_PLACED_CERT_REQUIRED_COVERAGE_RELATE FPCR on FPCR.REQUIRED_COVERAGE_ID = RC.ID AND FPCR.PURGE_DT IS NULL
+left Join FORCE_PLACED_CERTIFICATE FPC on FPC.ID = FPCR.FPC_ID and FPC.ACTIVE_IN = 'Y' and (FPC.LOAN_ID = L.ID or FPC.LOAN_ID is null) AND FPC.PURGE_DT IS NULL
+left Join CARRIER CR on CR.ID = FPC.CARRIER_ID AND CR.PURGE_DT IS NULL
+left Join CPI_QUOTE CPQ ON CPQ.ID = FPC.CPI_QUOTE_ID AND CPQ.PURGE_DT IS NULL
+LEFT JOIN CPI_ACTIVITY CPA_I ON CPA_I.CPI_QUOTE_ID = CPQ.ID AND CPA_I.TYPE_CD = 'I'	and CPA_I.PURGE_DT IS NULL
+LEFT JOIN CPI_ACTIVITY CPA_C ON CPA_C.CPI_QUOTE_ID = CPQ.ID AND CPA_C.TYPE_CD = 'C'	and CPA_C.PURGE_DT IS NULL
+LEFT JOIN PROCESS_LOG_ITEM PLI ON PLI.RELATE_ID = FPC.ID and PLI.RELATE_TYPE_CD like '%ForcePlacedCertificate%' AND PLI.PURGE_DT IS NULL
+LEFT JOIN EVALUATION_EVENT EE ON EE.ID = PLI.EVALUATION_EVENT_ID AND EE.PURGE_DT IS NULL
+LEFT JOIN DOCUMENT_CONTAINER DC ON DC.RELATE_ID = FPC.ID AND RELATE_CLASS_NAME_TX = 'Allied.UniTrac.ForcePlacedCertificate' and RECIPIENT_TYPE_CD = 'BORR' AND DC.ACTIVE_IN = 'Y' AND DC.PURGE_DT IS NULL
+left Join REF_CODE NRef on NRef.DOMAIN_CD = 'NoticeType' and NRef.CODE_CD = RC.NOTICE_TYPE_CD 
+left Join REF_CODE LSRef on LSRef.DOMAIN_CD = 'LoanStatus' and LSRef.CODE_CD = L.STATUS_CD 
+left Join REF_CODE CSRef on CSRef.DOMAIN_CD = 'CollateralStatus' and CSRef.CODE_CD = C.STATUS_CD 
+left Join REF_CODE RCSRef on RCSRef.DOMAIN_CD = 'RequiredCoverageStatus' and RCSRef.CODE_CD = RC.STATUS_CD 
+left Join REF_CODE RCISRef on RCISRef.DOMAIN_CD = 'RequiredCoverageInsStatus' and RCISRef.CODE_CD = RC.SUMMARY_STATUS_CD 
+left Join REF_CODE RCISSRef on RCISSRef.DOMAIN_CD = 'RequiredCoverageInsSubStatus' and RCISSRef.CODE_CD = RC.SUMMARY_SUB_STATUS_CD 
+left Join REF_CODE RC_DIVISION on RC_DIVISION.DOMAIN_CD = 'ContractType' and RC_DIVISION.CODE_CD = L.DIVISION_CODE_TX
+left Join REF_CODE RC_COVERAGETYPE on RC_COVERAGETYPE.DOMAIN_CD = 'Coverage' and RC_COVERAGETYPE.CODE_CD = RC.TYPE_CD 
+left Join REF_CODE RC_SC on RC_SC.DOMAIN_CD = 'SecondaryClassification' AND CC.SECONDARY_CLASS_CD = RC_SC.CODE_CD
+left Join REF_CODE_ATTRIBUTE RCA_PROP on RC_SC.DOMAIN_CD = RCA_PROP.DOMAIN_CD and RC_SC.CODE_CD = RCA_PROP.REF_CD and RCA_PROP.ATTRIBUTE_CD = 'PropertyType'
+
+OUTER APPLY (
+	select distinct case when (select COUNT(*) from IMPAIRMENT 
+		where REQUIRED_COVERAGE_ID = RC.ID 
+		AND START_DT < GETDATE() AND END_DT > GETDATE() AND PURGE_DT IS NULL and
+		(OVERRIDE_TYPE_CD IS null or OVERRIDE_TYPE_CD = '')) > 1 
+	then 'MU'  
+	else CI1.CODE_CD
+	end as CODE_CD
+	from IMPAIRMENT CI1
+	where CI1.REQUIRED_COVERAGE_ID = RC.ID 
+	AND CI1.START_DT < GETDATE() AND CI1.END_DT > GETDATE() AND CI1.PURGE_DT IS NULL and
+	(CI1.OVERRIDE_TYPE_CD IS null or CI1.OVERRIDE_TYPE_CD = '')
+	group by CI1.CODE_CD
+) CI
+left Join REF_CODE IRRef on IRRef.DOMAIN_CD = 'ImpairmentReason' and IRRef.CODE_CD = CI.CODE_CD 
+CROSS APPLY dbo.fn_FilterCollateralByDivisionCd(C.ID, @Division) fn_FCBD
+
+WHERE 
+L.RECORD_TYPE_CD = 'G' and P.RECORD_TYPE_CD = 'G' and RC.RECORD_TYPE_CD = 'G' and
+P.PURGE_DT IS NULL and
+P.LENDER_ID = @LenderID 
+and
+(L.BRANCH_CODE_TX IN (SELECT STRVALUE FROM @BranchTable) or @Branch = '1' or @Branch = '' or @Branch is NULL OR @Branch = 'ALL')
+AND fn_FCBD.loanType IS NOT NULL
+and
+(RC.TYPE_CD = @Coverage or @Coverage = '1' or @Coverage = '' or @Coverage is NULL)
+and 
+(L.STATUS_CD = @LoanStatus or @LoanStatus is NULL or @LoanStatus = '')
+and 
+(C.STATUS_CD = @CollateralStatus or @CollateralStatus is NULL or @CollateralStatus = '')
+and 
+(RC.STATUS_CD = @RequiredCoverageStatus or @RequiredCoverageStatus is NULL or @RequiredCoverageStatus = '')
+--and 
+--(((@RequiredCoverageSubStatus is NULL or @RequiredCoverageSubStatus = '') and (RC.SUB_STATUS_CD is NULL or RC.SUB_STATUS_CD = '')) or
+--(@RequiredCoverageSubStatus is not NULL and (RC.SUB_STATUS_CD = @RequiredCoverageSubStatus or RC.SUB_STATUS_CD is NULL or RC.SUB_STATUS_CD = '')))
+and 
+(RC.SUMMARY_STATUS_CD = @SummaryStatus or @SummaryStatus is NULL or @SummaryStatus = '')
+and 
+(RC.SUMMARY_SUB_STATUS_CD = @SummarySubStatus or @SummarySubStatus is NULL or @SummarySubStatus = '')
+and
+FPC.HOLD_IN = 'N' 
+and 
+FPC.MONTHLY_BILLING_IN = case when @SpecificReport = 'PLCYREG_SMP' then 'Y' else 'N' end
+and 
+(ISNULL(CPA_I.TOTAL_PREMIUM_NO,0) - abs(ISNULL(CPA_C.TOTAL_PREMIUM_NO,0))) > 0
+and
+(FPC.QUICK_ISSUE_IN = 'N' or (FPC.QUICK_ISSUE_IN = 'Y' and FPC.BILL_CD <> 'IMME'))
+and 
+(ISNULL(DC.RECIPIENT_TYPE_CD,'BORR') = 'BORR' OR RC.ForcedPlcyOptBorrCopy= 'At Fund')
+AND 
+(PLI.PROCESS_LOG_ID = @ProcessLogID) 
+AND 
+EE.TYPE_CD = 'ISCT' --only certs, not release for billing
+AND 
+((@Regenerated = 'True' and (DC.PRINT_STATUS_CD = 'PRINTED' or DC.PRINT_STATUS_CD = 'PEND')) 
+or (@Regenerated = 'False' and L.EXTRACT_UNMATCH_COUNT_NO = 0 and C.EXTRACT_UNMATCH_COUNT_NO = 0 and L.STATUS_CD != 'U' and C.STATUS_CD != 'U'))
+
+
+IF @DEBUGGING = 'T'
+BEGIN
+	SELECT @FilterByCode AS FBC, @FilterBySQL As FBS
+	SELECT COUNT(*) AS PRE_CNT FROM #tmptable
+END
+
+Declare @sqlstring as nvarchar(1000)
+If isnull(@FilterBySQL,'') <> '' 
+Begin
+  Select * into #t1 from #tmptable 
+  truncate table #tmptable
+
+  Set @sqlstring = N'Insert into #tmpTable
+                     Select * from dbo.#t1 where ' + @FilterBySQL
+  --print @sqlstring
+  EXECUTE sp_executesql @sqlstring
+End
+
+
+DECLARE @loan_id bigint, @number_tx nvarchar(18), @issue_dt datetime, @type_cd nvarchar(30), @prior_cpi_cnt_no int
+DECLARE prior_cpi_cursor CURSOR FOR
+
+SELECT [FPC_LOAN_ID], [INSCOMPANY_POLICY_NO], [INSCOMPANY_ISSUE_DT], [REQUIREDCOVERAGE_CODE_TX], [PRIOR_CPI_CNT_NO] 
+FROM #tmptable
+FOR UPDATE OF [PRIOR_CPI_CNT_NO];
+
+OPEN prior_cpi_cursor
+
+FETCH NEXT FROM prior_cpi_cursor INTO @loan_id, @number_tx, @issue_dt, @type_cd, @prior_cpi_cnt_no
+
+WHILE @@FETCH_STATUS = 0
+BEGIN
+	UPDATE #tmptable SET [PRIOR_CPI_CNT_NO] = ISNULL((
+	SELECT COUNT(*) 
+	FROM FORCE_PLACED_CERTIFICATE FPC
+	JOIN FORCE_PLACED_CERT_REQUIRED_COVERAGE_RELATE FPCR ON FPCR.FPC_ID = FPC.ID and FPCR.PURGE_DT IS NULL
+	JOIN REQUIRED_COVERAGE RC ON RC.ID = FPCR.REQUIRED_COVERAGE_ID AND RC.SUMMARY_SUB_STATUS_CD = 'C' and RC.PURGE_DT IS NULL
+	LEFT JOIN CPI_QUOTE CPQ ON CPQ.ID = FPC.CPI_QUOTE_ID and CPQ.PURGE_DT IS NULL
+	LEFT JOIN CPI_ACTIVITY CPA_I ON CPA_I.CPI_QUOTE_ID = CPQ.ID AND CPA_I.TYPE_CD = 'I' and CPA_I.PURGE_DT IS NULL
+	LEFT JOIN CPI_ACTIVITY CPA_C ON CPA_C.CPI_QUOTE_ID = CPQ.ID AND CPA_C.TYPE_CD = 'C'	and CPA_C.PURGE_DT IS NULL
+	WHERE FPC.PURGE_DT IS NULL
+	AND FPC.LOAN_ID = @loan_id
+	AND FPC.NUMBER_TX <> @number_tx 
+	AND FPC.ACTIVE_IN = 'N'
+	AND FPC.ISSUE_DT < @issue_dt
+	AND RC.TYPE_CD = @type_cd
+	AND (ISNULL(FPC.HOLD_IN,'N') = 'N')
+	AND ISNULL(CPA_I.TOTAL_PREMIUM_NO,0) - ABS(ISNULL(CPA_C.TOTAL_PREMIUM_NO,0)) > 0
+	),0) WHERE current of prior_cpi_cursor
+
+	FETCH NEXT FROM prior_cpi_cursor INTO @loan_id, @number_tx, @issue_dt, @type_cd, @prior_cpi_cnt_no
+
+END
+CLOSE prior_cpi_cursor
+DEALLOCATE prior_cpi_cursor
+
+
+IF @DEBUGGING = 'T'
+BEGIN
+	SELECT COUNT(*) AS POST_CNT FROM #tmptable
+END
+
+IF ISNULL(@GroupBySQL,'') <> ''
+BEGIN
+Set @sqlstring = N'Update #tmpTable Set [REPORT_GROUPBY_TX] = ' + @GroupBySQL
+EXECUTE sp_executesql @sqlstring
+
+IF @PAGEBREAK = 'T' AND @PAGEBREAK_COLUMN <> 'Branch'
+	BEGIN
+	Set @sqlstring = N'Update #tmpTable Set [LOAN_PAGEBREAK_TX] = ' + @GroupBySQL
+	EXECUTE sp_executesql @sqlstring
+	END
+END
+
+IF @DEBUGGING = 'T'
+BEGIN
+	SELECT @SortByCode AS SBC, @SortBySQL AS SBS
+END
+
+IF ISNULL(@SortBySQL,'') <> ''
+BEGIN
+Set @sqlstring = N'Update #tmpTable Set [REPORT_SORTBY_TX] = ' + @SortBySQL
+EXECUTE sp_executesql @sqlstring
+END
+
+If isnull(@HeaderTx,'') <> '' 
+Begin
+	Set @sqlstring = N'Update #tmpTable Set [REPORT_HEADER_TX] = ' + @HeaderTx
+	EXECUTE sp_executesql @sqlstring
+End
+
+If isnull(@FooterTx,'') <> '' 
+Begin
+	Set @sqlstring = N'Update #tmpTable Set [REPORT_FOOTER_TX] = ' + @FooterTx
+	EXECUTE sp_executesql @sqlstring
+End
+
+SELECT @RecordCount = COUNT(*) from #tmptable
+--print @RecordCount
+
+IF @Report_History_ID IS NOT NULL
+BEGIN
+
+  Update [UNITRAC-REPORTS].[UNITRAC].DBO.REPORT_HISTORY_NOXML
+  Set RECORD_COUNT_NO = @RecordCount
+  where ID = @Report_History_ID
+    
+END
+
+Select * from #tmptable 
+
+END
+
+
+GO
+

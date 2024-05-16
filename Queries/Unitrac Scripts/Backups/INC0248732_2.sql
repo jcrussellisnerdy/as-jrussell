@@ -1,0 +1,240 @@
+USE [UniTrac]
+GO 
+
+--Loan Screen Information - LOAN/COLLATERAL/PROPERTY/OWNER/REQUIRED COVERAGE
+SELECT * FROM LOAN L
+INNER JOIN COLLATERAL C ON L.ID = C.LOAN_ID
+INNER JOIN PROPERTY P ON C.PROPERTY_ID = P.ID
+INNER JOIN REQUIRED_COVERAGE RC ON P.ID = RC.PROPERTY_ID
+INNER JOIN OWNER_LOAN_RELATE OL ON L.ID = OL.LOAN_ID
+INNER JOIN OWNER O ON OL.OWNER_ID = O.ID
+INNER JOIN OWNER_ADDRESS OA ON O.ADDRESS_ID = OA.ID
+INNER JOIN dbo.LENDER LL ON LL.ID = L.LENDER_ID
+WHERE LL.CODE_TX IN ('') AND L.NUMBER_TX = ''
+
+
+---Finding Branch
+SELECT LO.TYPE_CD, LO.CODE_TX , Lo.NAME_TX,*
+FROM LENDER L
+INNER JOIN LENDER_ORGANIZATION LO ON L.ID = LO.LENDER_ID
+INNER JOIN RELATED_DATA RD ON LO.ID = RD.RELATE_ID --AND RD.DEF_ID = '105'
+WHERE L.CODE_TX = '' AND Lo.TYPE_CD = 'DIV'
+
+
+SELECT *
+FROM    dbo.LOAN L
+        JOIN dbo.COLLATERAL C  ON L.ID = C.LOAN_ID
+        JOIN dbo.PROPERTY P ON P.ID = C.PROPERTY_ID
+        JOIN dbo.REQUIRED_COVERAGE RC ON RC.PROPERTY_ID = P.ID
+WHERE   L.NUMBER_TX IN ( '234527-67', '244505-65', '246477-68', '249241-65',
+                         '250281-44', '257114-65', '262528-65', '263058-40',
+                         '265409-65', '268443-42', '273073-40', '274911-40',
+                         '276334-67', '278791-66', '281224-40', '281528-68',
+                         '284585-44', '297754-65', '313334-67', '319630-66',
+                         '323037-41', '323630-65', '323793-66', '324261-66',
+                         '324261-67', '325300-65' ) AND L.RECORD_TYPE_CD <>'D'
+						  --AND L.UPDATE_USER_TX = 'LDHADHOC'
+						 ORDER BY L.NUMBER_TX ASC 
+
+SELECT  L.*
+INTO INC0248732_Loan_3
+FROM    dbo.LOAN L
+        JOIN dbo.COLLATERAL C  ON L.ID = C.LOAN_ID
+        JOIN dbo.PROPERTY P ON P.ID = C.PROPERTY_ID
+        JOIN dbo.REQUIRED_COVERAGE RC ON RC.PROPERTY_ID = P.ID
+WHERE L.ID IN (169964593,169964626,169964628,169964654,169964660,169964786,169964793,169964794,169964806,169964817,169964837,169964841,169964842,169964846,169964850,169964851,169964853,169964864,169964976,169964980,169964986,169964988,169964989,169964990,169964991,169964992)
+
+SELECT  C.*
+INTO INC0248732_Collateral_3
+FROM    dbo.LOAN L
+        JOIN dbo.COLLATERAL C  ON L.ID = C.LOAN_ID
+        JOIN dbo.PROPERTY P ON P.ID = C.PROPERTY_ID
+        JOIN dbo.REQUIRED_COVERAGE RC ON RC.PROPERTY_ID = P.ID
+WHERE  L.ID IN (169964593,169964626,169964628,169964654,169964660,169964786,169964793,169964794,169964806,169964817,169964837,169964841,169964842,169964846,169964850,169964851,169964853,169964864,169964976,169964980,169964986,169964988,169964989,169964990,169964991,169964992)
+
+SELECT  RC.*
+INTO INC0248732_RC_3
+FROM    dbo.LOAN L
+        JOIN dbo.COLLATERAL C  ON L.ID = C.LOAN_ID
+        JOIN dbo.PROPERTY P ON P.ID = C.PROPERTY_ID
+        JOIN dbo.REQUIRED_COVERAGE RC ON RC.PROPERTY_ID = P.ID
+WHERE L.ID IN (169964593,169964626,169964628,169964654,169964660,169964786,169964793,169964794,169964806,169964817,169964837,169964841,169964842,169964846,169964850,169964851,169964853,169964864,169964976,169964980,169964986,169964988,169964989,169964990,169964991,169964992)
+
+
+SELECT  P.*
+INTO INC0248732_Property_3
+FROM    dbo.LOAN L
+        JOIN dbo.COLLATERAL C  ON L.ID = C.LOAN_ID
+        JOIN dbo.PROPERTY P ON P.ID = C.PROPERTY_ID
+        JOIN dbo.REQUIRED_COVERAGE RC ON RC.PROPERTY_ID = P.ID
+WHERE  L.ID IN (169964593,169964626,169964628,169964654,169964660,169964786,169964793,169964794,169964806,169964817,169964837,169964841,169964842,169964846,169964850,169964851,169964853,169964864,169964976,169964980,169964986,169964988,169964989,169964990,169964991,169964992)
+
+
+UPDATE dbo.LOAN
+SET RECORD_TYPE_CD = 'D', PURGE_DT = GETDATE(), UPDATE_DT = GETDATE(), LOCK_ID=LOCK_ID+1, UPDATE_USER_TX = 'INC0248732'
+WHERE ID IN (SELECT ID FROM INC0248732_Loan_3)
+
+
+UPDATE dbo.COLLATERAL
+SET  PURGE_DT = NULL, UPDATE_DT = GETDATE(), LOCK_ID=LOCK_ID+1, UPDATE_USER_TX = 'INC0248732'
+WHERE ID IN (SELECT ID FROM INC0248732_Collateral_3)
+
+UPDATE dbo.REQUIRED_COVERAGE
+SET  RECORD_TYPE_CD = 'G', PURGE_DT =NULL, UPDATE_DT = GETDATE(), LOCK_ID=LOCK_ID+1, UPDATE_USER_TX = 'INC0248732'
+WHERE ID IN (SELECT ID FROM INC0248732_RC_3)
+
+UPDATE dbo.PROPERTY
+SET  RECORD_TYPE_CD = 'G', PURGE_DT =NULL, UPDATE_DT = GETDATE(), LOCK_ID=LOCK_ID+1, UPDATE_USER_TX = 'INC0248732'
+WHERE ID IN (SELECT ID FROM INC0248732_Property_3)
+
+
+INSERT  INTO PROPERTY_CHANGE
+        ( ENTITY_NAME_TX ,
+          ENTITY_ID ,
+          USER_TX ,
+          ATTACHMENT_IN ,
+          CREATE_DT ,
+          AGENCY_ID ,
+          DESCRIPTION_TX ,
+          DETAILS_IN ,
+          FORMATTED_IN ,
+          LOCK_ID ,
+          PARENT_NAME_TX ,
+          PARENT_ID ,
+          TRANS_STATUS_CD ,
+          UTL_IN
+        )
+        SELECT DISTINCT
+                'Allied.UniTrac.Collateral' ,
+                ID ,
+                'INC0248732' ,
+                'N' ,
+                GETDATE() ,
+                1 ,
+                'Re-enabled' ,
+                'N' ,
+                'Y' ,
+                1 ,
+                'Allied.UniTrac.Collateral' ,
+                ID ,
+                'PEND' ,
+                'N'
+        FROM    dbo.COLLATERAL
+        WHERE   ID IN (SELECT ID FROM INC0248732_Collateral_3)
+
+
+
+
+INSERT  INTO PROPERTY_CHANGE
+        ( ENTITY_NAME_TX ,
+          ENTITY_ID ,
+          USER_TX ,
+          ATTACHMENT_IN ,
+          CREATE_DT ,
+          AGENCY_ID ,
+          DESCRIPTION_TX ,
+          DETAILS_IN ,
+          FORMATTED_IN ,
+          LOCK_ID ,
+          PARENT_NAME_TX ,
+          PARENT_ID ,
+          TRANS_STATUS_CD ,
+          UTL_IN
+        )
+        SELECT DISTINCT
+                'Allied.UniTrac.RequiredCoverage' ,
+                ID ,
+               'INC0248732' ,
+                'N' ,
+                GETDATE() ,
+                1 ,
+                'Re-enabled' ,
+                'N' ,
+                'Y' ,
+                1 ,
+                'Allied.UniTrac.RequiredCoverage' ,
+                ID ,
+                'PEND' ,
+                'N'
+        FROM    dbo.REQUIRED_COVERAGE 
+        WHERE   ID IN (SELECT ID FROM INC0248732_RC_3)
+
+
+
+
+INSERT  INTO PROPERTY_CHANGE
+        ( ENTITY_NAME_TX ,
+          ENTITY_ID ,
+          USER_TX ,
+          ATTACHMENT_IN ,
+          CREATE_DT ,
+          AGENCY_ID ,
+          DESCRIPTION_TX ,
+          DETAILS_IN ,
+          FORMATTED_IN ,
+          LOCK_ID ,
+          PARENT_NAME_TX ,
+          PARENT_ID ,
+          TRANS_STATUS_CD ,
+          UTL_IN
+        )
+        SELECT DISTINCT
+                'Allied.UniTrac.Property' ,
+                ID ,
+               'INC0248732' ,
+                'N' ,
+                GETDATE() ,
+                1 ,
+                'Re-enabled',
+                'N' ,
+                'Y' ,
+                1 ,
+                'Allied.UniTrac.Property' ,
+                ID ,
+                'PEND' ,
+                'N'
+        FROM   dbo.PROPERTY
+        WHERE   ID IN (SELECT ID FROM INC0248732_Property_3)
+
+
+
+
+		INSERT  INTO PROPERTY_CHANGE
+        ( ENTITY_NAME_TX ,
+          ENTITY_ID ,
+          USER_TX ,
+          ATTACHMENT_IN ,
+          CREATE_DT ,
+          AGENCY_ID ,
+          DESCRIPTION_TX ,
+          DETAILS_IN ,
+          FORMATTED_IN ,
+          LOCK_ID ,
+          PARENT_NAME_TX ,
+          PARENT_ID ,
+          TRANS_STATUS_CD ,
+          UTL_IN
+        )
+        SELECT DISTINCT
+                'Allied.UniTrac.Loan' ,
+                ID ,
+               'INC0248732' ,
+                'N' ,
+                GETDATE() ,
+                1 ,
+                'Removed Duplicate' ,
+                'N' ,
+                'Y' ,
+                1 ,
+                'Allied.UniTrac.Loan' ,
+                ID ,
+                'PEND' ,
+                'N'
+        FROM    dbo.LOAN 
+        WHERE   ID IN (SELECT ID FROM INC0248732_Loan_2)
+
+
+UPDATE dbo.LOAN
+SET RECORD_TYPE_CD = 'G', PURGE_DT = NULL,
+UPDATE_DT = GETDATE(), UPDATE_USER_TX = 'INC0248732'
+WHERE ID = '169964988'

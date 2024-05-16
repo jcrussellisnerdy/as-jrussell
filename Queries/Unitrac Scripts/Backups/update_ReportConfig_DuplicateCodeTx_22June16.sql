@@ -1,0 +1,37 @@
+
+USE UNITRAC
+GO
+
+BEGIN TRY
+BEGIN TRANSACTION
+
+		  delete report_config where id=942
+
+COMMIT TRANSACTION
+END TRY
+BEGIN CATCH
+   ROLLBACK TRANSACTION
+   RAISERROR ('ROLLBACK occured for Report_Config record deletion. NO RECORDS deleted', 16, 1) WITH LOG
+   SELECT
+ERROR_NUMBER() AS ErrorNumber
+,ERROR_SEVERITY() AS ErrorSeverity
+,ERROR_STATE() AS ErrorState
+,ERROR_PROCEDURE() AS ErrorProcedure
+,ERROR_LINE() AS ErrorLine
+,ERROR_MESSAGE() AS ErrorMessage;
+END CATCH
+GO
+
+
+
+select * from report_config where code_tx= 'NTCREG_CPICXL' and update_dt = '2016-05-09 19:19:16.873' 
+
+
+UPDATE dbo.REPORT_CONFIG
+SET PURGE_DT = GETDATE(), UPDATE_DT = GETDATE(), LOCK_ID = LOCK_ID+1, UPDATE_USER_TX = 'SCRIPT', DISPLAY_IN = 'N'
+--SELECT * FROM dbo.REPORT_CONFIG
+WHERE ID = '942'
+
+
+SELECT * FROM dbo.REPORT_CONFIG
+WHERE ID = '92'

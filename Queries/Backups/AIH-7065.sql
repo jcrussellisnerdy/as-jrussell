@@ -1,0 +1,30 @@
+USE [master]
+GO
+
+
+IF NOT EXISTS (SELECT * FROM sys.server_principals WHERE name = N'[ELDREDGE_A\SQL Server Maint Group]')
+	CREATE LOGIN [ELDREDGE_A\SQL Server Maint Group] FROM WINDOWS WITH DEFAULT_DATABASE=[TempDB], DEFAULT_LANGUAGE=[us_english];
+Go
+
+
+
+use [master]
+GO
+GRANT CONNECT ANY DATABASE TO [ELDREDGE_A\SQL Server Maint Group]
+GO
+use [master]
+GO
+GRANT SELECT ALL USER SECURABLES TO [ELDREDGE_A\SQL Server Maint Group]
+GO
+use [master]
+GO
+GRANT VIEW ANY DATABASE TO [ELDREDGE_A\SQL Server Maint Group]
+GO
+use [master]
+GO
+GRANT VIEW ANY DEFINITION TO [ELDREDGE_A\SQL Server Maint Group]
+GO
+use [master]
+GO
+GRANT VIEW SERVER STATE TO [ELDREDGE_A\SQL Server Maint Group]
+GO

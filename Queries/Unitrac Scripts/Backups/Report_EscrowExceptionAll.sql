@@ -1,0 +1,952 @@
+/****** Object:  StoredProcedure [dbo].[Report_EscrowExceptionAll]     ******/
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Report_EscrowExceptionAll]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[Report_EscrowExceptionAll]
+GO
+
+/****** Object:  StoredProcedure [dbo].[Report_EscrowExceptionAll]     ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[Report_EscrowExceptionAll] 
+	(
+	@LenderCode as nvarchar(10)=NULL,
+	@Branch as nvarchar(max)=NULL,
+	@Coverage as nvarchar(100)=NULL,
+	@Division as nvarchar(10)=NULL,
+	@ReportType as nvarchar(50)='ESCEXCEPALL',
+	@GroupByCode as nvarchar(50)=NULL,
+	@SortByCode as nvarchar(50)=NULL,
+	@FilterByCode as nvarchar(50)=NULL,
+	@ReportConfig as varchar(50)=NULL,
+	@ReportDomainName as varchar(30) = 'Report_EscrowException',
+	@Report_History_ID as bigint=NULL
+--,@Debug As BigInt=0
+	)
+as
+BEGIN
+	declare @Debug bigint = 0
+	If @Debug>0
+	Begin
+		Select
+		 @ReportType='ESCEXCEPALL'
+		,@ReportConfig='0000'
+	End
+
+--Get rid of residual #temp tables
+IF OBJECT_ID(N'tempdb..#tmpfilter',N'U') IS NOT NULL
+  DROP TABLE #tmpfilter
+IF OBJECT_ID(N'tempdb..#tmptable',N'U') IS NOT NULL
+  DROP TABLE #tmptable
+IF OBJECT_ID(N'tempdb..#tmpPrevEscrow',N'U') IS NOT NULL
+  DROP TABLE #tmpPrevEscrow
+	
+DECLARE @BeginDate As datetime2 (7)
+DECLARE @EndDate AS datetime2 (7)
+Declare @LenderID as bigint
+DECLARE @ESCINSCXL AS VARCHAR(1) = NULL	
+DECLARE @ESCINSEXP AS VARCHAR(1) = NULL
+DECLARE @ESCINSEXP3060 AS VARCHAR(1) = NULL	
+DECLARE @ESCUNINS AS VARCHAR(1) = NULL
+
+Select @Report_History_ID=IsNull(@Report_History_ID,@Debug) Where @Debug>9999
+--
+if @Report_History_ID is not NULL
+Begin
+	Select @BeginDate=VUT_START_DT, 
+		@EndDate=VUT_END_DT From [UNITRAC-REPORTS].[UNITRAC].DBO.REPORT_HISTORY_NOXML where ID = @Report_History_ID
+
+	 SET @BeginDate = DATEADD(HH,0,@BeginDate)			
+	 SET @EndDate = DATEADD(HH,0,@EndDate)		
+
+	Select
+	 @LenderCode=isnull(@LenderCode,REPORT_DATA_XML.value('(/ReportData/Report/Lender)[1]/@value', 'nvarchar(max)'))
+	,@Division=isnull(@Division,REPORT_DATA_XML.value('(/ReportData/Report/Division)[1]/@value', 'nvarchar(max)'))
+	,@ReportConfig=coalesce(@ReportConfig,REPORT_DATA_XML.value('(/ReportData/Report/ReportConfig)[1]/@value', 'varchar(50)'),'0000')
+	,@Debug=coalesce(@Debug,REPORT_DATA_XML.value('(/ReportData/Report/Debug)[1]/@value', 'bigint'),0)
+	From dbo.REPORT_HISTORY RH
+	Where RH.ID=@Report_History_ID
+End
+--
+Select @Debug=IsNull(@Debug,0)
+Select @LenderCode=IsNull(@LenderCode,Cast(@Debug As NVarChar(10))) Where @Debug Between 1000 and 9999
+
+DECLARE @BranchTable AS TABLE(ID int, STRVALUE nvarchar(30))
+			INSERT INTO @BranchTable SELECT * FROM SplitFunction(@Branch, ',')  
+
+DECLARE @ProcessDefinitionID as bigint = 0	
+DECLARE @CyclePeriod as nvarchar(15) = NULL	
+IF @BeginDate IS NULL
+BEGIN
+	SET @BeginDate = '01/01/2013'
+	SET @EndDate = GETDATE()
+END
+
+IF @BeginDate = '0001-01-01' or @BeginDate IS NULL
+BEGIN
+  SELECT @ProcessDefinitionID =  REPORT_DATA_XML.value('(/ReportData/Report/ProcessDefinitionID/@value)[1]', 'bigint')  FROM REPORT_HISTORY WHERE ID = @Report_History_ID
+  SELECT @CyclePeriod = EXECUTION_FREQ_CD FROM PROCESS_DEFINITION WHERE ID = @ProcessDefinitionID
+  select @BeginDate = 
+	CASE @CyclePeriod 
+		WHEN 'ANNUAL' THEN DATEADD(YEAR, -1, @EndDate)
+		WHEN 'QUARTERLY' THEN DATEADD(QUARTER, -1, @EndDate)
+		WHEN 'MONTHLY' THEN DATEADD(MONTH, -1, @EndDate)
+		WHEN 'SEMIMONTH' THEN DATEADD(WEEK, -2, @EndDate)
+		WHEN 'BIWEEK' THEN DATEADD(WEEK, -2, @EndDate)
+		WHEN 'WEEK' THEN DATEADD(WEEK, -1, @EndDate)
+		WHEN 'DAY' THEN DATEADD(d, -1, @EndDate)
+		WHEN 'HOUR' THEN DATEADD(HOUR, -1, @EndDate)	
+		ELSE DATEADD(DAY, -2, @EndDate)	
+	 end	 
+END
+
+CREATE TABLE [dbo].[#tmptable](
+	[LOAN_BRANCHCODE_TX] [nvarchar](20) NULL,
+	[LOAN_DIVISIONCODE_TX] [nvarchar](20) NULL,
+	[LOAN_TYPE_TX] [nvarchar](1000) NULL,
+	[REQUIREDCOVERAGE_CODE_TX] [nvarchar](30) NULL,
+	[REQUIREDCOVERAGE_TYPE_TX] [nvarchar](1000) NULL,
+--LOAN
+	[LOAN_NUMBER_TX] [nvarchar](18) NOT NULL,
+	[LOAN_NUMBERSORT_TX] [nvarchar](18) NULL,
+--LENDER
+	[LENDER_CODE_TX] [nvarchar](10) NULL,	
+	[LENDER_NAME_TX] [nvarchar](40) NULL,	
+--LOAN RELATED DATA
+    [MISC1_TX] [nvarchar] (50) NULL,	
+--OWNER
+	[OWNER_LASTNAME_TX] [nvarchar](30) NULL,
+	[OWNER_FIRSTNAME_TX] [nvarchar](30) NULL,
+	[OWNER_MIDDLEINITIAL_TX] [char](1) NULL,
+	[OWNER_NAME_TX] [nvarchar](100) NULL,
+	[OWNER_LINE1_TX] [nvarchar](100) NULL,
+	[OWNER_LINE2_TX] [nvarchar](100) NULL,
+	[OWNER_CITY_TX] [nvarchar](40) NULL,
+	[OWNER_STATE_TX] [nvarchar](30) NULL,
+	[OWNER_ZIP_TX] [nvarchar](30) NULL,
+--PROPERTY
+	[COLLATERAL_LINE1_TX] [nvarchar](100) NULL,
+	[COLLATERAL_LINE2_TX] [nvarchar](100) NULL,
+	[COLLATERAL_CITY_TX] [nvarchar](40) NULL,
+	[COLLATERAL_STATE_TX] [nvarchar](30) NULL,
+	[COLLATERAL_ZIP_TX] [nvarchar](30) NULL,
+--COVERAGE
+	[COVERAGE_STATUS_TX] [nvarchar](1000) NULL,
+	[NOTICE_DT] [datetime2](7) NULL,
+	[NOTICE_TYPE_TX] [nvarchar](1000) NULL,
+	[NOTICE_SEQ_NO] [int] NULL,
+--BORROWER INSURANCE
+	[BORRINSCOMPANY_NAME_TX] [nvarchar](100) NULL,
+	[PRIOR_BORRINSCOMPANY_NAME_TX] [nvarchar](100) NULL,
+	[BORRINSCOMPANY_LINE1_TX] [nvarchar](100) NULL,
+	[BORRINSCOMPANY_LINE2_TX] [nvarchar](100) NULL,
+	[BORRINSCOMPANY_CITY_TX] [nvarchar](40) NULL,
+	[BORRINSCOMPANY_STATE_TX] [nvarchar](30) NULL,
+	[BORRINSCOMPANY_ZIP_TX] [nvarchar](30) NULL,
+	[BORRINSCOMPANY_POLICY_NO] [nvarchar](30) NULL,
+	[BORRINSCOMPANY_EFF_DT] [datetime2](7) NULL,
+	[BORRINSCOMPANY_EXP_DT] [datetime2](7) NULL,
+	[BORRINSCOMPANY_EXPCXL_DT] [datetime2](7) NULL,
+	[POL_CXL_DATE_TX] [nvarchar](50) NULL,
+	[INSAGENCY_NAME_TX] [nvarchar](100) NULL,
+	[INSAGENCY_PHONE_TX] [nvarchar](40) NULL,
+	[OP_CANCEL_REASON_CD] [nvarchar] (50) NULL,
+--ESCROW
+	[ESCROW_STATUS_CD] [nvarchar](4) NULL,
+	[ESCROW_SUB_STATUS_CD] [nvarchar](10) NULL,
+	[ESCROW_DUE_DT] [datetime2](7) NULL,
+	[ESCROW_END_DT] [datetime2](7) NULL,
+	[ESCROW_PREMIUM_NO] [decimal](18, 2) NULL,
+	[ESCROW_OTHER_NO] [decimal](18, 2) NULL,
+	[ESCROW_FEE_NO] [decimal](18, 2) NULL,
+	[ESCROW_TOTAL_NO] [decimal](18, 2) NULL,
+	[ESCROW_PRIOR_TOTAL_NO] [decimal](18,2) NULL,
+	[ESCROW_VARIANCE] [decimal](10,5) NULL,
+	[ESCROW_PAYEE_CODE_TX] [nvarchar](20) NULL,
+	[ESCROW_TOTAL_AMT_CHG_DT] [datetime2] (7) NULL,
+	[MORT_OPTION_PRM_VARIANCE] [decimal](10,5) NULL,
+	[LEND_PAYEE_CODE_MATCH_NO] [bigint] NULL,
+	[LAST_ESCROW_EVENT_TX][nvarchar] (10) NULL,
+	[LAST_ESCROW_EVENT_DT] [datetime2](7) NULL,
+	[ESCROW_EXCEPTION][nvarchar](max) NULL,
+	[ESCROW_PAID_THROUGH_DT_NO][int] NULL,
+	[ESCROW_PAID_THRU_SORT_TX] [nvarchar] (20) NULL,
+	[ESCROW_TYPE_CD] [nvarchar](20) NULL,
+	[ESCROW_SUB_TYPE_CD] [nvarchar](20) NULL,
+	[ESCROW_EXCESS_IN] [char] (1) NULL,
+--IDs, STATUS
+    [ESCROW_ID] [bigint] NULL,
+	[LOAN_ID] [bigint] NULL,
+	[COLLATERAL_ID] [bigint] NULL,
+	[PROPERTY_ID] [bigint] NULL,
+	[REQUIREDCOVERAGE_ID] [bigint] NULL,
+	[LOAN_STATUSCODE] [nvarchar] (2) NULL,
+	[LOAN_STATUSMEANING_TX] [nvarchar](1000) NULL,
+	[COLLATERAL_STATUSCODE] [nvarchar] (2) NULL,
+	[COLLATERAL_STATUSMEANING_TX] [nvarchar](1000) NULL,
+	[REQUIREDCOVERAGE_STATUSCODE] [nvarchar] (2) NULL,
+	[REQUIREDCOVERAGE_STATUSMEANING_TX] [nvarchar](1000) NULL,
+	[REQUIREDCOVERAGE_SUBSTATUSCODE] [nvarchar] (2) NULL,
+	[REQUIREDCOVERAGE_INSSTATUSCODE] [nvarchar] (2) NULL,
+	[REQUIREDCOVERAGE_INSSTATUSMEANING_TX] [nvarchar](1000) NULL,
+	[REQUIREDCOVERAGE_INSSUBSTATUSCODE] [nvarchar] (2) NULL,
+	[REQUIREDCOVERAGE_INSSUBSTATUSMEANING_TX] [nvarchar](1000) NULL,
+--OTHER
+	[OWNER_POLICY_CANCEL_DT] [datetime2](7) NULL,
+	[OWNER_POLICY_EXP_DT] [datetime2](7) NULL,
+	[OPTION_TRACK_ESCROW_TX] [nvarchar](2) NULL,
+	[OPTION_PREM_DUE_DAYS_TX][int] NULL,
+-- PARAMETERS
+	[REPORT_GROUPBY_TX] [nvarchar](1000) NULL,
+	[REPORT_SORTBY_TX] [nvarchar](1000) NULL,
+	[REPORT_HEADER_TX] [nvarchar](1000) NULL,
+	[REPORT_FOOTER_TX] [nvarchar](1000) NULL
+
+
+--OutBoundCall attempts
+--including agent email/faxes
+--within the last 45 days
+	,[OBC_ATTEMPTS_45_NO] [int] NULL
+
+--BackGround color of the row
+	,BG_COLOR [nvarchar](20) NOT NULL DEFAULT 'White'
+	,BG_COLOR_ORDER [int] NOT NULL DEFAULT 0
+) ON [PRIMARY]
+
+CREATE TABLE [dbo].[#tmpfilter](
+	[ATTRIBUTE_CD] [nvarchar](50) NULL,
+	[VALUE_TX] [nvarchar](50) NULL
+) ON [PRIMARY]
+
+Create Table [dbo].[#tmpPrevEscrow]
+	(
+	  EscrowId bigint,	
+	  PrevTotal decimal(18, 5),
+	  PrevBICName nvarchar(100)
+	) ON [PRIMARY]
+
+--Use the FIL_ ref codes to specify custom logic 
+Insert into #tmpfilter (
+	ATTRIBUTE_CD,
+	VALUE_TX)
+Select 
+RAD.ATTRIBUTE_CD,
+Case 
+  when Custom.VALUE_TX is not NULL then Custom.VALUE_TX
+  when RA.VALUE_TX is not NULL then RA.VALUE_TX
+  else RAD.VALUE_TX
+End as VALUE_TX
+from REF_CODE RC 
+Join REF_CODE_ATTRIBUTE RAD on RAD.DOMAIN_CD = RC.DOMAIN_CD and RAD.REF_CD = 'DEFAULT' and RAD.ATTRIBUTE_CD like 'FIL%'
+left Join REF_CODE_ATTRIBUTE RA on RA.DOMAIN_CD = RC.DOMAIN_CD and RA.REF_CD = RC.CODE_CD and RA.ATTRIBUTE_CD = RAD.ATTRIBUTE_CD
+left Join 
+  (
+  Select CODE_TX,REPORT_CD,REPORT_DOMAIN_CD,REPORT_REF_ATTRIBUTE_CD,VALUE_TX from REPORT_CONFIG RC
+  Join REPORT_CONFIG_ATTRIBUTE RCA on RCA.REPORT_CONFIG_ID = RC.ID
+  ) Custom
+   on Custom.CODE_TX = @ReportConfig and Custom.REPORT_DOMAIN_CD = RAD.DOMAIN_CD and Custom.REPORT_REF_ATTRIBUTE_CD = RAD.ATTRIBUTE_CD --and Custom.REPORT_CD = @ReportConfig
+where RC.DOMAIN_CD = @ReportDomainName and RC.CODE_CD = @ReportType
+
+
+Select @ESCINSCXL =  ISNULL(Value_TX, 'N') from #tmpfilter where ATTRIBUTE_CD = 'FIL_ESCINSCXL'
+Select @ESCINSEXP =  ISNULL(Value_TX, 'N') from #tmpfilter where ATTRIBUTE_CD = 'FIL_ESCINSEXP'
+Select @ESCINSEXP3060 =  ISNULL(Value_TX, 'N') from #tmpfilter where ATTRIBUTE_CD = 'FIL_ESCINSEXP3060'
+Select @ESCUNINS =  ISNULL(Value_TX, 'N') from #tmpfilter where ATTRIBUTE_CD = 'FIL_ESCUNINS'
+
+Select @LenderID=ID from LENDER where CODE_TX = @LenderCode and PURGE_DT is null
+
+
+Declare @RD_MISC1_ID as bigint
+Select @RD_MISC1_ID = ID from RELATED_DATA_DEF where NAME_TX = 'Misc1'
+
+Declare @GroupBySQL as varchar(1000)
+Declare @SortBySQL as varchar(1000)
+Declare @FilterBySQL as varchar(1000)
+Declare @HeaderTx as varchar(1000)
+Declare @FooterTx as varchar(1000)
+Declare @FillerZero as varchar(18)
+Declare @RecordCount as bigint
+
+Set @FillerZero = '000000000000000000'
+Set @RecordCount = 0
+
+
+if @ReportConfig is NULL or @ReportConfig = '' or @ReportConfig = '0000'
+  Begin
+	IF @GroupByCode IS NULL OR @GroupByCode = ''
+		SELECT @GroupBySQL=GROUP_TX FROM REPORT_CONFIG WHERE CODE_TX = @ReportType
+	ELSE
+		SELECT @GroupBySQL=DESCRIPTION_TX FROM REF_CODE WHERE DOMAIN_CD = 'Report_GroupBy' AND CODE_CD = @GroupByCode
+	IF @SortByCode IS NULL OR @SortByCode = ''
+		SELECT @SortBySQL=SORT_TX FROM REPORT_CONFIG WHERE CODE_TX = @ReportType
+	ELSE
+		SELECT @SortBySQL=DESCRIPTION_TX FROM REF_CODE WHERE DOMAIN_CD = 'Report_SortBy' AND CODE_CD = @SortByCode
+	IF @FilterByCode IS NULL OR @FilterByCode = ''
+		SELECT @FilterBySQL=FILTER_TX FROM REPORT_CONFIG WHERE CODE_TX = @ReportType
+	Else
+		SELECT @FilterBySQL=DESCRIPTION_TX FROM REF_CODE WHERE DOMAIN_CD = 'Report_FilterBy' AND CODE_CD = @FilterByCode
+
+	Select @HeaderTx=HEADER_TX from REPORT_CONFIG where CODE_TX = @ReportType
+	Select @FooterTx=FOOTER_TX from REPORT_CONFIG where CODE_TX = @ReportType
+  End
+else
+  Begin
+	IF @GroupByCode IS NULL OR @GroupByCode = ''
+		SELECT @GroupBySQL=GROUP_TX FROM REPORT_CONFIG WHERE CODE_TX = @ReportConfig
+	ELSE
+		SELECT @GroupBySQL=DESCRIPTION_TX FROM REF_CODE WHERE DOMAIN_CD = 'Report_GroupBy' AND CODE_CD = @GroupByCode
+	IF @SortByCode IS NULL OR @SortByCode = ''
+		SELECT @SortBySQL=SORT_TX FROM REPORT_CONFIG WHERE CODE_TX = @ReportConfig
+	ELSE
+		SELECT @SortBySQL=DESCRIPTION_TX FROM REF_CODE WHERE DOMAIN_CD = 'Report_SortBy' AND CODE_CD = @SortByCode
+	IF @FilterByCode IS NULL OR @FilterByCode = ''
+		SELECT @FilterBySQL=FILTER_TX FROM REPORT_CONFIG WHERE CODE_TX = @ReportConfig
+	Else
+		SELECT @FilterBySQL=DESCRIPTION_TX FROM REF_CODE WHERE DOMAIN_CD = 'Report_FilterBy' AND CODE_CD = @FilterByCode
+
+	Select @HeaderTx=HEADER_TX from REPORT_CONFIG where CODE_TX = @ReportConfig
+	Select @FooterTx=FOOTER_TX from REPORT_CONFIG where CODE_TX = @ReportConfig
+  End  
+
+If @Debug%2>0 Or @Debug>999
+Begin
+	Select
+	 '@Debug'=@Debug
+	,'@LenderCode'=@LenderCode
+	,'@LenderID'=@LenderID
+	,'@ReportType'=@ReportType
+	,'@ReportConfig'=@ReportConfig
+	,'@ReportDomainName'=@ReportDomainName
+	,'@Report_History_ID'=@Report_History_ID
+	,'@BeginDate'=@BeginDate
+	,'@EndDate'=@EndDate
+
+	Select
+	 '#tmpfilter:'='tmpfilter'
+	,tf.*
+	From #tmpfilter As tf
+End
+
+Insert into #tmptable (
+	LOAN_BRANCHCODE_TX, LOAN_DIVISIONCODE_TX, LOAN_TYPE_TX, REQUIREDCOVERAGE_CODE_TX, REQUIREDCOVERAGE_TYPE_TX, 
+	--LOAN
+	LOAN_NUMBER_TX, LOAN_NUMBERSORT_TX,
+	--LENDER
+	LENDER_CODE_TX, LENDER_NAME_TX,
+	--LOAN RELATED DATA
+	[MISC1_TX],
+	--OWNER
+	OWNER_LASTNAME_TX, OWNER_FIRSTNAME_TX, OWNER_MIDDLEINITIAL_TX, OWNER_NAME_TX,
+	OWNER_LINE1_TX, OWNER_LINE2_TX, OWNER_CITY_TX, OWNER_STATE_TX, OWNER_ZIP_TX,
+	--PROPERTY
+	COLLATERAL_LINE1_TX, COLLATERAL_LINE2_TX, COLLATERAL_CITY_TX, COLLATERAL_STATE_TX, COLLATERAL_ZIP_TX, 
+	--COVERAGE
+	COVERAGE_STATUS_TX, NOTICE_DT,NOTICE_TYPE_TX,NOTICE_SEQ_NO,
+	--BORROWER INSURANCE
+	BORRINSCOMPANY_NAME_TX, BORRINSCOMPANY_LINE1_TX, BORRINSCOMPANY_LINE2_TX, BORRINSCOMPANY_CITY_TX, BORRINSCOMPANY_STATE_TX, BORRINSCOMPANY_ZIP_TX,
+	BORRINSCOMPANY_POLICY_NO, BORRINSCOMPANY_EFF_DT, BORRINSCOMPANY_EXP_DT,
+	BORRINSCOMPANY_EXPCXL_DT,
+	POL_CXL_DATE_TX,
+	INSAGENCY_NAME_TX,INSAGENCY_PHONE_TX, OP_CANCEL_REASON_CD,
+	--ESCROW
+	ESCROW_STATUS_CD, ESCROW_SUB_STATUS_CD,
+	ESCROW_DUE_DT,ESCROW_END_DT,ESCROW_PREMIUM_NO,ESCROW_OTHER_NO,ESCROW_FEE_NO,ESCROW_TOTAL_NO,
+	ESCROW_PAYEE_CODE_TX,
+	ESCROW_TOTAL_AMT_CHG_DT,MORT_OPTION_PRM_VARIANCE,	 
+	LAST_ESCROW_EVENT_TX,LAST_ESCROW_EVENT_DT,
+	ESCROW_EXCEPTION,  
+	ESCROW_PAID_THROUGH_DT_NO,ESCROW_PAID_THRU_SORT_TX,
+	ESCROW_TYPE_CD, ESCROW_SUB_TYPE_CD, ESCROW_EXCESS_IN,
+	--IDs, STATUS
+	ESCROW_ID,LOAN_ID, COLLATERAL_ID, PROPERTY_ID, REQUIREDCOVERAGE_ID, 
+	LOAN_STATUSCODE, LOAN_STATUSMEANING_TX, COLLATERAL_STATUSCODE, COLLATERAL_STATUSMEANING_TX,
+	REQUIREDCOVERAGE_STATUSCODE, REQUIREDCOVERAGE_STATUSMEANING_TX, REQUIREDCOVERAGE_SUBSTATUSCODE,
+	REQUIREDCOVERAGE_INSSTATUSCODE, REQUIREDCOVERAGE_INSSTATUSMEANING_TX,
+	REQUIREDCOVERAGE_INSSUBSTATUSCODE, REQUIREDCOVERAGE_INSSUBSTATUSMEANING_TX,
+	--OTHER
+	OWNER_POLICY_CANCEL_DT,
+	OWNER_POLICY_EXP_DT,
+	OPTION_TRACK_ESCROW_TX,
+	OPTION_PREM_DUE_DAYS_TX
+	,OBC_ATTEMPTS_45_NO
+	,BG_COLOR		
+	)
+
+Select (
+	   CASE when L.BRANCH_CODE_TX is null or L.BRANCH_CODE_TX = '' then 'No Branch' else L.BRANCH_CODE_TX END) as [LOAN_BRANCHCODE_TX],
+	   CASE WHEN ISNULL(L.DIVISION_CODE_TX,'') = ''
+			THEN '0'
+			ELSE L.DIVISION_CODE_TX
+	   END AS [LOAN_DIVISIONCODE_TX],
+	   ISNULL(RC_DIVISION.DESCRIPTION_TX,RC_SC.DESCRIPTION_TX) AS [LOAN_TYPE_TX],
+	   RC.TYPE_CD as [REQUIREDCOVERAGE_CODE_TX], 
+	   RC_COVERAGETYPE.MEANING_TX as [REQUIREDCOVERAGE_TYPE_TX], 
+--LOAN
+	   L.NUMBER_TX as [LOAN_NUMBER_TX], 
+	   SUBSTRING(@FillerZero, 1, 18 - len(L.NUMBER_TX)) + CAST(L.NUMBER_TX AS nvarchar(18)) AS [LOAN_NUMBERSORT_TX],
+--LENDER
+	   LND.CODE_TX as [LENDER_CODE_TX], 
+	   LND.NAME_TX as [LENDER_NAME_TX],
+--LOAN RELATED DATA
+	   isnull(RD.VALUE_TX,'') as [MISC1_TX],
+--OWNER
+       O.LAST_NAME_TX AS OWNER_LASTNAME_TX, 
+	   O.FIRST_NAME_TX AS OWNER_FIRSTNAME_TX, 
+	   O.MIDDLE_INITIAL_TX AS OWNER_MIDDLEINITIAL_TX,
+       CASE WHEN O.FIRST_NAME_TX IS NULL THEN O.LAST_NAME_TX ELSE RTRIM(O.LAST_NAME_TX + ', ' + ISNULL(O.FIRST_NAME_TX,'') + ' ' + ISNULL(O.MIDDLE_INITIAL_TX,'')) END AS [OWNER_NAME_TX],
+       AO.LINE_1_TX as OWNER_LINE1_TX, 
+	   AO.LINE_2_TX as OWNER_LINE2_TX,
+       AO.CITY_TX as OWNER_CITY_TX, 
+	   AO.STATE_PROV_TX as OWNER_STATE_TX, 
+	   AO.POSTAL_CODE_TX as OWNER_ZIP_TX,
+--PROPERTY
+       AM.LINE_1_TX as [COLLATERAL_LINE1_TX], 
+	   AM.LINE_2_TX as [COLLATERAL_LINE2_TX],
+       AM.CITY_TX as [COLLATERAL_CITY_TX], 
+	   AM.STATE_PROV_TX as [COLLATERAL_STATE_TX], 
+	   AM.POSTAL_CODE_TX as [COLLATERAL_ZIP_TX], 
+--COVERAGE
+	   CASE 
+		 WHEN RC.NOTICE_DT is not null and RC.NOTICE_SEQ_NO > 0 
+				THEN cast(RC.NOTICE_SEQ_NO as char(1)) +  ' ' + NRef.MEANING_TX + ' ' + CONVERT(nvarchar(10), RC.NOTICE_DT, 101) + ' ' +
+				CASE WHEN MAXNTC.PRINTED_DT IS NOT NULL THEN '(Mailed on ' + CONVERT(nvarchar(10), MAXNTC.PRINTED_DT, 101) + ')' 
+				     ELSE '(Not Mailed)' END
+	   ELSE CASE 
+		WHEN L.STATUS_CD in ('N','O','P') THEN LSRef.MEANING_TX
+		WHEN C.STATUS_CD in ('R','S','X') THEN CSRef.MEANING_TX
+		WHEN L.STATUS_CD = 'B' and C.STATUS_CD = 'Z' and RC.STATUS_CD in ('A','D') and RC.SUMMARY_STATUS_CD in ('A','N') 
+				THEN LSRef.MEANING_TX + ' ' + CSRef.MEANING_TX + ' ' + RCISRef.MEANING_TX
+		WHEN L.STATUS_CD = 'B' and C.STATUS_CD = 'Z' and RC.STATUS_CD in ('A','D') and RC.SUMMARY_STATUS_CD not in ('A','N') 
+				THEN LSRef.MEANING_TX + ' ' + CSRef.MEANING_TX + ' ' + RCISSRef.MEANING_TX + ' ' + RCISRef.MEANING_TX
+		WHEN L.STATUS_CD = 'B' and C.STATUS_CD = 'Z' and RC.STATUS_CD = 'T' and RC.SUMMARY_STATUS_CD in ('A','N') 
+				THEN LSRef.MEANING_TX + ' ' + CSRef.MEANING_TX + ' ' + RCSRef.MEANING_TX + ' ' + RCISRef.MEANING_TX
+		WHEN L.STATUS_CD = 'B' and C.STATUS_CD = 'Z' and RC.STATUS_CD = 'T' and RC.SUMMARY_STATUS_CD not in ('A','N') 
+				THEN LSRef.MEANING_TX + ' ' + CSRef.MEANING_TX + ' ' + RCSRef.MEANING_TX + ' ' + RCISSRef.MEANING_TX + ' ' + RCISRef.MEANING_TX
+		WHEN L.STATUS_CD = 'B' and C.STATUS_CD = 'Z' and RC.STATUS_CD not in ('A','D','T')
+				THEN LSRef.MEANING_TX + ' ' + CSRef.MEANING_TX + ' ' + RCSRef.MEANING_TX
+		WHEN C.STATUS_CD = 'Z' and RC.STATUS_CD in ('A','D') and RC.SUMMARY_STATUS_CD in ('A','N') 
+				THEN CSRef.MEANING_TX + ' ' + RCISRef.MEANING_TX
+		WHEN C.STATUS_CD = 'Z' and RC.STATUS_CD in ('A','D') and RC.SUMMARY_STATUS_CD not in ('A','N') 
+				THEN CSRef.MEANING_TX + ' ' + RCISSRef.MEANING_TX + ' ' + RCISRef.MEANING_TX
+		WHEN C.STATUS_CD = 'Z' and RC.STATUS_CD = 'T' and RC.SUMMARY_STATUS_CD in ('A','N') 
+				THEN CSRef.MEANING_TX + ' ' + RCSRef.MEANING_TX + ' ' + RCISRef.MEANING_TX
+		WHEN C.STATUS_CD = 'Z' and RC.STATUS_CD = 'T' and RC.SUMMARY_STATUS_CD not in ('A','N') 
+				THEN CSRef.MEANING_TX + ' ' + RCSRef.MEANING_TX + ' ' + RCISSRef.MEANING_TX + ' ' + RCISRef.MEANING_TX
+		WHEN C.STATUS_CD = 'Z' and RC.STATUS_CD not in ('A','D','T')
+				THEN CSRef.MEANING_TX + ' ' + RCSRef.MEANING_TX
+		WHEN L.STATUS_CD = 'A' and RC.STATUS_CD in ('A','D') and RC.SUMMARY_STATUS_CD in ('A','N') 
+				THEN RCISRef.MEANING_TX
+		WHEN L.STATUS_CD = 'A' and RC.STATUS_CD in ('A','D') and RC.SUMMARY_STATUS_CD not in ('A','N') 
+				THEN RCISSRef.MEANING_TX + ' ' + RCISRef.MEANING_TX
+		WHEN L.STATUS_CD = 'A' and RC.STATUS_CD = 'T' and RC.SUMMARY_STATUS_CD in ('A','N') 
+				THEN RCSRef.MEANING_TX + ' ' + RCISRef.MEANING_TX
+		WHEN L.STATUS_CD = 'A' and RC.STATUS_CD = 'T' and RC.SUMMARY_STATUS_CD not in ('A','N') 
+				THEN RCSRef.MEANING_TX + ' ' + RCISSRef.MEANING_TX + ' ' + RCISRef.MEANING_TX
+		WHEN L.STATUS_CD = 'A' and RC.STATUS_CD not in ('A','D','T')
+				THEN RCSRef.MEANING_TX
+		WHEN L.STATUS_CD = 'B' and RC.STATUS_CD in ('A','D') and RC.SUMMARY_STATUS_CD in ('A','N') 
+				THEN LSRef.MEANING_TX + ' ' + RCISRef.MEANING_TX
+		WHEN L.STATUS_CD = 'B' and RC.STATUS_CD in ('A','D') and RC.SUMMARY_STATUS_CD not in ('A','N') 
+				THEN LSRef.MEANING_TX + ' ' + RCISSRef.MEANING_TX + ' ' + RCISRef.MEANING_TX
+		WHEN L.STATUS_CD = 'B' and RC.STATUS_CD = 'T' and RC.SUMMARY_STATUS_CD in ('A','N') 
+				THEN LSRef.MEANING_TX + ' ' + RCSRef.MEANING_TX + ' ' + RCISRef.MEANING_TX
+		WHEN L.STATUS_CD = 'B' and RC.STATUS_CD = 'T' and RC.SUMMARY_STATUS_CD not in ('A','N') 
+				THEN LSRef.MEANING_TX + ' ' + RCSRef.MEANING_TX + ' ' + RCISSRef.MEANING_TX + ' ' + RCISRef.MEANING_TX
+		WHEN L.STATUS_CD = 'B' and RC.STATUS_CD not in ('A','D','T')
+				THEN LSRef.MEANING_TX + ' ' + RCSRef.MEANING_TX
+	   END
+	   END as [COVERAGE_STATUS_TX],	   
+	   RC.NOTICE_DT as [NOTICE_DT],
+	   NRef.MEANING_TX as [NOTICE_TYPE_TX], 
+	   RC.NOTICE_SEQ_NO as [NOTICE_SEQ_NO],
+--BORROWER INSURANCE
+       BIC.NAME as [BORRINSCOMPANY_NAME_TX], 
+	   AE.LINE_1_TX as [BORRINSCOMPANY_LINE1_TX], 
+	   AE.LINE_2_TX as [BORRINSCOMPANY_LINE2_TX], 
+	   AE.CITY_TX as [BORRINSCOMPANY_CITY_TX],
+	   AE.STATE_PROV_TX as [BORRINSCOMPANY_STATE_TX],
+	   AE.POSTAL_CODE_TX as [BORRINSCOMPANY_ZIP_TX],
+       E.POLICY_NUMBER_TX as [BORRINSCOMPANY_POLICY_NO],
+	   OP.EFFECTIVE_DT AS [BORRINSCOMPANY_EFF_DT], 
+		OP.EXPIRATION_DT AS [BORRINSCOMPANY_EXP_DT],
+		ISNULL(OP.CANCELLATION_DT,OP.EXPIRATION_DT) as [BORRINSCOMPANY_EXPCXL_DT],
+		POL_CXL_DATE_TX = CASE
+		WHEN OP.CANCELLATION_DT IS NULL
+		 AND OP.EXPIRATION_DT IS NULL
+			THEN ''
+		WHEN (OP.CANCELLATION_DT > GETDATE() AND OP.CANCELLATION_DT < '12/31/9999')
+			THEN 'Insurance is cancelling on ' + CONVERT(NVarChar(10), ISNULL(OP.CANCELLATION_DT,OP.EXPIRATION_DT), 111)
+		ELSE CONVERT(NVarChar(10), ISNULL(OP.CANCELLATION_DT,OP.EXPIRATION_DT), 111)
+		END,
+		OP.BIC_NAME_TX as [INSAGENCY_NAME_TX],
+		BIA.PHONE_TX + ' ' + BIA.PHONE_EXT_TX as [INSAGENCY_PHONE_TX],
+		RC_CANCELREASON.DESCRIPTION_TX AS [OP_CANCEL_REASON_CD],
+--ESCROW
+		ESCROW_STATUS_CD = E.STATUS_CD,
+		ESCROW_SUB_STATUS_CD = E.SUB_STATUS_CD,
+		E.DUE_DT as [ESCROW_DUE_DT], 
+		RE.PAID_THRU_DT as [ESCROW_END_DT], 
+		E.PREMIUM_NO as [ESCROW_PREMIUM_NO], 
+		E.OTHER_NO as [ESCROW_OTHER_NO], 
+		E.FEE_NO as [ESCROW_FEE_NO], 
+		E.TOTAL_AMOUNT_NO as [ESCROW_TOTAL_NO],
+		ESCROW_PAYEE_CODE_TX = LPCF.PAYEE_CODE_TX,
+		E.TOTAL_AMT_CHG_DT AS [ESCROW_TOTAL_AMT_CHG_DT],
+		ISNULL(RC.MortgageOptionPremVariance, 0) AS [MORT_OPTION_PRM_VARIANCE],
+		EV.ACTION_TAKEN_CD AS LAST_ESCROW_EVENT_TX,
+		EV.EVENT_DT AS LAST_ESCROW_EVENT_DT,
+		CASE WHEN RC.INSURANCE_SUB_STATUS_CD <> 'I' --Not Impaired
+				and RC.INSURANCE_STATUS_CD <> 'F' --Not InForce 
+				and RC.INSURANCE_STATUS_CD <> 'P' --Not Pending 
+				THEN 'Uninsured. ' 
+			ELSE '' END
+		+ 
+		CASE WHEN OP.EXPIRATION_DT <> RE.PAID_THRU_DT
+				THEN 'Insurance/Escrow mismatch. '
+			ELSE '' END
+		+
+		CASE WHEN RC.TYPE_CD = 'WIND' and RC.STATUS_CD = 'I'
+				THEN 'Wind went from Active to Inactive. '
+			ELSE '' END
+		+
+		CASE 
+			WHEN (L.STATUS_CD IN('A','B','O','N') OR C.STATUS_CD IN('A','Z','S','X')) 
+				AND RC.STATUS_CD <> 'T' 
+				AND (RC.SUMMARY_STATUS_CD IN('N','A','E','C') OR RC.SUMMARY_SUB_STATUS_CD IN('B','I')) 
+				AND ISNULL(RC.TrackEscrowInsuranceBills,0) = 1 
+				THEN 'Insurance Coverage Exceeds Paid Thru Date'
+			WHEN E.END_DT < OP.EXPIRATION_DT 
+				THEN 'Insurance Coverage Exceeds Paid Thru Date'
+			WHEN OP.CANCELLATION_DT < DATEADD(d, 60, GETDATE()) AND OP.CANCELLATION_DT IS NOT NULL 
+				THEN 'Insurance is Cancelling'
+			WHEN OP.EXPIRATION_DT < DATEADD(d, RC.MortgageOptionPremDueDays, GETDATE()) 
+				THEN 'Insurance Coverage Exceeds Paid Thru Date'
+			WHEN OP.EXPIRATION_DT < DATEADD(d,60,GETDATE()) 
+				THEN 'Insurance Coverage Exceeds Paid Thru Date'
+			WHEN RC.SUMMARY_STATUS_CD in ('N','A','E','EH','C','CH') OR RC.SUMMARY_SUB_STATUS_CD IN  ('B','I') 
+				AND RC.TrackEscrowInsuranceBills = '1' 
+				THEN 'Insurance is Cancelling2'
+			ELSE ''													
+		END AS [ESCROW_EXCEPTION], 
+		[ESCROW_PAID_THROUGH_DT_NO] = PAIDTHRU.PAID_THRU_DAYS_NO,
+		[ESCROW_PAID_THRU_SORT_TX] = 
+		  CASE WHEN PAIDTHRU.PAID_THRU_DAYS_NO IS NULL THEN 'A' + SUBSTRING(@FillerZero, 1, 18) 
+		       WHEN PAIDTHRU.PAID_THRU_DAYS_NO < 0 THEN 'B' + CAST((CAST(POWER(CAST(10 AS BIGINT),18) AS BIGINT) + 
+		         PAIDTHRU.PAID_THRU_DAYS_NO) AS nvarchar(20))		       
+			   ELSE 'C' + SUBSTRING(@FillerZero, 1, 18 - len(PAIDTHRU.PAID_THRU_DAYS_NO)) + 
+			       CAST(PAIDTHRU.PAID_THRU_DAYS_NO AS nvarchar(20)) END,
+		E.TYPE_CD,
+		E.SUB_TYPE_CD,
+		E.EXCESS_IN AS [ESCROW_EXCESS_IN],
+--IDs, STATUS
+       E.ID as [ESCROW_ID],
+       L.ID as [LOAN_ID], 
+       C.ID as [COLLATERAL_ID], 
+       P.ID as [PROPERTY_ID], 
+       RC.ID as [REQUIREDCOVERAGE_ID], 
+       L.STATUS_CD as [LOAN_STATUSCODE], 
+	   LSRef.MEANING_TX as [LOAN_STATUSMEANING_TX], 
+       C.STATUS_CD as [COLLATERAL_STATUSCODE], 
+	   CSRef.MEANING_TX as [COLLATERAL_STATUSMEANING_TX],
+       RC.STATUS_CD as [REQUIREDCOVERAGE_STATUSCODE],
+	   RCSRef.MEANING_TX as [REQUIREDCOVERAGE_STATUSMEANING_TX],
+       RC.SUB_STATUS_CD as [REQUIREDCOVERAGE_SUBSTATUSCODE],
+       RC.SUMMARY_STATUS_CD as [REQUIREDCOVERAGE_INSSTATUSCODE],
+	   ISNULL(RCISRef.MEANING_TX, 'NOTAVAIL') as [REQUIREDCOVERAGE_INSSTATUSMEANING_TX],
+       RC.SUMMARY_SUB_STATUS_CD as [REQUIREDCOVERAGE_INSSUBSTATUSCODE], 
+	   RCISSRef.MEANING_TX as [REQUIREDCOVERAGE_INSSUBSTATUSMEANING_TX],
+--OTHER
+OP.CANCELLATION_DT as [OWNER_POLICY_CANCEL_DT],
+OP.EXPIRATION_DT as [OWNER_POLICY_EXP_DT],
+RC.TrackEscrowInsuranceBills as [OPTION_TRACK_ESCROW_TX],                
+RC.MortgageOptionPremDueDays as [OPTION_PREM_DUE_DAYS_TX]
+
+--OutBoundCalls within last 45 days
+,[OBC_ATTEMPTS_45_NO] =
+ IsNull(IH_OBCALL.OBCALL_IH_CNT, 0) +
+ IsNull(IH_EMAILFAX.EMAILFAX_IH_CNT, 0)
+
+,[BG_COLOR] = COLOR.BG
+from PROPERTY P 
+Join COLLATERAL C on C.PROPERTY_ID = P.ID and
+	C.PURGE_DT IS NULL and
+	C.EXTRACT_UNMATCH_COUNT_NO = 0 and
+	C.STATUS_CD not in ('U' ,'I') AND
+	C.PRIMARY_LOAN_IN = 'Y'
+Join REQUIRED_COVERAGE RC on RC.PROPERTY_ID = c.PROPERTY_ID
+	AND RC.PURGE_DT IS NULL
+Join LOAN L on L.ID = C.LOAN_ID and L.LENDER_ID = P.LENDER_ID AND L.PURGE_DT IS NULL
+Join LENDER LND on LND.ID = L.LENDER_ID AND LND.PURGE_DT IS NULL
+Join OWNER_LOAN_RELATE OL on OL.LOAN_ID = L.ID AND OL.PRIMARY_IN = 'Y' AND OL.PURGE_DT IS NULL
+Join [OWNER] O on O.ID = OL.OWNER_ID AND O.PURGE_DT IS NULL
+left Join OWNER_ADDRESS AO on AO.ID = O.ADDRESS_ID AND AO.PURGE_DT IS NULL
+left Join OWNER_ADDRESS AM on AM.ID = P.ADDRESS_ID AND AM.PURGE_DT IS NULL
+
+CROSS APPLY 
+(
+	SELECT max(E.ID) as ID,MAX(E.POLICY_NUMBER_TX) as POLICY_NUMBER_TX, MAX(E.DUE_DT) as DUE_DT, max(E.END_DT) as END_DT,
+	max(E.STATUS_CD) as STATUS_CD, max(E.SUB_STATUS_CD) as SUB_STATUS_CD, MAX(E.PREMIUM_NO) as PREMIUM_NO, MAX(E.OTHER_NO) as OTHER_NO, MAX(E.FEE_NO) as FEE_NO,
+	max(E.TOTAL_AMOUNT_NO) as TOTAL_AMOUNT_NO, MAX(E.ORIGINAL_TOTAL_AMT_NO) as ORIGINAL_TOTAL_AMT_NO, 
+	MAX(E.TOTAL_AMT_CHG_DT) as TOTAL_AMT_CHG_DT, MAX(E.REMITTANCE_ADDR_ID) as REMITTANCE_ADDR_ID, MAX(E.BIC_ID) as BIC_ID,
+	MAX(E.RECORD_TYPE_CD) as RECORD_TYPE_CD,
+	MAX(E.TYPE_CD) AS TYPE_CD, MAX(E.SUB_TYPE_CD) AS SUB_TYPE_CD,
+	MAX(E.EXCESS_IN) AS EXCESS_IN,
+	re.REQUIRED_COVERAGE_ID as RE_REQ_COV_ID
+	from required_escrow re
+	left join escrow_required_coverage_relate ercr on ercr.REQUIRED_COVERAGE_ID = re.required_coverage_id
+		and re.PURGE_DT is NULL
+	left outer join escrow e on e.ID = ercr.ESCROW_ID
+		and e.PURGE_DT is null
+		and e.PROPERTY_ID = rc.PROPERTY_ID
+	where ercr.PURGE_DT is null
+	and re.REQUIRED_COVERAGE_ID = RC.ID
+	group by re.REQUIRED_COVERAGE_ID
+) AS E
+
+OUTER APPLY 
+(SELECT TOP 1 * FROM ESCROW_EVENT EV WHERE E.ID = EV.ESCROW_ID AND EV.PURGE_DT IS NULL ORDER BY EV.EVENT_DT DESC
+) AS EV  
+
+LEFT JOIN LENDER_PAYEE_CODE_FILE LPCF on LPCF.LENDER_ID = LND.ID AND LPCF.PAYEE_ADDRESS_ID = E.REMITTANCE_ADDR_ID and LPCF.PURGE_DT IS NULL
+LEFT JOIN [ADDRESS] AE on AE.ID = E.REMITTANCE_ADDR_ID and AE.PURGE_DT IS NULL
+JOIN REQUIRED_ESCROW RE on RE.REQUIRED_COVERAGE_ID = E.RE_REQ_COV_ID
+
+OUTER APPLY
+(SELECT TOP 1 * FROM dbo.GetCurrentCoverage(P.ID, RC.ID, RC.TYPE_CD)
+ORDER BY ISNULL(UNIT_OWNERS_IN, 'N') DESC
+) OP
+
+---- GET MAIL DATE
+OUTER APPLY
+(
+	SELECT TOP 1 DC.PRINT_STATUS_CD ,  DC.PRINTED_DT 
+	FROM NOTICE NTC JOIN NOTICE_REQUIRED_COVERAGE_RELATE REL ON REL.NOTICE_ID = NTC.ID
+	AND NTC.PURGE_DT IS NULL AND REL.PURGE_DT IS NULL
+	JOIN DOCUMENT_CONTAINER DC ON DC.RELATE_ID = NTC.ID
+	AND DC.PURGE_DT IS NULL
+	AND DC.RELATE_CLASS_NAME_TX = 'ALLIED.UNITRAC.NOTICE'
+	WHERE REL.REQUIRED_COVERAGE_ID = RC.ID
+	AND (RC.NOTICE_SEQ_NO > 0)
+	AND NTC.TYPE_CD = RC.NOTICE_TYPE_CD
+	AND DATEDIFF (DAY , NTC.EXPECTED_ISSUE_DT , RC.NOTICE_DT ) = 0
+	AND NTC.SEQUENCE_NO = RC.NOTICE_SEQ_NO
+	ORDER BY NTC.ID DESC
+) MAXNTC
+
+----- TO GET OBACALL & EMAIL FAX COUNT WITHIN LAST 45 DAYS
+OUTER APPLY
+(
+	SELECT COUNT(ID) AS OBCALL_IH_CNT 
+	FROM INTERACTION_HISTORY IH
+	CROSS APPLY IH.SPECIAL_HANDLING_XML.nodes('/SH/RC') as OBCall(RCId)
+	WHERE IH.PROPERTY_ID = RC.PROPERTY_ID
+	AND IH.TYPE_CD = 'OUTBNDCALL'
+	AND IH.PURGE_DT IS NULL
+	AND DATEDIFF (DAY,IH.CREATE_DT,GETDATE()) BETWEEN 0 AND 45
+	AND 
+			   ( 
+				   (
+					 IH.SPECIAL_HANDLING_XML.value('(/SH/RC)[1]' , 'bigint') IS NOT NULL AND
+					  OBCall.RCId.value('.','bigint') = RC.ID
+				   )  OR
+				   (
+					  IH.SPECIAL_HANDLING_XML.value('(/SH/RC)[1]' , 'bigint') IS NULL 
+				   ) 
+			   )	
+	AND ISNULL(IH.SPECIAL_HANDLING_XML.value('(/SH/ReviewStatus)[1]' , 'varchar(30)') , 'Approve') = 'Approve' 	
+) AS IH_OBCALL
+OUTER APPLY
+(
+	SELECT COUNT(ID) AS EMAILFAX_IH_CNT  
+	FROM INTERACTION_HISTORY IH
+	WHERE IH.PROPERTY_ID = RC.PROPERTY_ID
+	AND IH.TYPE_CD = 'NOTICE'
+	AND IH.PURGE_DT IS NULL
+	AND IH.SPECIAL_HANDLING_XML.value('(/SH/RC)[1]' , 'bigint') = RC.ID
+	AND IH.SPECIAL_HANDLING_XML.value('(/SH/Type)[1]' , 'varchar(10)')  = 'AN'
+	AND IH.SPECIAL_HANDLING_XML.value('(/SH/NoticeIsApproved)[1]' , 'varchar(10)') = 'true'
+	AND DATEDIFF (DAY,IH.CREATE_DT,GETDATE()) BETWEEN 0 AND 45
+) AS IH_EMAILFAX
+
+OUTER APPLY
+(
+SELECT PAID_THRU_DAYS_NO = CASE
+            WHEN RE.PAID_THRU_DT IS NOT NULL
+				THEN DATEDIFF(d,GETDATE(), RE.PAID_THRU_DT)			
+			ELSE NULL
+		END
+) AS PAIDTHRU
+
+OUTER APPLY (Select CASE 
+	--escrow coverage in uninsured status, except for impaireds - inforce, pending. 
+	WHEN RC.INSURANCE_SUB_STATUS_CD <> 'I' --Not Impaired
+		and RC.INSURANCE_STATUS_CD <> 'F' --Not InForce 
+		and RC.INSURANCE_STATUS_CD <> 'P' --Not Pending 
+		THEN 'Orange'   
+	WHEN OP.EXPIRATION_DT <> RE.PAID_THRU_DT
+		THEN 'Red'
+	WHEN RC.TYPE_CD = 'WIND' and RC.STATUS_CD = 'I'
+		THEN 'Pink'
+	WHEN PAIDTHRU.PAID_THRU_DAYS_NO IS NOT NULL AND PAIDTHRU.PAID_THRU_DAYS_NO Between 0 And 14	
+		THEN 'Yellow'	 
+	WHEN PAIDTHRU.PAID_THRU_DAYS_NO IS NOT NULL AND PAIDTHRU.PAID_THRU_DAYS_NO Between 15 And 21	
+		THEN 'YellowGreen'	
+	WHEN ISNULL(PAIDTHRU.PAID_THRU_DAYS_NO,0) < 0
+		THEN 'DeepSkyBlue'		
+	ELSE 'White'
+ END As BG
+ ) As COLOR
+
+left Join BORROWER_INSURANCE_COMPANY BIC on BIC.ID = E.BIC_ID AND BIC.PURGE_DT IS NULL
+LEFT JOIN BORROWER_INSURANCE_AGENCY BIA ON BIA.ID = OP.BIA_ID AND BIA.PURGE_DT IS NULL
+LEFT Join RELATED_DATA RD on RD.RELATE_ID = L.ID and DEF_ID = @RD_MISC1_ID
+
+left Join REF_CODE NRef on NRef.DOMAIN_CD = 'NoticeType' and NRef.CODE_CD = RC.NOTICE_TYPE_CD 
+left Join REF_CODE LSRef on LSRef.DOMAIN_CD = 'LoanStatus' and LSRef.CODE_CD = L.STATUS_CD 
+left Join REF_CODE CSRef on CSRef.DOMAIN_CD = 'CollateralStatus' and CSRef.CODE_CD = C.STATUS_CD 
+left Join REF_CODE RCSRef on RCSRef.DOMAIN_CD = 'RequiredCoverageStatus' and RCSRef.CODE_CD = RC.STATUS_CD 
+left Join REF_CODE RCISRef on RCISRef.DOMAIN_CD = 'RequiredCoverageInsStatus' and RCISRef.CODE_CD = RC.SUMMARY_STATUS_CD 
+left Join REF_CODE RCISSRef on RCISSRef.DOMAIN_CD = 'RequiredCoverageInsSubStatus' and RCISSRef.CODE_CD = RC.SUMMARY_SUB_STATUS_CD 
+left Join REF_CODE RC_DIVISION on RC_DIVISION.DOMAIN_CD = 'ContractType' and RC_DIVISION.CODE_CD = L.DIVISION_CODE_TX
+left Join REF_CODE RC_COVERAGETYPE on RC_COVERAGETYPE.DOMAIN_CD = 'Coverage' and RC_COVERAGETYPE.CODE_CD = RC.TYPE_CD 
+left Join REF_CODE RC_CANCELREASON on RC_CANCELREASON.DOMAIN_CD = 'OwnerPolicyCancelReason' and RC_CANCELREASON.CODE_CD = OP.CANCEL_REASON_CD 
+LEFT JOIN COLLATERAL_CODE CC ON CC.ID = C.COLLATERAL_CODE_ID AND CC.PURGE_DT IS NULL
+left Join REF_CODE RC_SC on RC_SC.DOMAIN_CD = 'SecondaryClassification' AND CC.SECONDARY_CLASS_CD = RC_SC.CODE_CD
+left Join REF_CODE_ATTRIBUTE RCA_PROP on RC_SC.DOMAIN_CD = RCA_PROP.DOMAIN_CD and RC_SC.CODE_CD = RCA_PROP.REF_CD and RCA_PROP.ATTRIBUTE_CD = 'PropertyType'
+CROSS APPLY dbo.fn_FilterCollateralByDivisionCd(C.ID, @Division) fn_FCBD
+where
+L.STATUS_CD in ('A','B') and --Include those loans in bankruptcy status with an escrow flag
+L.RECORD_TYPE_CD = 'G' and 
+L.EXTRACT_UNMATCH_COUNT_NO = 0 and
+P.RECORD_TYPE_CD = 'G' and 
+P.PURGE_DT IS NULL and
+RC.RECORD_TYPE_CD = 'G' and 
+RC.CPI_STATUS_CD != 'F' and
+--RC.STATUS_CD != 'W' and --Include those loans in waive or maintenance status with an escrow flag on the coverage
+RC.ESCROW_IN = 'Y' AND 
+ISNULL(RE.ACTIVE_IN,'') = 'Y' and
+ISNULL(RE.status_cd,'') not in ('CBP','CBR') and
+RE.purge_dt is null
+AND 
+(P.LENDER_ID = @LenderID
+and
+(L.BRANCH_CODE_TX IN (SELECT STRVALUE FROM @BranchTable) or @Branch = '1' or @Branch = '' or @Branch is NULL)
+and
+fn_FCBD.loanType IS NOT NULL
+and
+(RC.TYPE_CD = @Coverage or @Coverage = '1' or @Coverage is NULL))
+and
+( 
+	(E.END_DT <= DATEADD(d, ISNULL(RC.EscrowCollectionTimeWindow,0), GETDATE()))
+	OR
+	(E.END_DT is null)
+)
+ORDER BY E.END_DT
+
+
+--Escrow Previous Total
+Insert into #tmpPrevEscrow (EscrowId, PrevTotal, PrevBICName)	     
+select distinct maxOpt.Escrow_Id, isnull(PrevEsc.TOTAL_AMOUNT_NO,0) + ISNULL(PrevAddtl.TOTAL_AMOUNT_NO ,0 ), BIC.NAME
+from #tmptable maxOpt 
+join ESCROW_REQUIRED_COVERAGE_RELATE rel on rel.ESCROW_ID = maxOpt.Escrow_Id
+join ESCROW esc1 on esc1.ID = maxOpt.Escrow_Id
+join REQUIRED_COVERAGE rc on rc.ID = rel.REQUIRED_COVERAGE_ID and rc.PURGE_DT is null
+outer apply
+(
+	select Top 1 esc.ID as ESCROW_ID, esc.END_DT, esc.DUE_DT, esc.TOTAL_AMOUNT_NO, esc.BIC_ID 
+	from ESCROW esc 
+	join ESCROW_REQUIRED_COVERAGE_RELATE escrel on escrel.ESCROW_ID = esc.ID	   
+	where escrel.REQUIRED_COVERAGE_ID = rc.ID 
+	and maxOpt.Escrow_Id <> esc.ID
+	and esc.PURGE_DT is null and escrel.PURGE_DT is null 
+	and esc.TYPE_CD = esc1.TYPE_CD 
+	and esc.SUB_TYPE_CD = esc1.SUB_TYPE_CD
+	and (esc.STATUS_CD = 'CLSE' and esc.SUB_STATUS_CD in ('RPTD', 'LNDRPAID', 'INHSPAID' , 'BWRPAID'))
+	and ISNULL(esc.END_DT, DATEADD(month, 12 , esc.DUE_DT)) < esc1.END_DT
+	order by ISNULL(esc.END_DT, DATEADD(month, 12 , esc.DUE_DT)) desc 
+) as PrevEsc
+outer apply
+(
+	select SUM(esc.TOTAL_AMOUNT_NO ) as TOTAL_AMOUNT_NO 
+	from ESCROW esc 
+	join ESCROW_REQUIRED_COVERAGE_RELATE escrel on escrel.ESCROW_ID = esc.ID	   
+	where escrel.REQUIRED_COVERAGE_ID = rc.ID 
+	and esc.ID <> maxOpt.Escrow_Id 
+	and esc.ID <> PrevEsc.ESCROW_ID
+	and esc.PURGE_DT is null 
+	and esc.TYPE_CD = esc1.TYPE_CD 
+	and esc.SUB_TYPE_CD = esc1.SUB_TYPE_CD
+	and (esc.STATUS_CD = 'CLSE' and esc.SUB_STATUS_CD in ('RPTD', 'LNDRPAID', 'INHSPAID' , 'BWRPAID'))
+	and ISNULL(esc.END_DT, DATEADD(month, 12 , esc.DUE_DT)) < esc1.END_DT 
+	and datediff(day, ISNULL(esc.END_DT, DATEADD(month, 12, esc.DUE_DT)), PrevEsc.END_DT) = 0
+	and DATEDIFF(day, esc.DUE_DT, PrevEsc.DUE_DT) = 0	
+) as PrevAddtl	
+left join BORROWER_INSURANCE_COMPANY bic on bic.ID = PrevEsc.BIC_ID 
+
+--Variance Calc
+UPDATE #tmptable
+SET ESCROW_PRIOR_TOTAL_NO = E.PrevTotal,
+	ESCROW_VARIANCE = CASE
+		WHEN ISNULL(E.PrevTotal, 0) = 0
+			THEN 0
+		WHEN ISNULL(ESCROW_TOTAL_NO, 0) = 0
+			THEN 0
+		ELSE ABS((ESCROW_TOTAL_NO - E.PrevTotal)/ESCROW_TOTAL_NO)
+	END,
+	PRIOR_BORRINSCOMPANY_NAME_TX = ISNULL(E.PrevBICName, '')
+FROM #tmptable T
+left Join #tmpPrevEscrow E on E.EscrowId = T.ESCROW_ID
+
+--More exception checking
+UPDATE #tmptable
+SET BG_COLOR = CASE
+		WHEN ESCROW_VARIANCE > 0.15
+			THEN 'Orange'
+		WHEN (PRIOR_BORRINSCOMPANY_NAME_TX != '' AND PRIOR_BORRINSCOMPANY_NAME_TX != BORRINSCOMPANY_NAME_TX)
+			THEN 'Magenta'
+		ELSE BG_COLOR
+	END
+	,
+	BG_COLOR_ORDER = CASE
+		WHEN ESCROW_VARIANCE > 0.15
+			THEN 3
+		WHEN (PRIOR_BORRINSCOMPANY_NAME_TX != '' AND PRIOR_BORRINSCOMPANY_NAME_TX != BORRINSCOMPANY_NAME_TX)
+			THEN 4
+		ELSE 
+			Case BG_COLOR   When 'White' Then 8 
+							When 'DeepSkyBlue' Then 7 
+							When 'YellowGreen' Then 6 
+							When 'Yellow' Then 5
+							When 'Magenta' Then 4
+							When 'Orange' Then 3 
+							When 'Pink' Then 2 
+							When 'Red' Then 1 Else 0 End
+	END
+	,
+	ESCROW_EXCEPTION = 
+		CASE WHEN ESCROW_VARIANCE > 0.15
+			THEN 'Prem Variance. '
+		ELSE '' END
+		+ 
+		CASE WHEN (PRIOR_BORRINSCOMPANY_NAME_TX != '' AND PRIOR_BORRINSCOMPANY_NAME_TX != BORRINSCOMPANY_NAME_TX)
+			THEN 'Carrier Change. '
+		ELSE '' END
+		+
+		ESCROW_EXCEPTION
+		
+
+Declare @sqlstring as nvarchar(1000)
+
+Select @FilterBySQL = NullIf(@FilterBySQL, '')
+Select @SortBySQL = NullIf(@SortBySQL, '')
+Select @GroupBySQL = NullIf(@GroupBySQL, '')
+
+IF OBJECT_ID(N'tempdb..#t1',N'U') IS NOT NULL
+  DROP TABLE #t1
+
+If @SortBySQL Is NOT Null
+Begin
+	Set @sqlstring = N'Update #tmpTable Set [REPORT_SORTBY_TX] = ' + @SortBySQL
+	EXECUTE sp_executesql @sqlstring
+End
+
+If @FilterBySQL Is NOT Null
+OR @SortBySQL Is NOT NULL
+Begin
+  Select * into #t1 from #tmptable --order by case when 1=IsNumeric(report_sortby_tx) then cast(report_sortby_tx as BigInt) else report_sortby_tx end
+  truncate table #tmptable
+
+  --declare @sortbysql2 varchar(1000)='case when 0=IsNumeric(' +@SortBySQL+ ') then ' +@SortBySQL+ ' when ' +@SortBySQL+ '<0 then -1*len(' +@SortBySQL+ ') else len(' +@SortBySQL+ ') end, ' +@SortBySQL
+  Set @sqlstring = N'Insert into #tmpTable
+                     Select Top 2147483647 t1.* from #t1 as t1' 
+					 + IsNull(' where ' + @FilterBySQL, '') 
+					 + IsNull(' order by ' + @SortBySQL, '')
+  print @sqlstring
+  EXECUTE sp_executesql @sqlstring
+End
+If @Debug>0
+Begin
+	select 'RIGHT AFTER SORT:',*,'@SortBySQL'=@SortBySQL from #tmptable --order by case when 1=IsNumeric(report_sortby_tx) then cast(report_sortby_tx as BigInt) else report_sortby_tx end
+End
+
+If @GroupBySQL IS NOT Null
+Begin
+	Set @sqlstring = N'Update #tmpTable Set [REPORT_GROUPBY_TX] = ' + IsNull(@GroupBySQL, '')
+	EXECUTE sp_executesql @sqlstring
+End
+
+If isnull(@HeaderTx,'') <> '' 
+Begin
+	Set @sqlstring = N'Update #tmpTable Set [REPORT_HEADER_TX] = ' + @HeaderTx
+	EXECUTE sp_executesql @sqlstring
+End
+
+If isnull(@FooterTx,'') <> '' 
+Begin
+	Set @sqlstring = N'Update #tmpTable Set [REPORT_FOOTER_TX] = ' + @FooterTx
+	EXECUTE sp_executesql @sqlstring
+End
+
+
+   
+
+SELECT @RecordCount = COUNT(*) from #tmptable
+--print @RecordCount
+
+IF @Report_History_ID IS NOT NULL
+AND ISNULL(@DEBUG,0)=0
+BEGIN
+
+  Update [UNITRAC-REPORTS].[UNITRAC].DBO.REPORT_HISTORY_NOXML
+  Set
+   RECORD_COUNT_NO=@RecordCount
+  ,UPDATE_DT=GETDATE()
+  where ID = @Report_History_ID
+    
+END
+
+Select
+--COVERAGE_STATUS_TX,
+--REQUIREDCOVERAGE_STATUSCODE,
+--LOAN_STATUSCODE,
+--INSAGENCY_NAME_TX,INSAGENCY_PHONE_TX,
+LOAN_BRANCHCODE_TX,LOAN_DIVISIONCODE_TX,LOAN_TYPE_TX,REQUIREDCOVERAGE_CODE_TX,REQUIREDCOVERAGE_TYPE_TX,LOAN_NUMBER_TX,LOAN_NUMBERSORT_TX,
+LENDER_CODE_TX,LENDER_NAME_TX,MISC1_TX,OWNER_LASTNAME_TX,OWNER_FIRSTNAME_TX,OWNER_MIDDLEINITIAL_TX,OWNER_NAME_TX,
+OWNER_LINE1_TX,OWNER_LINE2_TX,OWNER_CITY_TX,OWNER_STATE_TX,OWNER_ZIP_TX,
+COLLATERAL_LINE1_TX,COLLATERAL_LINE2_TX,COLLATERAL_CITY_TX,COLLATERAL_STATE_TX,COLLATERAL_ZIP_TX,
+COVERAGE_STATUS_TX,NOTICE_DT,NOTICE_TYPE_TX,NOTICE_SEQ_NO,
+BORRINSCOMPANY_NAME_TX,
+PRIOR_BORRINSCOMPANY_NAME_TX,
+BORRINSCOMPANY_LINE1_TX,BORRINSCOMPANY_LINE2_TX,BORRINSCOMPANY_CITY_TX,BORRINSCOMPANY_STATE_TX,BORRINSCOMPANY_ZIP_TX,
+BORRINSCOMPANY_POLICY_NO,BORRINSCOMPANY_EFF_DT,BORRINSCOMPANY_EXP_DT,
+BORRINSCOMPANY_EXPCXL_DT,
+POL_CXL_DATE_TX,
+INSAGENCY_NAME_TX,INSAGENCY_PHONE_TX,OP_CANCEL_REASON_CD,
+ESCROW_STATUS_CD,
+ESCROW_SUB_STATUS_CD,
+ESCROW_SUB_STATUS_MEANING = RC_Esc_SubStat.MEANING_TX,
+ESCROW_DUE_DT,ESCROW_END_DT,ESCROW_PREMIUM_NO,ESCROW_OTHER_NO,ESCROW_FEE_NO,
+ESCROW_TOTAL_NO,
+ESCROW_PRIOR_TOTAL_NO,
+ESCROW_VARIANCE, 
+ESCROW_PAYEE_CODE_TX,
+ESCROW_TOTAL_AMT_CHG_DT,MORT_OPTION_PRM_VARIANCE,LEND_PAYEE_CODE_MATCH_NO,
+LAST_ESCROW_EVENT_TX,LAST_ESCROW_EVENT_DT,ESCROW_EXCEPTION,ESCROW_PAID_THROUGH_DT_NO,ESCROW_PAID_THRU_SORT_TX,
+ESCROW_TYPE_CD,ESCROW_SUB_TYPE_CD,ESCROW_EXCESS_IN,
+ESCROW_ID,LOAN_ID,COLLATERAL_ID,PROPERTY_ID,REQUIREDCOVERAGE_ID,
+LOAN_STATUSCODE,LOAN_STATUSMEANING_TX,COLLATERAL_STATUSCODE,COLLATERAL_STATUSMEANING_TX,
+REQUIREDCOVERAGE_STATUSCODE,REQUIREDCOVERAGE_STATUSMEANING_TX,REQUIREDCOVERAGE_SUBSTATUSCODE,
+REQUIREDCOVERAGE_INSSTATUSCODE,REQUIREDCOVERAGE_INSSTATUSMEANING_TX,REQUIREDCOVERAGE_INSSUBSTATUSCODE,REQUIREDCOVERAGE_INSSUBSTATUSMEANING_TX,
+OWNER_POLICY_CANCEL_DT,OWNER_POLICY_EXP_DT,OPTION_TRACK_ESCROW_TX,OPTION_PREM_DUE_DAYS_TX,
+REPORT_GROUPBY_TX,REPORT_SORTBY_TX,REPORT_HEADER_TX,REPORT_FOOTER_TX
+,OBC_ATTEMPTS_45_NO
+,BG_COLOR
+,BG_COLOR_ORDER
+from #tmptable T
+LEFT Join Ref_Code RC_Esc_SubStat On RC_Esc_SubStat.CODE_CD = T.ESCROW_SUB_STATUS_CD And RC_Esc_SubStat.DOMAIN_CD = 'EscrowSubStatus' And RC_Esc_SubStat.PURGE_DT Is Null
+
+
+END
+
+GO

@@ -1,0 +1,65 @@
+﻿--Payment Increase Notice History and Config Info
+USE UniTrac
+
+SELECT * FROM dbo.WORK_ITEM
+WHERE ID = '38061919'
+
+SELECT *
+FROM LENDER
+WHERE CODE_TX = '####'
+
+SELECT *
+FROM LENDER_REPORT_CONFIG LRC
+JOIN dbo.LENDER L ON L.ID = LRC.LENDER_ID
+WHERE L.CODE_TX = '####' AND DESCRIPTION_TX like 'Payment Increase %'
+
+SELECT *
+FROM REPORT_CONFIG
+WHERE CODE_TX = 'PI1LP-IN01-BLNK'
+
+
+SELECT * FROM dbo.PROCESS_DEFINITION
+WHERE NAME_TX LIKE '%####%' AND ACTIVE_IN = 'Y' AND ONHOLD_IN = 'N'
+
+
+SELECT * FROM dbo.PROCESS_LOG
+WHERE PROCESS_DEFINITION_ID = 'XXXX' AND UPDATE_DT >= 'ZZZZ-ZZ-ZZ'
+
+SELECT * FROM dbo.WORK_ITEM
+WHERE RELATE_ID =  '*********'
+
+SELECT ID INTO #tmpPL FROM dbo.PROCESS_LOG
+WHERE PROCESS_DEFINITION_ID = 'XXXX' AND UPDATE_DT >= 'ZZZZ-ZZ-ZZ'
+AND STATUS_CD = 'Complete'
+
+
+SELECT RELATE_ID INTO #tmpRH FROM dbo.PROCESS_LOG_ITEM
+WHERE PROCESS_LOG_ID IN (SELECT * FROM #tmpPL) AND RELATE_TYPE_CD = 'Allied.UniTrac.ReportHistory'
+
+SELECT 	rh.REPORT_DATA_XML.value( '(/ReportData/Report/Title/@value)[1]', 'varchar(500)' ) as TITLE,
+		rh.REPORT_DATA_XML.value( '(/ReportData/Report/StartDate/@value)[1]', 'varchar(500)' ) AS StartDate,
+		rh.REPORT_DATA_XML.value( '(/ReportData/Report/EndDate/@value)[1]', 'varchar(500)' ) AS EndDate,
+rh.*
+FROM    REPORT_HISTORY rh
+	JOIN REPORT R ON R.id = RH.REPORT_ID
+WHERE REPORT_ID = '58' AND RH.ID IN (SELECT * FROM #tmpRH)
+ORDER BY rh.UPDATE_DT ASC 
+
+
+-------------------
+
+
+UPDATE  [UniTrac].[dbo].[REPORT_HISTORY]
+SET     STATUS_CD = 'PEND' ,
+        RETRY_COUNT_NO = 0 ,
+        MSG_LOG_TX = NULL ,
+        RECORD_COUNT_NO = 0 ,
+        ELAPSED_RUNTIME_NO = 0,
+		UPDATE_DT = GETDATE(), DOCUMENT_CONTAINER_ID = NULL,
+REPORT_DATA_XML.modify('replace value of (/ReportData/Report/StartDate/@value)[1] with "2016-11-25T02:02:28"') 
+--	, REPORT_DATA_XML = ''
+--		,REPORT_ID = '27'
+--SELECT * FROM dbo.REPORT_HISTORY
+WHERE   ID IN (SELECT * FROM #tmpRH) AND REPORT_ID = '58'
+
+

@@ -1,0 +1,1 @@
+﻿Clear-RecycleBin -DriveLetter E: -Force

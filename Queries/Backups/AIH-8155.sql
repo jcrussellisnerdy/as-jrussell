@@ -1,0 +1,56 @@
+USE [master]
+
+
+IF EXISTS (SELECT * FROM sys.server_principals WHERE name = 'ELDREDGE_A\UniTrac Read Only')
+BEGIN 
+	DROP LOGIN [ELDREDGE_A\UniTrac Read Only]
+	PRINT 'SUCCESS: [ELDREDGE_A\UniTrac Read Only] Dropped' 
+END
+ELSE 
+BEGIN 
+	PRINT 'WARNING: [ELDREDGE_A\UniTrac Read Only] Does not exist' 
+END 
+
+
+
+USE [master]
+
+IF EXISTS (SELECT * FROM sys.server_principals WHERE name = 'ELDREDGE_A\SQL_IVOS_ReadOnly')
+BEGIN 
+	PRINT 'WARNING: [ELDREDGE_A\SQL_IVOS_ReadOnly] Already Exist' 
+END
+ELSE 
+BEGIN
+	USE [master]
+	
+	CREATE LOGIN [ELDREDGE_A\SQL_IVOS_ReadOnly] FROM WINDOWS WITH DEFAULT_DATABASE=[tempdb]
+	
+	USE [IVOS]
+
+	CREATE USER [ELDREDGE_A\SQL_IVOS_ReadOnly] FOR LOGIN [ELDREDGE_A\SQL_IVOS_ReadOnly]
+	
+	USE [IVOS]
+	
+	ALTER ROLE [db_datareader] ADD MEMBER [ELDREDGE_A\SQL_IVOS_ReadOnly]
+	
+	USE [IVOSHDStorage]
+	
+	CREATE USER [ELDREDGE_A\SQL_IVOS_ReadOnly] FOR LOGIN [ELDREDGE_A\SQL_IVOS_ReadOnly]
+	
+	USE [IVOSHDStorage]
+	
+	ALTER ROLE [db_datareader] ADD MEMBER [ELDREDGE_A\SQL_IVOS_ReadOnly]
+	
+	USE [jasperserver]
+	
+	CREATE USER [ELDREDGE_A\SQL_IVOS_ReadOnly] FOR LOGIN [ELDREDGE_A\SQL_IVOS_ReadOnly]
+	
+	USE [jasperserver]
+	
+	ALTER ROLE [db_datareader] ADD MEMBER [ELDREDGE_A\SQL_IVOS_ReadOnly]
+	
+
+	PRINT 'SUCCESS: [ELDREDGE_A\SQL_IVOS_ReadOnly] Added' 
+END 
+
+

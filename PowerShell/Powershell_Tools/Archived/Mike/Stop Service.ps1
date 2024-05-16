@@ -1,0 +1,21 @@
+﻿
+Get-Service	 -ComputerName	Unitrac-APP02	 -Name	ldhserviceUSD |Stop-Service -Force -NoWait
+Get-Service	 -ComputerName	Unitrac-WH01	 -Name	LDHServicePRCPA |Stop-Service -Force -NoWait
+Get-Service	 -ComputerName	Unitrac-WH03	 -Name	LDHSERV |Stop-Service -Force -NoWait
+Get-Service	 -ComputerName	Unitrac-WH04	 -Name	LDHServiceADHOC |Stop-Service -Force -NoWait
+Get-Service	 -ComputerName	Unitrac-WH07	 -Name	LDHServiceHUNT |Stop-Service -Force -NoWait
+Get-Service	 -ComputerName	 Unitrac-WH08	 -Name	MSGSRVRBSS |Stop-Service -Force -NoWait
+Get-Service	 -ComputerName	 Unitrac-WH08	 -Name	MSGSRVREDIIDR |Stop-Service -Force -NoWait
+Get-Service	 -ComputerName	 Unitrac-WH08	 -Name	MSGSRVRDEF |Stop-Service -Force -NoWait
+Get-Service	 -ComputerName	 Unitrac-WH08	 -Name	MSGSRVREXTUSD |Stop-Service -Force -NoWait
+Get-Service	 -ComputerName	 Unitrac-WH08	 -Name	MSGSRVREXTPENF |Stop-Service -Force -NoWait
+Get-Service	 -ComputerName	 Unitrac-WH08	 -Name	MSGSRVRADHOC |Stop-Service -Force -NoWait
+Get-Service	 -ComputerName	 Unitrac-WH08	 -Name	MSGSRVREXTINFO |Stop-Service -Force -NoWait
+Get-Service	 -ComputerName	 Unitrac-WH08	 -Name	MSGSRVREXTHUNT |Stop-Service -Force -NoWait
+Get-Service	 -ComputerName	 Unitrac-WH08	 -Name	MSGSRVREXTGATE |Stop-Service -Force -NoWait
+Get-Service	 -ComputerName	 Unitrac-WH14	 -Name	DirectoryWatcherServerIn |Stop-Service -Force -NoWait
+Get-Service	 -ComputerName	 Unitrac-WH14	 -Name	DirectoryWatcherServerOut |Stop-Service -Force -NoWait
+Get-Service	 -ComputerName	 Unitrac-WH19	 -Name	MSGSRVREXTSANT |Stop-Service -Force -NoWait
+Get-Service	 -ComputerName	 Unitrac-WH19	 -Name	LDHServiceSANT |Stop-Service -Force -NoWait
+Get-Service	 -ComputerName	 Unitrac-WH21	 -Name	MSGSRVREXTWellsFargo |Stop-Service -Force -NoWait
+Get-Service	 -ComputerName	 Unitrac-WH21	 -Name	LDHWellsFargo |Stop-Service -Force -NoWait

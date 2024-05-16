@@ -1,0 +1,2419 @@
+<?xml version="1.0" encoding="utf-8"?>
+<helpItems xmlns="http://msh" schema="maml">
+  <!-- Updatable Help Version 4.0.0.0 -->
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Get-DscConfiguration</command:name>
+      <maml:description>
+        <maml:para>Gets the current configuration of the node. </maml:para>
+      </maml:description>
+      <maml:copyright>
+        <maml:para />
+      </maml:copyright>
+      <command:verb>Get</command:verb>
+      <command:noun>DscConfiguration</command:noun>
+      <dev:version />
+    </command:details>
+    <maml:description>
+      <maml:para>The Get-DscConfiguration cmdlet gets the current configuration of the node, if configuration exists. Specify computers by using Common Information Model (CIM) sessions. If you do not specify a target computer, the cmdlet gets the configuration from the local computer.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Get-DscConfiguration</maml:name>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="false" position="named" aliases="Session">
+          <maml:name>CimSession</maml:name>
+          <maml:description>
+            <maml:para>Runs the cmdlet in a remote session or on a remote computer. Enter a computer name or a session object, such as the output of a <maml:navigationLink><maml:linkText>New-CimSession</maml:linkText><maml:uri></maml:uri></maml:navigationLink> or <maml:navigationLink><maml:linkText>Get-CimSession</maml:linkText><maml:uri></maml:uri></maml:navigationLink> cmdlet. The default is the current session on the local computer.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="true">CimSession[]</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>ThrottleLimit</maml:name>
+          <maml:description>
+            <maml:para>Specifies the maximum number of concurrent operations that can be established to run the cmdlet. If this parameter is omitted or a value of 0 is entered, then Windows PowerShell® calculates an optimum throttle limit for the cmdlet based on the number of CIM cmdlets that are running on the computer. The throttle limit applies only to the current cmdlet, not to the session or to the computer.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="false">Int32</command:parameterValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="false" position="named" aliases="Session">
+        <maml:name>CimSession</maml:name>
+        <maml:description>
+          <maml:para>Runs the cmdlet in a remote session or on a remote computer. Enter a computer name or a session object, such as the output of a <maml:navigationLink><maml:linkText>New-CimSession</maml:linkText><maml:uri></maml:uri></maml:navigationLink> or <maml:navigationLink><maml:linkText>Get-CimSession</maml:linkText><maml:uri></maml:uri></maml:navigationLink> cmdlet. The default is the current session on the local computer.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">CimSession[]</command:parameterValue>
+        <dev:type>
+          <maml:name>CimSession[]</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>none</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+        <maml:name>ThrottleLimit</maml:name>
+        <maml:description>
+          <maml:para>Specifies the maximum number of concurrent operations that can be established to run the cmdlet. If this parameter is omitted or a value of 0 is entered, then Windows PowerShell® calculates an optimum throttle limit for the cmdlet based on the number of CIM cmdlets that are running on the computer. The throttle limit applies only to the current cmdlet, not to the session or to the computer.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">Int32</command:parameterValue>
+        <dev:type>
+          <maml:name>Int32</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>none</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>
+          </maml:name>
+          <maml:uri>
+          </maml:uri>
+          <maml:description>
+            <maml:para />
+          </maml:description>
+        </dev:type>
+        <maml:description>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>
+          </maml:name>
+          <maml:uri>
+          </maml:uri>
+          <maml:description>
+            <maml:para />
+          </maml:description>
+        </dev:type>
+        <maml:description>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <command:terminatingErrors />
+    <command:nonTerminatingErrors />
+    <command:examples>
+      <command:example>
+        <maml:title>Example 1: Get the configuration for the local computer</maml:title>
+        <maml:introduction>
+          <maml:para>
+          </maml:para>
+        </maml:introduction>
+        <dev:code>PS C:\&gt; Get-DscConfiguration
+</dev:code>
+        <dev:remarks>
+          <maml:para>This command gets the current configuration for the local computer. </maml:para>
+          <maml:para />
+          <maml:para />
+        </dev:remarks>
+        <command:commandLines>
+          <command:commandLine>
+            <command:commandText />
+          </command:commandLine>
+        </command:commandLines>
+      </command:example>
+      <command:example>
+        <maml:title>Example 2: Get the configuration for a specified computer</maml:title>
+        <maml:introduction>
+          <maml:para>
+          </maml:para>
+        </maml:introduction>
+        <dev:code>PS C:\&gt; $Session = New-CimSession –ComputerName "Server01" –Credential ACCOUNTS\PattiFuller
+PS C:\&gt; Get-DscConfiguration -CimSession $Session
+</dev:code>
+        <dev:remarks>
+          <maml:para>This example gets the current configuration from a computer specified by a CIM session. The example creates a CIM session for a computer named Server01 for use with the cmdlet. Alternatively, create an array of CIM sessions to apply the cmdlet to multiple specified computers.</maml:para>
+          <maml:para>The first command creates a CIM session by using the New-CimSession cmdlet, and then stores the CimSession object in the $Session variable. The command prompts you for a password. For more information, type Get-Help New-CimSession.</maml:para>
+          <maml:para>The second command gets the current configuration for the computers identified by the CimSession objects stored in the $Session variable, in this case, the computer named Server01. </maml:para>
+          <maml:para />
+          <maml:para />
+        </dev:remarks>
+        <command:commandLines>
+          <command:commandLine>
+            <command:commandText />
+          </command:commandLine>
+        </command:commandLines>
+      </command:example>
+    </command:examples>
+    <maml:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version:</maml:linkText>
+        <maml:uri>http://go.microsoft.com/fwlink/?LinkID=288760</maml:uri>
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>Windows PowerShell Desired State Configuration Overview</maml:linkText>
+        <maml:uri>
+        </maml:uri>
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>Restore-DscConfiguration</maml:linkText>
+        <maml:uri />
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>Start-DscConfiguration</maml:linkText>
+        <maml:uri />
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>Test-DscConfiguration</maml:linkText>
+        <maml:uri />
+      </maml:navigationLink>
+    </maml:relatedLinks>
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Get-DscLocalConfigurationManager</command:name>
+      <maml:description>
+        <maml:para>Gets Local Configuration Manager settings for the node.</maml:para>
+      </maml:description>
+      <maml:copyright>
+        <maml:para />
+      </maml:copyright>
+      <command:verb>Get</command:verb>
+      <command:noun>DscLocalConfigurationManager</command:noun>
+      <dev:version />
+    </command:details>
+    <maml:description>
+      <maml:para>The Get-DscLocalConfigurationManager cmdlet gets Local Configuration Manager settings, or meta-configuration, for the node, if meta-configuration exists. Specify computers by using Common Information Model (CIM) sessions. If you do not specify a target computer, the cmdlet gets the configuration settings from the local computer.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Get-DscLocalConfigurationManager</maml:name>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="false" position="named" aliases="Session">
+          <maml:name>CimSession</maml:name>
+          <maml:description>
+            <maml:para>Runs the cmdlet in a remote session or on a remote computer. Enter a computer name or a session object, such as the output of a <maml:navigationLink><maml:linkText>New-CimSession</maml:linkText><maml:uri></maml:uri></maml:navigationLink> or <maml:navigationLink><maml:linkText>Get-CimSession</maml:linkText><maml:uri></maml:uri></maml:navigationLink> cmdlet. The default is the current session on the local computer.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="true">CimSession[]</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>ThrottleLimit</maml:name>
+          <maml:description>
+            <maml:para>Specifies the maximum number of concurrent operations that can be established to run the cmdlet. If this parameter is omitted or a value of 0 is entered, then Windows PowerShell® calculates an optimum throttle limit for the cmdlet based on the number of CIM cmdlets that are running on the computer. The throttle limit applies only to the current cmdlet, not to the session or to the computer.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="false">Int32</command:parameterValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="false" position="named" aliases="Session">
+        <maml:name>CimSession</maml:name>
+        <maml:description>
+          <maml:para>Runs the cmdlet in a remote session or on a remote computer. Enter a computer name or a session object, such as the output of a <maml:navigationLink><maml:linkText>New-CimSession</maml:linkText><maml:uri></maml:uri></maml:navigationLink> or <maml:navigationLink><maml:linkText>Get-CimSession</maml:linkText><maml:uri></maml:uri></maml:navigationLink> cmdlet. The default is the current session on the local computer.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">CimSession[]</command:parameterValue>
+        <dev:type>
+          <maml:name>CimSession[]</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>none</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+        <maml:name>ThrottleLimit</maml:name>
+        <maml:description>
+          <maml:para>Specifies the maximum number of concurrent operations that can be established to run the cmdlet. If this parameter is omitted or a value of 0 is entered, then Windows PowerShell® calculates an optimum throttle limit for the cmdlet based on the number of CIM cmdlets that are running on the computer. The throttle limit applies only to the current cmdlet, not to the session or to the computer.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">Int32</command:parameterValue>
+        <dev:type>
+          <maml:name>Int32</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>none</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>
+          </maml:name>
+          <maml:uri>
+          </maml:uri>
+          <maml:description>
+            <maml:para />
+          </maml:description>
+        </dev:type>
+        <maml:description>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>
+          </maml:name>
+          <maml:uri>
+          </maml:uri>
+          <maml:description>
+            <maml:para />
+          </maml:description>
+        </dev:type>
+        <maml:description>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <command:terminatingErrors />
+    <command:nonTerminatingErrors />
+    <command:examples>
+      <command:example>
+        <maml:title>Example 1: Get Local Configuration Manager settings for the local computer</maml:title>
+        <maml:introduction>
+          <maml:para>
+          </maml:para>
+        </maml:introduction>
+        <dev:code>PS C:\&gt; Get-DscLocalConfigurationManager
+</dev:code>
+        <dev:remarks>
+          <maml:para>This command gets Local Configuration Manager settings for the local computer.</maml:para>
+          <maml:para />
+          <maml:para />
+        </dev:remarks>
+        <command:commandLines>
+          <command:commandLine>
+            <command:commandText />
+          </command:commandLine>
+        </command:commandLines>
+      </command:example>
+      <command:example>
+        <maml:title>Example 2: Get Local Configuration Manager settings for a specified computer</maml:title>
+        <maml:introduction>
+          <maml:para>
+          </maml:para>
+        </maml:introduction>
+        <dev:code>PS C:\&gt; $Session = New-CimSession –ComputerName "Server01" –Credential ACCOUNTS\PattiFuller
+PS C:\&gt; Get-DscLocalConfigurationManager -CimSession $Session
+</dev:code>
+        <dev:remarks>
+          <maml:para>This example gets Local Configuration Manager settings for a computer specified by a CIM session. The example creates a CIM session for a computer named Server01 for use with the cmdlet. Alternatively, create an array of CIM sessions to apply the cmdlet to multiple specified computers.</maml:para>
+          <maml:para>The first command creates a CIM session by using the New-CimSession cmdlet, and then stores the CimSession object in the $Session variable. The command prompts you for a password. For more information, type Get-Help New-CimSession.</maml:para>
+          <maml:para>The second command gets Local Configuration Manager settings for the computers identified by the CimSession objects stored in the $Session variable, in this case, the computer named Server01.</maml:para>
+          <maml:para />
+          <maml:para />
+        </dev:remarks>
+        <command:commandLines>
+          <command:commandLine>
+            <command:commandText />
+          </command:commandLine>
+        </command:commandLines>
+      </command:example>
+    </command:examples>
+    <maml:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version:</maml:linkText>
+        <maml:uri>http://go.microsoft.com/fwlink/?LinkID=289261</maml:uri>
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>Windows PowerShell Desired State Configuration Overview</maml:linkText>
+        <maml:uri>
+        </maml:uri>
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>Set-DscLocalConfigurationManager</maml:linkText>
+        <maml:uri />
+      </maml:navigationLink>
+    </maml:relatedLinks>
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Get-DscResource</command:name>
+      <maml:description>
+        <maml:para>Gets Desired State Configuration resources present on the computer.</maml:para>
+      </maml:description>
+      <maml:copyright>
+        <maml:para />
+      </maml:copyright>
+      <command:verb>Get</command:verb>
+      <command:noun>DscResource</command:noun>
+      <dev:version />
+    </command:details>
+    <maml:description>
+      <maml:para>The Get-DscResource cmdlet retrieves the Desired State Configuration resources present on the computer. It shows built-in and custom providers (created by the user), as well as composite resources (other configurations that are packaged as module or created at run time in the session).</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Get-DscResource</maml:name>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByValue, ByPropertyName)" position="1" aliases="none">
+          <maml:name>Name</maml:name>
+          <maml:description>
+            <maml:para>Specifies an array of names of the Desired State Configuration resource to view.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="true">String[]</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>Syntax</maml:name>
+          <maml:description>
+            <maml:para>Indicates that the cmdlet returns the syntax view of the specified Desired State Configuration resources. The returned syntax shows how to use the resources in a Windows PowerShell® script.</maml:para>
+          </maml:description>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByValue, ByPropertyName)" position="1" aliases="none">
+        <maml:name>Name</maml:name>
+        <maml:description>
+          <maml:para>Specifies an array of names of the Desired State Configuration resource to view.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">String[]</command:parameterValue>
+        <dev:type>
+          <maml:name>String[]</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>none</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+        <maml:name>Syntax</maml:name>
+        <maml:description>
+          <maml:para>Indicates that the cmdlet returns the syntax view of the specified Desired State Configuration resources. The returned syntax shows how to use the resources in a Windows PowerShell® script.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>none</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>
+          </maml:name>
+          <maml:uri>
+          </maml:uri>
+          <maml:description>
+            <maml:para />
+          </maml:description>
+        </dev:type>
+        <maml:description>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>Microsoft.PowerShell.DesiredStateConfiguration.DscResourceInfo</maml:name>
+          <maml:uri>
+          </maml:uri>
+          <maml:description>
+            <maml:para />
+          </maml:description>
+        </dev:type>
+        <maml:description>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <command:terminatingErrors />
+    <command:nonTerminatingErrors />
+    <command:examples>
+      <command:example>
+        <maml:title>Example 1: Get all resources on the local computer</maml:title>
+        <maml:introduction>
+          <maml:para>
+          </maml:para>
+        </maml:introduction>
+        <dev:code>PS C:\&gt; Get-DscResource
+</dev:code>
+        <dev:remarks>
+          <maml:para>This command gets all the resources on the local computer.</maml:para>
+          <maml:para />
+          <maml:para />
+        </dev:remarks>
+        <command:commandLines>
+          <command:commandLine>
+            <command:commandText />
+          </command:commandLine>
+        </command:commandLines>
+      </command:example>
+      <command:example>
+        <maml:title>Example 2: Get a resource by specifying the name</maml:title>
+        <maml:introduction>
+          <maml:para>
+          </maml:para>
+        </maml:introduction>
+        <dev:code>PS C:\&gt; Get-DscResource –Name WindowsFeature
+</dev:code>
+        <dev:remarks>
+          <maml:para>This command gets the WindowsFeature resource.</maml:para>
+          <maml:para />
+          <maml:para />
+        </dev:remarks>
+        <command:commandLines>
+          <command:commandLine>
+            <command:commandText />
+          </command:commandLine>
+        </command:commandLines>
+      </command:example>
+      <command:example>
+        <maml:title>Example 3: Get a resource by using wildcard characters</maml:title>
+        <maml:introduction>
+          <maml:para>
+          </maml:para>
+        </maml:introduction>
+        <dev:code>PS C:\&gt; Get-DscResource –Name P*,r*
+</dev:code>
+        <dev:remarks>
+          <maml:para>This command gets all resources that match the wildcard pattern specified by the Name parameter.</maml:para>
+          <maml:para />
+          <maml:para />
+        </dev:remarks>
+        <command:commandLines>
+          <command:commandLine>
+            <command:commandText />
+          </command:commandLine>
+        </command:commandLines>
+      </command:example>
+      <command:example>
+        <maml:title>Example 4: Get a resource syntax</maml:title>
+        <maml:introduction>
+          <maml:para>
+          </maml:para>
+        </maml:introduction>
+        <dev:code>PS C:\&gt; Get-DscResource -Name WindowsFeature -Syntax
+</dev:code>
+        <dev:remarks>
+          <maml:para>This command gets the WindowsFeature resource, and shows the syntax for the resource. </maml:para>
+          <maml:para />
+          <maml:para />
+        </dev:remarks>
+        <command:commandLines>
+          <command:commandLine>
+            <command:commandText />
+          </command:commandLine>
+        </command:commandLines>
+      </command:example>
+      <command:example>
+        <maml:title>Example 5: Get all the properties for a resource</maml:title>
+        <maml:introduction>
+          <maml:para>
+          </maml:para>
+        </maml:introduction>
+        <dev:code>PS C:\&gt; Get-DscResource User | Select-Object -ExpandProperty Properties
+</dev:code>
+        <dev:remarks>
+          <maml:para>This command gets the User resource, and then uses the pipeline operator to return all the properties for the User resource.</maml:para>
+          <maml:para />
+          <maml:para />
+        </dev:remarks>
+        <command:commandLines>
+          <command:commandLine>
+            <command:commandText />
+          </command:commandLine>
+        </command:commandLines>
+      </command:example>
+    </command:examples>
+    <maml:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version:</maml:linkText>
+        <maml:uri>http://go.microsoft.com/fwlink/?linkid=327746</maml:uri>
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>Windows PowerShell Desired State Configuration Overview</maml:linkText>
+        <maml:uri>
+        </maml:uri>
+      </maml:navigationLink>
+    </maml:relatedLinks>
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>New-DSCCheckSum</command:name>
+      <maml:description>
+        <maml:para>Creates checksum files for Desired State Configuration documents and Desired State Configuration resources.</maml:para>
+      </maml:description>
+      <maml:copyright>
+        <maml:para />
+      </maml:copyright>
+      <command:verb>New</command:verb>
+      <command:noun>DSCCheckSum</command:noun>
+      <dev:version />
+    </command:details>
+    <maml:description>
+      <maml:para>The New-DSCCheckSum cmdlet generates checksum files for Desired State Configuration documents and compressed Desired State Configuration resources. The cmdlet generates a checksum file for each configuration and resource to be used in pull mode. The Desired State Configuration service uses the checksums to ensure that the correct configuration and resources exist on the target node. Place the checksums along with the associated Desired State Configuration documents and compressed Desired State Configuration resources in the Desired State Configuration service store.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>New-DSCCheckSum</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="false" position="1" aliases="Path">
+          <maml:name>ConfigurationPath</maml:name>
+          <maml:description>
+            <maml:para>Specifies an array of paths to the Desired State Configuration documents or resource archives.
+</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="true">String[]</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="2" aliases="none">
+          <maml:name>OutPath</maml:name>
+          <maml:description>
+            <maml:para>Specifies the path and file name of the output checksum file.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="false">String</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>Force</maml:name>
+          <maml:description>
+            <maml:para>Indicates that the cmdlet overwrites the specified output file if it already exists.</maml:para>
+          </maml:description>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="false" position="1" aliases="Path">
+        <maml:name>ConfigurationPath</maml:name>
+        <maml:description>
+          <maml:para>Specifies an array of paths to the Desired State Configuration documents or resource archives.
+</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="true">String[]</command:parameterValue>
+        <dev:type>
+          <maml:name>String[]</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>none</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+        <maml:name>Force</maml:name>
+        <maml:description>
+          <maml:para>Indicates that the cmdlet overwrites the specified output file if it already exists.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>none</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="2" aliases="none">
+        <maml:name>OutPath</maml:name>
+        <maml:description>
+          <maml:para>Specifies the path and file name of the output checksum file.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>none</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>
+          </maml:name>
+          <maml:uri>
+          </maml:uri>
+          <maml:description>
+            <maml:para />
+          </maml:description>
+        </dev:type>
+        <maml:description>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>
+          </maml:name>
+          <maml:uri>
+          </maml:uri>
+          <maml:description>
+            <maml:para />
+          </maml:description>
+        </dev:type>
+        <maml:description>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <command:terminatingErrors />
+    <command:nonTerminatingErrors />
+    <command:examples>
+      <command:example>
+        <maml:title>Example 1: Create checksum files for all configurations in a specific path </maml:title>
+        <maml:introduction>
+          <maml:para>
+          </maml:para>
+        </maml:introduction>
+        <dev:code>PS C:\&gt; New-DscCheckSum -ConfigurationPath C:\DSC\Configurations\
+</dev:code>
+        <dev:remarks>
+          <maml:para>This command creates checksum files for all configurations in the path C:\DSC\Configurations. Any checksum files that already exist will be skipped.</maml:para>
+          <maml:para />
+          <maml:para />
+        </dev:remarks>
+        <command:commandLines>
+          <command:commandLine>
+            <command:commandText />
+          </command:commandLine>
+        </command:commandLines>
+      </command:example>
+      <command:example>
+        <maml:title>Example 2: Create checksum files for all configurations in a specific path and overwrite the existing checksum files </maml:title>
+        <maml:introduction>
+          <maml:para>
+          </maml:para>
+        </maml:introduction>
+        <dev:code>PS C:\&gt; New-DscCheckSum -ConfigurationPath C:\DSC\Configurations\ -Force
+</dev:code>
+        <dev:remarks>
+          <maml:para>This command creates new checksum files for all configurations in the path C:\DSC\Configurations. Specifying the Force parameter causes the command to overwrite any checksum files that already exist. </maml:para>
+          <maml:para />
+          <maml:para />
+        </dev:remarks>
+        <command:commandLines>
+          <command:commandLine>
+            <command:commandText />
+          </command:commandLine>
+        </command:commandLines>
+      </command:example>
+    </command:examples>
+    <maml:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version:</maml:linkText>
+        <maml:uri>http://go.microsoft.com/fwlink/?linkid=327747</maml:uri>
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>Windows PowerShell Desired State Configuration Overview</maml:linkText>
+        <maml:uri>
+        </maml:uri>
+      </maml:navigationLink>
+    </maml:relatedLinks>
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Remove-DscConfigurationDocument</command:name>
+      <maml:description>
+        <maml:para>Removes a configuration document after configuration.</maml:para>
+      </maml:description>
+      <maml:copyright>
+        <maml:para />
+      </maml:copyright>
+      <command:verb>Remove</command:verb>
+      <command:noun>DscConfigurationDocument</command:noun>
+      <dev:version />
+    </command:details>
+    <maml:description>
+      <maml:para>The Remove-DscConfigurationDocument cmdlet removes a configuration document. During configuration, the Start-DscConfiguration cmdlet copies a .mof file into to a folder on the target computer. This cmdlet removes that configuration document and does additional cleanup. </maml:para>
+      <maml:para>This cmdlet is available only as part of the <maml:navigationLink><maml:linkText>November 2014 update rollup for Windows RT 8.1, Windows 8.1, and Windows Server 2012 R2</maml:linkText><maml:uri></maml:uri></maml:navigationLink> (http://support.microsoft.com/en-us/kb/3000850) from the Microsoft Support library. Before you use this cmdlet, review the information in <maml:navigationLink><maml:linkText>What's New in Windows PowerShell</maml:linkText><maml:uri></maml:uri></maml:navigationLink> (http://technet.microsoft.com/library/hh857339.aspx) in the TechNet library.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Remove-DscConfigurationDocument</maml:name>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="false" position="named" aliases="Session">
+          <maml:name>CimSession</maml:name>
+          <maml:description>
+            <maml:para>Runs the cmdlet in a remote session or on a remote computer. Enter a computer name or a session object, such as the output of a <maml:navigationLink><maml:linkText>New-CimSession</maml:linkText><maml:uri></maml:uri></maml:navigationLink> or <maml:navigationLink><maml:linkText>Get-CimSession</maml:linkText><maml:uri></maml:uri></maml:navigationLink> cmdlet. The default is the current session on the local computer.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="true">CimSession[]</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>Force</maml:name>
+          <maml:description>
+            <maml:para>Indicates that this cmdlet stops the running configuration job before it removes the configuration document.</maml:para>
+          </maml:description>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>ThrottleLimit</maml:name>
+          <maml:description>
+            <maml:para>Specifies the maximum number of concurrent operations that can be established to run the cmdlet. If this parameter is omitted or a value of 0 is entered, then Windows PowerShell® calculates an optimum throttle limit for the cmdlet based on the number of CIM cmdlets that are running on the computer. The throttle limit applies only to the current cmdlet, not to the session or to the computer.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="false">Int32</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>Stage</maml:name>
+          <maml:description>
+            <maml:para>Specifies which configuration document to remove. You can specify multiple document type or stages. The acceptable values for this parameter are: 
+
+-- Current. Remove the configuration document that describes the current state of the system. 
+-- Pending. Remove the configuration document that describes the pending state of the system. 
+-- Previous. Remove the configuration document that describes the previous state of the system. </maml:para>
+          </maml:description>
+          <command:parameterValueGroup>
+            <command:parameterValue required="true" variableLength="false">Current</command:parameterValue>
+            <command:parameterValue required="true" variableLength="false">Pending</command:parameterValue>
+            <command:parameterValue required="true" variableLength="false">Previous</command:parameterValue>
+          </command:parameterValueGroup>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="false" position="named" aliases="Session">
+        <maml:name>CimSession</maml:name>
+        <maml:description>
+          <maml:para>Runs the cmdlet in a remote session or on a remote computer. Enter a computer name or a session object, such as the output of a <maml:navigationLink><maml:linkText>New-CimSession</maml:linkText><maml:uri></maml:uri></maml:navigationLink> or <maml:navigationLink><maml:linkText>Get-CimSession</maml:linkText><maml:uri></maml:uri></maml:navigationLink> cmdlet. The default is the current session on the local computer.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">CimSession[]</command:parameterValue>
+        <dev:type>
+          <maml:name>CimSession[]</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>none</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+        <maml:name>Force</maml:name>
+        <maml:description>
+          <maml:para>Indicates that this cmdlet stops the running configuration job before it removes the configuration document.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>none</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+        <maml:name>Stage</maml:name>
+        <maml:description>
+          <maml:para>Specifies which configuration document to remove. You can specify multiple document type or stages. The acceptable values for this parameter are: 
+
+-- Current. Remove the configuration document that describes the current state of the system. 
+-- Pending. Remove the configuration document that describes the pending state of the system. 
+-- Previous. Remove the configuration document that describes the previous state of the system. </maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">Stage</command:parameterValue>
+        <dev:type>
+          <maml:name>Stage</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>none</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+        <maml:name>ThrottleLimit</maml:name>
+        <maml:description>
+          <maml:para>Specifies the maximum number of concurrent operations that can be established to run the cmdlet. If this parameter is omitted or a value of 0 is entered, then Windows PowerShell® calculates an optimum throttle limit for the cmdlet based on the number of CIM cmdlets that are running on the computer. The throttle limit applies only to the current cmdlet, not to the session or to the computer.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">Int32</command:parameterValue>
+        <dev:type>
+          <maml:name>Int32</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>none</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>None</maml:name>
+          <maml:uri>
+          </maml:uri>
+          <maml:description>
+            <maml:para />
+          </maml:description>
+        </dev:type>
+        <maml:description>
+          <maml:para>
+          </maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>None</maml:name>
+          <maml:uri>
+          </maml:uri>
+          <maml:description>
+            <maml:para />
+          </maml:description>
+        </dev:type>
+        <maml:description>
+          <maml:para>
+          </maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <command:terminatingErrors />
+    <command:nonTerminatingErrors />
+    <command:examples>
+      <command:example>
+        <maml:title>Example 1: Remove the current configuration document</maml:title>
+        <maml:introduction>
+          <maml:para>
+          </maml:para>
+        </maml:introduction>
+        <dev:code>PS C:\&gt;$Session = New-CimSession -ComputerName "Server01" -Credential ACCOUNTS\PattiFuller
+PS C:\&gt; Remove-DscConfigurationDocument -Stage Current -CimSession $Session
+</dev:code>
+        <dev:remarks>
+          <maml:para>The first command creates a CIM session by using the New-CimSession cmdlet, and then stores the CimSession object in the $Session variable. The command prompts you for a password. For more information, type Get-Help New-CimSession.</maml:para>
+          <maml:para>The second command removes the current configuration document for the computer specified in the CimSession stored in $Session. </maml:para>
+          <maml:para />
+          <maml:para />
+        </dev:remarks>
+        <command:commandLines>
+          <command:commandLine>
+            <command:commandText />
+          </command:commandLine>
+        </command:commandLines>
+      </command:example>
+    </command:examples>
+    <maml:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Windows PowerShell Desired State Configuration Overview</maml:linkText>
+        <maml:uri>
+        </maml:uri>
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>Get-DscConfiguration</maml:linkText>
+        <maml:uri />
+      </maml:navigationLink>
+    </maml:relatedLinks>
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Restore-DscConfiguration</command:name>
+      <maml:description>
+        <maml:para>Restores the previous configuration for the node.</maml:para>
+      </maml:description>
+      <maml:copyright>
+        <maml:para />
+      </maml:copyright>
+      <command:verb>Restore</command:verb>
+      <command:noun>DscConfiguration</command:noun>
+      <dev:version />
+    </command:details>
+    <maml:description>
+      <maml:para>The Restore-DscConfiguration cmdlet restores the previous configuration for the node, if a previous configuration exists. Specify computers by using Common Information Model (CIM) sessions. If you do not specify a target computer, the cmdlet restores the configuration of the local computer.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Restore-DscConfiguration</maml:name>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="false" position="named" aliases="Session">
+          <maml:name>CimSession</maml:name>
+          <maml:description>
+            <maml:para>Runs the cmdlet in a remote session or on a remote computer. Enter a computer name or a session object, such as the output of a <maml:navigationLink><maml:linkText>New-CimSession</maml:linkText><maml:uri></maml:uri></maml:navigationLink> or <maml:navigationLink><maml:linkText>Get-CimSession</maml:linkText><maml:uri></maml:uri></maml:navigationLink> cmdlet. The default is the current session on the local computer.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="true">CimSession[]</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>ThrottleLimit</maml:name>
+          <maml:description>
+            <maml:para>Specifies the maximum number of concurrent operations that can be established to run the cmdlet. If this parameter is omitted or a value of 0 is entered, then Windows PowerShell® calculates an optimum throttle limit for the cmdlet based on the number of CIM cmdlets that are running on the computer. The throttle limit applies only to the current cmdlet, not to the session or to the computer.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="false">Int32</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="false" position="named">
+          <maml:name>Confirm</maml:name>
+          <maml:description>
+            <maml:para>Prompts you for confirmation before running the cmdlet.Prompts you for confirmation before running the cmdlet.</maml:para>
+          </maml:description>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="false" position="named">
+          <maml:name>WhatIf</maml:name>
+          <maml:description>
+            <maml:para>Shows what would happen if the cmdlet runs. The cmdlet is not run.Shows what would happen if the cmdlet runs. The cmdlet is not run.</maml:para>
+          </maml:description>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="false" position="named" aliases="Session">
+        <maml:name>CimSession</maml:name>
+        <maml:description>
+          <maml:para>Runs the cmdlet in a remote session or on a remote computer. Enter a computer name or a session object, such as the output of a <maml:navigationLink><maml:linkText>New-CimSession</maml:linkText><maml:uri></maml:uri></maml:navigationLink> or <maml:navigationLink><maml:linkText>Get-CimSession</maml:linkText><maml:uri></maml:uri></maml:navigationLink> cmdlet. The default is the current session on the local computer.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">CimSession[]</command:parameterValue>
+        <dev:type>
+          <maml:name>CimSession[]</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>none</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+        <maml:name>ThrottleLimit</maml:name>
+        <maml:description>
+          <maml:para>Specifies the maximum number of concurrent operations that can be established to run the cmdlet. If this parameter is omitted or a value of 0 is entered, then Windows PowerShell® calculates an optimum throttle limit for the cmdlet based on the number of CIM cmdlets that are running on the computer. The throttle limit applies only to the current cmdlet, not to the session or to the computer.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">Int32</command:parameterValue>
+        <dev:type>
+          <maml:name>Int32</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>none</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="false" position="named">
+        <maml:name>Confirm</maml:name>
+        <maml:description>
+          <maml:para>Prompts you for confirmation before running the cmdlet.Prompts you for confirmation before running the cmdlet.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>false</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="false" position="named">
+        <maml:name>WhatIf</maml:name>
+        <maml:description>
+          <maml:para>Shows what would happen if the cmdlet runs. The cmdlet is not run.Shows what would happen if the cmdlet runs. The cmdlet is not run.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>false</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>
+          </maml:name>
+          <maml:uri>
+          </maml:uri>
+          <maml:description>
+            <maml:para />
+          </maml:description>
+        </dev:type>
+        <maml:description>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>
+          </maml:name>
+          <maml:uri>
+          </maml:uri>
+          <maml:description>
+            <maml:para />
+          </maml:description>
+        </dev:type>
+        <maml:description>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <command:terminatingErrors />
+    <command:nonTerminatingErrors />
+    <command:examples>
+      <command:example>
+        <maml:title>Example 1: Restore the configrugation for the local computer</maml:title>
+        <maml:introduction>
+          <maml:para>
+          </maml:para>
+        </maml:introduction>
+        <dev:code>PS C:\&gt; Restore-DscConfiguration
+</dev:code>
+        <dev:remarks>
+          <maml:para>This command restores the configuration for the local computer.</maml:para>
+          <maml:para />
+          <maml:para />
+        </dev:remarks>
+        <command:commandLines>
+          <command:commandLine>
+            <command:commandText />
+          </command:commandLine>
+        </command:commandLines>
+      </command:example>
+      <command:example>
+        <maml:title>Example 2: Restore configuration for a specified computer</maml:title>
+        <maml:introduction>
+          <maml:para>
+          </maml:para>
+        </maml:introduction>
+        <dev:code>PS C:\&gt; $Session = New-CimSession –ComputerName "Server01" –Credential ACCOUNTS\PattiFuller
+PS C:\&gt;Restore-DscConfiguration -CimSession $Session
+</dev:code>
+        <dev:remarks>
+          <maml:para>This example restores configuration on a computer specified by a CIM session. The example creates a CIM session for a  computer named Server01 for use with the cmdlet. Alternatively, create an array of CIM sessions to apply the cmdlet to multiple specified computers.</maml:para>
+          <maml:para>The first command creates a CIM session by using the New-CimSession cmdlet, and then stores the CimSession object in the $Session variable. The command prompts you for a password. For more information, type Get-Help New-CimSession.</maml:para>
+          <maml:para>The second command restores the configuration for the computers identified by the CimSession objects stored in the $Session variable, in this case, the computer named Server01. </maml:para>
+          <maml:para />
+          <maml:para />
+        </dev:remarks>
+        <command:commandLines>
+          <command:commandLine>
+            <command:commandText />
+          </command:commandLine>
+        </command:commandLines>
+      </command:example>
+    </command:examples>
+    <maml:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version:</maml:linkText>
+        <maml:uri>http://go.microsoft.com/fwlink/?LinkID=289470</maml:uri>
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>Windows PowerShell Desired State Configuration Overview</maml:linkText>
+        <maml:uri>
+        </maml:uri>
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>Get-DscConfiguration</maml:linkText>
+        <maml:uri />
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>Start-DscConfiguration</maml:linkText>
+        <maml:uri />
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>Test-DscConfiguration</maml:linkText>
+        <maml:uri />
+      </maml:navigationLink>
+    </maml:relatedLinks>
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Set-DscLocalConfigurationManager</command:name>
+      <maml:description>
+        <maml:para>Applies Local Configuration Manager settings to nodes. </maml:para>
+      </maml:description>
+      <maml:copyright>
+        <maml:para />
+      </maml:copyright>
+      <command:verb>Set</command:verb>
+      <command:noun>DscLocalConfigurationManager</command:noun>
+      <dev:version />
+    </command:details>
+    <maml:description>
+      <maml:para>The Set-DscLocalConfigurationManager cmdlet applies Local Configuration Manager settings, or meta-configuration, to nodes.Specify a path to the configuration settings folder. Specify computers by specifying computer names or by using Common Information Model (CIM) sessions. If you do not specify a target computer, the cmdlet applies settings to the local computer.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Set-DscLocalConfigurationManager</maml:name>
+        <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="1" aliases="none">
+          <maml:name>Path</maml:name>
+          <maml:description>
+            <maml:para>Specifies a file path of a folder that contains configuration settings files. The cmdlet publishes and applies these Local Configuration Manager settings to computers specified by the ComputerName parameter. </maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="2" aliases="CN,ServerName">
+          <maml:name>ComputerName</maml:name>
+          <maml:description>
+            <maml:para>Specifies an array of computer names. The cmdlet publishes and applies the configuration settings in the location specified by the Path parameter to these computers. </maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="true">String[]</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>Credential</maml:name>
+          <maml:description>
+            <maml:para>Specifies a user name and password, as a PSCredential object, for the target computer. To obtain a PSCredential object, use the Get-Credential cmdlet. For more information, type Get-Help Get-Credential.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="false">PSCredential</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>ThrottleLimit</maml:name>
+          <maml:description>
+            <maml:para>Specifies the maximum number of concurrent operations that can be established to run the cmdlet. If this parameter is omitted or a value of 0 is entered, then Windows PowerShell® calculates an optimum throttle limit for the cmdlet based on the number of CIM cmdlets that are running on the computer. The throttle limit applies only to the current cmdlet, not to the session or to the computer.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="false">Int32</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="false" position="named">
+          <maml:name>Confirm</maml:name>
+          <maml:description>
+            <maml:para>Prompts you for confirmation before running the cmdlet.Prompts you for confirmation before running the cmdlet.</maml:para>
+          </maml:description>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="false" position="named">
+          <maml:name>WhatIf</maml:name>
+          <maml:description>
+            <maml:para>Shows what would happen if the cmdlet runs. The cmdlet is not run.Shows what would happen if the cmdlet runs. The cmdlet is not run.</maml:para>
+          </maml:description>
+        </command:parameter>
+      </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>Set-DscLocalConfigurationManager</maml:name>
+        <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="1" aliases="none">
+          <maml:name>Path</maml:name>
+          <maml:description>
+            <maml:para>Specifies a file path of a folder that contains configuration settings files. The cmdlet publishes and applies these Local Configuration Manager settings to computers specified by the ComputerName parameter. </maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>ThrottleLimit</maml:name>
+          <maml:description>
+            <maml:para>Specifies the maximum number of concurrent operations that can be established to run the cmdlet. If this parameter is omitted or a value of 0 is entered, then Windows PowerShell® calculates an optimum throttle limit for the cmdlet based on the number of CIM cmdlets that are running on the computer. The throttle limit applies only to the current cmdlet, not to the session or to the computer.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="false">Int32</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="named" aliases="none">
+          <maml:name>CimSession</maml:name>
+          <maml:description>
+            <maml:para>Runs the cmdlet in a remote session or on a remote computer. Enter a computer name or a session object, such as the output of a <maml:navigationLink><maml:linkText>New-CimSession</maml:linkText><maml:uri></maml:uri></maml:navigationLink> or <maml:navigationLink><maml:linkText>Get-CimSession</maml:linkText><maml:uri></maml:uri></maml:navigationLink> cmdlet. The default is the current session on the local computer.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="true">CimSession[]</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="false" position="named">
+          <maml:name>Confirm</maml:name>
+          <maml:description>
+            <maml:para>Prompts you for confirmation before running the cmdlet.Prompts you for confirmation before running the cmdlet.</maml:para>
+          </maml:description>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="false" position="named">
+          <maml:name>WhatIf</maml:name>
+          <maml:description>
+            <maml:para>Shows what would happen if the cmdlet runs. The cmdlet is not run.Shows what would happen if the cmdlet runs. The cmdlet is not run.</maml:para>
+          </maml:description>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="named" aliases="none">
+        <maml:name>CimSession</maml:name>
+        <maml:description>
+          <maml:para>Runs the cmdlet in a remote session or on a remote computer. Enter a computer name or a session object, such as the output of a <maml:navigationLink><maml:linkText>New-CimSession</maml:linkText><maml:uri></maml:uri></maml:navigationLink> or <maml:navigationLink><maml:linkText>Get-CimSession</maml:linkText><maml:uri></maml:uri></maml:navigationLink> cmdlet. The default is the current session on the local computer.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="true">CimSession[]</command:parameterValue>
+        <dev:type>
+          <maml:name>CimSession[]</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>none</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="2" aliases="CN,ServerName">
+        <maml:name>ComputerName</maml:name>
+        <maml:description>
+          <maml:para>Specifies an array of computer names. The cmdlet publishes and applies the configuration settings in the location specified by the Path parameter to these computers. </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">String[]</command:parameterValue>
+        <dev:type>
+          <maml:name>String[]</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>none</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+        <maml:name>Credential</maml:name>
+        <maml:description>
+          <maml:para>Specifies a user name and password, as a PSCredential object, for the target computer. To obtain a PSCredential object, use the Get-Credential cmdlet. For more information, type Get-Help Get-Credential.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">PSCredential</command:parameterValue>
+        <dev:type>
+          <maml:name>PSCredential</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>none</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="1" aliases="none">
+        <maml:name>Path</maml:name>
+        <maml:description>
+          <maml:para>Specifies a file path of a folder that contains configuration settings files. The cmdlet publishes and applies these Local Configuration Manager settings to computers specified by the ComputerName parameter. </maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>none</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+        <maml:name>ThrottleLimit</maml:name>
+        <maml:description>
+          <maml:para>Specifies the maximum number of concurrent operations that can be established to run the cmdlet. If this parameter is omitted or a value of 0 is entered, then Windows PowerShell® calculates an optimum throttle limit for the cmdlet based on the number of CIM cmdlets that are running on the computer. The throttle limit applies only to the current cmdlet, not to the session or to the computer.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">Int32</command:parameterValue>
+        <dev:type>
+          <maml:name>Int32</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>none</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="false" position="named">
+        <maml:name>Confirm</maml:name>
+        <maml:description>
+          <maml:para>Prompts you for confirmation before running the cmdlet.Prompts you for confirmation before running the cmdlet.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>false</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="false" position="named">
+        <maml:name>WhatIf</maml:name>
+        <maml:description>
+          <maml:para>Shows what would happen if the cmdlet runs. The cmdlet is not run.Shows what would happen if the cmdlet runs. The cmdlet is not run.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>false</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>
+          </maml:name>
+          <maml:uri>
+          </maml:uri>
+          <maml:description>
+            <maml:para />
+          </maml:description>
+        </dev:type>
+        <maml:description>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>
+          </maml:name>
+          <maml:uri>
+          </maml:uri>
+          <maml:description>
+            <maml:para />
+          </maml:description>
+        </dev:type>
+        <maml:description>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <command:terminatingErrors />
+    <command:nonTerminatingErrors />
+    <command:examples>
+      <command:example>
+        <maml:title>Example 1: Apply Local Configuration Manager settings</maml:title>
+        <maml:introduction>
+          <maml:para>
+          </maml:para>
+        </maml:introduction>
+        <dev:code>PS C:\&gt; Set-DscLocalConfigurationManager -Path "C:\DSC\Configurations\"
+</dev:code>
+        <dev:remarks>
+          <maml:para>This command applies the Local Configuration Manager settings from C:\DSC\Configurations\ to the local computer. After receiving the settings, Local Configuration Manager processes them. </maml:para>
+          <maml:para />
+          <maml:para />
+        </dev:remarks>
+        <command:commandLines>
+          <command:commandLine>
+            <command:commandText />
+          </command:commandLine>
+        </command:commandLines>
+      </command:example>
+      <command:example>
+        <maml:title>Example 2: Apply Local Configuration Manager settings by using a CIM session</maml:title>
+        <maml:introduction>
+          <maml:para>
+          </maml:para>
+        </maml:introduction>
+        <dev:code>PS C:\&gt; $Session = New-CimSession –ComputerName "Server01" –Credential ACCOUNTS\PattiFuller
+PS C:\&gt; Set-DscLocalConfigurationManager -Path "C:\DSC\Configurations\" -CimSession $Session
+</dev:code>
+        <dev:remarks>
+          <maml:para>This example applies Local Configuration Manager settings to a computer and applies the settings. The example creates a CIM session for a computer named Server01 for use with the cmdlet. Alternatively, create an array of CIM sessions to apply the cmdlet to multiple specified computers. </maml:para>
+          <maml:para>The first command creates a CIM session by using the New-CimSession cmdlet, and then stores the CimSession object in the $Session variable. The command prompts you for a password. For more information, type Get-Help New-CimSession.</maml:para>
+          <maml:para>The second command applies Local Configuration Manager settings from C:\DSC\Configurations\ to the computers identified by the CimSession objects stored in the $Session variable. In this example, the $Session variable contains a CIM session only for the computer named Server01. The command applies the settings. After the receiving the settings, Local Configuration Manager processes them. </maml:para>
+          <maml:para>
+          </maml:para>
+          <maml:para />
+          <maml:para />
+        </dev:remarks>
+        <command:commandLines>
+          <command:commandLine>
+            <command:commandText />
+          </command:commandLine>
+        </command:commandLines>
+      </command:example>
+    </command:examples>
+    <maml:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version:</maml:linkText>
+        <maml:uri>http://go.microsoft.com/fwlink/?LinkID=294366</maml:uri>
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>Windows PowerShell Desired State Configuration Overview</maml:linkText>
+        <maml:uri>
+        </maml:uri>
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>Get-DscLocalConfigurationManager</maml:linkText>
+        <maml:uri />
+      </maml:navigationLink>
+    </maml:relatedLinks>
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Start-DscConfiguration</command:name>
+      <maml:description>
+        <maml:para>Applies configuration to nodes.</maml:para>
+      </maml:description>
+      <maml:copyright>
+        <maml:para />
+      </maml:copyright>
+      <command:verb>Start</command:verb>
+      <command:noun>DscConfiguration</command:noun>
+      <dev:version />
+    </command:details>
+    <maml:description>
+      <maml:para>The Start-DscConfiguration cmdlet applies configuration to nodes. Specify which computers you want to apply configuration to by specifying computer names or by using Common Information Model (CIM) sessions.</maml:para>
+      <maml:para>By default, this cmdlet creates a job and returns a Job object. For more information about background jobs, type Get-Help about_Jobs. To use this cmdlet interactively, specify the Wait parameter. </maml:para>
+      <maml:para>Specify the Verbose parameter to see details of what the cmdlet does when it applies configuration settings.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Start-DscConfiguration</maml:name>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>Force</maml:name>
+          <maml:description>
+            <maml:para>Indicates that the cmdlet pushes configuration to computers. Some computers pull configuration data. If you do not specify this parameter and if the computer pulls its configuration, the configuration fails.</maml:para>
+          </maml:description>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>JobName</maml:name>
+          <maml:description>
+            <maml:para>Specifies a friendly name for a job. If you specify this parameter, the cmdlet runs as a job, and it returns a Job object. </maml:para>
+            <maml:para>By default, Windows PowerShell® assigns the name JobN where N is an integer.</maml:para>
+            <maml:para>If you specify the Wait parameter, do not specify this parameter. </maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="false">System.String</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>ThrottleLimit</maml:name>
+          <maml:description>
+            <maml:para>Specifies the maximum number of concurrent operations that can be established to run the cmdlet. If this parameter is omitted or a value of 0 is entered, then Windows PowerShell® calculates an optimum throttle limit for the cmdlet based on the number of CIM cmdlets that are running on the computer. The throttle limit applies only to the current cmdlet, not to the session or to the computer.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="false">System.Int32</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>Wait</maml:name>
+          <maml:description>
+            <maml:para>Indicates that the cmdlet blocks the console until it completes all configuration tasks.</maml:para>
+            <maml:para>If you specify this parameter, do not specify the JobName parameter.</maml:para>
+          </maml:description>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="true(ByValue)" position="named" aliases="none">
+          <maml:name>CimSession</maml:name>
+          <maml:description>
+            <maml:para>Runs the cmdlet in a remote session or on a remote computer. Enter a computer name or a session object, such as the output of a <maml:navigationLink><maml:linkText>New-CimSession</maml:linkText><maml:uri></maml:uri></maml:navigationLink> or <maml:navigationLink><maml:linkText>Get-CimSession</maml:linkText><maml:uri></maml:uri></maml:navigationLink> cmdlet. The default is the current session on the local computer.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="true">Microsoft.Management.Infrastructure.CimSession[]</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>UseExisting</maml:name>
+          <maml:description>
+            <maml:para>Indicates that this cmdlet applies the existing configuration.</maml:para>
+            <maml:para>Before you specify this parameter for this cmdlet, review the information in <maml:navigationLink><maml:linkText>What's New in Windows PowerShell</maml:linkText><maml:uri></maml:uri></maml:navigationLink> (http://technet.microsoft.com/library/hh857339.aspx) in the TechNet library. </maml:para>
+          </maml:description>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="false" position="named">
+          <maml:name>Confirm</maml:name>
+          <maml:description>
+            <maml:para>Prompts you for confirmation before running the cmdlet.Prompts you for confirmation before running the cmdlet.</maml:para>
+          </maml:description>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="false" position="named">
+          <maml:name>WhatIf</maml:name>
+          <maml:description>
+            <maml:para>Shows what would happen if the cmdlet runs. The cmdlet is not run.Shows what would happen if the cmdlet runs. The cmdlet is not run.</maml:para>
+          </maml:description>
+        </command:parameter>
+      </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>Start-DscConfiguration</maml:name>
+        <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="1" aliases="none">
+          <maml:name>Path</maml:name>
+          <maml:description>
+            <maml:para>Specifies a file path of a folder that contains configuration settings files. The cmdlet publishes and applies this configuration to computers specified by the ComputerName parameter.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">System.String</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>Force</maml:name>
+          <maml:description>
+            <maml:para>Indicates that the cmdlet pushes configuration to computers. Some computers pull configuration data. If you do not specify this parameter and if the computer pulls its configuration, the configuration fails.</maml:para>
+          </maml:description>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>JobName</maml:name>
+          <maml:description>
+            <maml:para>Specifies a friendly name for a job. If you specify this parameter, the cmdlet runs as a job, and it returns a Job object. </maml:para>
+            <maml:para>By default, Windows PowerShell® assigns the name JobN where N is an integer.</maml:para>
+            <maml:para>If you specify the Wait parameter, do not specify this parameter. </maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="false">System.String</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>ThrottleLimit</maml:name>
+          <maml:description>
+            <maml:para>Specifies the maximum number of concurrent operations that can be established to run the cmdlet. If this parameter is omitted or a value of 0 is entered, then Windows PowerShell® calculates an optimum throttle limit for the cmdlet based on the number of CIM cmdlets that are running on the computer. The throttle limit applies only to the current cmdlet, not to the session or to the computer.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="false">System.Int32</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>Wait</maml:name>
+          <maml:description>
+            <maml:para>Indicates that the cmdlet blocks the console until it completes all configuration tasks.</maml:para>
+            <maml:para>If you specify this parameter, do not specify the JobName parameter.</maml:para>
+          </maml:description>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="true(ByValue)" position="named" aliases="none">
+          <maml:name>CimSession</maml:name>
+          <maml:description>
+            <maml:para>Runs the cmdlet in a remote session or on a remote computer. Enter a computer name or a session object, such as the output of a <maml:navigationLink><maml:linkText>New-CimSession</maml:linkText><maml:uri></maml:uri></maml:navigationLink> or <maml:navigationLink><maml:linkText>Get-CimSession</maml:linkText><maml:uri></maml:uri></maml:navigationLink> cmdlet. The default is the current session on the local computer.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="true">Microsoft.Management.Infrastructure.CimSession[]</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="false" position="named">
+          <maml:name>Confirm</maml:name>
+          <maml:description>
+            <maml:para>Prompts you for confirmation before running the cmdlet.Prompts you for confirmation before running the cmdlet.</maml:para>
+          </maml:description>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="false" position="named">
+          <maml:name>WhatIf</maml:name>
+          <maml:description>
+            <maml:para>Shows what would happen if the cmdlet runs. The cmdlet is not run.Shows what would happen if the cmdlet runs. The cmdlet is not run.</maml:para>
+          </maml:description>
+        </command:parameter>
+      </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>Start-DscConfiguration</maml:name>
+        <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="1" aliases="none">
+          <maml:name>Path</maml:name>
+          <maml:description>
+            <maml:para>Specifies a file path of a folder that contains configuration settings files. The cmdlet publishes and applies this configuration to computers specified by the ComputerName parameter.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">System.String</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="true(ByValue)" position="2" aliases="CN,ServerName">
+          <maml:name>ComputerName</maml:name>
+          <maml:description>
+            <maml:para>Specifies an array of computer names. The cmdlet publishes and applies the configuration in the location specified by the Path parameter to these computers.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="true">System.String[]</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>Credential</maml:name>
+          <maml:description>
+            <maml:para>Specifies a user name and password, as a PSCredential object, for the target computer. To obtain a PSCredential object, use the Get-Credential cmdlet. For more information, type Get-Help Get-Credential.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="false">System.Management.Automation.PSCredential</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>Force</maml:name>
+          <maml:description>
+            <maml:para>Indicates that the cmdlet pushes configuration to computers. Some computers pull configuration data. If you do not specify this parameter and if the computer pulls its configuration, the configuration fails.</maml:para>
+          </maml:description>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>JobName</maml:name>
+          <maml:description>
+            <maml:para>Specifies a friendly name for a job. If you specify this parameter, the cmdlet runs as a job, and it returns a Job object. </maml:para>
+            <maml:para>By default, Windows PowerShell® assigns the name JobN where N is an integer.</maml:para>
+            <maml:para>If you specify the Wait parameter, do not specify this parameter. </maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="false">System.String</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>ThrottleLimit</maml:name>
+          <maml:description>
+            <maml:para>Specifies the maximum number of concurrent operations that can be established to run the cmdlet. If this parameter is omitted or a value of 0 is entered, then Windows PowerShell® calculates an optimum throttle limit for the cmdlet based on the number of CIM cmdlets that are running on the computer. The throttle limit applies only to the current cmdlet, not to the session or to the computer.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="false">System.Int32</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>Wait</maml:name>
+          <maml:description>
+            <maml:para>Indicates that the cmdlet blocks the console until it completes all configuration tasks.</maml:para>
+            <maml:para>If you specify this parameter, do not specify the JobName parameter.</maml:para>
+          </maml:description>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="false" position="named">
+          <maml:name>Confirm</maml:name>
+          <maml:description>
+            <maml:para>Prompts you for confirmation before running the cmdlet.Prompts you for confirmation before running the cmdlet.</maml:para>
+          </maml:description>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="false" position="named">
+          <maml:name>WhatIf</maml:name>
+          <maml:description>
+            <maml:para>Shows what would happen if the cmdlet runs. The cmdlet is not run.Shows what would happen if the cmdlet runs. The cmdlet is not run.</maml:para>
+          </maml:description>
+        </command:parameter>
+      </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>Start-DscConfiguration</maml:name>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="true(ByValue)" position="2" aliases="CN,ServerName">
+          <maml:name>ComputerName</maml:name>
+          <maml:description>
+            <maml:para>Specifies an array of computer names. The cmdlet publishes and applies the configuration in the location specified by the Path parameter to these computers.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="true">System.String[]</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>Credential</maml:name>
+          <maml:description>
+            <maml:para>Specifies a user name and password, as a PSCredential object, for the target computer. To obtain a PSCredential object, use the Get-Credential cmdlet. For more information, type Get-Help Get-Credential.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="false">System.Management.Automation.PSCredential</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>Force</maml:name>
+          <maml:description>
+            <maml:para>Indicates that the cmdlet pushes configuration to computers. Some computers pull configuration data. If you do not specify this parameter and if the computer pulls its configuration, the configuration fails.</maml:para>
+          </maml:description>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>JobName</maml:name>
+          <maml:description>
+            <maml:para>Specifies a friendly name for a job. If you specify this parameter, the cmdlet runs as a job, and it returns a Job object. </maml:para>
+            <maml:para>By default, Windows PowerShell® assigns the name JobN where N is an integer.</maml:para>
+            <maml:para>If you specify the Wait parameter, do not specify this parameter. </maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="false">System.String</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>ThrottleLimit</maml:name>
+          <maml:description>
+            <maml:para>Specifies the maximum number of concurrent operations that can be established to run the cmdlet. If this parameter is omitted or a value of 0 is entered, then Windows PowerShell® calculates an optimum throttle limit for the cmdlet based on the number of CIM cmdlets that are running on the computer. The throttle limit applies only to the current cmdlet, not to the session or to the computer.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="false">System.Int32</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>Wait</maml:name>
+          <maml:description>
+            <maml:para>Indicates that the cmdlet blocks the console until it completes all configuration tasks.</maml:para>
+            <maml:para>If you specify this parameter, do not specify the JobName parameter.</maml:para>
+          </maml:description>
+        </command:parameter>
+        <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>UseExisting</maml:name>
+          <maml:description>
+            <maml:para>Indicates that this cmdlet applies the existing configuration.</maml:para>
+            <maml:para>Before you specify this parameter for this cmdlet, review the information in <maml:navigationLink><maml:linkText>What's New in Windows PowerShell</maml:linkText><maml:uri></maml:uri></maml:navigationLink> (http://technet.microsoft.com/library/hh857339.aspx) in the TechNet library. </maml:para>
+          </maml:description>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="false" position="named">
+          <maml:name>Confirm</maml:name>
+          <maml:description>
+            <maml:para>Prompts you for confirmation before running the cmdlet.Prompts you for confirmation before running the cmdlet.</maml:para>
+          </maml:description>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="false" position="named">
+          <maml:name>WhatIf</maml:name>
+          <maml:description>
+            <maml:para>Shows what would happen if the cmdlet runs. The cmdlet is not run.Shows what would happen if the cmdlet runs. The cmdlet is not run.</maml:para>
+          </maml:description>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="true(ByValue)" position="named" aliases="none">
+        <maml:name>CimSession</maml:name>
+        <maml:description>
+          <maml:para>Runs the cmdlet in a remote session or on a remote computer. Enter a computer name or a session object, such as the output of a <maml:navigationLink><maml:linkText>New-CimSession</maml:linkText><maml:uri></maml:uri></maml:navigationLink> or <maml:navigationLink><maml:linkText>Get-CimSession</maml:linkText><maml:uri></maml:uri></maml:navigationLink> cmdlet. The default is the current session on the local computer.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="true">Microsoft.Management.Infrastructure.CimSession[]</command:parameterValue>
+        <dev:type>
+          <maml:name>Microsoft.Management.Infrastructure.CimSession[]</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>none</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="true(ByValue)" position="2" aliases="CN,ServerName">
+        <maml:name>ComputerName</maml:name>
+        <maml:description>
+          <maml:para>Specifies an array of computer names. The cmdlet publishes and applies the configuration in the location specified by the Path parameter to these computers.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">System.String[]</command:parameterValue>
+        <dev:type>
+          <maml:name>System.String[]</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>none</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+        <maml:name>Credential</maml:name>
+        <maml:description>
+          <maml:para>Specifies a user name and password, as a PSCredential object, for the target computer. To obtain a PSCredential object, use the Get-Credential cmdlet. For more information, type Get-Help Get-Credential.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">System.Management.Automation.PSCredential</command:parameterValue>
+        <dev:type>
+          <maml:name>System.Management.Automation.PSCredential</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>none</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+        <maml:name>Force</maml:name>
+        <maml:description>
+          <maml:para>Indicates that the cmdlet pushes configuration to computers. Some computers pull configuration data. If you do not specify this parameter and if the computer pulls its configuration, the configuration fails.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>none</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+        <maml:name>JobName</maml:name>
+        <maml:description>
+          <maml:para>Specifies a friendly name for a job. If you specify this parameter, the cmdlet runs as a job, and it returns a Job object. </maml:para>
+          <maml:para>By default, Windows PowerShell® assigns the name JobN where N is an integer.</maml:para>
+          <maml:para>If you specify the Wait parameter, do not specify this parameter. </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">System.String</command:parameterValue>
+        <dev:type>
+          <maml:name>System.String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>none</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="1" aliases="none">
+        <maml:name>Path</maml:name>
+        <maml:description>
+          <maml:para>Specifies a file path of a folder that contains configuration settings files. The cmdlet publishes and applies this configuration to computers specified by the ComputerName parameter.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">System.String</command:parameterValue>
+        <dev:type>
+          <maml:name>System.String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>none</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+        <maml:name>ThrottleLimit</maml:name>
+        <maml:description>
+          <maml:para>Specifies the maximum number of concurrent operations that can be established to run the cmdlet. If this parameter is omitted or a value of 0 is entered, then Windows PowerShell® calculates an optimum throttle limit for the cmdlet based on the number of CIM cmdlets that are running on the computer. The throttle limit applies only to the current cmdlet, not to the session or to the computer.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">System.Int32</command:parameterValue>
+        <dev:type>
+          <maml:name>System.Int32</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>none</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+        <maml:name>UseExisting</maml:name>
+        <maml:description>
+          <maml:para>Indicates that this cmdlet applies the existing configuration.</maml:para>
+          <maml:para>Before you specify this parameter for this cmdlet, review the information in <maml:navigationLink><maml:linkText>What's New in Windows PowerShell</maml:linkText><maml:uri></maml:uri></maml:navigationLink> (http://technet.microsoft.com/library/hh857339.aspx) in the TechNet library. </maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>none</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+        <maml:name>Wait</maml:name>
+        <maml:description>
+          <maml:para>Indicates that the cmdlet blocks the console until it completes all configuration tasks.</maml:para>
+          <maml:para>If you specify this parameter, do not specify the JobName parameter.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>none</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="false" position="named">
+        <maml:name>Confirm</maml:name>
+        <maml:description>
+          <maml:para>Prompts you for confirmation before running the cmdlet.Prompts you for confirmation before running the cmdlet.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>false</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="false" position="named">
+        <maml:name>WhatIf</maml:name>
+        <maml:description>
+          <maml:para>Shows what would happen if the cmdlet runs. The cmdlet is not run.Shows what would happen if the cmdlet runs. The cmdlet is not run.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>false</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>
+          </maml:name>
+          <maml:uri>
+          </maml:uri>
+          <maml:description>
+            <maml:para />
+          </maml:description>
+        </dev:type>
+        <maml:description>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>
+          </maml:name>
+          <maml:uri>
+          </maml:uri>
+          <maml:description>
+            <maml:para />
+          </maml:description>
+        </dev:type>
+        <maml:description>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <command:terminatingErrors />
+    <command:nonTerminatingErrors />
+    <command:examples>
+      <command:example>
+        <maml:title>Example 1: Apply configuration settings</maml:title>
+        <maml:introduction>
+          <maml:para>
+          </maml:para>
+        </maml:introduction>
+        <dev:code>PS C:\&gt; Start-DscConfiguration -Path "C:\DSC\Configurations\"
+</dev:code>
+        <dev:remarks>
+          <maml:para>This command applies the configuration settings from C:\DSC\Configurations\ to the every computer that has settings in that folder. The command returns Job objects for each target node deployed to.</maml:para>
+          <maml:para />
+          <maml:para />
+        </dev:remarks>
+        <command:commandLines>
+          <command:commandLine>
+            <command:commandText />
+          </command:commandLine>
+        </command:commandLines>
+      </command:example>
+      <command:example>
+        <maml:title>Example 2: Apply configuration settings and wait for configuration to complete</maml:title>
+        <maml:introduction>
+          <maml:para>
+          </maml:para>
+        </maml:introduction>
+        <dev:code>PS C:\&gt; Start-DscConfiguration -Path "C:\DSC\Configurations\" -Wait -Verbose 
+</dev:code>
+        <dev:remarks>
+          <maml:para>This command applies the configuration from C:\DSC\Configurations\ to the local computer. The command returns Job objects for each target node deployed to, in this case, just the local computer. This example specifies the Verbose parameter, so the command sends messages to the console as it proceeds. The command includes the Wait parameter, so you cannot use the console until the command completes all configuration tasks. </maml:para>
+          <maml:para />
+          <maml:para />
+        </dev:remarks>
+        <command:commandLines>
+          <command:commandLine>
+            <command:commandText />
+          </command:commandLine>
+        </command:commandLines>
+      </command:example>
+      <command:example>
+        <maml:title>Example 3: Apply configuration settings by using a CIM session</maml:title>
+        <maml:introduction>
+          <maml:para>
+          </maml:para>
+        </maml:introduction>
+        <dev:code>PS C:\&gt; $Session = New-CimSession -ComputerName "Server01" -Credential ACCOUNTS\PattiFuller
+PS C:\&gt; Start-DscConfiguration -Path "C:\DSC\Configurations\" -CimSession $Session
+</dev:code>
+        <dev:remarks>
+          <maml:para>This example applies configuration settings to a specified computer. The example creates a CIM session for a computer named Server01 for use with the cmdlet. Alternatively, create an array of CIM sessions to apply the cmdlet to multiple specified computers. </maml:para>
+          <maml:para>The first command creates a CIM session by using the New-CimSession cmdlet, and then stores the CimSession object in the $Session variable. The command prompts you for a password. For more information, type Get-Help NewCimSession.</maml:para>
+          <maml:para>The second command applies the configuration settins from C:\DSC\Configurations\ to the computers identified by the CimSession objects stored in the $Session variable. In this example, the $Session variable contains a CIM session only for the computer named Server01. The command applies the configuration. The command creates Job objects for each configured computer. </maml:para>
+          <maml:para />
+          <maml:para />
+        </dev:remarks>
+        <command:commandLines>
+          <command:commandLine>
+            <command:commandText />
+          </command:commandLine>
+        </command:commandLines>
+      </command:example>
+    </command:examples>
+    <maml:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version:</maml:linkText>
+        <maml:uri>http://go.microsoft.com/fwlink/?LinkID=294367</maml:uri>
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>Windows PowerShell Desired State Configuration Overview</maml:linkText>
+        <maml:uri>
+        </maml:uri>
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>Get-DscConfiguration</maml:linkText>
+        <maml:uri />
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>Restore-DscConfiguration</maml:linkText>
+        <maml:uri />
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>Stop-DscConfiguration</maml:linkText>
+        <maml:uri />
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>Test-DscConfiguration</maml:linkText>
+        <maml:uri />
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>Update-DscConfiguration</maml:linkText>
+        <maml:uri />
+      </maml:navigationLink>
+    </maml:relatedLinks>
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Stop-DscConfiguration</command:name>
+      <maml:description>
+        <maml:para>Stops a configuration job that is currently running.</maml:para>
+      </maml:description>
+      <maml:copyright>
+        <maml:para />
+      </maml:copyright>
+      <command:verb>Stop</command:verb>
+      <command:noun>DscConfiguration</command:noun>
+      <dev:version />
+    </command:details>
+    <maml:description>
+      <maml:para>The Stop-DscConfiguration cmdlet stops a configuration job that is currently running. Specify which computers this cmdlet applies to by using Common Information Model (CIM) sessions. If there is no configuration job running, this cmdlet returns a warning message. </maml:para>
+      <maml:para>This cmdlet is available only as part of the <maml:navigationLink><maml:linkText>November 2014 update rollup for Windows RT 8.1, Windows 8.1, and Windows Server 2012 R2</maml:linkText><maml:uri></maml:uri></maml:navigationLink> (http://support.microsoft.com/en-us/kb/3000850) from the Microsoft Support library. Before you use this cmdlet, review the information in <maml:navigationLink><maml:linkText>What's New in Windows PowerShell</maml:linkText><maml:uri></maml:uri></maml:navigationLink> (http://technet.microsoft.com/library/hh857339.aspx) in the TechNet library.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Stop-DscConfiguration</maml:name>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="false" position="named" aliases="Session">
+          <maml:name>CimSession</maml:name>
+          <maml:description>
+            <maml:para>Runs the cmdlet in a remote session or on a remote computer. Enter a computer name or a session object, such as the output of a <maml:navigationLink><maml:linkText>New-CimSession</maml:linkText><maml:uri></maml:uri></maml:navigationLink> or <maml:navigationLink><maml:linkText>Get-CimSession</maml:linkText><maml:uri></maml:uri></maml:navigationLink> cmdlet. The default is the current session on the local computer.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="true">CimSession[]</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>Force</maml:name>
+          <maml:description>
+            <maml:para>Forces the command to run without asking for user confirmation.</maml:para>
+          </maml:description>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>ThrottleLimit</maml:name>
+          <maml:description>
+            <maml:para>Specifies the maximum number of concurrent operations that can be established to run the cmdlet. If this parameter is omitted or a value of 0 is entered, then Windows PowerShell® calculates an optimum throttle limit for the cmdlet based on the number of CIM cmdlets that are running on the computer. The throttle limit applies only to the current cmdlet, not to the session or to the computer.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="false">Int32</command:parameterValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="false" position="named" aliases="Session">
+        <maml:name>CimSession</maml:name>
+        <maml:description>
+          <maml:para>Runs the cmdlet in a remote session or on a remote computer. Enter a computer name or a session object, such as the output of a <maml:navigationLink><maml:linkText>New-CimSession</maml:linkText><maml:uri></maml:uri></maml:navigationLink> or <maml:navigationLink><maml:linkText>Get-CimSession</maml:linkText><maml:uri></maml:uri></maml:navigationLink> cmdlet. The default is the current session on the local computer.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">CimSession[]</command:parameterValue>
+        <dev:type>
+          <maml:name>CimSession[]</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>none</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+        <maml:name>Force</maml:name>
+        <maml:description>
+          <maml:para>Forces the command to run without asking for user confirmation.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>none</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+        <maml:name>ThrottleLimit</maml:name>
+        <maml:description>
+          <maml:para>Specifies the maximum number of concurrent operations that can be established to run the cmdlet. If this parameter is omitted or a value of 0 is entered, then Windows PowerShell® calculates an optimum throttle limit for the cmdlet based on the number of CIM cmdlets that are running on the computer. The throttle limit applies only to the current cmdlet, not to the session or to the computer.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">Int32</command:parameterValue>
+        <dev:type>
+          <maml:name>Int32</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>none</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>None</maml:name>
+          <maml:uri>
+          </maml:uri>
+          <maml:description>
+            <maml:para />
+          </maml:description>
+        </dev:type>
+        <maml:description>
+          <maml:para>
+          </maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>None</maml:name>
+          <maml:uri>
+          </maml:uri>
+          <maml:description>
+            <maml:para />
+          </maml:description>
+        </dev:type>
+        <maml:description>
+          <maml:para>
+          </maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <command:terminatingErrors />
+    <command:nonTerminatingErrors />
+    <command:examples>
+      <command:example>
+        <maml:title>Example 1: Stop a configuration job</maml:title>
+        <maml:introduction>
+          <maml:para>
+          </maml:para>
+        </maml:introduction>
+        <dev:code>PS C:\&gt;$Session = New-CimSession -ComputerName "Server01" -Credential ACCOUNTS\PattiFuller
+PS C:\&gt; Stop-DscConfiguration -CimSession $Session
+</dev:code>
+        <dev:remarks>
+          <maml:para>The first command creates a CIM session by using the New-CimSession cmdlet, and then stores the CimSession object in the $Session variable. The command prompts you for a password. For more information, type Get-Help New-CimSession. </maml:para>
+          <maml:para>The second command stops a currently running configuration job on the computer identified by the CimSession object stored in $Session. </maml:para>
+          <maml:para />
+          <maml:para />
+        </dev:remarks>
+        <command:commandLines>
+          <command:commandLine>
+            <command:commandText />
+          </command:commandLine>
+        </command:commandLines>
+      </command:example>
+    </command:examples>
+    <maml:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Windows PowerShell Desired State Configuration Overview</maml:linkText>
+        <maml:uri>
+        </maml:uri>
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>Get-DscConfiguration</maml:linkText>
+        <maml:uri />
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>Restore-DscConfiguration</maml:linkText>
+        <maml:uri />
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>Start-DscConfiguration</maml:linkText>
+        <maml:uri />
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>Test-DscConfiguration</maml:linkText>
+        <maml:uri />
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>Update-DscConfiguration</maml:linkText>
+        <maml:uri />
+      </maml:navigationLink>
+    </maml:relatedLinks>
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Test-DscConfiguration</command:name>
+      <maml:description>
+        <maml:para>Tests whether the actual configuration on the nodes matches the desired configuration.</maml:para>
+      </maml:description>
+      <maml:copyright>
+        <maml:para />
+      </maml:copyright>
+      <command:verb>Test</command:verb>
+      <command:noun>DscConfiguration</command:noun>
+      <dev:version />
+    </command:details>
+    <maml:description>
+      <maml:para>The Test-DscConfiguration cmdlet tests whether the actual configuration on the nodes matches the desired configuration. Specify computers by using Common Information Model (CIM) sessions. If you do not specify a target computer, the cmdlet tests configuration of the local computer.</maml:para>
+      <maml:para>If the desired and actual configurations match, the cmdlet returns a value of $True. Otherwise, it returns a value of $False.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Test-DscConfiguration</maml:name>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="false" position="named" aliases="Session">
+          <maml:name>CimSession</maml:name>
+          <maml:description>
+            <maml:para>Runs the cmdlet in a remote session or on a remote computer. Enter a computer name or a session object, such as the output of a <maml:navigationLink><maml:linkText>New-CimSession</maml:linkText><maml:uri></maml:uri></maml:navigationLink> or <maml:navigationLink><maml:linkText>Get-CimSession</maml:linkText><maml:uri></maml:uri></maml:navigationLink> cmdlet. The default is the current session on the local computer.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="true">CimSession[]</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>ThrottleLimit</maml:name>
+          <maml:description>
+            <maml:para>Specifies the maximum number of concurrent operations that can be established to run the cmdlet. If this parameter is omitted or a value of 0 is entered, then Windows PowerShell® calculates an optimum throttle limit for the cmdlet based on the number of CIM cmdlets that are running on the computer. The throttle limit applies only to the current cmdlet, not to the session or to the computer.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="false">Int32</command:parameterValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="false" position="named" aliases="Session">
+        <maml:name>CimSession</maml:name>
+        <maml:description>
+          <maml:para>Runs the cmdlet in a remote session or on a remote computer. Enter a computer name or a session object, such as the output of a <maml:navigationLink><maml:linkText>New-CimSession</maml:linkText><maml:uri></maml:uri></maml:navigationLink> or <maml:navigationLink><maml:linkText>Get-CimSession</maml:linkText><maml:uri></maml:uri></maml:navigationLink> cmdlet. The default is the current session on the local computer.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">CimSession[]</command:parameterValue>
+        <dev:type>
+          <maml:name>CimSession[]</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>none</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+        <maml:name>ThrottleLimit</maml:name>
+        <maml:description>
+          <maml:para>Specifies the maximum number of concurrent operations that can be established to run the cmdlet. If this parameter is omitted or a value of 0 is entered, then Windows PowerShell® calculates an optimum throttle limit for the cmdlet based on the number of CIM cmdlets that are running on the computer. The throttle limit applies only to the current cmdlet, not to the session or to the computer.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">Int32</command:parameterValue>
+        <dev:type>
+          <maml:name>Int32</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>none</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>
+          </maml:name>
+          <maml:uri>
+          </maml:uri>
+          <maml:description>
+            <maml:para />
+          </maml:description>
+        </dev:type>
+        <maml:description>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>
+          </maml:name>
+          <maml:uri>
+          </maml:uri>
+          <maml:description>
+            <maml:para />
+          </maml:description>
+        </dev:type>
+        <maml:description>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <command:terminatingErrors />
+    <command:nonTerminatingErrors />
+    <command:examples>
+      <command:example>
+        <maml:title>Example 1: Test configuration for the local computer</maml:title>
+        <maml:introduction>
+          <maml:para>
+          </maml:para>
+        </maml:introduction>
+        <dev:code>PS C:\&gt; Test-DscConfiguration
+</dev:code>
+        <dev:remarks>
+          <maml:para>This command tests configuration for the local computer.</maml:para>
+          <maml:para />
+          <maml:para />
+        </dev:remarks>
+        <command:commandLines>
+          <command:commandLine>
+            <command:commandText />
+          </command:commandLine>
+        </command:commandLines>
+      </command:example>
+      <command:example>
+        <maml:title>Example 2: Test configuration for a specified computer</maml:title>
+        <maml:introduction>
+          <maml:para>
+          </maml:para>
+        </maml:introduction>
+        <dev:code>PS C:\&gt; $Session = New-CimSession –ComputerName "Server01" –Credential ACCOUNTS\PattiFuller
+PS C:\&gt; Test-DscConfiguration -CimSession $Session
+</dev:code>
+        <dev:remarks>
+          <maml:para>This example test configuration from a computer specified by a CIM session. The example creates a CIM session for a computer named Server01 for use with the cmdlet. Alternatively, create an array of CIM sessions to apply the cmdlet to multiple specified computers.</maml:para>
+          <maml:para>The first command creates a CIM session by using the New-CimSession cmdlet, and then stores the CimSession object in the $Session variable. The command prompts you for a password. For more information, type Get-Help New-CimSession.</maml:para>
+          <maml:para>The second command tests configuration for the computers identified by the CimSession objects stored in the $Session variable, in this case, the computer named Server01. </maml:para>
+          <maml:para />
+          <maml:para />
+        </dev:remarks>
+        <command:commandLines>
+          <command:commandLine>
+            <command:commandText />
+          </command:commandLine>
+        </command:commandLines>
+      </command:example>
+    </command:examples>
+    <maml:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version:</maml:linkText>
+        <maml:uri>http://go.microsoft.com/fwlink/?LinkID=294365</maml:uri>
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>Windows PowerShell Desired State Configuration Overview</maml:linkText>
+        <maml:uri>
+        </maml:uri>
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>Get-DscConfiguration</maml:linkText>
+        <maml:uri />
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>Restore-DscConfiguration</maml:linkText>
+        <maml:uri />
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>Start-DscConfiguration</maml:linkText>
+        <maml:uri />
+      </maml:navigationLink>
+    </maml:relatedLinks>
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Update-DscConfiguration</command:name>
+      <maml:description>
+        <maml:para>Runs the existing configuration on a computer. </maml:para>
+      </maml:description>
+      <maml:copyright>
+        <maml:para />
+      </maml:copyright>
+      <command:verb>Update</command:verb>
+      <command:noun>DscConfiguration</command:noun>
+      <dev:version />
+    </command:details>
+    <maml:description>
+      <maml:para>The Update-DscConfiguration cmdlet runs the existing configuration present on a computer or connects to a pull server and then applies the current configuration to the computer.</maml:para>
+      <maml:para>This cmdlet is available only as part of the <maml:navigationLink><maml:linkText>November 2014 update rollup for Windows RT 8.1, Windows 8.1, and Windows Server 2012 R2</maml:linkText><maml:uri></maml:uri></maml:navigationLink> (http://support.microsoft.com/en-us/kb/3000850) from the Microsoft Support library. Before you use this cmdlet, review the information in <maml:navigationLink><maml:linkText>What's New in Windows PowerShell</maml:linkText><maml:uri></maml:uri></maml:navigationLink> (http://technet.microsoft.com/library/hh857339.aspx) in the TechNet library.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Update-DscConfiguration</maml:name>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>JobName</maml:name>
+          <maml:description>
+            <maml:para>Specifies a friendly name for a job. If you specify this parameter, the cmdlet runs as a job, and it returns a Job object. </maml:para>
+            <maml:para>By default, Windows PowerShell® assigns the name JobN where N is an integer.</maml:para>
+            <maml:para>If you specify the Wait parameter, do not specify this parameter. </maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="false">String</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>Wait</maml:name>
+          <maml:description>
+            <maml:para>Indicates that the cmdlet blocks the console until it completes all configuration tasks.</maml:para>
+            <maml:para>If you specify this parameter, do not specify the JobName parameter.</maml:para>
+          </maml:description>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>CimSession</maml:name>
+          <maml:description>
+            <maml:para>Runs the cmdlet in a remote session or on a remote computer. Enter a computer name or a session object, such as the output of a <maml:navigationLink><maml:linkText>New-CimSession</maml:linkText><maml:uri></maml:uri></maml:navigationLink> or <maml:navigationLink><maml:linkText>Get-CimSession</maml:linkText><maml:uri></maml:uri></maml:navigationLink> cmdlet. The default is the current session on the local computer.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="true">CimSession[]</command:parameterValue>
+        </command:parameter>
+      </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>Update-DscConfiguration</maml:name>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="true(ByValue)" position="2" aliases="CN,ServerName">
+          <maml:name>ComputerName</maml:name>
+          <maml:description>
+            <maml:para>Specifies an array of computer names. The cmdlet applies the configuration settings to the computers that this parameter specifies. </maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="true">String[]</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>Credential</maml:name>
+          <maml:description>
+            <maml:para>Specifies a user name and password, as a PSCredential object, for the target computer. To obtain a PSCredential object, use the Get-Credential cmdlet. For more information, type Get-Help Get-Credential.</maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="false">PSCredential</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>JobName</maml:name>
+          <maml:description>
+            <maml:para>Specifies a friendly name for a job. If you specify this parameter, the cmdlet runs as a job, and it returns a Job object. </maml:para>
+            <maml:para>By default, Windows PowerShell® assigns the name JobN where N is an integer.</maml:para>
+            <maml:para>If you specify the Wait parameter, do not specify this parameter. </maml:para>
+          </maml:description>
+          <command:parameterValue required="false" variableLength="false">String</command:parameterValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>Wait</maml:name>
+          <maml:description>
+            <maml:para>Indicates that the cmdlet blocks the console until it completes all configuration tasks.</maml:para>
+            <maml:para>If you specify this parameter, do not specify the JobName parameter.</maml:para>
+          </maml:description>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="false" position="named" aliases="none">
+        <maml:name>CimSession</maml:name>
+        <maml:description>
+          <maml:para>Runs the cmdlet in a remote session or on a remote computer. Enter a computer name or a session object, such as the output of a <maml:navigationLink><maml:linkText>New-CimSession</maml:linkText><maml:uri></maml:uri></maml:navigationLink> or <maml:navigationLink><maml:linkText>Get-CimSession</maml:linkText><maml:uri></maml:uri></maml:navigationLink> cmdlet. The default is the current session on the local computer.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="true">CimSession[]</command:parameterValue>
+        <dev:type>
+          <maml:name>CimSession[]</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>none</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="true(ByValue)" position="2" aliases="CN,ServerName">
+        <maml:name>ComputerName</maml:name>
+        <maml:description>
+          <maml:para>Specifies an array of computer names. The cmdlet applies the configuration settings to the computers that this parameter specifies. </maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="true">String[]</command:parameterValue>
+        <dev:type>
+          <maml:name>String[]</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>none</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+        <maml:name>Credential</maml:name>
+        <maml:description>
+          <maml:para>Specifies a user name and password, as a PSCredential object, for the target computer. To obtain a PSCredential object, use the Get-Credential cmdlet. For more information, type Get-Help Get-Credential.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">PSCredential</command:parameterValue>
+        <dev:type>
+          <maml:name>PSCredential</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>none</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+        <maml:name>JobName</maml:name>
+        <maml:description>
+          <maml:para>Specifies a friendly name for a job. If you specify this parameter, the cmdlet runs as a job, and it returns a Job object. </maml:para>
+          <maml:para>By default, Windows PowerShell® assigns the name JobN where N is an integer.</maml:para>
+          <maml:para>If you specify the Wait parameter, do not specify this parameter. </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>none</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+        <maml:name>Wait</maml:name>
+        <maml:description>
+          <maml:para>Indicates that the cmdlet blocks the console until it completes all configuration tasks.</maml:para>
+          <maml:para>If you specify this parameter, do not specify the JobName parameter.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>none</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>
+          </maml:name>
+          <maml:uri>
+          </maml:uri>
+          <maml:description>
+            <maml:para />
+          </maml:description>
+        </dev:type>
+        <maml:description>
+          <maml:para>
+          </maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>
+          </maml:name>
+          <maml:uri>
+          </maml:uri>
+          <maml:description>
+            <maml:para />
+          </maml:description>
+        </dev:type>
+        <maml:description>
+          <maml:para>
+          </maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <command:terminatingErrors />
+    <command:nonTerminatingErrors />
+    <command:examples>
+      <command:example>
+        <maml:title>Example 1: Update a configuration</maml:title>
+        <maml:introduction>
+          <maml:para>
+          </maml:para>
+        </maml:introduction>
+        <dev:code>PS C:\&gt;$Session = New-CimSession -ComputerName "Server01" -Credential ACCOUNTS\PattiFuller
+PS C:\&gt; Update-DscConfiguration -CimSession $Session -Wait
+</dev:code>
+        <dev:remarks>
+          <maml:para>The first command creates a CIM session by using the New-CimSession cmdlet, and then stores the CimSession object in the $Session variable. The command prompts you for a password. For more information, type Get-Help New-CimSession.</maml:para>
+          <maml:para>The second command updates the computer specified in the CimSession stored in $Session. The command specifies the Wait parameter. The console does not accept additional commands until the current command finishes. </maml:para>
+          <maml:para />
+          <maml:para />
+        </dev:remarks>
+        <command:commandLines>
+          <command:commandLine>
+            <command:commandText />
+          </command:commandLine>
+        </command:commandLines>
+      </command:example>
+    </command:examples>
+    <maml:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Windows PowerShell Desired State Configuration Overview</maml:linkText>
+        <maml:uri>
+        </maml:uri>
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>Get-DscConfiguration</maml:linkText>
+        <maml:uri />
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>Restore-DscConfiguration</maml:linkText>
+        <maml:uri />
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>Start-DscConfiguration</maml:linkText>
+        <maml:uri />
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>Stop-DscConfiguration</maml:linkText>
+        <maml:uri />
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>Test-DscConfiguration</maml:linkText>
+        <maml:uri />
+      </maml:navigationLink>
+    </maml:relatedLinks>
+  </command:command>
+</helpItems>

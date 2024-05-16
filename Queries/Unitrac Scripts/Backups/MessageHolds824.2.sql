@@ -1,0 +1,30 @@
+--Placing messages on hold
+
+--UPDATE dbo.MESSAGE
+--SET PROCESSED_IN = 'Y' , RECEIVED_STATUS_CD = 'HOLD' 
+--WHERE ID IN ()
+
+
+
+--Taking them off hold for USD
+--UPDATE dbo.MESSAGE
+--SET PROCESSED_IN = 'N' , RECEIVED_STATUS_CD = 'RCVD' 
+--WHERE ID IN ()
+
+
+--Taking them off hold for ADHOC
+--UPDATE dbo.MESSAGE
+--SET PROCESSED_IN = 'N' , RECEIVED_STATUS_CD = 'ADHOC' 
+--WHERE ID IN ()
+
+
+
+---Move to ADHOC
+
+
+UPDATE dbo.MESSAGE
+SET PROCESSED_IN = 'Y' , RECEIVED_STATUS_CD = 'HOLD' 
+WHERE ID IN (4510185,
+4518079,
+4521183,
+4521266)

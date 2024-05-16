@@ -1,0 +1,16 @@
+--Look at reports and owners
+
+SELECT C.Path, C.Name, U.UserName FROM dbo.Catalog C
+INNER JOIN dbo.Users U ON U.UserID = C.CreatedByID
+WHERE C.Name = 'AccountLevelPL'
+
+SELECT * FROM dbo.Catalog C
+INNER JOIN dbo.Users U ON U.UserID = C.CreatedByID
+
+SELECT * FROM dbo.Catalog
+
+SELECT * FROM dbo.Users
+WHERE UserID = '0x744A6E64CA39AE8DAEFA7870CFD697158E891654E14A31455B57EF98589F390B6BCA7C3A73ADE29FBF1F2D5DF30B14A1'
+
+
+SELECT * FROM dbo.DataSource

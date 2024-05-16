@@ -1,0 +1,82 @@
+USE [UniTrac]
+GO 
+
+--Loan Screen Information - LOAN/COLLATERAL/PROPERTY/OWNER/REQUIRED COVERAGE
+SELECT L.NUMBER_TX, O.* --INTO UniTracHDStorage..INC0273550_3
+FROM    LOAN L
+        INNER JOIN COLLATERAL C ON L.ID = C.LOAN_ID
+        INNER JOIN PROPERTY P ON C.PROPERTY_ID = P.ID
+       -- INNER JOIN REQUIRED_COVERAGE RC ON P.ID = RC.PROPERTY_ID
+        INNER JOIN OWNER_LOAN_RELATE OL ON L.ID = OL.LOAN_ID
+        INNER JOIN OWNER O ON OL.OWNER_ID = O.ID
+        INNER JOIN dbo.LENDER LL ON LL.ID = L.LENDER_ID
+WHERE   LL.CODE_TX IN ( '4765' ) AND O.FIRST_NAME_TX = 'True' AND O.PURGE_DT IS NULL AND 
+ L.NUMBER_TX = '529107'
+
+
+SELECT * FROM dbo.LOAN
+WHERE NUMBER_TX = '529107'
+
+SELECT * FROM dbo.LENDER
+WHERE ID IN (2265,
+2296)
+
+CREATE TABLE #tmp (ID NVARCHAR(255))
+INSERT into #tmp
+        ( ID )
+ --SELECT ID FROM UniTracHDStorage..INC0273550_2,
+--SELECT ID from uniTracHDStorage..INC0273550_3
+ SELECT ID  FROM uniTracHDStorage..INC0273550
+
+
+ SELECT * FROM dbo.OWNER
+ WHERE ID IN ( SELECT * FROM #tmp) AND PURGE_DT IS NULL
+
+
+ SELECT UPDATE_DT,* FROM UniTracHDStorage..INC0273550_3
+ WHERE NUMBER_TX = '671303048514'
+
+ 
+--Pull all WI's IDs and loan number for CPI Cancel per dates needed
+CREATE TABLE #tmpWI
+    (
+      WI_ID NVARCHAR(4000) ,
+      LoanNumber NVARCHAR(4000)
+    )
+INSERT  INTO #tmpWI
+        SELECT  ID ,
+                CONTENT_XML.value('(/Content/Loan/Number)[1]', 'varchar (50)')
+        FROM    dbo.WORK_ITEM
+        WHERE   STATUS_CD IN ( 'Withdrawn', 'Complete' )
+                AND WORKFLOW_DEFINITION_ID = '3'
+                AND CREATE_DT >= '2016-10-01'
+                AND CREATE_DT <= '2016-10-31' 
+				 
+
+
+SELECT UPDATE_DT,PURGE_DT, * FROM dbo.OWNER
+WHERE ID IN (SELECT ID FROM UniTracHDStorage..INC0273550)
+
+
+UPDATE O
+SET purge_dt = GETDATE(), update_dt = GETDATE(), lock_id=lock_id+1
+--SELECT *
+FROM dbo.OWNER O
+WHERE ID IN (SELECT ID FROM UniTracHDStorage..INC0273550_3) AND O.PURGE_DT IS NULL
+--701
+
+
+
+
+INSERT INTO PROPERTY_CHANGE
+ ( ENTITY_NAME_TX , ENTITY_ID , USER_TX , ATTACHMENT_IN , 
+ CREATE_DT , AGENCY_ID , DESCRIPTION_TX ,  DETAILS_IN , FORMATTED_IN ,
+ LOCK_ID , PARENT_NAME_TX , PARENT_ID , TRANS_STATUS_CD , UTL_IN )
+ SELECT DISTINCT 'Allied.UniTrac.Owner' , RC.ID , ' INC0273550' , 'N' , 
+ GETDATE() ,  1 , 
+ 'Purge the Co-Borrowers with name of "true" ', 
+ 'Y' , 'N' , 1 ,  'Allied.UniTrac.Allied.UniTrac.Owner' , RC.ID , 'PEND' , 'N'
+FROM dbo.OWNER RC 
+WHERE RC.ID IN (SELECT ID FROM UniTracHDStorage..INC0273550_3)
+--701
+

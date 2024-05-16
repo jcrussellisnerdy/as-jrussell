@@ -1,0 +1,56 @@
+USE UniTrac
+
+SELECT TOP 50 * FROM dbo.EVENT_SEQUENCE E
+JOIN dbo.EVALUATION_EVENT EE ON EE.EVENT_SEQUENCE_ID = E.ID
+WHERE EVENT_TYPE_CD = 'NTC'
+
+SELECT DISTINCT L.CODE_TX, L.NAME_TX, DESCRIPTION_TX 
+INTO jcs..sirisha
+FROM dbo.EVENT_SEQ_CONTAINER e
+JOIN dbo.LENDER L ON L.ID = e.LENDER_ID
+WHERE e.DESCRIPTION_TX IN ('Binder/Impaired Over CPI',
+'Certificate Authorized',
+'CPI Canceled/Funded',
+'CPI Canceled/Unfunded',
+'CPI Expired',
+'Inadequate Coverage Impaired',
+'Deductible Impaired',
+'Flood Impaired',
+'Lienholder Impaired',
+'Inactive',
+'Storage Impaired',
+'Layup Expired',
+'Prior Carrier Canceled',
+'Prior Carrier Expired',
+'Reaudit Insurance',
+'Track Audit Contract')
+AND STATUS_CD = 'ACTIVE' AND TEST_IN = 'N' AND e.PURGE_DT IS NULL AND l.PURGE_DT IS NULL 
+AND AGENCY_ID = '1' AND CANCEL_DT IS NULL
+ORDER BY CODE_TX ASC 
+
+
+SELECT DISTINCT  TOP 15 e.DESCRIPTION_TX, L.NUMBER_TX, LL.CODE_TX, LL.NAME_TX,  E.LENDER_ID, L.LENDER_ID, EFFECTIVE_DT  FROM dbo.EVENT_SEQ_CONTAINER e
+JOIN dbo.REQUIRED_COVERAGE RC ON RC.LENDER_PRODUCT_ID = E.LENDER_PRODUCT_ID
+JOIN dbo.COLLATERAL C ON C.PROPERTY_ID = RC.PROPERTY_ID 
+JOIN dbo.LOAN L ON L.ID = C.LOAN_ID
+JOIN dbo.LENDER LL ON LL.ID = e.LENDER_ID
+WHERE e.DESCRIPTION_TX IN --('Binder/Impaired Over CPI')
+--('Certificate Authorized')
+--('Inactive')
+('Track Audit Contract') 
+AND L.RECORD_TYPE_CD = 'G' AND L.STATUS_CD = 'A' AND C.PURGE_DT IS NULL 
+AND L.PURGE_DT IS NULL AND   CAST(L.EFFECTIVE_DT AS DATE) >= CAST(GETDATE()-120 AS DATE)
+AND   CAST(L.EFFECTIVE_DT AS DATE) <= CAST(GETDATE()-90 AS DATE)
+ORDER BY EFFECTIVE_DT DESC  
+
+
+SELECT *
+--SELECT *
+FROM dbo.EVENT_SEQ_CONTAINER e
+WHERE e.DESCRIPTION_TX IN 
+('Certificate Authorized','Inactive')
+
+SELECT * FROM jcs..sirisha
+
+
+

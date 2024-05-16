@@ -1,0 +1,18 @@
+/*
+when adding a row into a table that is already created you will need to do an insert.
+
+The easiest way to do this is create an insert with all the columns listed (as done below)
+then do a select from the table that you are wanting to pull the data from (again as listed below)
+
+ALWAYS REMEMBER IF YOU ARE ONLY DOING A HANDFUL TO ADD A WHERE CLAUSE (or you will get the entire table)
+
+:) 
+
+*/
+
+
+
+insert OUTPUTIMAGES_KEY (ImportId, [Status], BatchId, LenderID, LenderName, ContractType, AlliedDocID, DocumentPath, BatchDate, ScanOperator, ValidationOperator, ImportTime, ExportTime, ManualValidation, TransactionType, MailDate, Insured_LastName, Insured_Firstname, Insured_LastName2, Insured_Firstname2, Insured_DBAName, Insured_Addr, Insured_Zip, InsCoName,BIC_ID, InsCoAddr1, InsCoAddr2, InsCoCity, InsCoState, InsCoZip, AgencyCompanyName, AgencyID, AgencyPhone, AgencyFax, AgencyEmail, PolicyNumber, EffectiveDate, ExpirationDate, CancellationDate, CancellationReason, flg_IsApplication, flg_LienholderNameErr, flg_LienholderAddrErr, LoanNumber, flg_LiabilityCard, Veh_Year, Veh_Make, Veh_Model, VIN, veh_CompDeductibleAmt, flg_ComprehensiveCoverage, veh_CollDeductibleAmt, flg_CollisionCoverage, veh_CSL, veh_BIP, veh_BIO, veh_PDO, flg_ExcessLiability, flg_LessorErr, Prop_Addr, Prop_Zip, haz_ADwellCoverageAmt, haz_ADeductibleAmt, haz_ADeductiblePct, flg_HazardCoverage, flood_ADwellCoverageAmt, flood_ADeductibleAmt, flood_ADeductiblePct, flg_FloodCoverage, flood_zone, flood_grandfathered, haz_WindExcluded, wind_ADwellCoverageAmt, wind_ADeductibleAmt, wind_ADeductiblePct, flg_WindCoverage, quake_ADwellCoverageAmt, quake_ADeductibleAmt, quake_ADeductiblePct,flg_EarthquakeCoverage, hurricane_ADwellCoverageAmt, hurricane_ADeductibleAmt, hurricane_ADeductiblePct, flg_HurricaneCoverage, StatedInsValue, CoverageBasis, ExtCvgAmtFixed, ExtCvgAmtPct, bill_RemittanceID, bill_PremiumDue, bill_SupplementalBilled, bill_TotalPremium, bill_DueDate, condo_flg_CondoAssocPolicy, condo_AssocName, condo_Units, condo_WallsInCoverage, condo_flg_OwnersPolicy)
+select ImportId, [Status], BatchId, LenderID, LenderName, ContractType, AlliedDocID, DocumentPath, BatchDate, ScanOperator, ValidationOperator, ImportTime, ExportTime, ManualValidation, TransactionType, MailDate, Insured_LastName, Insured_Firstname, Insured_LastName2, Insured_Firstname2, Insured_DBAName, Insured_Addr, Insured_Zip, InsCoName,BIC_ID, InsCoAddr1, InsCoAddr2, InsCoCity, InsCoState, InsCoZip, AgencyCompanyName, AgencyID, AgencyPhone, AgencyFax, AgencyEmail, PolicyNumber, EffectiveDate, ExpirationDate, CancellationDate, CancellationReason, flg_IsApplication, flg_LienholderNameErr, flg_LienholderAddrErr, LoanNumber, flg_LiabilityCard, Veh_Year, Veh_Make, Veh_Model, VIN, veh_CompDeductibleAmt, flg_ComprehensiveCoverage, veh_CollDeductibleAmt, flg_CollisionCoverage, veh_CSL, veh_BIP, veh_BIO, veh_PDO, flg_ExcessLiability, flg_LessorErr, Prop_Addr, Prop_Zip, haz_ADwellCoverageAmt, haz_ADeductibleAmt, haz_ADeductiblePct, flg_HazardCoverage, flood_ADwellCoverageAmt, flood_ADeductibleAmt, flood_ADeductiblePct, flg_FloodCoverage, flood_zone, flood_grandfathered, haz_WindExcluded, wind_ADwellCoverageAmt, wind_ADeductibleAmt, wind_ADeductiblePct, flg_WindCoverage, quake_ADwellCoverageAmt, quake_ADeductibleAmt, quake_ADeductiblePct,flg_EarthquakeCoverage, hurricane_ADwellCoverageAmt, hurricane_ADeductibleAmt, hurricane_ADeductiblePct, flg_HurricaneCoverage, StatedInsValue, CoverageBasis, ExtCvgAmtFixed, ExtCvgAmtPct, bill_RemittanceID, bill_PremiumDue, bill_SupplementalBilled, bill_TotalPremium, bill_DueDate, condo_flg_CondoAssocPolicy, condo_AssocName, condo_Units, condo_WallsInCoverage, condo_flg_OwnersPolicy
+from OUTPUTIMAGES
+where BatchId IN ('')

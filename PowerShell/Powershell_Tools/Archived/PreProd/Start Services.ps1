@@ -1,0 +1,16 @@
+﻿Get-Service	 -ComputerName	UTPREPROD-APP01.colo.as.local	  -Name	LDHSERV | Start-Service
+Get-Service	 -ComputerName	UTPREPROD-APP01.colo.as.local	  -Name	LDHServiceUSD | Start-Service
+Get-Service	 -ComputerName	UTPREPROD-APP01.colo.as.local	  -Name	MSGSRVRBSS | Start-Service
+Get-Service	 -ComputerName	UTPREPROD-APP01.colo.as.local	  -Name	MSGSRVRDEF | Start-Service
+Get-Service	 -ComputerName	UTPREPROD-APP01.colo.as.local	  -Name	MSGSRVREDIIDR | Start-Service
+Get-Service	 -ComputerName	UTPREPROD-APP01.colo.as.local	  -Name	MSGSRVREXTHUNT | Start-Service
+Get-Service	 -ComputerName	UTPREPROD-APP01.colo.as.local	  -Name	MSGSRVREXTINFO | Start-Service
+Get-Service	 -ComputerName	UTPREPROD-APP01.colo.as.local	  -Name	MSGSRVREXTUSD | Start-Service
+Get-Service	 -ComputerName	UTPREPROD-APP01.colo.as.local	  -Name	UnitracBusinessService | Start-Service
+Get-Service	 -ComputerName	UTPREPROD-APP01.colo.as.local	  -Name	UnitracBusinessServiceCycle | Start-Service
+Get-Service	 -ComputerName	UTPREPROD-APP01.colo.as.local	  -Name	UnitracBusinessServiceMatchIn | Start-Service
+Get-Service	 -ComputerName	UTPREPROD-APP01.colo.as.local	  -Name	UnitracBusinessServiceMatchOut | Start-Service
+Get-Service	 -ComputerName	UTPREPROD-APP01.colo.as.local	  -Name	UnitracBusinessServicePRT | Start-Service
+Get-Service	 -ComputerName	UTPREPROD-APP01.colo.as.local	  -Name	UnitracBusinessServiceRPT | Start-Service
+Get-Service	 -ComputerName	UTPREPROD-APP01.colo.as.local	  -Name	Workflow | Start-Service
+Get-Service	 -ComputerName	UTPREPROD-APP01.colo.as.local	  -Name	LetterGen  | Start-Service

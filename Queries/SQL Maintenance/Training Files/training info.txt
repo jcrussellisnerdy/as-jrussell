@@ -1,0 +1,61 @@
+Informational Statements
+
+DBCC INPUTBUFFER x
+DBCC SHOWCONTIG
+DBCC OPENTRAN
+DBCC OUTPUTBUFFER
+DBCC PROCCACHE
+DBCC SHOW_STATISTICS
+DBCC SQLPERF
+DBCC TRACESTATUS
+DBCC USEROPTIONS
+
+Validation Statements
+
+DBCC CHECKALLOC
+DBCC CHECKCATALOG
+DBCC CHECKCONSTRAINTS
+DBCC CHECKDB
+DBCC CHECKFILEGROUP
+DBCC CHECKIDENT
+DBCC CHECKTABLE
+
+Maintenance Statements
+
+DBCC CLEANTABLE
+DBCC DBREINDEX
+DBCC DROPCLEANBUFFERS
+DBCC FREEPROCCACHE
+DBCC INDEXDEFRAG
+DBCC SHRINKDATABASE
+DBCC SHRINKFILE
+DBCC UPDATEUSAGE
+
+Miscellaneous Statements
+
+DBCC dllname (FREE)
+DBCC HELP
+DBCC FLUSHAUTHCACHE
+DBCC TRACEOFF
+DBCC FREESESSIONCACHE
+DBCC TRACEON
+DBCC FREESYSTEMCACHE
+DBCC CLONEDATABASE
+
+   
+   
+   Redis :
+https://www.youtube.com/watch?v=jgpVdJB2sKQ
+
+https://www.youtube.com/watch?v=Hbt56gFj998
+
+https://www.youtube.com/watch?v=XCsS_NVAa1g
+
+
+
+
+https://www.sqlskills.com/blogs/paul/category/undocumented-commands/
+
+Original Source: https://ola.hallengren.com
+New Source: https://github.com/olahallengren/sql-server-maintenance-solution
+DDB ToolKit: https://github.com/dmuegge/ddb-sql-toolkit

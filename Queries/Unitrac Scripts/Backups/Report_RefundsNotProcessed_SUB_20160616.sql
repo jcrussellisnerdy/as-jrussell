@@ -1,0 +1,151 @@
+USE [Unitrac_Reports]
+GO
+
+/****** Object:  StoredProcedure [dbo].[Report_RefundsNotProcessed]    Script Date: 6/16/2016 5:15:42 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE PROCEDURE [dbo].[Report_RefundsNotProcessed] 
+
+AS
+
+BEGIN
+SET NOCOUNT ON
+--Get rid of residual #temp tables
+IF OBJECT_ID(N'tempdb..#Temp1',N'U') IS NOT NULL
+  DROP TABLE #Temp1
+IF OBJECT_ID(N'tempdb..#Temp2',N'U') IS NOT NULL
+  DROP TABLE #Temp2
+IF OBJECT_ID(N'tempdb..#Temp3',N'U') IS NOT NULL
+  DROP TABLE #Temp3
+
+
+--Earliest Billing Group
+select ft.fpc_ID as FPCId,MIN(bg.id) as BGId
+into #Temp1 
+from BILLING_GROUP bg
+inner join FINANCIAL_TXN_APPLY fta on fta.BILLING_GROUP_ID = bg.ID
+inner join FINANCIAL_TXN ft on ft.ID = fta.FINANCIAL_TXN_ID
+where ft.PURGE_DT is null
+and ft.TXN_TYPE_CD = 'C'
+and bg.PURGE_DT is null
+and fta.PURGE_DT is null
+and bg.TYPE_CD not in ('VUT','VUTF')
+group by ft.fpc_ID
+ 
+--select * from #Temp1
+ 
+--Owed a refund on the Earliest Billing Group
+select t1.BGId as BGId,
+ft.FPC_ID as FPCId, 
+SUM(ft.AMOUNT_NO)as FPCSum 
+into #Temp2
+from FINANCIAL_TXN ft
+inner join FINANCIAL_TXN_APPLY fta on fta.FINANCIAL_TXN_ID = ft.ID
+inner join #Temp1 t1 on t1.FPCId = ft.FPC_ID and t1.BGId = fta.BILLING_GROUP_ID
+where ft.PURGE_DT is null
+and ft.PURGE_DT is null
+and ft.FPC_ID = t1.FPCId
+group by t1.BGId,ft.FPC_ID
+having SUM(ft.AMOUNT_NO) < 0
+ 
+--select * from #Temp2
+ 
+--Still owed a refund
+select t2.BGId as BGId, fpc.ID as FPCId, SUM(ft.AMOUNT_NO)as FPCSum 
+into #Temp3
+from FORCE_PLACED_CERTIFICATE fpc
+inner join FINANCIAL_TXN ft on ft.FPC_ID = fpc.ID
+inner join #Temp2 t2 on t2.FPCId = fpc.ID
+where ft.PURGE_DT is null
+and fpc.PURGE_DT is null
+group by t2.BGId,fpc.ID
+having SUM(ft.AMOUNT_NO) < 0
+ 
+--select * from #Temp3
+ 
+select distinct
+(ISNULL(LND.CODE_TX,'No Lender') + ' ' + ISNULL(LND.NAME_TX,'') + ' / ' + 
+(CASE when L.BRANCH_CODE_TX is null or L.BRANCH_CODE_TX = '' then 'No Branch' else L.BRANCH_CODE_TX END) + ' / ' + 
+ISNULL(RC_DIVISION.DESCRIPTION_TX,RC_SC.DESCRIPTION_TX) + ' / ' +
+ISNULL(RC_COVERAGETYPE.MEANING_TX,'No Coverage')) AS REPORT_GROUPBY_TX,
+LND.CODE_TX as [LENDER_CODE_TX],
+LND.NAME_TX as [LENDER_NAME_TX],
+L.BRANCH_CODE_TX as [LOAN_BRANCHCODE_TX],
+CASE WHEN ISNULL(L.DIVISION_CODE_TX,'') = ''
+	THEN '0'
+	ELSE L.DIVISION_CODE_TX
+END AS [LOAN_DIVISIONCODE_TX],
+ISNULL(RC_DIVISION.DESCRIPTION_TX,RC_SC.DESCRIPTION_TX) as [DIVISION_TYPE_TX],
+L.NUMBER_TX as [LOAN_NUMBER_TX],
+RC.TYPE_CD as [REQUIREDCOVERAGE_CODE_TX],
+RC_COVERAGETYPE.MEANING_TX as [REQUIREDCOVERAGE_TYPE_TX],
+O.FIRST_NAME_TX as [OWNER_FIRSTNAME_TX],
+O.MIDDLE_INITIAL_TX as [OWNER_MIDDLEINITIAL_TX],
+O.LAST_NAME_TX as [OWNER_LASTNAME_TX],
+OAO.LINE_1_TX as [OWNER_LINE1_TX],
+OAO.LINE_2_TX as [OWNER_LINE2_TX],
+OAO.CITY_TX as [OWNER_CITY_TX],
+OAO.STATE_PROV_TX as [OWNER_STATE_TX],
+OAO.POSTAL_CODE_TX as [OWNER_ZIP_TX],
+OLR.PRIMARY_IN as [OWNER_PRIMARY_IN],
+P.YEAR_TX as [COLLATERAL_YEAR_TX],
+P.MAKE_TX as [COLLATERAL_MAKE_TX],
+P.MODEL_TX as [COLLATERAL_MODEL_TX],
+P.DESCRIPTION_TX as [COLLATERAL_EQUIP_TX],
+P.VIN_TX as [COLLATERAL_VIN_TX],
+OAP.LINE_1_TX as [COLLATERAL_LINE1_TX],
+OAP.LINE_2_TX as [COLLATERAL_LINE2_TX],
+OAP.CITY_TX as [COLLATERAL_CITY_TX],
+OAP.STATE_PROV_TX as [COLLATERAL_STATE_TX],
+OAP.POSTAL_CODE_TX as [COLLATERAL_ZIP_TX],
+RCA_PROP.VALUE_TX AS [PROPERTY_TYPE_CD],
+dbo.fn_GetPropertyDescriptionForReports(C.ID) PROPERTY_DESCRIPTION,
+CR.NAME_TX as [INSCOMPANY_NAME_TX],
+FPC.NUMBER_TX as [INSCOMPANY_POLICY_NO],
+FPC.EFFECTIVE_DT as [INSCOMPANY_EFF_DT],
+FPC.EXPIRATION_DT as [INSCOMPANY_EXP_DT],
+FPC.CANCELLATION_DT as [INSCOMPANY_CAN_DT],
+isnull(FPC.CANCELLATION_DT,FPC.EXPIRATION_DT) as [INSCOMPANY_EXPCXL_DT],
+CPIQ.TERM_NO as [CPI_QUOTE_TERM_NO],
+WI.ID as [WI_ID],
+BG.ID as [BG_ID],
+BG.STATEMENT_DT as [CPI_BILLED_DT],
+DATEDIFF(DAY, BG.STATEMENT_DT, GETDATE()) as [REFUND_NOT_PAID_DAYS_NO],
+ABS(t3.FPCSum) as [REFUND_AMOUNT_NO]
+
+from FORCE_PLACED_CERTIFICATE FPC
+inner join #Temp3 t3 on t3.FPCId = FPC.ID
+inner join LOAN L on L.ID = FPC.LOAN_ID and L.PURGE_DT is null
+inner join COLLATERAL C on C.LOAN_ID = L.ID and C.PRIMARY_LOAN_IN = 'Y' and C.PURGE_DT is null
+inner join REQUIRED_COVERAGE RC on RC.PROPERTY_ID = C.PROPERTY_ID and RC.PURGE_DT is null
+inner join PROPERTY P on P.ID = RC.PROPERTY_ID and P.purge_dt is null
+left join OWNER_ADDRESS OAP on OAP.id = P.address_id and OAP.PURGE_DT is null
+inner join LENDER LND on LND.ID = L.LENDER_ID and LND.PURGE_DT is null
+inner join BILLING_GROUP BG on BG.ID = t3.BGId and BG.PURGE_DT is null
+inner join WORK_ITEM WI on WI.RELATE_ID = BG.ID and WI.RELATE_TYPE_CD = 'Allied.UniTrac.BillingGroup' and WI.PURGE_DT is null
+inner join OWNER_LOAN_RELATE OLR on OLR.LOAN_ID = L.ID and OLR.PURGE_DT is null
+inner join [OWNER] O on O.ID = OLR.OWNER_ID and O.PURGE_DT is null
+left join OWNER_ADDRESS OAO on OAO.id = O.ADDRESS_ID and OAO.PURGE_DT is null
+inner join CPI_QUOTE CPIQ on CPIQ.ID = FPC.CPI_QUOTE_ID and CPIQ.PURGE_DT is null
+left Join CARRIER CR on  CR.ID = FPC.CARRIER_ID AND CR.PURGE_DT IS NULL
+LEFT JOIN COLLATERAL_CODE CC ON CC.ID = C.COLLATERAL_CODE_ID AND CC.PURGE_DT IS NULL
+left Join REF_CODE RC_DIVISION on RC_DIVISION.DOMAIN_CD = 'ContractType' and RC_DIVISION.CODE_CD = L.DIVISION_CODE_TX
+left Join REF_CODE RC_COVERAGETYPE on RC_COVERAGETYPE.DOMAIN_CD = 'Coverage' and RC_COVERAGETYPE.CODE_CD = RC.TYPE_CD 
+left Join REF_CODE RC_SC on RC_SC.DOMAIN_CD = 'SecondaryClassification' AND CC.SECONDARY_CLASS_CD = RC_SC.CODE_CD
+left Join REF_CODE_ATTRIBUTE RCA_PROP on RC_SC.DOMAIN_CD = RCA_PROP.DOMAIN_CD and RC_SC.CODE_CD = RCA_PROP.REF_CD and RCA_PROP.ATTRIBUTE_CD = 'PropertyType'
+
+where
+LND.TEST_IN = 'N'
+and WI.PARENT_ID is null
+and FPC.PURGE_DT is null
+order by BG.ID, FPC.NUMBER_TX, OLR.PRIMARY_IN desc
+ 
+END
+
+GO
+

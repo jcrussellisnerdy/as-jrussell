@@ -1,0 +1,1 @@
+﻿Update-Help -Verbose -Force -ErrorAction SilentlyContinue

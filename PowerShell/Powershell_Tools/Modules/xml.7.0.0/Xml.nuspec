@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>Xml</id>
+    <version>7.0.0</version>
+    <authors>Joel "Jaykul" Bennett</authors>
+    <owners>HuddledMasses.org</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <licenseUrl>https://raw.githubusercontent.com/Jaykul/Xml/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/Jaykul/Xml</projectUrl>
+    <description>A module providing converters for HTML to XML, various core XML commands and a DSL for generating XML documents.</description>
+    <releaseNotes>Fix PSScriptAnalyzer rules before uploading to the PowerShellGallery</releaseNotes>
+    <copyright>(c) 2016 Joel Bennett. All rights reserved.</copyright>
+    <tags>Xml PSModule PSIncludes_Function PSFunction_New-XDocument PSFunction_New-XAttribute PSFunction_New-XElement PSFunction_Remove-XmlNamespace PSFunction_Remove-XmlElement PSFunction_Get-XmlContent PSFunction_Set-XmlContent PSFunction_Convert-Xml PSFunction_Select-Xml PSFunction_Update-Xml PSFunction_Format-Xml PSFunction_ConvertTo-CliXml PSFunction_ConvertFrom-CliXml PSFunction_Import-Html PSFunction_ConvertFrom-Html PSCommand_New-XDocument PSCommand_New-XAttribute PSCommand_New-XElement PSCommand_Remove-XmlNamespace PSCommand_Remove-XmlElement PSCommand_Get-XmlContent PSCommand_Set-XmlContent PSCommand_Convert-Xml PSCommand_Select-Xml PSCommand_Update-Xml PSCommand_Format-Xml PSCommand_ConvertTo-CliXml PSCommand_ConvertFrom-CliXml PSCommand_Import-Html PSCommand_ConvertFrom-Html PSCommand_cvxml PSCommand_epx PSCommand_epxml PSCommand_Export-Xml PSCommand_fx PSCommand_fxml PSCommand_Get-Xml PSCommand_gx PSCommand_gxml PSCommand_Import-Xml PSCommand_ipx PSCommand_ipxml PSCommand_New-Xml PSCommand_New-XmlAttribute PSCommand_New-XmlElement PSCommand_rmns PSCommand_rmxns PSCommand_Set-Xml PSCommand_slx PSCommand_slxml PSCommand_sx PSCommand_sxml PSCommand_ux PSCommand_uxml PSCommand_xa PSCommand_xe PSCommand_xml</tags>
+  </metadata>
+</package>

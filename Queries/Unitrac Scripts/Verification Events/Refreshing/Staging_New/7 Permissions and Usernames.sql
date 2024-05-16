@@ -1,0 +1,29 @@
+USE [master]
+GO
+
+---Add Server Roles
+ALTER SERVER ROLE [sysadmin] ADD MEMBER [UTdbMSGEXTHuntStaging]
+GO
+
+ALTER SERVER ROLE [sysadmin] ADD MEMBER [UTdbMSGDEFStaging]
+GO
+
+
+ALTER SERVER ROLE [sysadmin] ADD MEMBER [UTdbMSGEXTSantStaging]
+
+GO
+
+
+--ALTER SERVER ROLE [sysadmin] ADD MEMBER [UTdbMSGEDIIDRStaging]
+
+--GO
+
+--ALTER SERVER ROLE [sysadmin] ADD MEMBER [UTdbMSGEXTUSDStaging]
+
+--GO
+
+--ALTER SERVER ROLE [sysadmin] ADD MEMBER [UTdbMSGEXTVUTStaging]
+
+--GO
+
+

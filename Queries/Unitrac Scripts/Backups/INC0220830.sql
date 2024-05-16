@@ -1,0 +1,303 @@
+
+SELECT  CONTENT_XML.value('(/Content/Lender/Code)[1]', 'varchar (50)') Lender,
+CONTENT_XML.value('(/Content/Loan/Number)[1]', 'varchar (50)') [Loan Number_TX],wi.* FROM  
+dbo.WORK_ITEM wi   
+INNER JOIN dbo.WORK_QUEUE_WORK_ITEM_RELATE wqwi ON wi.ID = wqwi.WORK_ITEM_ID  
+INNER JOIN dbo.WORK_ITEM_ACTION wia ON wi.ID = wia.WORK_ITEM_ID  
+INNER JOIN dbo.WORK_QUEUE wq ON wq.ID = wqwi.WORK_QUEUE_ID  
+--INNER JOIN dbo.LENDER L ON L.CODE_TX = wi.CONTENT_XML.value('(/Content/Lender/Code)[1]', 'varchar (50)')
+WHERE  
+--CAST(WI.UPDATE_DT AS DATE) = CAST(GETDATE() AS DATE) AND 
+wqwi.CROSS_QUEUE_COUNT_IND = 'Y'  AND 
+ wi.LAST_WORK_ITEM_ACTION_ID = wia.id  
+--AND wi.STATUS_CD <> 'Complete'  
+--AND wia.TO_STATUS_CD = 'Complete'  
+--AND wi.UPDATE_DT >= @startdate and wi.Update_dt < @endDate  
+AND wi.CONTENT_XML.value('(/Content/Lender/Code)[1]', 'varchar (50)')= '4353' 
+AND wi.WORKFLOW_DEFINITION_ID = '8'
+AND wi.CURRENT_QUEUE_ID = 317
+--AND WI.PURGE_DT IS NULL  
+--AND WQWI.PURGE_DT IS NULL  
+--AND wia.PURGE_DT is NULL  
+--AND wq.ACTIVE_IN='Y'
+--AND L.CODE_TX = '4353'
+ORDER BY CONTENT_XML.value('(/Content/Loan/Number)[1]', 'varchar (50)') ASC, wi.STATUS_CD
+
+
+SELECT  * --INTO UniTracHDStorage..INC0220830
+FROM    dbo.WORK_ITEM
+WHERE   ID IN ( '28877054', '29203625', '29054573', '27445291', '27445291',
+                '28133401', '28231116', '28877321', '28918214', '29203678',
+                '29203715', '29203680', '29203697', '28918205', '28877336',
+                '27705718', '27705718', '28877290', '28918209', '29052819',
+                '25870393', '25870393', '28983913', '29258228', '29054460',
+                '26583965', '26583965', '27445335', '27445335', '27447397',
+                '27447397', '29054943', '28877334', '29203718', '28918188',
+                '29203692', '28877260', '28918174', '28918191', '29203675',
+                '29203684', '28877296', '28738755', '28760829', '26426277',
+                '26426277', '29054236', '28877360', '28918215', '29203669',
+                '29203707', '28918198', '29203663', '29203702', '28877283',
+                '25950560', '25950560', '28877314', '29203659', '29203699',
+                '28918206', '25989517', '25989517', '28877270', '28918170',
+                '28918204', '28877298', '27239769', '27239769', '25872503',
+                '25872503', '28877355', '28918224', '29203720', '29203681',
+                '27162254', '27162254', '28874780', '27025842', '27025842',
+                '28877282', '29203733', '29203694', '28918173', '27472887',
+                '27472887', '29054985', '28877326', '28918195', '29203676',
+                '29203727', '27239774', '27239774', '28877350', '29203726',
+                '29203664', '28918194', '28877254', '28918176', '29203703',
+                '29203679', '28884192', '29203612', '27525122', '27525122',
+                '27416999', '27416999', '27445575', '27445575', '29054596',
+                '28877312', '29203660', '29203689', '28918201', '28918207',
+                '28877307', '28877325', '28918222', '28918152', '29203665',
+                '29203713', '28877238', '28884197', '29203617', '27239781',
+                '27239781', '27172443', '27172443', '28877274', '29203695',
+                '29203729', '28918172', '27448426', '27448426', '28877069',
+                '29203638', '25726422', '25726422', '28918158', '29203700',
+                '29203698', '28877245', '29203662', '29203728', '28918159',
+                '28918184', '29203712', '29203688', '28877277', '28918180',
+                '29203721', '29203677', '29203725', '28877249', '28877279',
+                '29203710', '28918179', '29203730', '29203724', '28918177',
+                '29203672', '28877264', '28918167', '28918161', '29203714',
+                '26583964', '26583964', '28877302', '29203682', '28918196',
+                '29203711', '28264283', '28912337', '28918189', '29203705',
+                '29203696', '28877280', '28877265', '28918160', '28877323',
+                '28918185', '29203731', '29203687', '29203717', '29203673',
+                '28918193', '28877317', '28877315', '28918168', '29203685',
+                '29203716', '28877316', '29203691', '28918199', '29203667',
+                '28918210', '29203666', '29203709', '28877346', '28877358',
+                '29203719', '28918213', '29203674', '28918162', '29203706',
+                '29203670', '28877299', '28877330', '28918218', '28918200',
+                '29203668', '29203701', '28877338', '28876977', '28884168',
+                '27239759', '27239759', '27244077', '27244077', '27514633',
+                '27514633', '29055100', '28877313', '29203693', '28918203',
+                '29203658', '29203732', '28918187', '29203704', '28877294',
+                '29203641', '27887550', '27887550', '28877339', '29203671',
+                '29203690', '28918197' )
+
+
+
+SELECT CONTENT_XML.value('(/Content/Lender/Code)[1]', 'varchar (50)') Lender,
+CONTENT_XML.value('(/Content/Loan/Number)[1]', 'varchar (50)') [Loan Number_TX], *
+--INTO #TTTT
+FROM dbo.WORK_ITEM
+WHERE ID IN (
+SELECT  ID  from UniTracHDStorage..INC0220830) --AND LAST_EVALUATION_DT < '1/26/2016'
+AND PURGE_DT IS NOT NULL
+ORDER BY CONTENT_XML.value('(/Content/Loan/Number)[1]', 'varchar (50)') ASC
+
+SELECT * FROM #T
+
+SELECT CONTENT_XML.value('(/Content/Loan/Number)[1]', 'varchar (50)'),* FROM UniTrac..WORK_ITEM
+WHERE ID IN (28912337, 28264283)
+
+SELECT * FROM dbo.WORK_ITEM_ACTION
+WHERE id IN (60783937)
+
+UPDATE dbo.WORK_ITEM
+SET PURGE_DT = GETDATE()
+--SELECT * FROM dbo.WORK_ITEM
+WHERE ID IN (SELECT ID FROM #F) --(SELECT  ID  from UniTracHDStorage..INC0220830)
+AND LAST_EVALUATION_DT > '1/26/2016'
+
+
+SELECT TT.* INTO #TTT
+FROM #TT TT
+LEFT JOIN #T T ON TT.[Loan Number_TX] = T.[Loan Number_TX]
+WHERE T.ID IS NULL AND TT.Status_CD <> 'Complete'
+
+
+
+SELECT CONTENT_XML.value('(/Content/Lender/Code)[1]', 'varchar (50)') Lender,
+CONTENT_XML.value('(/Content/Loan/Number)[1]', 'varchar (50)') [Loan Number_TX], *
+FROM dbo.WORK_ITEM
+WHERE CONTENT_XML.value('(/Content/Loan/Number)[1]', 'varchar (50)')
+IN (SELECT [Loan Number_TX] FROM #TTT) AND LAST_EVALUATION_DT < '1/26/2016'
+AND PURGE_DT IS NULL
+ORDER BY CONTENT_XML.value('(/Content/Loan/Number)[1]', 'varchar (50)') ASC
+
+
+SELECT T.* INTO #S
+ FROM #TTTT T
+LEFT JOIN #TTT TT ON T.[Loan Number_TX] = TT.[Loan Number_TX]
+WHERE T.LAST_EVALUATION_DT < '1/26/2016'
+
+
+SELECT CONTENT_XML.value('(/Content/Lender/Code)[1]', 'varchar (50)') Lender,
+CONTENT_XML.value('(/Content/Loan/Number)[1]', 'varchar (50)') [Loan Number_TX], *
+INTO #F
+FROM dbo.WORK_ITEM
+WHERE ID IN (
+SELECT  ID  from UniTracHDStorage..INC0220830) AND ID NOT IN ( SELECT ID FROM #S)
+AND LAST_EVALUATION_DT > '1/26/2016' AND WORK_ITEM.STATUS_CD <> 'Complete'
+AND PURGE_DT IS NULL
+ORDER BY CONTENT_XML.value('(/Content/Loan/Number)[1]', 'varchar (50)') ASC
+
+
+SELECT CONTENT_XML.value('(/Content/Lender/Code)[1]', 'varchar (50)') Lender,
+CONTENT_XML.value('(/Content/Loan/Number)[1]', 'varchar (50)') [Loan Number_TX], *
+
+FROM dbo.WORK_ITEM
+WHERE ID IN (
+SELECT ID FROM #F)
+ORDER BY CONTENT_XML.value('(/Content/Loan/Number)[1]', 'varchar (50)') ASC
+
+
+SELECT * FROM #F
+
+SELECT  CONTENT_XML.value('(/Content/Lender/Code)[1]', 'varchar (50)') Lender,
+CONTENT_XML.value('(/Content/Loan/Number)[1]', 'varchar (50)') [Loan Number_TX],*
+INTO #oops
+FROM    dbo.WORK_ITEM
+WHERE   ID IN ( 29203625, 29054573, 29052819, 29054460, 29054943, 28760829,
+                29054236, 28874780, 27525122, 29054596, 27448426, 29203638,
+                28877264, 29203714, 28877265, 28876977, 29055100 )
+
+
+
+
+
+SELECT CONTENT_XML.value('(/Content/Lender/Code)[1]', 'varchar (50)') Lender,
+CONTENT_XML.value('(/Content/Loan/Number)[1]', 'varchar (50)') [Loan Number_TX], *
+--INTO #joey
+FROM dbo.WORK_ITEM
+WHERE ID IN (
+SELECT  ID  from UniTracHDStorage..INC0220830) --AND LAST_EVALUATION_DT < '1/26/2016'
+AND PURGE_DT IS NULL
+ORDER BY CONTENT_XML.value('(/Content/Loan/Number)[1]', 'varchar (50)') ASC
+
+
+
+SELECT J.ID, J.[Loan Number_TX], J.STATUS_CD, J.PURGE_DT FROM #oops O
+LEFT JOIN #joey J ON J.[Loan Number_TX] = O.[Loan Number_TX]
+WHERE J.ID IS NOT NULL
+ORDER BY O.CONTENT_XML.value('(/Content/Loan/Number)[1]', 'varchar (50)') ASC, J.STATUS_CD ASC
+
+
+
+
+
+
+SELECT * INTO UniTracHDStorage..INC0220830_Loans
+FROM dbo.LOAN WHERE ID IN (
+SELECT RELATE_ID
+FROM dbo.WORK_ITEM
+WHERE ID IN (
+SELECT  ID  from UniTracHDStorage..INC0220830) --AND LAST_EVALUATION_DT < '1/26/2016'
+AND PURGE_DT IS NOT NULL)
+ORDER BY CONTENT_XML.value('(/Content/Loan/Number)[1]', 'varchar (50)') ASC
+
+
+
+
+SELECT * --INTO #TMPWI 
+FROM UniTracHDStorage..INC0220830_Loans
+
+
+SELECT * FROM dbo.LOAN
+
+
+--UPDATE  LN
+--SET     LN.SPECIAL_HANDLING_XML = NULL, p = GETDATE(),
+--        LN.UPDATE_DT = GETDATE() ,
+--        LN.UPDATE_USER_TX = 'INC0220830' ,
+--        LN.LOCK_ID = CASE WHEN LOCK_ID >= 255 THEN 1
+--                       ELSE LOCK_ID + 1, 
+--                  END
+
+
+
+
+UPDATE LOAN 
+SET PURGE_DT = NULL
+--SELECT COUNT(*) FROM dbo.LOAN
+WHERE ID IN (SELECT ID FROM UniTracHDStorage..INC0220830_Loans)
+
+
+SELECT c.* --INTO UniTracHDStorage..INC0220830_Coll 
+FROM LOAN L
+INNER JOIN COLLATERAL C ON L.ID = C.LOAN_ID
+INNER JOIN PROPERTY P ON C.PROPERTY_ID = P.ID
+INNER JOIN REQUIRED_COVERAGE RC ON P.ID = RC.PROPERTY_ID
+INNER JOIN OWNER_LOAN_RELATE OL ON L.ID = OL.LOAN_ID
+INNER JOIN OWNER O ON OL.OWNER_ID = O.ID
+INNER JOIN OWNER_ADDRESS OA ON O.ADDRESS_ID = OA.ID
+INNER JOIN dbo.LENDER LL ON LL.ID = L.LENDER_ID
+WHERE L.NUMBER_TX IN ( '435791005-02015', '198243003-02015')
+
+l.id IN (141827399)
+
+
+(SELECT ID FROM UniTracHDStorage..INC0220830_Loans) OR    
+ L.NUMBER_TX = '198243003-02015'
+
+
+
+  SELECT * FROM UniTracHDStorage..INC0220830_Coll
+
+ SELECT ID FROM UniTracHDStorage..INC0220830_Coll
+ WHERE status_CD = 'U'
+
+
+ SELECT RELATE_ID INTO #tmp
+ FROM dbo.WORK_ITEM
+ WHERE RELATE_ID IN (
+ SELECT LOAN_ID FROM UniTracHDStorage..INC0220830_Coll WHERE status_CD = 'U')
+ AND WORKFLOW_DEFINITION_ID = '8' AND PURGE_DT IS NOT NULL
+
+ SELECT * FROM dbo.COLLATERAL
+ WHERE LOAN_ID IN (SELECT * FROM #tmp) AND PURGE_DT IS NULL
+
+
+ SELECT * FROM dbo.LOAN	
+ WHERE ID IN ( SELECT LOAN_ID FROM dbo.COLLATERAL
+ WHERE LOAN_ID IN (SELECT * FROM #tmp) AND PURGE_DT IS NOT NULL  AND UPDATE_USER_TX = 'BUG36810')
+
+
+
+ --198243003-02015 
+
+
+SELECT * FROM dbo.COLLATERAL
+ WHERE LOAN_ID IN (SELECT * FROM #tmp) AND PURGE_DT IS NOT NULL
+ AND UPDATE_USER_TX = 'BUG36810'
+
+
+
+ SELECT * FROM UniTracHDStorage..INC0220830
+
+ SELECT * FROM UniTracHDStorage..INC0220830_Coll
+
+ SELECT * FROM UniTracHDStorage..INC0220830_Loans
+
+ UPDATE dbo.WORK_ITEM
+ SET PURGE_DT = NULL
+ --SELECT * FROM  dbo.WORK_ITEM
+ WHERE ID IN ( SELECT ID FROM UniTracHDStorage..INC0220830)
+ AND WORK_ITEM.STATUS_CD = 'Initial' AND WORK_ITEM.PURGE_DT IS NOT NULL
+ --ORDER BY WORK_ITEM.ID
+ --unpurge workitems that are initial from this group
+
+  SELECT * FROM UniTracHDStorage..INC0220830
+   WHERE STATUS_CD = 'Initial'
+  ORDER BY ID
+
+
+  SELECT * FROM dbo.COLLATERAL
+  WHERE ID IN ( SELECT ID FROM UniTracHDStorage..INC0220830_Coll) AND COLLATERAL.PURGE_DT IS NULL
+  ORDER BY COLLATERAL.ID
+  ---no change done
+   SELECT * FROM UniTracHDStorage..INC0220830_Coll
+   WHERE PURGE_DT IS NULL
+   ORDER BY ID
+
+
+   SELECT * FROM dbo.LOAN
+   WHERE ID IN ( SELECT ID FROM UniTracHDStorage..INC0220830_Loans)
+   ORDER BY ID 
+
+    SELECT * FROM UniTracHDStorage..INC0220830_Loans
+	ORDER BY ID 
+
+
+

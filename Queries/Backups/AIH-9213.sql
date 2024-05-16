@@ -1,0 +1,17 @@
+USE [master]
+GO
+CREATE LOGIN [ELDREDGE_A\Pingfed_DB_SVC] FROM WINDOWS WITH DEFAULT_DATABASE=[master]
+GO
+USE [Pingfederate]
+GO
+CREATE USER [ELDREDGE_A\Pingfed_DB_SVC] FOR LOGIN [ELDREDGE_A\Pingfed_DB_SVC]
+GO
+USE [Pingfederate]
+GO
+ALTER ROLE [db_datareader] ADD MEMBER [ELDREDGE_A\Pingfed_DB_SVC]
+GO
+USE [Pingfederate]
+GO
+ALTER ROLE [db_datawriter] ADD MEMBER [ELDREDGE_A\Pingfed_DB_SVC]
+GO
+

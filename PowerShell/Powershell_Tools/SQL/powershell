@@ -1,0 +1,22 @@
+Import-Module sqlserver
+
+
+Get-Command -Module SQLSERVER
+
+
+Invoke-Sqlcmd -ServerInstance localhost -Database AdventureWorks2019   -Query "SELECT TOP 10 ADDRESSID, ADDRESSLINE1, CITY, POSTALCODE FROM PERSON.ADDRESS"
+
+
+
+
+Import-Module SQLServer
+
+# Get the list of all availability groups on the server
+Get-SqlAvailabilityGroup -ServerInstance localhost
+
+# Check if the server is part of any of the availability groups
+If ($null -ne $availabilityGroups) {
+  # The server is part of an availability group
+} else {
+  # The server is not part of an availability group
+}

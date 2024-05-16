@@ -1,0 +1,601 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2008/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <Body>
+    <ReportItems>
+      <Tablix Name="Tablix1">
+        <TablixBody>
+          <TablixColumns>
+            <TablixColumn>
+              <Width>1in</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>1in</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>1in</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>1in</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>1in</Width>
+            </TablixColumn>
+          </TablixColumns>
+          <TablixRows>
+            <TablixRow>
+              <Height>0.25in</Height>
+              <TablixCells>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox1">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>Received Date</Value>
+                              <Style>
+                                <FontStyle>Normal</FontStyle>
+                                <FontFamily>Calibri</FontFamily>
+                                <FontSize>8pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox1</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <BackgroundColor>LightGrey</BackgroundColor>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox3">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>Insurance Company</Value>
+                              <Style>
+                                <FontStyle>Normal</FontStyle>
+                                <FontFamily>Calibri</FontFamily>
+                                <FontSize>8pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox3</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <BackgroundColor>LightGrey</BackgroundColor>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox5">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>Control Number</Value>
+                              <Style>
+                                <FontStyle>Normal</FontStyle>
+                                <FontFamily>Calibri</FontFamily>
+                                <FontSize>8pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox5</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <BackgroundColor>LightGrey</BackgroundColor>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox7">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>Loan Type</Value>
+                              <Style>
+                                <FontStyle>Normal</FontStyle>
+                                <FontFamily>Calibri</FontFamily>
+                                <FontSize>8pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox7</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <BackgroundColor>LightGrey</BackgroundColor>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox9">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>Lender Tax Id</Value>
+                              <Style>
+                                <FontStyle>Normal</FontStyle>
+                                <FontFamily>Calibri</FontFamily>
+                                <FontSize>8pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox9</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <BackgroundColor>LightGrey</BackgroundColor>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+              </TablixCells>
+            </TablixRow>
+            <TablixRow>
+              <Height>0.25in</Height>
+              <TablixCells>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Received_Date">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!Received_Date.Value</Value>
+                              <Style>
+                                <FontStyle>Normal</FontStyle>
+                                <FontFamily>Calibri</FontFamily>
+                                <FontSize>8pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Received_Date</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Insurance_Company">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!Insurance_Company.Value</Value>
+                              <Style>
+                                <FontStyle>Normal</FontStyle>
+                                <FontFamily>Calibri</FontFamily>
+                                <FontSize>8pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Insurance_Company</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Control_Number">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!Control_Number.Value</Value>
+                              <Style>
+                                <FontStyle>Normal</FontStyle>
+                                <FontFamily>Calibri</FontFamily>
+                                <FontSize>8pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Control_Number</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Loan_Type">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!Loan_Type.Value</Value>
+                              <Style>
+                                <FontStyle>Normal</FontStyle>
+                                <FontFamily>Calibri</FontFamily>
+                                <FontSize>8pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Loan_Type</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Lender_Tax_Id">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!Lender_Tax_Id.Value</Value>
+                              <Style>
+                                <FontStyle>Normal</FontStyle>
+                                <FontFamily>Calibri</FontFamily>
+                                <FontSize>8pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Lender_Tax_Id</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+              </TablixCells>
+            </TablixRow>
+          </TablixRows>
+        </TablixBody>
+        <TablixColumnHierarchy>
+          <TablixMembers>
+            <TablixMember />
+            <TablixMember />
+            <TablixMember />
+            <TablixMember />
+            <TablixMember />
+          </TablixMembers>
+        </TablixColumnHierarchy>
+        <TablixRowHierarchy>
+          <TablixMembers>
+            <TablixMember>
+              <KeepWithGroup>After</KeepWithGroup>
+            </TablixMember>
+            <TablixMember>
+              <Group Name="Details" />
+            </TablixMember>
+          </TablixMembers>
+        </TablixRowHierarchy>
+        <DataSetName>UniTrac_Daily_Snapshot</DataSetName>
+        <Top>0.59806in</Top>
+        <Left>0.11396in</Left>
+        <Height>0.5in</Height>
+        <Width>5in</Width>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+        </Style>
+      </Tablix>
+      <Image Name="alliedLogo">
+        <Source>Embedded</Source>
+        <Value>alliedlogo1</Value>
+        <Sizing>FitProportional</Sizing>
+        <ActionInfo>
+          <Actions>
+            <Action>
+              <Hyperlink>http://www.alliedsolutions.net/</Hyperlink>
+            </Action>
+          </Actions>
+        </ActionInfo>
+        <Top>0.02862in</Top>
+        <Left>0.11396in</Left>
+        <Height>0.5in</Height>
+        <Width>0.5in</Width>
+        <ZIndex>1</ZIndex>
+        <ToolTip>Allied Solutions Main Page</ToolTip>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+        </Style>
+      </Image>
+      <Textbox Name="Textbox2">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>EDI Invalid Tax Id Summary</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Calibri</FontFamily>
+                  <FontSize>14pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Center</TextAlign>
+            </Style>
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox1</rd:DefaultName>
+        <Top>0.22862in</Top>
+        <Left>0.61396in</Left>
+        <Height>0.3in</Height>
+        <Width>4.5in</Width>
+        <ZIndex>2</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+    </ReportItems>
+    <Height>1.25in</Height>
+    <Style />
+  </Body>
+  <Width>5.24938in</Width>
+  <Page>
+    <LeftMargin>1in</LeftMargin>
+    <RightMargin>1in</RightMargin>
+    <TopMargin>1in</TopMargin>
+    <BottomMargin>1in</BottomMargin>
+    <Style />
+  </Page>
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="UniTrac_Daily_Snapshot">
+      <DataSourceReference>UniTrac</DataSourceReference>
+      <rd:SecurityType>None</rd:SecurityType>
+      <rd:DataSourceID>164343c1-0957-4eb9-8172-c93cfbbb7632</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="UniTrac_Daily_Snapshot">
+      <Query>
+        <DataSourceName>UniTrac_Daily_Snapshot</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@fromDate">
+            <Value>=Parameters!fromDate.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@toDate">
+            <Value>=Parameters!toDate.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@loanType">
+            <Value>=Parameters!loanType.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandType>StoredProcedure</CommandType>
+        <CommandText>GetEDIRecordsInvalidTaxIdReport</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="Received_Date">
+          <DataField>Received Date</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Insurance_Company">
+          <DataField>Insurance Company</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Control_Number">
+          <DataField>Control Number</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Loan_Type">
+          <DataField>Loan Type</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Lender_Tax_Id">
+          <DataField>Lender Tax Id</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
+  <ReportParameters>
+    <ReportParameter Name="fromDate">
+      <DataType>DateTime</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>=Today()</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>From Date</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="toDate">
+      <DataType>DateTime</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>=Today()</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>To Date</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="loanType">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>ALL</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Loan Type</Prompt>
+      <ValidValues>
+        <ParameterValues>
+          <ParameterValue>
+            <Value>ALL</Value>
+            <Label>All</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>MORT</Value>
+            <Label>Mortgage</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>VEHLOAN</Value>
+            <Label>Vehivle Loan</Label>
+          </ParameterValue>
+        </ParameterValues>
+      </ValidValues>
+    </ReportParameter>
+  </ReportParameters>
+  <EmbeddedImages>
+    <EmbeddedImage Name="alliedlogo1">
+      <MIMEType>image/bmp</MIMEType>
+      <ImageData>Qk1qFwAAAAAAADYAAAAoAAAALAAAAC0AAAABABgAAAAAADQXAAAAAAAAAAAAAAAAAAAAAAAA/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////v7+/v7+/v7+/v7+/////////v7+/////////////v7+/////////v7+/v7+/////////v7+/////////v7+/f39/////////////////////f39/v7+/////v7+/////v7+/v7+/////////////////////////v7+/f39/f399fX1+/v7/f39////+/v79/f3/////v7+/Pz88/Pz+/v7/v7+/Pz89/f3/////v7+/f39/v7+/f39/v7+/v7+/Pz8/f39////8/Pz////+/v7/f39/////////Pz8/v7+9vb2+fn5/f39/////////////////////////v7+/////Pz8xMTEtra2////8PDwr6+vrKys4uLi////xcXFq6ur9vb2+/v7tbW1qKio6+vr////7OzswcHB/////Pz8v7+/9fX1+/v7vLy8ra2tzc3N/v7+5OTk09PTq6ur39/f////29vbqamp/////////////////////////////v7+/////v7+rq6usrKy////ysrKqKioxsbGsbGx
+////sLCwzc3N////7e3toaGhs7OzysrK////4ODgmpqa////+vr6mZmZ8vLy6+vrmZmZ3t7ekpKS////2NjYfHx8i4uL2dnZ////ysrKnJyc/////v7+/////////////////////f39/////v7+tbW109PT////7+/vtLS0urq65OTk////29vb7e3t/////Pz8xsbG2dnZ6urq////1dXVpKSk7+/v////xsbG9vb2/f39x8fHvLy829vb////4uLiq6ur6enp8fHx////ycnJv7+//////////////////////////////v7+/Pz839/fvr6+9/f3////////6Ojopqam9/f35OTkpKSkm5ubmJiYtLS0/v7+1NTUoaGhmpqakpKSwMDA+vr6xMTE2tra////7u7urKyskZGRnZ2dqKio9vb28fHxqqqqmpqam5ubvr6+8/Pz/////////////////////////////////v7+1NTUPj4+5ubm////////mZmZNzc3+Pj4q6urKCgoi4uLjIyMqqqq////fX19PDw8kJCQjY2NwcHB////VVVVlZWV////zs7OJSUlhYWFjo6Onp6e+Pj4ycnJJiYmgoKCh4eHXV1dX19f/////////////////////////////v7+/////v7+ZmZmdXV1tLS0tLS0Ozs7iIiI////pqamSkpK////////////////enp6dXV1/////////////v7+VlZWlZWV////zc3NNzc3/Pz8////////////xcXFPz8/9vb2////+fn5ZGRkvb29/////////////////////////v7+////////vr6+JCQkeXl5Xl5eHR0d19fX////p6enSEhI+fn5/////v7+////fHx8cHBw/////v7+/////v7+WFhYlpaW////zs7OMzMz1NTU5+fn8/Pz////xsbGPT096enp////////0NDQZmZm////////
+////////////////////////////9fX1WVlZ1tbWk5OTWFhY/Pz8////qKioSEhI+vj3/fr8/f78////fHt7cHBw////////////////WFhYlpaW////0dHRISEhVlZWXFxctbW1////xsbGPT096enp////////4ODgUlJS////////////////////////////////////////m5ubfn5+SUlJqKio////////qKioSEhI+/v55uX27e74////fHx8cHBw////////////////WFhYlpaW////z8/PNTU139/f9fX0+fn5////xsbGPj4+7u7u////////vLy8cnJy/////////////////////////v//////////////5eXmOzs7Li4v6urq////////pKSkPz9A+/v509n22Nry////dnZ2aWlq////////////////UVFRkZGR////zMzMLCwt2NnZ7e3t8/T1////w8TEMTEx1NTU6Ojov7+/PDs919fY////////////////////////+/7+/f7+////////////iYyPjI+S////////////vsHDc3V5////4uz/xsz0////m5+gkpaX////////////////gIOGr7K1////3eDjUlRYZWdrZGZqsrW5////19rcUFNWZGdrZmhtYGJloKSn/////v7+/////////////////////f7/+fn27ejf4dXI5tvS5dnP5drP5tvR5drQ5tvQ49fN4NXK5t3M3NDNpZ/P5NnR4tfK4tbK5tvR5tvR5tvR5trQ4NXK49fM5drR5dnP3dDG1Mi90sa83NDG5tvR5NnO3NHG1Mm/1Mm/49nN8ObX6+Lb//7///////////////////////7/+fr44dTJnV81nlogpF4po18ooFwloVwmoFwloV0npGApoFsln1wkcU1qllozpF8lpGAooF0moV0moV0moFwlpF8pol8noFwloV0n
+pWEqpWErpWErol4noFwmoV0npWErpWErpWEqoWApnFQe18Sz/////////////////////////v7+////////yKmOmk8Rn1MbnVQanlUanlUanlUanlUan1UanlQZoVMWdEtYg01EoVUVnVQbnlUbnlUanlUanlUanlUanlUanlUanlUanlUanlUanlUbnlUanlUanlUanlUanFMYnVQZnFAWnlon/vz7/////////////////////////v7+/v7+////+fnztYFcl1EVnVghn1gfn1gfn1gfn1gfnlggnVgeoVYciVI8bUdznloanVYhoFgfn1gfn1gfn1gfn1gfn1gfn1gfn1gfn1gfn1gfn1gfn1gfn1gfn1gfn1gfnlcenVYdmFAXz6+V/f///////////////////////////v7+/f39/f39////6ODUo2AvnlManVcgoFcgnlgfn1gfn1ggnlcem1cenFckX0SIklMyoFgcnlgfn1gfn1gfn1gfn1gfn1gfn1gfn1gfn1gfn1gfn1gfn1gfn1gfn1gfnlgfoFYfmk4UtIVb+vj1/P79/v///////////////////////////////////v39+///1LihmlEanFccoVYgnlcgn1gfn1gfn1gfn1gfolkZdEtkakZ2olgXoFgfn1gfn1gfn1gfn1gfn1gfn1gfn1gfn1gfn1gfn1gfn1gfn1gfn1gfn1gfn1Iao18s7OLV//////////////////////////////////////////////3/+/3//f76t4tml1EUnVgeoFcgn1gfn1gfn1gfn1gfoFgdl1UqSz+kj1E3olkcn1gfn1gfn1gfn1gfn1gfn1gfn1gfn1gfn1gfn1gfn1gfn1gfn1gfoFcdl1Ma1bWd///////////////////////////////////////////////////+/v7+////8ejfpGg+m1MVnlcgnlcenlce
+n1gfn1gfn1gfolgXakluVkKUo1oXoFcenFgeoFgfn1gfn1gfn1gfn1gfn1gfn1gfn1gfn1gfn1genlgfl08XuYtj/Pv5/v7+////////////////////////////////////////////////////////////28OymlQdnVYcnlcenlcen1gfn1gfn1cgoVgbm1UkSD+obktppFoTm1Yfn1cfn1gfn1gfn1gfn1gfn1gfn1gfn1gfn1cfnlcfmVQXo2Y37+TY/////P3+/////////////////////////////////////////////////////////P/+/P79wJh7l08Vnlcdnlcen1gfn1gfnlggnVYipVgZgVBIODm/fkxWploSn1gen1gfn1gfn1gfn1gfn1gfn1gfn1gfnlghnlYfl1Qd17+n/////P3+/P/+/////////////////////////////////////////////////////////f79/f//9O/qq3NHm1IWnlcgoFgen1gfnlgfnlcgoVgdo1kVb0pnMTnNf05WqVkUoVgdnVgfoFcgn1cfnlcgn1cgn1cfn1ggmVAXupBw/f39///++//8/v///////////////////////////////////////////////////////////////v7+////4dDAnVgkoFQan1gdn1gfn1gfn1gfn1gfoFgepFgaa0lwLTjSaEpwo1gbpVgZoVgemlgfoFcenlYfnVUgnVEapmg67uri/f///////////////////////////////////////////////////////////////////////////////v//////xqWFmFAVn1cfn1gfn1gfn1gfn1gfn1gfoFgepVkWdEtnKznUR0GmhlNCoVoTolkUolYfn1YhnlQfm1Qf2sSw/P///f39////////////////////////////////////
+/////////////////////////////////////////v7+////9/busH1SmU8XnVcgoFgfnlkfn1gfn1gfm1kfn1kdplkWhlFGRTyzLjjSV0SOhlBDnVcdpFoTn1IPxp13/v/8/f79/f39/////////////////////////////////////////////////////////////////////////////////v79/v//5tfJnl8smlUaoVcfn1ggn1gfn1gfn1gfn1gfn1gdo1oTmlgibktqODrHLjbbQj6vbUZsk2Vb5uHi///////9///9/////////////////////////////////////////////////////////////////////////////////v/9/f3+////zrOWmVAZn1Ydn1cgn1gfn1gfn1gfn1gfnlgfnlgenlkapVYWl1YpcUtoQz+uJTDVKTbcSFLfbHTfiY3nwsvz/////////////////////////////////////////////////////////////////////////////////v////7+////+/v3uIJhmE8UnVgfn1genlcen1gfn1gfn1gfoFgen1gfnFggnVgbqVgXn1AVrpKQpLD2cn3iR1jZLjrXgorl////////////////////////////////////////////////////////////////////////////////////////////////7OPYoWY1m1IXnlcenlcen1gfn1gfn1gfn1gfn1gfn1gfoVcenFEWrHZK+vPo///////+8/X83uP36ej2/////////////////////////////////////////////////////////////////////////////////////////////f79/v//1byomFIcnVYcnlcen1gfn1gfn1gfn1gfn1gfnlggn1Qcn1oo39LB////
++/38/v/8///8///6///9/////////////////////////////////////////////////////////////////////////////////////////////v/+//////38vZJwlU0WoVcfn1gen1gfn1gfnlcgnlcgnlcgmFAXy6aK/f///v/+/f79/f79//7+//79/v/+////////////////////////////////////////////////////////////////////////////////////////////////////////8ezjqGk/mlIXn1gfn1gfn1gfnlYhnlYgmk8YrntR9vXw////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////3sq3mFUhnlUdn1gfn1gfnlYgnVMcolwn59jM/f///f39/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////v7++v//w5x+m04anVgdn1ggnlUenlAYzq2T/////v///v///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////f78/f//9/HtrHZLmVEUnlcgmk8Ts4Bd+/n3////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////P3++/39////4dPEm1onm1MUoWIw6d7X/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////v7//v///////P//y6qPlEoV0bag/////f7+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////+v7/9vPszq+b9/f1/v///f/6/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////P39/f7//////v///P79/P7+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////</ImageData>
+    </EmbeddedImage>
+  </EmbeddedImages>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportID>2b055392-75fb-4e06-bc7f-19b04ac8a75e</rd:ReportID>
+</Report>

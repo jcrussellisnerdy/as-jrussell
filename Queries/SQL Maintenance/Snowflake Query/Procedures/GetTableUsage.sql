@@ -1,0 +1,64 @@
+use role ACCOUNTADMIN; 
+USE SCHEMA DBA;
+
+CREATE OR REPLACE PROCEDURE GetTableUsage(SCHEMA_NAME  TEXT )
+RETURNS TABLE (
+  "DATABASE_NAME" TEXT,
+  "TABLE_SCHEMA" TEXT,
+  "TABLE_NAME" TEXT,
+  "TABLE_TYPE" TEXT,
+  "first_Used_datetime" timestamp_ltz,
+   "last_Used_DateTime" timestamp_ltz 
+)
+LANGUAGE SQL
+EXECUTE AS OWNER
+AS 
+'BEGIN
+IF (SCHEMA_NAME IN (select SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA)) THEN 
+    DECLARE RES RESULTSET DEFAULT (
+    select DISTINCT DATABASE_NAME, TABLE_SCHEMA, table_Name, TABLE_TYPE, CAST(MIN(end_TIME) AS timestamp_ltz)  , CAST(MAX(end_TIME) AS timestamp_ltz)
+  
+  
+from
+
+(select * from "SNOWFLAKE"."ACCOUNT_USAGE"."QUERY_HISTORY" q 
+
+where SCHEMA_NAME= :SCHEMA_NAME
+and DATABASE_NAME =(SELECT CURRENT_DATABASE())
+) q
+
+inner join "SNOWFLAKE"."ACCOUNT_USAGE"."TABLES" t 
+
+where contains(q.query_text,t.table_name)
+
+and TABLE_SCHEMA = :SCHEMA_NAME
+
+group by  DATABASE_NAME, TABLE_SCHEMA, table_Name,TABLE_TYPE, 1
+     
+    );
+    BEGIN
+      RETURN TABLE(RES);
+    END;
+ELSEIF (SCHEMA_NAME = '''')THEN 
+    DECLARE RES RESULTSET DEFAULT (
+    select DISTINCT DATABASE_NAME, TABLE_SCHEMA, table_Name, TABLE_TYPE,MIN(end_TIME) , MAX(end_TIME) 
+from
+
+(select * from "SNOWFLAKE"."ACCOUNT_USAGE"."QUERY_HISTORY" q 
+
+where  DATABASE_NAME =(SELECT CURRENT_DATABASE())
+) q
+
+inner join "SNOWFLAKE"."ACCOUNT_USAGE"."TABLES" t 
+
+where contains(q.query_text,t.table_name)
+
+group by  DATABASE_NAME, TABLE_SCHEMA, table_Name,TABLE_TYPE, 1
+
+   );
+    BEGIN
+      RETURN TABLE(RES);
+    END;
+    END IF;
+END
+';

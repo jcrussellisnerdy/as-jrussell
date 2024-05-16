@@ -1,0 +1,1 @@
+﻿Find-DbaDbGrowthEvent -SqlInstance Chime-DB-01 | Out-GridView

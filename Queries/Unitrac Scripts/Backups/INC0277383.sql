@@ -1,0 +1,146 @@
+USE [UniTrac]
+GO 
+
+
+ SELECT
+	   dcl.LOOKUP_VALUE INTO #LenderCodes
+   FROM OspreyDashboard.dbo.DATASOURCE_CACHE_LOOKUP dcl
+   WHERE dcl.LOOKUP_KEY_CD = 'LENDER_CODE'
+	   AND dcl.PURGE_DT IS NULL
+
+
+			  SELECT
+			getdate() as CREATE_DT
+		,	ldr.ID as LENDER_ID
+		,	ldr.CODE_TX AS 'LENDER_CD'
+		,	ldr.NAME_TX AS 'LENDER_NAME'
+		,	l.ID AS 'LOAN_ID'
+ 		,	l.BRANCH_CODE_TX AS L_BRANCH_CODE_TX
+		,   l.DIVISION_CODE_TX as L_DIVISION_CODE_TX
+		,	rc.ID as RC_ID
+		,	rc.TYPE_CD as RC_TYPE_CD
+		,	rc.RECORD_TYPE_CD as RC_RECORD_TYPE_CD
+		,	rc.STATUS_CD as RC_STATUS_CD
+		,	rc.SUMMARY_SUB_STATUS_CD as RC_SUMMARY_SUB_STATUS_CD
+		,	rc.SUMMARY_STATUS_CD as RC_SUMMARY_STATUS_CD
+		,	rc.EXPOSURE_DT as RC_EXPOSURE_DT
+		,	rc.INSURANCE_SUB_STATUS_CD
+		,   c.ID as C_ID
+		,   c.PRIMARY_LOAN_IN as C_PRIMARY_LOAN_IN
+		,	c.PROPERTY_ID as C_PROPERTY_ID
+		,	c.STATUS_CD as C_STATUS_CD
+		,   LOAN_TYPE =
+			CASE
+				WHEN CC.VEHICLE_LOOKUP_IN = 'Y' THEN 'Vehicle'
+				WHEN CC.ADDRESS_LOOKUP_IN = 'Y' AND CC.PRIMARY_CLASS_CD <> 'COM' THEN 'Mortgage'
+				WHEN CC.ADDRESS_LOOKUP_IN = 'Y' AND CC.PRIMARY_CLASS_CD = 'COM' THEN 'Commercial Mortgage'
+				WHEN CC.VEHICLE_LOOKUP_IN = 'N' AND CC.ADDRESS_LOOKUP_IN = 'N' THEN 'Equipment'
+			END
+			--INTO #tmp
+		FROM dbo.LENDER ldr (NOLOCK)
+         JOIN #LenderCodes lc ON lc.LOOKUP_VALUE = ldr.CODE_TX
+         inner merge JOIN  dbo.LOAN l (NOLOCK) ON ldr.ID = l.LENDER_ID
+			inner merge JOIN  dbo.COLLATERAL c (NOLOCK) ON l.ID = c.LOAN_ID
+					AND c.PURGE_DT IS NULL
+			inner merge JOIN  dbo.REQUIRED_COVERAGE rc (NOLOCK) ON rc.PROPERTY_ID = C.PROPERTY_ID
+					AND rc.PURGE_DT IS NULL
+			left outer join  dbo.COLLATERAL_CODE CC	ON CC.ID = C.COLLATERAL_CODE_ID
+					AND CC.PURGE_DT IS NULL
+		WHERE 
+         l.RECORD_TYPE_CD IN ('G')
+			AND l.PURGE_DT IS NULL AND rc.INSURANCE_STATUS_CD <> 'F'
+			AND l.STATUS_CD IN ('A', 'B') AND ldr.CODE_TX = '8448'
+			ORDER BY rc.INSURANCE_STATUS_CD ASC 
+
+
+
+
+SELECT TOP 1* FROM #tmp
+SELECT TOP 1 * FROM jcs..zZ
+SELECT * FROM OspreyDashboard.dbo.DATASOURCE_CACHE dc  WHERE DATASOURCE_ID = '9' AND ASSOCIATION_CD = '8448' AND PURGE_DT IS null
+SELECT TOP 1 * FROM  OspreyDashboard.dbo.DATASOURCE d  WHERE ID = '9'
+
+			
+		SELECT
+			 dc.STATUS_CD
+			,SUM(cc_ran)	AS Total
+		FROM jcs..zZ T
+		JOIN OspreyDashboard.dbo.DATASOURCE_CACHE dc ON T.CC_RANK = DC.ASSOCIATION_CD 
+		JOIN OspreyDashboard.dbo.DATASOURCE d  ON dc.DATASOURCE_ID = d.ID
+		WHERE d.TYPE_CD = 'INSEFFDATE_LOANCNT_BYBRCH_BYAGE' 
+            AND dc.PURGE_DT IS NULL
+            AND dc.SOURCE_CD = 'Vehicle'
+            and dc.ASSOCIATION_CD = '8448'
+
+
+
+					SELECT * FROM #tmp T
+		JOIN OspreyDashboard.dbo.DATASOURCE_CACHE dc ON T.LENDER_CD = DC.ASSOCIATION_CD
+		JOIN OspreyDashboard.dbo.DATASOURCE d  ON dc.DATASOURCE_ID = d.ID
+		WHERE d.TYPE_CD = 'INSEFFDATE_LOANCNT_BYBRCH_BYAGE' 
+            AND dc.PURGE_DT IS NULL
+            AND dc.SOURCE_CD = 'Vehicle'
+            and dc.ASSOCIATION_CD = '8448'
+		GROUP BY dc.STATUS_CD
+		ORDER BY CASE
+				WHEN dc.STATUS_CD = '< 6 months' THEN 1
+				WHEN dc.STATUS_CD = '< 12 months' THEN 2
+				WHEN dc.STATUS_CD = '< 18 months' THEN 3
+				WHEN dc.STATUS_CD = '< 24 months' THEN 4
+				WHEN dc.STATUS_CD = '< 30 months' THEN 5
+				WHEN dc.STATUS_CD = '< 36 months' THEN 6
+				ELSE 7
+			END
+
+			SELECT * FROM OspreyDashboard..DATASOURCE_CACHE
+			WHERE DATASOURCE_ID = '9' AND ASSOCIATION_CD = '8448' AND PURGE_DT IS NULL
+			SELECT * FROM OspreyDashboard..DATASOURCE
+
+SELECT * FROM dbo.REF_CODE
+WHERE DOMAIN_CD LIKE 'requiredcoverageins%'
+
+
+			SELECT * FROM jcs..zz
+			
+            SELECT
+	            LENDER_CD
+            ,	LENDER_NAME
+            ,	BRANCH
+            ,	CASE
+		            WHEN DATEDIFF(MONTH, EFFECTIVE_DATE, GETDATE()) <= 6 THEN '< 6 months'
+		            WHEN DATEDIFF(MONTH, EFFECTIVE_DATE, GETDATE()) > 6 AND
+			            DATEDIFF(MONTH, EFFECTIVE_DATE, GETDATE()) <= 12 THEN '< 12 months'
+		            WHEN DATEDIFF(MONTH, EFFECTIVE_DATE, GETDATE()) > 12 AND
+			            DATEDIFF(MONTH, EFFECTIVE_DATE, GETDATE()) <= 18 THEN '< 18 months'
+		            WHEN DATEDIFF(MONTH, EFFECTIVE_DATE, GETDATE()) > 18 AND
+			            DATEDIFF(MONTH, EFFECTIVE_DATE, GETDATE()) <= 24 THEN '< 24 months'
+		            WHEN DATEDIFF(MONTH, EFFECTIVE_DATE, GETDATE()) > 24 AND
+			            DATEDIFF(MONTH, EFFECTIVE_DATE, GETDATE()) <= 30 THEN '< 30 months'
+		            WHEN DATEDIFF(MONTH, EFFECTIVE_DATE, GETDATE()) > 30 AND
+			            DATEDIFF(MONTH, EFFECTIVE_DATE, GETDATE()) <= 36 THEN '< 36 months'
+		            ELSE '> 36 months'
+	            END AS 'INSURANCE_AGE'
+            ,	LOAN_TYPE
+            ,	COUNT(*) AS LOAN_COUNT
+            FROM jcs..zz
+            WHERE CC_RANK = 1
+            GROUP BY	LENDER_CD
+		            ,	LENDER_NAME
+		            ,	BRANCH
+		            ,	CASE
+				            WHEN DATEDIFF(MONTH, EFFECTIVE_DATE, GETDATE()) <= 6 THEN '< 6 months'
+				            WHEN DATEDIFF(MONTH, EFFECTIVE_DATE, GETDATE()) > 6 AND
+					            DATEDIFF(MONTH, EFFECTIVE_DATE, GETDATE()) <= 12 THEN '< 12 months'
+				            WHEN DATEDIFF(MONTH, EFFECTIVE_DATE, GETDATE()) > 12 AND
+					            DATEDIFF(MONTH, EFFECTIVE_DATE, GETDATE()) <= 18 THEN '< 18 months'
+				            WHEN DATEDIFF(MONTH, EFFECTIVE_DATE, GETDATE()) > 18 AND
+					            DATEDIFF(MONTH, EFFECTIVE_DATE, GETDATE()) <= 24 THEN '< 24 months'
+				            WHEN DATEDIFF(MONTH, EFFECTIVE_DATE, GETDATE()) > 24 AND
+					            DATEDIFF(MONTH, EFFECTIVE_DATE, GETDATE()) <= 30 THEN '< 30 months'
+				            WHEN DATEDIFF(MONTH, EFFECTIVE_DATE, GETDATE()) > 30 AND
+					            DATEDIFF(MONTH, EFFECTIVE_DATE, GETDATE()) <= 36 THEN '< 36 months'
+				            ELSE '> 36 months'
+			            END
+		            ,	LOAN_TYPE
+						ORDER BY COUNT(*) ASC 
+					

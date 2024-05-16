@@ -1,0 +1,217 @@
+
+/****** Object:  StoredProcedure [dbo].[Report_LenderCarrier]    Script Date: 11/28/2012 06:35:47 ******/
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Report_LenderCarrier]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[Report_LenderCarrier]
+GO
+
+/****** Object:  StoredProcedure [dbo].[Report_LenderCarrier]    Script Date: 11/28/2012 06:35:47 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE PROCEDURE [dbo].[Report_LenderCarrier] 
+(
+	@LenderCode as nvarchar(10)=NULL,
+	@Branch as nvarchar(max)=NULL,
+	@Division as nvarchar(10)=NULL,
+	@Coverage as nvarchar(100)=NULL,
+	@Carrier as nvarchar(100)=NULL,
+	@State as nvarchar(100)=NULL,
+	@Report_History_ID as bigint=NULL
+)
+as
+BEGIN
+
+Declare @RecordCount as bigint	
+Set @RecordCount = 0
+
+IF OBJECT_ID(N'tempdb..#tmptable',N'U') IS NOT NULL
+  DROP TABLE #tmptable
+  
+
+DECLARE @BranchTable AS TABLE(ID int, STRVALUE nvarchar(30))
+			INSERT INTO @BranchTable SELECT * FROM SplitFunction(@Branch, ',')  
+
+
+CREATE TABLE [dbo].[#tmptable](
+[CARRIER_EFFECTIVE_DT] [datetime2](7) NULL, 
+[CARRIER_EXPIRATION_DT] [datetime2](7) NULL, 
+[MASTER_ID_NO] [nvarchar](30) NULL,
+[MASTER_POLICY_NO]  [nvarchar](30) NULL,
+[MASTER_POLICY_ID] bigint,
+[Master_Assignment_ID] bigint,
+[COVERAGE_TYPE_CD] [nvarchar](20) NULL,
+[ISSUE_PROC_CD] [nvarchar](20) NULL,
+[ISSUE_PROC_TX] [nvarchar](100) NULL,
+[CANCEL_PROC_CD] [nvarchar](20) NULL,
+[CANCEL_PROC_TX] [nvarchar](100) NULL,
+[CERTIFICATE_TEMPLATE_ID] bigint,
+[BORR_COMP_TX] [nvarchar](50) NULL,
+[BORR_CLSN_TX] [nvarchar](50) NULL,
+[BORR_MTG_DEDUCT_TX] [nvarchar](50) NULL,
+[LENDER_COMP_TX] [nvarchar](50) NULL,
+[LENDER_CLSN_TX] [nvarchar](50) NULL,
+[LENDER_DEDUCT_TX] [nvarchar](50) NULL,
+[SEND_CERTIFIED_IN] [nvarchar](50) NULL,
+[PRINT_COSIGNER] [nvarchar](50) NULL,
+[PRINT_INHOUSE_IN] [nvarchar](50) NULL,
+[NUMBER_CERT_COPIES] int,
+[CARRIER_CODE_TX] [nvarchar](20) NULL,
+[CARRIER_NAME_TX] [nvarchar](100) NULL,
+[CARRIER_PRODUCT_CD] [nvarchar](30) NULL,
+[MASTER_POLICY_STATE_TX] [nvarchar](2) NULL,
+[SEND_CO_BORROWER_IN][nvarchar](1) NULL,
+[IGNORE_CO_BORROWER_SAME_ADDRESS_IN][nvarchar](1) NULL,
+[MASTER_POLICY_DESCRIPTION_TX] [nvarchar](100) NULL,
+[COVERLETTER_DESCRIPTION_TX] [nvarchar](500) NULL,
+[CERT_FORM_NO_TX] [nvarchar](50) NULL,
+[BORR_ADJ_DAY_NO] [nvarchar](50) NULL,
+[CERT_ADJ_DAY_NO] [nvarchar](50) NULL,
+[ReportGroupName] [nvarchar](50) NULL
+)
+
+insert into #tmptable (
+[CARRIER_EFFECTIVE_DT], 
+[CARRIER_EXPIRATION_DT], 
+[MASTER_ID_NO],
+[MASTER_POLICY_NO],
+[MASTER_POLICY_ID],
+[Master_Assignment_ID],
+[COVERAGE_TYPE_CD],
+[ISSUE_PROC_CD],
+[ISSUE_PROC_TX],
+[CANCEL_PROC_CD],
+[CANCEL_PROC_TX],
+[CERTIFICATE_TEMPLATE_ID],
+[BORR_COMP_TX],
+[BORR_CLSN_TX],
+[BORR_MTG_DEDUCT_TX],
+[LENDER_COMP_TX],
+[LENDER_CLSN_TX],
+[LENDER_DEDUCT_TX],
+[SEND_CERTIFIED_IN],
+[PRINT_COSIGNER],
+[PRINT_INHOUSE_IN],
+[NUMBER_CERT_COPIES],
+[CARRIER_CODE_TX],
+[CARRIER_NAME_TX],
+[CARRIER_PRODUCT_CD],
+[MASTER_POLICY_STATE_TX],
+[SEND_CO_BORROWER_IN],
+[IGNORE_CO_BORROWER_SAME_ADDRESS_IN],
+[MASTER_POLICY_DESCRIPTION_TX],
+[COVERLETTER_DESCRIPTION_TX],
+[CERT_FORM_NO_TX],
+[BORR_ADJ_DAY_NO],
+[CERT_ADJ_DAY_NO],
+[ReportGroupName])
+
+Select distinct  
+	MPA.START_DT as CARRIER_EFFECTIVE_DT,
+	MPA.END_DT as CARRIER_EXPIRATION_DT,
+	MP.ID_NUMBER_TX as MASTER_ID_NO,
+	MP.NUMBER_TX as MASTER_POLICY_NO,
+	MP.ID as MASTER_POLICY_ID,
+	MPA.ID as Master_Assignment_ID,
+	MPA.COVERAGE_TYPE_CD,
+	ISS.CODE_TX as ISSUE_PROC_CD,
+	ISS.NAME_TX as ISSUE_PROC_TX,
+	CAN.CODE_TX as CANCEL_PROC_CD,
+	CAN.NAME_TX as CANCEL_PROC_TX,
+	MPA.CERTIFICATE_TEMPLATE_ID,
+	MPA.SPECIAL_HANDLING_XML.value('(//SH/BorrowerComprehensiveDeductible)[1]', 'varchar(50)') as BORR_COMP_TX, 
+	MPA.SPECIAL_HANDLING_XML.value('(//SH/BorrowerCollisionDeductible)[1]', 'varchar(50)') as BORR_CLSN_TX, 
+	MPA.SPECIAL_HANDLING_XML.value('(//SH/BorrowerMtgDeductible)[1]', 'varchar(50)') as BORR_MTG_DEDUCT_TX, 
+	MPA.SPECIAL_HANDLING_XML.value('(//SH/LenderComprehensiveDeductible)[1]', 'varchar(50)') as LENDER_COMP_TX, 
+	MPA.SPECIAL_HANDLING_XML.value('(//SH/LenderCollisionDeductible)[1]', 'varchar(50)') as LENDER_CLSN_TX, 
+	MPA.SPECIAL_HANDLING_XML.value('(//SH/LenderMtgDeductible)[1]', 'varchar(50)') as LENDER_DEDUCT_TX,
+	CASE WHEN OC.XML_CONTAINER.value('(//OutputConfigurationSettings/SendCertified)[1]', 'varchar(50)') = 'True' Then 'Yes'
+		ELSE 'No' 
+	END as SEND_CERTIFIED_IN,
+	CASE WHEN OC.XML_CONTAINER.value('(//OutputConfigurationSettings/PrintCosigner)[1]', 'varchar(50)') = 'True' Then 'Yes'
+		ELSE 'No' 
+	END as PRINT_COSIGNER,
+	CASE WHEN OC.OUTPUT_TYPE_CD = 'IH' THEN 'Yes' ELSE 'No' END as PRINT_INHOUSE_IN,
+	OC.XML_CONTAINER.value('(//OutputConfigurationSettings/NumberOfCopies)[1]', 'int') as NUMBER_CERT_COPIES,
+	C.CODE_TX as CARRIER_CODE_TX,
+	C.NAME_TX as CARRIER_NAME_TX,
+	CP.CARRIER_PRODUCT_CD as CARRIER_PRODUCT_CD,
+	MP.STATE_TX as MASTER_POLICY_STATE_TX,
+	MP.SEND_CO_BORROWER_IN,
+	MP.IGNORE_CO_BORROWER_SAME_ADDRESS_IN,
+	MP.DESCRIPTION_TX as MASTER_POLICY_DESCRIPTION_TX,
+	T.DESCRPTION_TX as COVERLETTER_DESCRIPTION_TX,
+	CASE WHEN NullIf(CP.CERT_FORM_NO_TX,'') IS NOT NULL THEN
+		CP.CERT_FORM_NO_TX 
+	ELSE
+		MPA.FORM_NUMBER_TX
+	END AS CERT_FORM_NO_TX,
+	isnull(BON.DEFAULT_VALUE_TX,0) as BORR_ADJ_DAY_NO,
+	isnull(BOC.DEFAULT_VALUE_TX,0) as CERT_ADJ_DAY_NO,
+	isnull(MP.STATE_TX,'---') + '/' + ISNULL(CC.CODE_TX, '<DEFAULT>') as ReportGroupName 
+	
+	from LENDER L
+	Join LENDER_PRODUCT LP on LP.LENDER_ID = L.ID AND LP.PURGE_DT IS NULL
+	Join LENDER_COLLATERAL_GROUP_COVERAGE_TYPE LCGCT on LCGCT.LENDER_PRODUCT_ID = LP.ID AND LCGCT.PURGE_DT IS NULL
+    Join LENDER_ORGANIZATION LO on LO.ID = LCGCT.DIVISION_LENDER_ORG_ID	AND LO.PURGE_DT IS NULL
+    LEFT JOIN OUTPUT_CONFIGURATION OC on OC.RELATE_ID = L.ID and OC.RELATE_CLASS_TX = 'Allied.UniTrac.Lender' and OC.TYPE_CD = 'FPC' AND OC.PURGE_DT IS NULL
+	Join MASTER_POLICY_LENDER_PRODUCT_RELATE MPL on MPL.LENDER_PRODUCT_ID = LP.ID AND MPL.PURGE_DT IS NULL
+	Join MASTER_POLICY MP on MP.ID = MPL.MASTER_POLICY_ID AND MP.PURGE_DT IS NULL
+	Join MASTER_POLICY_ASSIGNMENT MPA on 
+		MPA.MASTER_POLICY_ID = MP.ID and 
+		((MPA.BRCH_LENDER_ORG_ID is null) or (MPA.BRCH_LENDER_ORG_ID = LCGCT.BRANCH_LENDER_ORG_ID)) and 
+		MPA.DIV_LENDER_ORG_ID = LCGCT.DIVISION_LENDER_ORG_ID and 
+		MPA.PURGE_DT IS NULL
+	left Join LENDER_ORGANIZATION ROB on ROB.ID = LCGCT.BRANCH_LENDER_ORG_ID AND ROB.PURGE_DT IS NULL	
+	Join LENDER_ORGANIZATION ROD on ROD.ID = LCGCT.DIVISION_LENDER_ORG_ID AND ROD.PURGE_DT IS NULL		
+	left join COLLATERAL_CODE CC on CC.ID = MPA.COLLATERAL_CODE_ID AND CC.PURGE_DT IS NULL
+	Join CARRIER C on MP.CARRIER_ID = C.ID AND C.PURGE_DT IS NULL
+	Join CARRIER_PRODUCT CP on MP.CARRIER_PRODUCT_ID = CP.ID AND CP.PURGE_DT IS NULL
+	left Join ISSUE_PROCEDURE ISS on MPA.ISSUE_PROCEDURE_ID = ISS.ID AND ISS.PURGE_DT IS NULL 
+	left Join CANCEL_PROCEDURE CAN on MPA.CANCEL_PROCEDURE_ID = CAN.ID AND CAN.PURGE_DT IS NULL 
+	left JOIN TEMPLATE T on T.ID = MP.COVER_LETTER_TEMPLATE_ID AND T.PURGE_DT IS NULL 
+	LEFT JOIN BUSINESS_OPTION_GROUP BOG on BOG.RELATE_ID = LP.ID and BOG.RELATE_CLASS_NM = 'Allied.UniTrac.LenderProduct' AND BOG.PURGE_DT IS NULL 
+	left Join BUSINESS_OPTION BON on BON.BUSINESS_OPTION_GROUP_ID = BOG.ID and BON.NAME_TX = 'NoticeDaysAdjustment' AND BON.PURGE_DT IS NULL 
+    left Join BUSINESS_OPTION BOC on BOC.BUSINESS_OPTION_GROUP_ID = BOG.ID and BOC.NAME_TX = 'CertificateDaysAdjustment' AND BOC.PURGE_DT IS NULL 
+	left Join REF_CODE RC_SC on RC_SC.DOMAIN_CD = 'SecondaryClassification' AND CC.SECONDARY_CLASS_CD = RC_SC.CODE_CD
+	left Join REF_CODE_ATTRIBUTE RCA_PROP on RC_SC.DOMAIN_CD = RCA_PROP.DOMAIN_CD and RC_SC.CODE_CD = RCA_PROP.REF_CD and RCA_PROP.ATTRIBUTE_CD = 'PropertyType'
+where L.CODE_TX = @LenderCode AND L.PURGE_DT IS NULL
+      AND 
+      ( ROB.CODE_TX IN (SELECT STRVALUE FROM @BranchTable) or @Branch = '1' or @Branch = '' or @Branch is NULL)
+      AND
+		(ROD.CODE_TX = @Division OR @Division = '1' OR @Division  = '' OR @Division is NULL 
+		OR ((@Division in ('3','8') and ROD.CODE_TX not in ('3','8') and RCA_PROP.VALUE_TX in ('VEH','BOAT'))
+		OR (@Division in ('7','9') and ROD.CODE_TX not in ('7','9') and RCA_PROP.VALUE_TX in ('EQ'))
+		OR (@Division in ('4','10') and ROD.CODE_TX not in ('4','10') and RCA_PROP.VALUE_TX not in ('VEH','BOAT','EQ'))))
+	  AND
+	  ( MPA.COVERAGE_TYPE_CD = @Coverage or @Coverage = '1' or @Coverage = '' or @Coverage is NULL)
+	  AND
+	  ( C.CODE_TX = @Carrier or @Carrier = '1' or @Carrier = '' or @Carrier is NULL)
+	  AND	
+	  ( MP.STATE_TX = @State or @State = '1' or @State = '' or @State is NULL)
+
+
+SELECT @RecordCount = COUNT(*) from #tmptable
+	  
+IF @Report_History_ID IS NOT NULL
+BEGIN
+ Update [UNITRAC-REPORTS].[UNITRAC].DBO.REPORT_HISTORY_NOXML
+Set RECORD_COUNT_NO = @RecordCount
+where ID = @Report_History_ID    
+END
+
+SELECT * FROM #tmptable
+
+END
+
+
+
+
+
+
+GO
+
+

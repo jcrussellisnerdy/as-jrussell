@@ -1,0 +1,79 @@
+-------------- Check Work Items Before Update (To Verify Work Item Definition and Status)
+-------------- Work Item ID Number(s) should be provided on HDT
+----REPLACE XXXXXXX WITH THE THE WI ID
+USE UniTrac
+
+
+SELECT CONTENT_XML.value('(/Content/Lender/Code)[1]', 'varchar (50)') Lender, WD.NAME_TX [Definition], 
+WQ.NAME_TX [Queue], WI.*
+FROM  WORK_ITEM WI
+INNER JOIN dbo.WORKFLOW_DEFINITION WD ON WD.ID = WI.WORKFLOW_DEFINITION_ID
+INNER JOIN dbo.WORK_QUEUE WQ ON WQ.ID = WI.CURRENT_QUEUE_ID
+WHERE  WI.STATUS_CD = 'Complete' AND WI.WORKFLOW_DEFINITION_ID = '9' AND WI.CURRENT_QUEUE_ID = '329'
+AND CAST(WI.UPDATE_DT AS DATE) = CAST(GETDATE() AS DATE) AND WI.ID NOT IN (29777786)
+--WHERE Wi. ID IN ('29777786')
+--29866189
+
+--29777786
+
+----If need to check for a report fro process log
+
+--DROP TABLE #tmp
+SELECT --*
+RELATE_ID INTO #tmp 
+FROM dbo.PROCESS_LOG_ITEM
+WHERE PROCESS_LOG_ID IN ( 31533125)
+--29922856
+
+--DROP TABLE #tmp2
+select --pl.ID, PRINT_STATUS_CD,PRINTED_DT 
+*
+--INTO #tmp2
+from PROCESS_LOG pl
+inner join process_log_item pli on pli.PROCESS_LOG_ID = pl.id and pli.relate_type_cd = 'allied.unitrac.notice'
+inner join NOTICE N on N.id = pli.relate_id 
+inner join LOAN L on L.ID = n.LOAN_ID
+left outer join document_container dc on dc.relate_id = n.id and dc.relate_class_name_tx = 'allied.unitrac.notice' AND DC.PURGE_DT IS NULL	
+where PLI.RELATE_ID IN (SELECT * FROM #tmp) 
+
+--DROP TABLE #tmp3
+SELECT --RELATE_ID, RELATE_TYPE_CD, CREATE_DT, PROCESS_LOG_ID,
+ * --INTO #tmp3 
+FROM dbo.PROCESS_LOG_ITEM
+WHERE PROCESS_LOG_ID IN (31379283)
+AND RELATE_TYPE_CD = 'Allied.UniTrac.Notice'
+
+
+
+SELECT DISTINCT TT.RELATE_ID, TT.RELATE_TYPE_CD, TT.CREATE_DT, T.PRINT_STATUS_CD, T.PRINTED_DT FROM #tmp2 T
+INNER JOIN #tmp3 TT ON T.ID = TT.PROCESS_LOG_ID
+WHERE T.PRINT_STATUS_CD = 'PRINTED'
+
+
+SELECT OUTPUT_BATCH.EXTERNAL_ID,OUTPUT_BATCH_LOG.*
+from OUTPUT_BATCH OB
+INNER JOIN OUTPUT_BATCH_LOG OBL ON OUTPUT_BATCH.ID = OUTPUT_BATCH_LOG.OUTPUT_BATCH_ID
+WHERE OUTPUT_BATCH.PROCESS_LOG_ID IN (SELECT * FROM #tmp) AND LOG_TXN_TYPE_CD = 'SENT' 
+
+
+
+
+SELECT * FROM dbo.INTERACTION_HISTORY IH
+WHERE IH.TYPE_CD = 'NOTICE' --AND IH.SPECIAL_HANDLING_XML.value('(SH/Sequence) [1]', 'varchar (50)') = '1'
+--AND IH.SPECIAL_HANDLING_XML.value('(SH/Type) [1]', 'varchar (50)') = 'N'
+AND  IH.PROPERTY_ID = '105582394'
+ --IH.RELATE_ID = '16476753'
+
+ SELECT * FROM dbo.NOTICE
+ WHERE ID = '16476753'
+
+ SELECT * FROM dbo.CPI_QUOTE
+ WHERE ID = 
+ '35645307'
+
+
+SELECT TOP 1 * FROM dbo.NOTICE_REQUIRED_COVERAGE_RELATE
+
+SELECT TOP 1 * FROM dbo.REQUIRED_COVERAGE
+
+SELECT TOP 1 * FROM dbo.NOTICE

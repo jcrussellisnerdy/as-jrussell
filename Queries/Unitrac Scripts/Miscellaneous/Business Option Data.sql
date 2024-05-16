@@ -1,0 +1,37 @@
+USE UniTrac 
+
+
+SELECT DISTINCT L.NAME_TX, L.CODE_TX, LP.NAME_TX, LP.START_DT, LP.END_DT, LP.BASIC_TYPE_CD, LP.BASIC_SUB_TYPE_CD
+FROM    dbo.BUSINESS_OPTION BO
+        JOIN dbo.BUSINESS_OPTION_GROUP BG ON BO.BUSINESS_OPTION_GROUP_ID = BG.ID
+		 LEFT JOIN dbo.LENDER_PRODUCT LP ON LP.ID = BG.RELATE_ID
+                                           AND BG.RELATE_CLASS_NM = 'Allied.UniTrac.LenderProduct'
+        LEFT JOIN dbo.LENDER L ON L.ID = LP.LENDER_ID
+        LEFT JOIN dbo.AGENCY A ON A.ID = L.AGENCY_ID
+WHERE   L.STATUS_CD = 'ACTIVE' and L.CODE_TX = '7522'
+        AND L.PURGE_DT IS NULL
+        AND L.TEST_IN = 'N'
+        AND LP.PURGE_DT IS NULL
+        AND bo.PURGE_DT IS NULL
+        AND bg.PURGE_DT IS NULL
+		and lp.name_tx = 'Life Insurance'
+		and (LP.END_DT is null or LP.END_DT  > '2019-02-04')
+
+
+
+
+		USE UniTrac 
+
+
+SELECT DISTINCT L.NAME_TX, L.CODE_TX, LP.NAME_TX, LP.START_DT, LP.END_DT, LP.BASIC_TYPE_CD, LP.BASIC_SUB_TYPE_CD
+FROM    LENDER_PRODUCT LP
+        LEFT JOIN dbo.LENDER L ON L.ID = LP.LENDER_ID
+WHERE  -- L.STATUS_CD = 'ACTIVE' 
+        --AND L.PURGE_DT IS NULL
+    --    AND L.TEST_IN = 'N'
+       LP.PURGE_DT IS NULL
+		and lp.name_tx = 'Life Insurance'
+		
+
+
+		--ACVOptionSeriesMethod

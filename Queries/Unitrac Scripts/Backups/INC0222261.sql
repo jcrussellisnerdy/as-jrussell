@@ -1,0 +1,50 @@
+-------------- Check Work Items Before Update (To Verify Work Item Definition and Status)
+-------------- Work Item ID Number(s) should be provided on HDT
+----REPLACE XXXXX WITH THE THE WI ID
+
+
+SELECT CONTENT_XML.value('(/Content/Lender/Code)[1]', 'varchar (50)') Lender, * --INTO UniTracHDStorage..WI_INC0222261
+--INTO    #TMPWI
+FROM    UniTrac..WORK_ITEM
+WHERE   ID IN ( 25846804, 209385888   )
+
+SELECT * FROM dbo.REF_CODE 
+WHERE CODE_CD = 'D'
+-------- Verify Data Work Item Clean Up for Cancelled Lender or update initial Select if only specific WI's being closed out.
+----REPLACE XXXXXXX WITH THE THE WI ID
+----REPLACE #### WITH THE THE Lender ID
+
+---Refer to Bug#30969-Script to withdraw Verify Data Work Item since Loan was deleted
+
+UPDATE WI SET STATUS_CD = 'Withdrawn' , 
+UPDATE_DT = GETDATE() , UPDATE_USER_TX = 'INC0222261' , 
+LOCK_ID = WI.LOCK_ID % 255 + 1
+---- SELECT COUNT(*)
+FROM WORK_ITEM WI JOIN #TMPWI TMP ON 
+TMP.ID = WI.ID
+AND WI.PURGE_DT IS NULL
+---- 28
+
+INSERT INTO WORK_ITEM_ACTION (WORK_ITEM_ID, ACTION_CD, FROM_STATUS_CD, TO_STATUS_CD, CURRENT_QUEUE_ID, 
+CURRENT_OWNER_ID, ACTION_NOTE_TX, ACTIVE_IN, CREATE_DT, UPDATE_DT, UPDATE_USER_TX, LOCK_ID, ACTION_USER_ID)
+SELECT DISTINCT ID , 'Withdraw' , STATUS_CD , 'Withdrawn' , CURRENT_QUEUE_ID , 
+CURRENT_OWNER_ID , 'INC0222261' , 'Y' , GETDATE() , GETDATE() , 'INC0222261' , 1 , 1
+FROM #TMPWI
+ORDER BY STATUS_CD
+---- 26
+
+
+UPDATE LN SET SPECIAL_HANDLING_XML = NULL , 
+UPDATE_DT = GETDATE() , UPDATE_USER_TX  = 'INC0222261' , 
+LOCK_ID = LN.LOCK_ID % 255 + 1
+--- SELECT LN.NUMBER_TX
+FROM LOAN LN JOIN #TMPWI ON #TMPWI.RELATE_ID = LN.ID
+--- 28
+
+
+
+
+SELECT * FROM dbo.WORK_ITEM WI
+INNER JOIN dbo.WORK_ITEM_ACTION WIA ON WIA.WORK_ITEM_ID = WI.ID
+INNER JOIN dbo.LOAN L ON L.ID = WI.RELATE_ID
+WHERE WI.ID = '25846804' AND WIA.UPDATE_DT > '2016-02-17'

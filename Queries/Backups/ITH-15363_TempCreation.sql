@@ -1,0 +1,36 @@
+﻿ALTER DATABASE tempdb
+                ADD FILE (
+                               FILENAME = 'D:\tempDb\Data\tempdb8.ndf',
+                               NAME = tempdev8,
+                               SIZE = 8MB,
+                               FILEGROWTH = 65536KB)
+ALTER DATABASE tempdb
+                ADD FILE (
+                               FILENAME = 'D:\tempDb\Data\tempdb7.ndf',
+                               NAME = tempdev7,
+                               SIZE = 8MB,
+                               FILEGROWTH = 65536KB)
+ALTER DATABASE tempdb
+                ADD FILE (
+                               FILENAME = 'D:\tempDb\Data\tempdb6.ndf',
+                               NAME = tempdev6,
+                               SIZE = 8MB,
+                               FILEGROWTH = 65536KB)
+ALTER DATABASE tempdb
+                ADD FILE (
+                               FILENAME = 'D:\tempDb\Data\tempdb5.ndf',
+                               NAME = tempdev5,
+                               SIZE = 8MB,
+                               FILEGROWTH = 65536KB)
+ALTER DATABASE tempdb
+                ADD FILE (
+                               FILENAME = 'D:\tempDb\Data\tempdb4.ndf',
+                               NAME = tempdev4,
+                               SIZE = 8MB,
+                               FILEGROWTH = 65536KB)
+ALTER DATABASE tempdb
+                ADD FILE (
+                               FILENAME = 'D:\tempDb\Data\tempdb3.ndf',
+                               NAME = tempdev3,
+                               SIZE = 8MB,
+                               FILEGROWTH = 65536KB)

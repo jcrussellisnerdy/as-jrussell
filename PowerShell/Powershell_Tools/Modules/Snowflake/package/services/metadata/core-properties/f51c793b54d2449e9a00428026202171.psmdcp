@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<coreProperties xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.openxmlformats.org/package/2006/metadata/core-properties">
+  <dc:creator>Kevin Marquette</dc:creator>
+  <dc:description>User and Role management for Snowflake using SnowSQL</dc:description>
+  <dc:identifier>SnowSQL</dc:identifier>
+  <version>0.1.2.26730560</version>
+  <keywords>loandDepot Snowflake PSEdition_Desktop PSEdition_Core PSModule PSIncludes_Function PSFunction_Add-SnowSqlRoleMember PSFunction_Disable-SnowSqlUser PSFunction_Enable-SnowSqlUser PSFunction_Get-SnowSqlConnection PSFunction_Get-SnowSqlRole PSFunction_Get-SnowSqlRoleMember PSFunction_Get-SnowSqlUser PSFunction_Invoke-SnowSql PSFunction_New-SnowSqlRole PSFunction_New-SnowSqlUser PSFunction_Open-SnowSqlConnection PSFunction_Remove-SnowSqlRoleMember PSCommand_Add-SnowSqlRoleMember PSCommand_Disable-SnowSqlUser PSCommand_Enable-SnowSqlUser PSCommand_Get-SnowSqlConnection PSCommand_Get-SnowSqlRole PSCommand_Get-SnowSqlRoleMember PSCommand_Get-SnowSqlUser PSCommand_Invoke-SnowSql PSCommand_New-SnowSqlRole PSCommand_New-SnowSqlUser PSCommand_Open-SnowSqlConnection PSCommand_Remove-SnowSqlRoleMember</keywords>
+  <lastModifiedBy>NuGet, Version=4.9.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35;Microsoft Windows NT 6.2.9200.0;.NET Framework 4.6</lastModifiedBy>
+</coreProperties>

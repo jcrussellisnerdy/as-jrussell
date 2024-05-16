@@ -1,0 +1,1 @@
+EXEC xp_cmdshell 'powershell.exe -Command "Get-Module -ListAvailable"'

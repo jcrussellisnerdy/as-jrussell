@@ -1,0 +1,1 @@
+﻿Select-String -Path 'C:\Queries\Backups\*.sql' -Pattern "sp_dropserver"

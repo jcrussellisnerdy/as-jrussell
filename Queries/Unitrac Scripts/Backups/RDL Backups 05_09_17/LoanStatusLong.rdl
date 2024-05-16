@@ -1,0 +1,3755 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2008/01/reportdefinition">
+  <DataSources>
+    <DataSource Name="UniTrac_Reports">
+      <DataSourceReference>/Data Sources/UniTrac_Reports</DataSourceReference>
+      <rd:DataSourceID>6fa9e166-a9c3-479d-800c-db4ead82032a</rd:DataSourceID>
+      <rd:SecurityType>None</rd:SecurityType>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="DataSet1">
+      <Fields>
+        <Field Name="REQUIREDCOVERAGE_TYPE_TX">
+          <DataField>REQUIREDCOVERAGE_TYPE_TX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="LOAN_NUMBER_TX">
+          <DataField>LOAN_NUMBER_TX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="LOAN_TYPE_TX">
+          <DataField>LOAN_TYPE_TX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="REQUIREDCOVERAGE_CODE_TX">
+          <DataField>REQUIREDCOVERAGE_CODE_TX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="OWNER_LASTNAME_TX">
+          <DataField>OWNER_LASTNAME_TX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="LOAN_NUMBERSORT_TX">
+          <DataField>LOAN_NUMBERSORT_TX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="OWNER_FIRSTNAME_TX">
+          <DataField>OWNER_FIRSTNAME_TX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="OWNER_NAME_TX">
+          <DataField>OWNER_NAME_TX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="OWNER_MIDDLEINITIAL_TX">
+          <DataField>OWNER_MIDDLEINITIAL_TX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="OWNER_LINE1_TX">
+          <DataField>OWNER_LINE1_TX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="OWNER_COSIGN_TX">
+          <DataField>OWNER_COSIGN_TX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="OWNER_LINE2_TX">
+          <DataField>OWNER_LINE2_TX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="OWNER_STATE_TX">
+          <DataField>OWNER_STATE_TX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="OWNER_CITY_TX">
+          <DataField>OWNER_CITY_TX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="LOAN_BALANCE_DT">
+          <DataField>LOAN_BALANCE_DT</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="OWNER_ZIP_TX">
+          <DataField>OWNER_ZIP_TX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="LOAN_BALDTFORMAT_TX">
+          <DataField>LOAN_BALDTFORMAT_TX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="COLLATERAL_YEAR_TX">
+          <DataField>COLLATERAL_YEAR_TX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="LOAN_PAYMENT_FREQUENCY_CD">
+          <DataField>LOAN_PAYMENT_FREQUENCY_CD</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="COLLATERAL_MAKE_TX">
+          <DataField>COLLATERAL_MAKE_TX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="COLLATERAL_MODEL_TX">
+          <DataField>COLLATERAL_MODEL_TX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="LOAN_BALANCE_NO">
+          <DataField>LOAN_BALANCE_NO</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="MISC1_TX">
+          <DataField>MISC1_TX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="LOAN_BAL_NO">
+          <DataField>LOAN_BAL_NO</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="LOAN_LENDERCODE_TX">
+          <DataField>LOAN_LENDERCODE_TX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="COLLATERAL_EQUIP_TX">
+          <DataField>COLLATERAL_EQUIP_TX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PROPERTY_FLOODZONE_TX">
+          <DataField>PROPERTY_FLOODZONE_TX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="LENDER_NAME_TX">
+          <DataField>LENDER_NAME_TX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="COLLATERAL_VIN_TX">
+          <DataField>COLLATERAL_VIN_TX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="LENDER_STATUS_OFFICER_TX">
+          <DataField>LENDER_STATUS_OFFICER_TX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PROPERTY_TITLE_CD">
+          <DataField>PROPERTY_TITLE_CD</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="COLLATERAL_CODE_TX">
+          <DataField>COLLATERAL_CODE_TX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="LEGAL_STATUS_CODE_TX">
+          <DataField>LEGAL_STATUS_CODE_TX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="COLLATERAL_LINE1_TX">
+          <DataField>COLLATERAL_LINE1_TX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PURPOSE_CODE_TX">
+          <DataField>PURPOSE_CODE_TX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="COLLATERAL_LINE2_TX">
+          <DataField>COLLATERAL_LINE2_TX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="COLLATERAL_LOAN_PERCENTAGE_NO">
+          <DataField>COLLATERAL_LOAN_PERCENTAGE_NO</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="PROPERTY_TYPE_CD">
+          <DataField>PROPERTY_TYPE_CD</DataField>
+          <rd:UserDefined>true</rd:UserDefined>
+        </Field>
+        <Field Name="COLLATERAL_STATE_TX">
+          <DataField>COLLATERAL_STATE_TX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="COLLATERAL_CITY_TX">
+          <DataField>COLLATERAL_CITY_TX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="COLLATERAL_MORTGAGE_TX">
+          <DataField>COLLATERAL_MORTGAGE_TX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="LOAN_EFFDTSORT_TX">
+          <DataField>LOAN_EFFDTSORT_TX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="COLLATERAL_ZIP_TX">
+          <DataField>COLLATERAL_ZIP_TX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="LOAN_BALANCESORT_TX">
+          <DataField>LOAN_BALANCESORT_TX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="LOAN_EFFECTIVE_DT">
+          <DataField>LOAN_EFFECTIVE_DT</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="COLLATERAL_NUMBER_NO">
+          <DataField>COLLATERAL_NUMBER_NO</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="LOAN_ORIGINALBALANCE_AMOUNT_NO">
+          <DataField>LOAN_ORIGINALBALANCE_AMOUNT_NO</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="LOAN_APR_AMOUNT_NO">
+          <DataField>LOAN_APR_AMOUNT_NO</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="LOAN_MATURITY_DT">
+          <DataField>LOAN_MATURITY_DT</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="LENDER_COLLATERAL_CODE_TX">
+          <DataField>LENDER_COLLATERAL_CODE_TX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="LOAN_TERM_NO">
+          <DataField>LOAN_TERM_NO</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="CANCEL_MEANING_TX">
+          <DataField>CANCEL_MEANING_TX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="IMPAIRMENT_MEANING_TX">
+          <DataField>IMPAIRMENT_MEANING_TX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="COVERAGEWAIVE_MEANING_TX">
+          <DataField>COVERAGEWAIVE_MEANING_TX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="COLLATERAL_STATUSMEANING_TX">
+          <DataField>COLLATERAL_STATUSMEANING_TX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="REQUIREDCOVERAGE_STATUSMEANING_TX">
+          <DataField>REQUIREDCOVERAGE_STATUSMEANING_TX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PROPERTY_ACV_NO">
+          <DataField>PROPERTY_ACV_NO</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="COVERAGE_BASIS_CD">
+          <DataField>COVERAGE_BASIS_CD</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="FLOOD_VALUE_TX">
+          <DataField>FLOOD_VALUE_TX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="OTHER_AMOUNT_NO">
+          <DataField>OTHER_AMOUNT_NO</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="LOAN_NOTE_TX">
+          <DataField>LOAN_NOTE_TX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PHYSICALDAMAGE_AMOUNT_NO">
+          <DataField>PHYSICALDAMAGE_AMOUNT_NO</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="REQUIREDCOVERAGE_REQUIREDAMOUNT_NO">
+          <DataField>REQUIREDCOVERAGE_REQUIREDAMOUNT_NO</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="BODILYINJURYACCIDENT_AMOUNT_NO">
+          <DataField>BODILYINJURYACCIDENT_AMOUNT_NO</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="BODILYINJURYPERSON_AMOUNT_NO">
+          <DataField>BODILYINJURYPERSON_AMOUNT_NO</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="COVERAGE_AMOUNT_NO">
+          <DataField>COVERAGE_AMOUNT_NO</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="PHYSICALDAMAGE_DEDUCTIBLE_NO">
+          <DataField>PHYSICALDAMAGE_DEDUCTIBLE_NO</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="LOAN_BRANCHCODE_TX">
+          <DataField>LOAN_BRANCHCODE_TX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="IMPAIRMENT_CODE_TX">
+          <DataField>IMPAIRMENT_CODE_TX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="OTHER_DEDUCTIBLE_NO">
+          <DataField>OTHER_DEDUCTIBLE_NO</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="INSCOMPANY_NAME_TX">
+          <DataField>INSCOMPANY_NAME_TX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="COMPREHENSIVE_DEDUCTIBLE_NO">
+          <DataField>COMPREHENSIVE_DEDUCTIBLE_NO</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="LOAN_DIVISIONCODE_TX">
+          <DataField>LOAN_DIVISIONCODE_TX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="LOAN_OFFICERCODE_TX">
+          <DataField>LOAN_OFFICERCODE_TX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="COLLISION_DEDUCTIBLE_NO">
+          <DataField>COLLISION_DEDUCTIBLE_NO</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="INSCOMPANY_EFF_DT">
+          <DataField>INSCOMPANY_EFF_DT</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="COVERAGE_WAIVE_STATUS_DT">
+          <DataField>COVERAGE_WAIVE_STATUS_DT</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="NOTICE_TYPE_CD">
+          <DataField>NOTICE_TYPE_CD</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="LOAN_DEALERCODE_TX">
+          <DataField>LOAN_DEALERCODE_TX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="COVERAGE_STATUS_TX">
+          <DataField>COVERAGE_STATUS_TX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="COVERAGE_WAIVE_EVENT_DT">
+          <DataField>COVERAGE_WAIVE_EVENT_DT</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="COVERAGE_WAIVE_OFFICER_TX">
+          <DataField>COVERAGE_WAIVE_OFFICER_TX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="COVERAGE_WAIVE_REM_TERM">
+          <DataField>COVERAGE_WAIVE_REM_TERM</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="INSCOMPANY_EXP_DT">
+          <DataField>INSCOMPANY_EXP_DT</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="OPT_BALANCE_BELOW_MIN">
+          <DataField>OPT_BALANCE_BELOW_MIN</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="INSCOMPANY_CAN_DT">
+          <DataField>INSCOMPANY_CAN_DT</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="COVERAGE_WAIVE_TERM">
+          <DataField>COVERAGE_WAIVE_TERM</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="INSCOMPANY_EXP_DAYS">
+          <DataField>INSCOMPANY_EXP_DAYS</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="INSCOMPANY_EFFDTSORT_TX">
+          <DataField>INSCOMPANY_EFFDTSORT_TX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="BORRINSCOMPANY_NAME_TX">
+          <DataField>BORRINSCOMPANY_NAME_TX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="INSCOMPANY_POLICY_NO">
+          <DataField>INSCOMPANY_POLICY_NO</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="INSCOMPANY_UNINS_DAYS">
+          <DataField>INSCOMPANY_UNINS_DAYS</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="REPORT_GROUPBY_TX">
+          <DataField>REPORT_GROUPBY_TX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="INSCOMPANY_UNINSGROUP_TX">
+          <DataField>INSCOMPANY_UNINSGROUP_TX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="BORRINSCOMPANY_POLICY_NO">
+          <DataField>BORRINSCOMPANY_POLICY_NO</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="INSCOMPANY_EXPCXL_DT">
+          <DataField>INSCOMPANY_EXPCXL_DT</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="CPI_QUOTE_TERM_NO">
+          <DataField>CPI_QUOTE_TERM_NO</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="PC_PREMIUM_AMOUNT_NO">
+          <DataField>PC_PREMIUM_AMOUNT_NO</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="REPORT_SORTBY_TX">
+          <DataField>REPORT_SORTBY_TX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CPI_PREMIUM_AMOUNT_NO">
+          <DataField>CPI_PREMIUM_AMOUNT_NO</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="INSCOMPANY_EXPCXLDTSORT_TX">
+          <DataField>INSCOMPANY_EXPCXLDTSORT_TX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="BORRINSCOMPANY_EFF_DT">
+          <DataField>BORRINSCOMPANY_EFF_DT</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="BORRINSCOMPANY_EXP_DT">
+          <DataField>BORRINSCOMPANY_EXP_DT</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="INSAGENCY_NAME_TX">
+          <DataField>INSAGENCY_NAME_TX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="BORRINSCOMPANY_EXP_DAYS">
+          <DataField>BORRINSCOMPANY_EXP_DAYS</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="INSAGENCY_PHONE_TX">
+          <DataField>INSAGENCY_PHONE_TX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="NOTICE_TYPE_TX">
+          <DataField>NOTICE_TYPE_TX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="REPORT_HEADER_TX">
+          <DataField>REPORT_HEADER_TX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ESCROW_DUE_DT">
+          <DataField>ESCROW_DUE_DT</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="BORRINSCOMPANY_CAN_DT">
+          <DataField>BORRINSCOMPANY_CAN_DT</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="LOAN_STATUSCODE">
+          <DataField>LOAN_STATUSCODE</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ESCROW_IN_REQ_COV_TX">
+          <DataField>ESCROW_IN_REQ_COV_TX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="BORRINSCOMPANY_EXPCXL_DT">
+          <DataField>BORRINSCOMPANY_EXPCXL_DT</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="LOAN_ID">
+          <DataField>LOAN_ID</DataField>
+          <rd:TypeName>System.Int64</rd:TypeName>
+        </Field>
+        <Field Name="REPORT_FOOTER_TX">
+          <DataField>REPORT_FOOTER_TX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="NOTICE_DT">
+          <DataField>NOTICE_DT</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="COLLATERAL_ID">
+          <DataField>COLLATERAL_ID</DataField>
+          <rd:TypeName>System.Int64</rd:TypeName>
+        </Field>
+        <Field Name="PROPERTY_ID">
+          <DataField>PROPERTY_ID</DataField>
+          <rd:TypeName>System.Int64</rd:TypeName>
+        </Field>
+        <Field Name="BORRINSCOMPANY_EXPCXLDTSORT_TX">
+          <DataField>BORRINSCOMPANY_EXPCXLDTSORT_TX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="REQUIREDCOVERAGE_ID">
+          <DataField>REQUIREDCOVERAGE_ID</DataField>
+          <rd:TypeName>System.Int64</rd:TypeName>
+        </Field>
+        <Field Name="COLLATERAL_STATUSCODE">
+          <DataField>COLLATERAL_STATUSCODE</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="NOTICE_SEQ_NO">
+          <DataField>NOTICE_SEQ_NO</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="REQUIREDCOVERAGE_STATUSCODE">
+          <DataField>REQUIREDCOVERAGE_STATUSCODE</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="OPT_BALANCE_ABOVE_MAX">
+          <DataField>OPT_BALANCE_ABOVE_MAX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="LOAN_STATUSMEANING_TX">
+          <DataField>LOAN_STATUSMEANING_TX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="REQUIREDCOVERAGE_INSSTATUSCODE">
+          <DataField>REQUIREDCOVERAGE_INSSTATUSCODE</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="OPT_EFF_DT_GREATER_TITLE_START_DT">
+          <DataField>OPT_EFF_DT_GREATER_TITLE_START_DT</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="REQUIREDCOVERAGE_INSSUBSTATUSCODE">
+          <DataField>REQUIREDCOVERAGE_INSSUBSTATUSCODE</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="REQUIREDCOVERAGE_SUBSTATUSCODE">
+          <DataField>REQUIREDCOVERAGE_SUBSTATUSCODE</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="OPT_MAX_BALANCE">
+          <DataField>OPT_MAX_BALANCE</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="OPT_MIN_BALANCE">
+          <DataField>OPT_MIN_BALANCE</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="CoverageStatus">
+          <Value>=IIf(Parameters!ReportConfig.Value.Substring(0,4)="CPIY" and Fields!REQUIREDCOVERAGE_INSSTATUSMEANING_TX.Value.Substring(0,3)="CPI","Default Fee",Fields!COVERAGE_STATUS_TX.Value)</Value>
+        </Field>
+        <Field Name="AgencyPhone">
+          <Value>="(" &amp; Fields!INSAGENCY_PHONE_TX.Value.Substring(0,3) &amp; ") " &amp; Fields!INSAGENCY_PHONE_TX.Value.Substring(3,3) &amp; "-" &amp; Fields!INSAGENCY_PHONE_TX.Value.Substring(6,4)</Value>
+        </Field>
+        <Field Name="OPT_TITLE_START_DT">
+          <DataField>OPT_TITLE_START_DT</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="DeductibleCompFormatted">
+          <Value>=IIf(Fields!COMPREHENSIVE_DEDUCTIBLE_NO.Value Is Nothing," ","$" &amp; Fields!COMPREHENSIVE_DEDUCTIBLE_NO.Value)</Value>
+        </Field>
+        <Field Name="DeductibleCollFormatted">
+          <Value>=IIf(Fields!COLLISION_DEDUCTIBLE_NO.Value Is Nothing," ","$" &amp; Fields!COLLISION_DEDUCTIBLE_NO.Value)</Value>
+        </Field>
+        <Field Name="REQUIREDCOVERAGE_INSSTATUSMEANING_TX">
+          <DataField>REQUIREDCOVERAGE_INSSTATUSMEANING_TX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="OPT_BALANCE_TYPE">
+          <DataField>OPT_BALANCE_TYPE</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="DeductibleCompClsn">
+          <Value>=IIf(Fields!COMPREHENSIVE_DEDUCTIBLE_NO.Value Is Nothing and Fields!COLLISION_DEDUCTIBLE_NO.Value Is Nothing," ",Fields!DeductibleCompFormatted.Value &amp; " / " &amp; Fields!DeductibleCollFormatted.Value)</Value>
+        </Field>
+        <Field Name="REQUIREDCOVERAGE_INSSUBSTATUSMEANING_TX">
+          <DataField>REQUIREDCOVERAGE_INSSUBSTATUSMEANING_TX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="DeductibleVehicle">
+          <Value>=IIf(Fields!PHYSICALDAMAGE_DEDUCTIBLE_NO.Value &gt; 0,Fields!PHYSICALDAMAGE_DEDUCTIBLE_NO.Value,Fields!DeductibleCompClsn.Value)</Value>
+        </Field>
+        <Field Name="CoverageVehicle">
+          <Value>=IIf(Fields!PHYSICALDAMAGE_AMOUNT_NO.Value &gt; 0,"$" &amp; Fields!PHYSICALDAMAGE_AMOUNT_NO.Value," ")</Value>
+        </Field>
+        <Field Name="CoveragePhysFormatted">
+          <Value>=IIf(Fields!PHYSICALDAMAGE_AMOUNT_NO.Value Is Nothing," ","$" &amp; Fields!PHYSICALDAMAGE_AMOUNT_NO.Value)</Value>
+        </Field>
+        <Field Name="CoverageBIPAFormatted">
+          <Value>=IIf(Fields!BODILYINJURYACCIDENT_AMOUNT_NO.Value Is Nothing," ","$" &amp; Fields!BODILYINJURYACCIDENT_AMOUNT_NO.Value)</Value>
+        </Field>
+        <Field Name="CoverageBIPPFormatted">
+          <Value>=IIf(Fields!BODILYINJURYPERSON_AMOUNT_NO.Value Is Nothing," ","$" &amp; Fields!BODILYINJURYPERSON_AMOUNT_NO.Value)</Value>
+        </Field>
+        <Field Name="CoveragePhysBipaBipp">
+          <Value>=IIf(Fields!PHYSICALDAMAGE_AMOUNT_NO.Value Is Nothing and Fields!BODILYINJURYACCIDENT_AMOUNT_NO.Value Is Nothing and Fields!BODILYINJURYPERSON_AMOUNT_NO.Value Is Nothing," ",Fields!CoverageBIPAFormatted.Value &amp; " / " &amp; Fields!CoverageBIPPFormatted.Value &amp; " / " &amp; Fields!CoveragePhysFormatted.Value)</Value>
+        </Field>
+        <Field Name="CoverageWaiveTerm">
+          <Value>=DateDiff(DateInterval.Month,Fields!LOAN_EFFECTIVE_DT.Value,Fields!COVERAGE_WAIVE_STATUS_DT.Value)</Value>
+        </Field>
+        <Field Name="OwnerName">
+          <Value>=IIf(Fields!OWNER_FIRSTNAME_TX.Value Is Nothing or Fields!OWNER_FIRSTNAME_TX.Value = "",Fields!OWNER_LASTNAME_TX.Value,Fields!OWNER_LASTNAME_TX.Value &amp; ", " &amp; Fields!OWNER_FIRSTNAME_TX.Value &amp; " " &amp; Fields!OWNER_MIDDLEINITIAL_TX.Value)</Value>
+        </Field>
+        <Field Name="BalanceFormatted">
+          <Value>=IIf(Fields!LOAN_BALANCE_NO.Value Is Nothing," ","$" &amp; Fields!LOAN_BALANCE_NO.Value)</Value>
+        </Field>
+        <Field Name="PremFormatted">
+          <Value>=IIf(Fields!CPI_PREMIUM_AMOUNT_NO.Value Is Nothing," ","$" &amp; Fields!CPI_PREMIUM_AMOUNT_NO.Value)</Value>
+        </Field>
+        <Field Name="BalDateFormatted">
+          <Value>=IIf(Fields!LOAN_BALDTFORMAT_TX.Value Is Nothing," ",IIf(Fields!LOAN_BALDTFORMAT_TX.Value.Substring(0,1) = "0",Fields!LOAN_BALDTFORMAT_TX.Value.Substring(1,1),Fields!LOAN_BALDTFORMAT_TX.Value.Substring(0,2)) &amp; "/" &amp; IIf(Fields!LOAN_BALDTFORMAT_TX.Value.Substring(3,1) = "0",Fields!LOAN_BALDTFORMAT_TX.Value.Substring(4,1),Fields!LOAN_BALDTFORMAT_TX.Value.Substring(3,2)) &amp; "/" &amp; Fields!LOAN_BALDTFORMAT_TX.Value.Substring(6,4))</Value>
+        </Field>
+        <Field Name="PROPERTY_DESCRIPTION">
+          <DataField>PROPERTY_DESCRIPTION</DataField>
+          <rd:UserDefined>true</rd:UserDefined>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>UniTrac_Reports</DataSourceName>
+        <CommandType>StoredProcedure</CommandType>
+        <CommandText>Report_LoanStatus</CommandText>
+        <QueryParameters>
+          <QueryParameter Name="@LenderCode">
+            <Value>=Parameters!Lender.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@Branch">
+            <Value>=Join(Parameters!Branch.Value,",")</Value>
+            <rd:UserDefined>true</rd:UserDefined>
+          </QueryParameter>
+          <QueryParameter Name="@Division">
+            <Value>=Parameters!Division.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@Coverage">
+            <Value>=Parameters!Coverage.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@ReportType">
+            <Value>=Parameters!ReportType.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@GroupByCode">
+            <Value>=Parameters!GroupBy.Value</Value>
+            <rd:UserDefined>true</rd:UserDefined>
+          </QueryParameter>
+          <QueryParameter Name="@SortByCode">
+            <Value>=Parameters!SortBy.Value</Value>
+            <rd:UserDefined>true</rd:UserDefined>
+          </QueryParameter>
+          <QueryParameter Name="@FilterByCode">
+            <Value>=Parameters!FilterBy.Value</Value>
+            <rd:UserDefined>true</rd:UserDefined>
+          </QueryParameter>
+          <QueryParameter Name="@SpecificReport">
+            <Value>=Parameters!ReportConfig.Value</Value>
+            <rd:UserDefined>true</rd:UserDefined>
+          </QueryParameter>
+          <QueryParameter Name="@ReportDomainName">
+            <Value>="Report_LoanStatusWide"</Value>
+            <rd:UserDefined>true</rd:UserDefined>
+          </QueryParameter>
+          <QueryParameter Name="@Report_History_ID">
+            <Value>=Parameters!REPORT_HISTORY_ID.Value</Value>
+            <rd:UserDefined>true</rd:UserDefined>
+          </QueryParameter>
+        </QueryParameters>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+      </Query>
+    </DataSet>
+    <DataSet Name="ReportType">
+      <Fields>
+        <Field Name="CODE_CD">
+          <DataField>CODE_CD</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="DESCRIPTION_TX">
+          <DataField>DESCRIPTION_TX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>UniTrac_Reports</DataSourceName>
+        <CommandText>Select CODE_CD,DESCRIPTION_TX from REF_CODE 
+where DOMAIN_CD = 'Report_LoanStatusWide' 
+and CODE_CD &lt;&gt; 'DEFAULT'
+order by MEANING_TX</CommandText>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+      </Query>
+    </DataSet>
+    <DataSet Name="Lender">
+      <Fields>
+        <Field Name="CODE_TX">
+          <DataField>CODE_TX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="LenderLabel">
+          <DataField>LenderLabel</DataField>
+          <rd:UserDefined>true</rd:UserDefined>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>UniTrac_Reports</DataSourceName>
+        <CommandText>IF @SearchBy = ''
+BEGIN
+   IF @AgencyID &gt; 0
+   BEGIN
+	SELECT CODE_TX, CODE_TX + ' - ' + NAME_TX AS LenderLabel 
+	FROM LENDER
+	WHERE CODE_TX IS NOT NULL AND PURGE_DT IS NULL AND AGENCY_ID =  @AgencyID
+	ORDER BY CODE_TX
+   END
+   ELSE
+   BEGIN
+	SELECT CODE_TX, CODE_TX + ' - ' + NAME_TX AS LenderLabel 
+	FROM LENDER
+	WHERE CODE_TX IS NOT NULL AND PURGE_DT IS NULL 
+	ORDER BY CODE_TX
+   END
+END
+ELSE
+BEGIN
+   IF @AgencyID &gt; 0
+   BEGIN
+	SELECT CODE_TX, CODE_TX + ' - ' + NAME_TX AS LenderLabel 
+	FROM LENDER
+	WHERE CODE_TX IS NOT NULL AND PURGE_DT IS NULL
+	AND ISNULL(CODE_TX,'') + ISNULL(NAME_TX,'') LIKE '%' + @SearchBy + '%'
+	AND AGENCY_ID = @AgencyID
+	ORDER BY CODE_TX
+   END
+   ELSE
+   BEGIN
+   	SELECT CODE_TX, CODE_TX + ' - ' + NAME_TX AS LenderLabel 
+	FROM LENDER
+	WHERE CODE_TX IS NOT NULL AND PURGE_DT IS NULL
+	AND ISNULL(CODE_TX,'') + ISNULL(NAME_TX,'') LIKE '%' + @SearchBy + '%'
+	ORDER BY CODE_TX
+   END
+END</CommandText>
+        <QueryParameters>
+          <QueryParameter Name="@SearchBy">
+            <Value>=Parameters!SearchBy.Value</Value>
+            <rd:UserDefined>true</rd:UserDefined>
+          </QueryParameter>
+          <QueryParameter Name="@AgencyID">
+            <Value>=Parameters!AgencyID.Value</Value>
+            <rd:UserDefined>true</rd:UserDefined>
+          </QueryParameter>
+        </QueryParameters>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+      </Query>
+    </DataSet>
+    <DataSet Name="Division">
+      <Fields>
+        <Field Name="CODE_CD">
+          <DataField>CODE_CD</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="MEANING_TX">
+          <DataField>MEANING_TX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>UniTrac_Reports</DataSourceName>
+        <CommandText>Select distinct CODE_CD,MEANING_TX from REF_CODE 
+where DOMAIN_CD = 'ContractType'
+Union
+Select '1', 'All'
+order by MEANING_TX</CommandText>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+      </Query>
+    </DataSet>
+    <DataSet Name="ColumnView">
+      <Fields>
+        <Field Name="CL_ACV">
+          <DataField>CL_ACV</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="AGY_Code">
+          <DataField>AGY_Code</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="BORRINS_Cancellation">
+          <DataField>BORRINS_Cancellation</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CL_Number">
+          <DataField>CL_Number</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="BORRINS_Company">
+          <DataField>BORRINS_Company</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CL_Status">
+          <DataField>CL_Status</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="BORRINS_Effective">
+          <DataField>BORRINS_Effective</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="BORRINS_ExpCxl">
+          <DataField>BORRINS_ExpCxl</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CV_Status">
+          <DataField>CV_Status</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CV_Amount">
+          <DataField>CV_Amount</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="BORRINS_ExpDays">
+          <DataField>BORRINS_ExpDays</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CL_Officer">
+          <DataField>CL_Officer</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CL_BalancePct">
+          <DataField>CL_BalancePct</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="INS_Cancellation">
+          <DataField>INS_Cancellation</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="BORRINS_Expiration">
+          <DataField>BORRINS_Expiration</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CV_AmountLiab">
+          <DataField>CV_AmountLiab</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CV_DedCompColl">
+          <DataField>CV_DedCompColl</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="BORRINS_Number">
+          <DataField>BORRINS_Number</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CV_Deductible">
+          <DataField>CV_Deductible</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="INS_Company">
+          <DataField>INS_Company</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CV_GR">
+          <DataField>CV_GR</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="INS_Effective">
+          <DataField>INS_Effective</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ESC_DueDate">
+          <DataField>ESC_DueDate</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CV_ReqAmount">
+          <DataField>CV_ReqAmount</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="INS_Expiration">
+          <DataField>INS_Expiration</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="INS_Number">
+          <DataField>INS_Number</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CV_TypeCode">
+          <DataField>CV_TypeCode</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="IP_Code">
+          <DataField>IP_Code</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="FIL_RCSubStatus">
+          <DataField>FIL_RCSubStatus</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="FLD_Zone">
+          <DataField>FLD_Zone</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="FIL_CLStatus">
+          <DataField>FIL_CLStatus</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="FIL_INSStatus">
+          <DataField>FIL_INSStatus</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="LCC_ClassCode">
+          <DataField>LCC_ClassCode</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="FIL_INSSubStatus">
+          <DataField>FIL_INSSubStatus</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="LCC_Code">
+          <DataField>LCC_Code</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="FIL_LNStatus">
+          <DataField>FIL_LNStatus</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="LN_Balance">
+          <DataField>LN_Balance</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="LN_Comments">
+          <DataField>LN_Comments</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="INS_ExpDays">
+          <DataField>INS_ExpDays</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="FIL_RCStatus">
+          <DataField>FIL_RCStatus</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="LN_Effective">
+          <DataField>LN_Effective</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="IMP_Reason">
+          <DataField>IMP_Reason</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="LN_Number">
+          <DataField>LN_Number</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="INS_Term">
+          <DataField>INS_Term</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="IMP_ReasonCode">
+          <DataField>IMP_ReasonCode</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="LN_Officer">
+          <DataField>LN_Officer</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="INS_Total">
+          <DataField>INS_Total</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="INS_ExpCxl">
+          <DataField>INS_ExpCxl</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="INS_Agency">
+          <DataField>INS_Agency</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="LN_APR">
+          <DataField>LN_APR</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="OWN_Address">
+          <DataField>OWN_Address</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="INS_AgencyPhone">
+          <DataField>INS_AgencyPhone</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="NTC_Reason">
+          <DataField>NTC_Reason</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="LN_BalanceDt">
+          <DataField>LN_BalanceDt</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="OWN_Name">
+          <DataField>OWN_Name</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PRY_Description">
+          <DataField>PRY_Description</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="INS_CancelReason">
+          <DataField>INS_CancelReason</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PRY_VIN">
+          <DataField>PRY_VIN</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="WV_Reason">
+          <DataField>WV_Reason</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="LN_Cosign">
+          <DataField>LN_Cosign</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="LCC_PurposeCode">
+          <DataField>LCC_PurposeCode</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="LN_BranchCode">
+          <DataField>LN_BranchCode</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="LN_Dealer">
+          <DataField>LN_Dealer</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="LN_Term">
+          <DataField>LN_Term</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="LN_DivisionCode">
+          <DataField>LN_DivisionCode</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="NTC_Type">
+          <DataField>NTC_Type</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="LN_Expiration">
+          <DataField>LN_Expiration</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="LN_LenderCode">
+          <DataField>LN_LenderCode</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="LN_OrigBalance">
+          <DataField>LN_OrigBalance</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="NTC_Date">
+          <DataField>NTC_Date</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="NTC_Sequence">
+          <DataField>NTC_Sequence</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="OWN_City">
+          <DataField>OWN_City</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="LN_PmtFreq">
+          <DataField>LN_PmtFreq</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="OWN_DBA">
+          <DataField>OWN_DBA</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PC_Premium">
+          <DataField>PC_Premium</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="OWN_State">
+          <DataField>OWN_State</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="OWN_ZIP">
+          <DataField>OWN_ZIP</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PI_Reason">
+          <DataField>PI_Reason</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="WV_EventDate">
+          <DataField>WV_EventDate</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="WV_Source">
+          <DataField>WV_Source</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PRY_Title">
+          <DataField>PRY_Title</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="WV_FooterColumns">
+          <DataField>WV_FooterColumns</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="WV_StatusDate">
+          <DataField>WV_StatusDate</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="WV_Term">
+          <DataField>WV_Term</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>UniTrac_Reports</DataSourceName>
+        <CommandType>StoredProcedure</CommandType>
+        <CommandText>Report_LoanStatusColumns</CommandText>
+        <QueryParameters>
+          <QueryParameter Name="@REF_CODE">
+            <Value>=Parameters!ReportType.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@SPECIFIC_CODE">
+            <Value>=Parameters!ReportConfig.Value</Value>
+            <rd:UserDefined>true</rd:UserDefined>
+          </QueryParameter>
+          <QueryParameter Name="@ReportDomainName">
+            <Value>="Report_LoanStatusWide"</Value>
+            <rd:UserDefined>true</rd:UserDefined>
+          </QueryParameter>
+        </QueryParameters>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+      </Query>
+    </DataSet>
+    <DataSet Name="CoverageType">
+      <Fields>
+        <Field Name="CODE_CD">
+          <DataField>CODE_CD</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="MEANING_TX">
+          <DataField>MEANING_TX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>UniTrac_Reports</DataSourceName>
+        <CommandText>select CODE_CD,MEANING_TX from REF_CODE 
+where DOMAIN_CD = 'Coverage'
+Union
+Select '1', 'All'
+order by MEANING_TX</CommandText>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+      </Query>
+    </DataSet>
+    <DataSet Name="GroupBy">
+      <Fields>
+        <Field Name="CODE_CD">
+          <DataField>CODE_CD</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="MEANING_TX">
+          <DataField>MEANING_TX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>UniTrac_Reports</DataSourceName>
+        <CommandText>
+          Select RC.CODE_CD,RC.MEANING_TX
+          from REF_CODE RC
+          join REF_CODE_ATTRIBUTE RCA on RC.CODE_CD = RCA.REF_CD
+          where RC.DOMAIN_CD = 'Report_GroupBy'
+          and RCA.VALUE_TX = 'Report_LoanStatusWide'
+          Union
+          Select '',''
+          order by MEANING_TX</CommandText>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+      </Query>
+    </DataSet>
+    <DataSet Name="SortBy">
+      <Fields>
+        <Field Name="CODE_CD">
+          <DataField>CODE_CD</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="MEANING_TX">
+          <DataField>MEANING_TX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>UniTrac_Reports</DataSourceName>
+        <CommandText>
+          Select RC.CODE_CD,RC.MEANING_TX
+          from REF_CODE RC
+          join REF_CODE_ATTRIBUTE RCA on RC.CODE_CD = RCA.REF_CD
+          where RC.DOMAIN_CD = 'Report_SortBy'
+          and RCA.VALUE_TX = 'Report_LoanStatusWide'
+          Union
+          Select '',''
+          order by MEANING_TX</CommandText>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+      </Query>
+    </DataSet>
+    <DataSet Name="FilterBy">
+      <Fields>
+        <Field Name="CODE_CD">
+          <DataField>CODE_CD</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="MEANING_TX">
+          <DataField>MEANING_TX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>UniTrac_Reports</DataSourceName>
+        <CommandText>
+          Select RC.CODE_CD,RC.MEANING_TX
+          from REF_CODE RC
+          join REF_CODE_ATTRIBUTE RCA on RC.CODE_CD = RCA.REF_CD
+          where RC.DOMAIN_CD = 'Report_FilterBy'
+          and RCA.VALUE_TX = 'Report_LoanStatusWide'
+          Union
+          Select '',''
+          order by MEANING_TX</CommandText>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+      </Query>
+    </DataSet>
+    <DataSet Name="ReportConfig">
+      <Fields>
+        <Field Name="CODE_TX">
+          <DataField>CODE_TX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="MEANING_TX">
+          <DataField>MEANING_TX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ConfigSort">
+          <DataField>ConfigSort</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>UniTrac_Reports</DataSourceName>
+        <CommandText>Select CODE_TX,MEANING_TX, MEANING_TX as ConfigSort
+from REPORT_CONFIG
+where REPORT_DOMAIN_CD = 'Report_LoanStatusWide'
+and CODE_TX &lt;&gt; @ReportType 
+and REPORT_CD = @ReportType and DISPLAY_IN = 'Y'
+Union
+Select '0000',MEANING_TX, '' as ConfigSort
+from REPORT_CONFIG
+where REPORT_DOMAIN_CD = 'Report_LoanStatusWide'
+and CODE_TX = @ReportType 
+and REPORT_CD = @ReportType
+order by ConfigSort</CommandText>
+        <QueryParameters>
+          <QueryParameter Name="@ReportType">
+            <Value>=Parameters!ReportType.Value</Value>
+            <rd:UserDefined>true</rd:UserDefined>
+          </QueryParameter>
+        </QueryParameters>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+      </Query>
+    </DataSet>
+    <DataSet Name="DefaultParms">
+      <Fields>
+        <Field Name="CODE_TX">
+          <DataField>CODE_TX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="REPORT_CD">
+          <DataField>REPORT_CD</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="GROUP_TX">
+          <DataField>GROUP_TX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="SORT_TX">
+          <DataField>SORT_TX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="FILTER_TX">
+          <DataField>FILTER_TX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>UniTrac_Reports</DataSourceName>
+        <CommandType>StoredProcedure</CommandType>
+        <CommandText>GetReportDefaultParameters</CommandText>
+        <QueryParameters>
+          <QueryParameter Name="@ID">
+            <Value>=Parameters!REPORT_HISTORY_ID.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+      </Query>
+    </DataSet>
+    <DataSet Name="Branch">
+      <Fields>
+        <Field Name="BrchValue">
+          <DataField>BrchValue</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="BrchLabel">
+          <DataField>BrchLabel</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>UniTrac_Reports</DataSourceName>
+        <CommandText>SELECT LO.CODE_TX as BrchValue, LO.CODE_TX AS BrchLabel
+FROM LENDER L
+JOIN LENDER_ORGANIZATION LO ON LO.LENDER_ID = L.ID
+AND LO.PURGE_DT IS NULL
+WHERE L.CODE_TX = @Lender AND L.PURGE_DT IS NULL
+AND LO.TYPE_CD = 'BRCH'
+Union
+SELECT '1', 'All'
+ORDER BY BrchValue</CommandText>
+        <QueryParameters>
+          <QueryParameter Name="@Lender">
+            <Value>=Parameters!Lender.Value</Value>
+            <rd:UserDefined>true</rd:UserDefined>
+          </QueryParameter>
+        </QueryParameters>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+      </Query>
+    </DataSet>
+    <DataSet Name="DefaultBranch">
+      <Fields>
+        <Field Name="BrchValue">
+          <DataField>BrchValue</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="BrchLabel">
+          <DataField>BrchLabel</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>UniTrac_Reports</DataSourceName>
+        <CommandText>SELECT '1' AS BrchValue, NULL AS BrchLabel </CommandText>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+      </Query>
+    </DataSet>
+    <DataSet Name="ImpairedReasonLegend">
+      <Fields>
+        <Field Name="CODE_CD">
+          <DataField>CODE_CD</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="MEANING_TX">
+          <DataField>MEANING_TX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>UniTrac_Reports</DataSourceName>
+        <CommandText>select CODE_CD, MEANING_TX 
+from REF_CODE 
+where DOMAIN_CD = 'ImpairmentReason'
+order by CODE_CD</CommandText>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+      </Query>
+    </DataSet>
+    <DataSet Name="ReportHeader">
+      <Fields>
+        <Field Name="HEADER_TX">
+          <DataField>HEADER_TX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>UniTrac_Reports</DataSourceName>
+        <CommandText>SELECT HEADER_TX FROM REPORT_CONFIG WHERE CODE_TX =@ReportType</CommandText>
+        <QueryParameters>
+          <QueryParameter Name="@ReportType">
+            <Value>=Parameters!ReportType.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+      </Query>
+    </DataSet>
+    <DataSet Name="LenderSpecificTitleHeaderFooter">
+      <Fields>
+        <Field Name="TITLE_TX">
+          <DataField>TITLE_TX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="SUBTITLE_TX">
+          <DataField>SUBTITLE_TX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="HEADER_TX">
+          <DataField>HEADER_TX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="FOOTER_TX">
+          <DataField>FOOTER_TX</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>UniTrac_Reports</DataSourceName>
+        <CommandType>StoredProcedure</CommandType>
+        <CommandText>Report_LenderSpecificReportTitle</CommandText>
+        <QueryParameters>
+          <QueryParameter Name="@REPORT_HISTORY_ID">
+            <Value>=Parameters!REPORT_HISTORY_ID.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+      </Query>
+    </DataSet>
+  </DataSets>
+  <Body>
+    <ReportItems>
+      <Tablix Name="Tablix1">
+        <TablixBody>
+          <TablixColumns>
+            <TablixColumn>
+              <Width>1.18691in</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>0.70758in</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>0.56913in</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>0.77002in</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>0.33904in</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>0.33125in</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>0.39333in</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>1.19748in</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>1.1551in</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>0.69249in</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>0.98412in</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>0.63619in</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>0.75833in</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>0.79244in</Width>
+            </TablixColumn>
+          </TablixColumns>
+          <TablixRows>
+            <TablixRow>
+              <Height>0.25in</Height>
+              <TablixCells>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox2">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>LOAN NUMBER TX</Value>
+                              <Style>
+                                <FontSize>7pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                                <Color>White</Color>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Left</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox2</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>#7292cc</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <BackgroundColor>#4c68a2</BackgroundColor>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                    <ColSpan>14</ColSpan>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell />
+                <TablixCell />
+                <TablixCell />
+                <TablixCell />
+                <TablixCell />
+                <TablixCell />
+                <TablixCell />
+                <TablixCell />
+                <TablixCell />
+                <TablixCell />
+                <TablixCell />
+                <TablixCell />
+                <TablixCell />
+              </TablixCells>
+            </TablixRow>
+            <TablixRow>
+              <Height>0.25in</Height>
+              <TablixCells>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox493">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!REPORT_GROUPBY_TX.Value &amp; " (Count: " &amp; CountRows() &amp; ")"</Value>
+                              <Style>
+                                <FontSize>7pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                                <Color>White</Color>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Left</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox493</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Style>None</Style>
+                        </Border>
+                        <BackgroundColor>#4c68a2</BackgroundColor>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                    <ColSpan>14</ColSpan>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell />
+                <TablixCell />
+                <TablixCell />
+                <TablixCell />
+                <TablixCell />
+                <TablixCell />
+                <TablixCell />
+                <TablixCell />
+                <TablixCell />
+                <TablixCell />
+                <TablixCell />
+                <TablixCell />
+                <TablixCell />
+              </TablixCells>
+            </TablixRow>
+            <TablixRow>
+              <Height>0.51055in</Height>
+              <TablixCells>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox12">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>Name / Address</Value>
+                              <Style>
+                                <FontSize>7pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                                <Color>White</Color>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Left</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox11</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>#7292cc</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <BackgroundColor>#4c68a2</BackgroundColor>
+                        <VerticalAlign>Top</VerticalAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox1">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>Loan Number</Value>
+                              <Style>
+                                <FontSize>7pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                                <Color>White</Color>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Left</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox1</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>#7292cc</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <BackgroundColor>#4c68a2</BackgroundColor>
+                        <VerticalAlign>Top</VerticalAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox51">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>Eff Date</Value>
+                              <Style>
+                                <FontSize>7pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                                <Color>White</Color>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Left</TextAlign>
+                          </Style>
+                        </Paragraph>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>Bal Date</Value>
+                              <Style>
+                                <FontSize>7pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                                <Color>White</Color>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Left</TextAlign>
+                          </Style>
+                        </Paragraph>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value />
+                              <Style>
+                                <FontSize>7pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                                <Color>White</Color>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox51</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>#7292cc</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <BackgroundColor>#4c68a2</BackgroundColor>
+                        <VerticalAlign>Top</VerticalAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox19">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>Exp Date Balance</Value>
+                              <Style>
+                                <FontSize>7pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                                <Color>White</Color>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>General</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox3</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>#7292cc</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <BackgroundColor>#4c68a2</BackgroundColor>
+                        <VerticalAlign>Top</VerticalAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox212">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>Term</Value>
+                              <Style>
+                                <FontSize>7pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                                <Color>White</Color>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Left</TextAlign>
+                          </Style>
+                        </Paragraph>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>Coll #</Value>
+                              <Style>
+                                <FontSize>7pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                                <Color>White</Color>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Left</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox189</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>#7292cc</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <BackgroundColor>#4c68a2</BackgroundColor>
+                        <VerticalAlign>Top</VerticalAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox217">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>Dlr</Value>
+                              <Style>
+                                <FontSize>7pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                                <Color>White</Color>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
+                        </Paragraph>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>APR</Value>
+                              <Style>
+                                <FontSize>7pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                                <Color>White</Color>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox185</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>#7292cc</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <BackgroundColor>#4c68a2</BackgroundColor>
+                        <VerticalAlign>Top</VerticalAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="LOAN_BALANCE_NO3">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>Ofc</Value>
+                              <Style>
+                                <FontSize>7pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                                <Color>White</Color>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
+                        </Paragraph>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>Coll %</Value>
+                              <Style>
+                                <FontSize>7pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                                <Color>White</Color>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>LOAN_BALANCE_NO1</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>#7292cc</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <BackgroundColor>#4c68a2</BackgroundColor>
+                        <VerticalAlign>Top</VerticalAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox32">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>Property Description</Value>
+                              <Style>
+                                <FontSize>7pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                                <Color>White</Color>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Left</TextAlign>
+                          </Style>
+                        </Paragraph>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>Code       Coll Code</Value>
+                              <Style>
+                                <FontSize>7pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                                <Color>White</Color>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Left</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox25</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>#7292cc</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <BackgroundColor>#4c68a2</BackgroundColor>
+                        <VerticalAlign>Top</VerticalAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox22">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>VIN</Value>
+                              <Style>
+                                <FontSize>7pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                                <Color>White</Color>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
+                        </Paragraph>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>Title</Value>
+                              <Style>
+                                <FontSize>7pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                                <Color>White</Color>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox3</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>#7292cc</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <BackgroundColor>#4c68a2</BackgroundColor>
+                        <VerticalAlign>Top</VerticalAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox4">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>Company</Value>
+                              <Style>
+                                <FontSize>7pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                                <Color>White</Color>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Left</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox4</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>#7292cc</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <BackgroundColor>#4c68a2</BackgroundColor>
+                        <VerticalAlign>Top</VerticalAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox560">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>Policy Num</Value>
+                              <Style>
+                                <FontSize>7pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                                <Color>White</Color>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Left</TextAlign>
+                          </Style>
+                        </Paragraph>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>Eff Date</Value>
+                              <Style>
+                                <FontSize>7pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                                <Color>White</Color>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Left</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox557</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>#7292cc</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <BackgroundColor>#4c68a2</BackgroundColor>
+                        <VerticalAlign>Top</VerticalAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox242">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>Impd Rsn</Value>
+                              <Style>
+                                <FontSize>7pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                                <Color>White</Color>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Left</TextAlign>
+                          </Style>
+                        </Paragraph>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>Exp Date</Value>
+                              <Style>
+                                <FontSize>7pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                                <Color>White</Color>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Left</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox132</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>#7292cc</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <BackgroundColor>#4c68a2</BackgroundColor>
+                        <VerticalAlign>Top</VerticalAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox211">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>Dwelling Amt</Value>
+                              <Style>
+                                <FontSize>7pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                                <Color>White</Color>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Left</TextAlign>
+                          </Style>
+                        </Paragraph>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>Policy Term</Value>
+                              <Style>
+                                <FontSize>7pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                                <Color>White</Color>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Left</TextAlign>
+                          </Style>
+                        </Paragraph>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>Issue Prem</Value>
+                              <Style>
+                                <FontSize>7pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                                <Color>White</Color>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Left</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox142</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>#7292cc</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <BackgroundColor>#4c68a2</BackgroundColor>
+                        <VerticalAlign>Top</VerticalAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox238">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>Status</Value>
+                              <Style>
+                                <FontSize>7pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                                <Color>White</Color>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Left</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox88</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>#7292cc</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <BackgroundColor>#4c68a2</BackgroundColor>
+                        <VerticalAlign>Top</VerticalAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+              </TablixCells>
+            </TablixRow>
+            <TablixRow>
+              <Height>0.58334in</Height>
+              <TablixCells>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="LAST_NAME_TX">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!OwnerName.Value &amp; Chr(13) &amp; Chr(10) &amp; Fields!OWNER_LINE1_TX.Value &amp; " " &amp; Fields!OWNER_LINE2_TX.Value &amp; Chr(13) &amp; Chr(10) &amp; Fields!OWNER_CITY_TX.Value &amp; ", " &amp; Fields!OWNER_STATE_TX.Value &amp; " " &amp; Fields!OWNER_ZIP_TX.Value</Value>
+                              <Style>
+                                <FontSize>7pt</FontSize>
+                                <Color>#4d4d4d</Color>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>LAST_NAME_TX</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>#e5e5e5</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox3">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!LOAN_NUMBER_TX.Value</Value>
+                              <Style>
+                                <FontSize>7pt</FontSize>
+                                <Color>#4d4d4d</Color>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox3</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>#e5e5e5</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox52">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!LOAN_EFFECTIVE_DT.Value &amp; vbCrLf &amp; Fields!BalDateFormatted.Value</Value>
+                              <Style>
+                                <FontSize>7pt</FontSize>
+                                <Format>d</Format>
+                                <Color>#4d4d4d</Color>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox52</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>#e5e5e5</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox8">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!LOAN_MATURITY_DT.Value &amp; vbCrLf &amp; Fields!BalanceFormatted.Value</Value>
+                              <Style>
+                                <FontSize>7pt</FontSize>
+                                <Format>d</Format>
+                                <Color>#4d4d4d</Color>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Right</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox5</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>#e5e5e5</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox255">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!LOAN_TERM_NO.Value &amp; vbCrLf &amp; Fields!COLLATERAL_NUMBER_NO.Value</Value>
+                              <Style>
+                                <FontSize>7pt</FontSize>
+                                <Color>#4d4d4d</Color>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox190</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>#e5e5e5</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox261">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!LOAN_DEALERCODE_TX.Value &amp; vbCrLf &amp; Format(Fields!LOAN_APR_AMOUNT_NO.Value,"0.00;(0.00)")</Value>
+                              <Style>
+                                <FontSize>7pt</FontSize>
+                                <Color>#4d4d4d</Color>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox186</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>#e5e5e5</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox248">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!LOAN_OFFICERCODE_TX.Value &amp; vbCrLf &amp; format(Fields!COLLATERAL_LOAN_PERCENTAGE_NO.Value,"0.00;(0.00)")</Value>
+                              <Style>
+                                <FontSize>7pt</FontSize>
+                                <Color>#4d4d4d</Color>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox174</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>#e5e5e5</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="PropertyDescription2">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!PROPERTY_DESCRIPTION.Value &amp; vbCrLf &amp; Fields!LENDER_COLLATERAL_CODE_TX.Value &amp; "     " &amp; Fields!COLLATERAL_CODE_TX.Value</Value>
+                              <Style>
+                                <FontSize>7pt</FontSize>
+                                <Color>#4d4d4d</Color>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <Style>
+                        <Border>
+                          <Color>#e5e5e5</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="COLLATERAL_VIN_TX2">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!COLLATERAL_VIN_TX.Value &amp; vbCrLf &amp; Fields!PROPERTY_TITLE_CD.Value</Value>
+                              <Style>
+                                <FontSize>7pt</FontSize>
+                                <Color>#4d4d4d</Color>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>COLLATERAL_VIN_TX</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>#e5e5e5</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox5">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!INSCOMPANY_NAME_TX.Value</Value>
+                              <Style>
+                                <FontSize>7pt</FontSize>
+                                <Color>#4d4d4d</Color>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox5</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>#e5e5e5</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="INSCOMPANY_NAME_TX2">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!INSCOMPANY_POLICY_NO.Value &amp; vbCrLf &amp; Fields!INSCOMPANY_EFF_DT.Value</Value>
+                              <Style>
+                                <FontSize>7pt</FontSize>
+                                <Color>#4d4d4d</Color>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>INSCOMPANY_NAME_TX</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>#e5e5e5</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox286">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!IMPAIRMENT_MEANING_TX.Value &amp; vbCrLf &amp; Fields!INSCOMPANY_EXPCXL_DT.Value</Value>
+                              <Style>
+                                <FontSize>7pt</FontSize>
+                                <Color>#4d4d4d</Color>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox133</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>#e5e5e5</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox252">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Switch(Fields!LOAN_DIVISIONCODE_TX.Value=3 or Fields!LOAN_DIVISIONCODE_TX.Value=8 or Fields!PROPERTY_TYPE_CD.Value="VEH" or Fields!PROPERTY_TYPE_CD.Value="BOAT",Fields!CoverageVehicle.Value,Fields!LOAN_DIVISIONCODE_TX.Value=7 or Fields!LOAN_DIVISIONCODE_TX.Value=9 or Fields!LOAN_DIVISIONCODE_TX.Value=4 or Fields!LOAN_DIVISIONCODE_TX.Value=10 or (Fields!PROPERTY_TYPE_CD.Value&lt;&gt;"VEH" and Fields!PROPERTY_TYPE_CD.Value&lt;&gt;"BOAT"),
+Fields!OTHER_AMOUNT_NO.Value)  &amp; vbCrLf &amp; Fields!CPI_QUOTE_TERM_NO.Value &amp; vbCrLf &amp; Fields!PremFormatted.Value</Value>
+                              <Style>
+                                <FontSize>7pt</FontSize>
+                                <Format>'$'#,0.00;('$'#,0.00)</Format>
+                                <Color>#4d4d4d</Color>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox143</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>#e5e5e5</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox285">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>= Fields!CoverageStatus.Value</Value>
+                              <Style>
+                                <FontSize>7pt</FontSize>
+                                <Color>#4d4d4d</Color>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox89</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>#e5e5e5</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+              </TablixCells>
+            </TablixRow>
+          </TablixRows>
+        </TablixBody>
+        <TablixColumnHierarchy>
+          <TablixMembers>
+            <TablixMember>
+              <Visibility>
+                <Hidden>=IIf(First(Fields!OWN_Name.Value, "ColumnView")="F",True,False)</Hidden>
+              </Visibility>
+            </TablixMember>
+            <TablixMember />
+            <TablixMember />
+            <TablixMember />
+            <TablixMember />
+            <TablixMember />
+            <TablixMember />
+            <TablixMember />
+            <TablixMember>
+              <Visibility>
+                <Hidden>=IIf(Parameters!Division.Value=3 or Parameters!Division.Value=8 or Parameters!Division.Value=1,False,True)</Hidden>
+              </Visibility>
+            </TablixMember>
+            <TablixMember />
+            <TablixMember />
+            <TablixMember />
+            <TablixMember />
+            <TablixMember />
+          </TablixMembers>
+        </TablixColumnHierarchy>
+        <TablixRowHierarchy>
+          <TablixMembers>
+            <TablixMember>
+              <Visibility>
+                <Hidden>true</Hidden>
+              </Visibility>
+            </TablixMember>
+            <TablixMember>
+              <Group Name="BreakingSheet">
+                <GroupExpressions>
+                  <GroupExpression>=Ceiling(RowNumber(Nothing)/60000)</GroupExpression>
+                </GroupExpressions>
+                <PageBreak>
+                  <BreakLocation>Between</BreakLocation>
+                </PageBreak>
+              </Group>
+              <TablixMembers>
+                <TablixMember>
+                  <Group Name="Group1">
+                    <GroupExpressions>
+                      <GroupExpression>=Fields!REPORT_GROUPBY_TX.Value</GroupExpression>
+                    </GroupExpressions>
+                  </Group>
+                  <SortExpressions>
+                    <SortExpression>
+                      <Value>=Fields!REPORT_GROUPBY_TX.Value</Value>
+                    </SortExpression>
+                  </SortExpressions>
+                  <TablixMembers>
+                    <TablixMember>
+                      <KeepWithGroup>After</KeepWithGroup>
+                      <RepeatOnNewPage>true</RepeatOnNewPage>
+                    </TablixMember>
+                    <TablixMember>
+                      <KeepWithGroup>After</KeepWithGroup>
+                      <RepeatOnNewPage>true</RepeatOnNewPage>
+                    </TablixMember>
+                    <TablixMember>
+                      <Group Name="Details" />
+                      <TablixMembers>
+                        <TablixMember />
+                      </TablixMembers>
+                    </TablixMember>
+                  </TablixMembers>
+                </TablixMember>
+              </TablixMembers>
+            </TablixMember>
+          </TablixMembers>
+        </TablixRowHierarchy>
+        <FixedColumnHeaders>true</FixedColumnHeaders>
+        <NoRowsMessage>No Records Returned</NoRowsMessage>
+        <DataSetName>DataSet1</DataSetName>
+        <SortExpressions>
+          <SortExpression>
+            <Value>=Fields!REPORT_SORTBY_TX.Value</Value>
+          </SortExpression>
+        </SortExpressions>
+        <Top>0.4757in</Top>
+        <Height>1.59389in</Height>
+        <Width>10.51341in</Width>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+        </Style>
+      </Tablix>
+      <Textbox Name="Textbox172">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>="Total Count: "</Value>
+                <Style>
+                  <FontSize>8pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Right</TextAlign>
+            </Style>
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox172</rd:DefaultName>
+        <Top>2.2432in</Top>
+        <Height>0.25in</Height>
+        <Width>1.18118in</Width>
+        <ZIndex>1</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox39">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>="Total Collateral Balance:"</Value>
+                <Style>
+                  <FontSize>8pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Right</TextAlign>
+            </Style>
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox39</rd:DefaultName>
+        <Top>2.2432in</Top>
+        <Left>1.75144in</Left>
+        <Height>0.25in</Height>
+        <Width>1.93056in</Width>
+        <ZIndex>2</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox40">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>=Sum(Fields!LOAN_BALANCE_NO.Value, "DataSet1")</Value>
+                <Style>
+                  <FontSize>8pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <Format>'$'#,0.00;('$'#,0.00)</Format>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox39</rd:DefaultName>
+        <Top>2.2432in</Top>
+        <Left>3.682in</Left>
+        <Height>0.25in</Height>
+        <Width>1.30208in</Width>
+        <ZIndex>3</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+          <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox173">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>=CountRows("DataSet1")</Value>
+                <Style>
+                  <FontSize>8pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <Format>#,0;(#,0)</Format>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox172</rd:DefaultName>
+        <Top>2.2432in</Top>
+        <Left>1.19936in</Left>
+        <Height>0.25in</Height>
+        <Width>0.55208in</Width>
+        <ZIndex>4</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Tablix Name="Tablix5">
+        <TablixBody>
+          <TablixColumns>
+            <TablixColumn>
+              <Width>8.0107in</Width>
+            </TablixColumn>
+          </TablixColumns>
+          <TablixRows>
+            <TablixRow>
+              <Height>0.25in</Height>
+              <TablixCells>
+                <TablixCell>
+                  <CellContents>
+                    <Subreport Name="CoverPage">
+                      <ReportName>/UniTracReports/CoverPageSubReport</ReportName>
+                      <Parameters>
+                        <Parameter Name="Title">
+                          <Value>=Iif(First(Fields!TITLE_TX.Value, "LenderSpecificTitleHeaderFooter") = "",Parameters!ReportType.Label,First(Fields!TITLE_TX.Value, "LenderSpecificTitleHeaderFooter"))</Value>
+                        </Parameter>
+                        <Parameter Name="SubTitle">
+                          <Value>=Iif(First(Fields!TITLE_TX.Value, "LenderSpecificTitleHeaderFooter") &lt;&gt; "",First(Fields!SUBTITLE_TX.Value, "LenderSpecificTitleHeaderFooter"),Parameters!ReportConfig.Label)</Value>
+                        </Parameter>
+                        <Parameter Name="LenderID">
+                          <Value>=CStr(Parameters!Lender.Value)</Value>
+                        </Parameter>
+                        <Parameter Name="Lender">
+                          <Value>=Parameters!Lender.Label</Value>
+                        </Parameter>
+                        <Parameter Name="Branch">
+                          <Value>=Join(Parameters!Branch.Label,",")</Value>
+                        </Parameter>
+                        <Parameter Name="Division">
+                          <Value>=Parameters!Division.Label</Value>
+                        </Parameter>
+                        <Parameter Name="CoverageType">
+                          <Value>=Parameters!Coverage.Label</Value>
+                        </Parameter>
+                        <Parameter Name="RunDate">
+                          <Value>=FormatDateTime(Globals!ExecutionTime, DateFormat.ShortDate)</Value>
+                        </Parameter>
+                        <Parameter Name="RunTime">
+                          <Value>=FormatDateTime(Globals!ExecutionTime, 3)</Value>
+                        </Parameter>
+                        <Parameter Name="TotalNoOfRecords">
+                          <Value>=FormatNumber(CountRows(),0)</Value>
+                        </Parameter>
+                      </Parameters>
+                      <NoRowsMessage>No Records Returned</NoRowsMessage>
+                      <ZIndex>7</ZIndex>
+                      <Style>
+                        <Border>
+                          <Style>None</Style>
+                        </Border>
+                      </Style>
+                    </Subreport>
+                  </CellContents>
+                </TablixCell>
+              </TablixCells>
+            </TablixRow>
+          </TablixRows>
+        </TablixBody>
+        <TablixColumnHierarchy>
+          <TablixMembers>
+            <TablixMember />
+          </TablixMembers>
+        </TablixColumnHierarchy>
+        <TablixRowHierarchy>
+          <TablixMembers>
+            <TablixMember />
+          </TablixMembers>
+        </TablixRowHierarchy>
+        <DataSetName>DataSet1</DataSetName>
+        <Left>1.49422in</Left>
+        <Height>0.25in</Height>
+        <Width>8.0107in</Width>
+        <ZIndex>5</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+        </Style>
+      </Tablix>
+    </ReportItems>
+    <Height>2.50985in</Height>
+    <Style>
+      <Border>
+        <Style>None</Style>
+      </Border>
+    </Style>
+  </Body>
+  <ReportParameters>
+    <ReportParameter Name="REPORT_HISTORY_ID">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <DefaultValue>
+        <Values>
+          <Value />
+        </Values>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>REPORT_HISTORY_ID</Prompt>
+      <Hidden>true</Hidden>
+    </ReportParameter>
+    <ReportParameter Name="AgencyID">
+      <DataType>Integer</DataType>
+      <Nullable>true</Nullable>
+      <DefaultValue>
+        <Values>
+          <Value>=0</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Agency ID</Prompt>
+      <Hidden>true</Hidden>
+    </ReportParameter>
+    <ReportParameter Name="SearchBy">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value />
+        </Values>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>Lender Search By</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="Lender">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <DefaultValue>
+        <Values>
+          <Value />
+        </Values>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>Lender</Prompt>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>Lender</DataSetName>
+          <ValueField>CODE_TX</ValueField>
+          <LabelField>LenderLabel</LabelField>
+        </DataSetReference>
+      </ValidValues>
+    </ReportParameter>
+    <ReportParameter Name="Branch">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>DefaultBranch</DataSetName>
+          <ValueField>BrchValue</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>Branch</Prompt>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>Branch</DataSetName>
+          <ValueField>BrchValue</ValueField>
+          <LabelField>BrchLabel</LabelField>
+        </DataSetReference>
+      </ValidValues>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+    <ReportParameter Name="Division">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <DefaultValue>
+        <Values>
+          <Value>="1"</Value>
+        </Values>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>Division</Prompt>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>Division</DataSetName>
+          <ValueField>CODE_CD</ValueField>
+          <LabelField>MEANING_TX</LabelField>
+        </DataSetReference>
+      </ValidValues>
+    </ReportParameter>
+    <ReportParameter Name="Coverage">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>="1"</Value>
+        </Values>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>Coverage</Prompt>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>CoverageType</DataSetName>
+          <ValueField>CODE_CD</ValueField>
+          <LabelField>MEANING_TX</LabelField>
+        </DataSetReference>
+      </ValidValues>
+    </ReportParameter>
+    <ReportParameter Name="ReportType">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>DefaultParms</DataSetName>
+          <ValueField>REPORT_CD</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>Report Type</Prompt>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>ReportType</DataSetName>
+          <ValueField>CODE_CD</ValueField>
+          <LabelField>DESCRIPTION_TX</LabelField>
+        </DataSetReference>
+      </ValidValues>
+    </ReportParameter>
+    <ReportParameter Name="GroupBy">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>DefaultParms</DataSetName>
+          <ValueField>GROUP_TX</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>Group By</Prompt>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>GroupBy</DataSetName>
+          <ValueField>CODE_CD</ValueField>
+          <LabelField>MEANING_TX</LabelField>
+        </DataSetReference>
+      </ValidValues>
+    </ReportParameter>
+    <ReportParameter Name="ReportConfig">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>DefaultParms</DataSetName>
+          <ValueField>CODE_TX</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>Specific Configuration</Prompt>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>ReportConfig</DataSetName>
+          <ValueField>CODE_TX</ValueField>
+          <LabelField>MEANING_TX</LabelField>
+        </DataSetReference>
+      </ValidValues>
+    </ReportParameter>
+    <ReportParameter Name="SortBy">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>DefaultParms</DataSetName>
+          <ValueField>SORT_TX</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>Sort By</Prompt>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>SortBy</DataSetName>
+          <ValueField>CODE_CD</ValueField>
+          <LabelField>MEANING_TX</LabelField>
+        </DataSetReference>
+      </ValidValues>
+    </ReportParameter>
+    <ReportParameter Name="FilterBy">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>DefaultParms</DataSetName>
+          <ValueField>FILTER_TX</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>Filter By</Prompt>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>FilterBy</DataSetName>
+          <ValueField>CODE_CD</ValueField>
+          <LabelField>MEANING_TX</LabelField>
+        </DataSetReference>
+      </ValidValues>
+    </ReportParameter>
+  </ReportParameters>
+  <Width>10.51342in</Width>
+  <Page>
+    <PageHeader>
+      <Height>1.15278in</Height>
+      <PrintOnLastPage>true</PrintOnLastPage>
+      <ReportItems>
+        <Textbox Name="Textbox29">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>Lender ID:</Value>
+                  <Style>
+                    <FontSize>9pt</FontSize>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Right</TextAlign>
+              </Style>
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox4</rd:DefaultName>
+          <Left>0.03125in</Left>
+          <Height>0.25in</Height>
+          <Width>1.26316in</Width>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="LenderCode">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>=Parameters!Lender.Value</Value>
+                  <Style>
+                    <FontSize>9pt</FontSize>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style />
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>LenderCode</rd:DefaultName>
+          <Left>1.29441in</Left>
+          <Height>0.25in</Height>
+          <Width>0.80918in</Width>
+          <ZIndex>1</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="Textbox30">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>Branch ID:</Value>
+                  <Style>
+                    <FontSize>9pt</FontSize>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Right</TextAlign>
+              </Style>
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox4</rd:DefaultName>
+          <Top>0.25in</Top>
+          <Left>0.03125in</Left>
+          <Height>0.25in</Height>
+          <Width>1.26316in</Width>
+          <ZIndex>2</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="ReportTitle">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>=Iif(First(Fields!TITLE_TX.Value, "LenderSpecificTitleHeaderFooter") = "",Parameters!ReportType.Label,First(Fields!TITLE_TX.Value, "LenderSpecificTitleHeaderFooter"))</Value>
+                  <Style>
+                    <FontSize>18pt</FontSize>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Center</TextAlign>
+              </Style>
+            </Paragraph>
+          </Paragraphs>
+          <rd:WatermarkTextbox>Title</rd:WatermarkTextbox>
+          <rd:DefaultName>ReportTitle</rd:DefaultName>
+          <Top>0.25in</Top>
+          <Left>2.12095in</Left>
+          <Height>0.34723in</Height>
+          <Width>5.45819in</Width>
+          <ZIndex>3</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <VerticalAlign>Middle</VerticalAlign>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="ReportType">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>=Iif(First(Fields!SUBTITLE_TX.Value, "LenderSpecificTitleHeaderFooter") &lt;&gt; "",First(Fields!SUBTITLE_TX.Value, "LenderSpecificTitleHeaderFooter"),IIf(Parameters!ReportConfig.Label = "" OR First(Fields!TITLE_TX.Value, "LenderSpecificTitleHeaderFooter") &lt;&gt; "",Parameters!Division.Label &amp; " / " &amp; Parameters!Coverage.Label,Parameters!ReportConfig.Label))</Value>
+                  <Style>
+                    <FontSize>12pt</FontSize>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Center</TextAlign>
+              </Style>
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>ReportType</rd:DefaultName>
+          <Top>0.625in</Top>
+          <Left>2.13137in</Left>
+          <Height>0.25in</Height>
+          <Width>5.45819in</Width>
+          <ZIndex>4</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="PageNumber">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>=Globals!PageNumber</Value>
+                  <Style>
+                    <FontSize>9pt</FontSize>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Left</TextAlign>
+              </Style>
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>PageNumber</rd:DefaultName>
+          <Left>8.54789in</Left>
+          <Height>0.25in</Height>
+          <Width>1in</Width>
+          <ZIndex>5</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="Textbox129">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>Page #:</Value>
+                  <Style>
+                    <FontSize>9pt</FontSize>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Right</TextAlign>
+              </Style>
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox26</rd:DefaultName>
+          <Left>7.60345in</Left>
+          <Height>0.25in</Height>
+          <Width>0.93056in</Width>
+          <ZIndex>6</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="Division">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>=Iif(First(Fields!SUBTITLE_TX.Value, "LenderSpecificTitleHeaderFooter")  &lt;&gt; "",Parameters!Division.Label &amp; " / " &amp; Parameters!Coverage.Label,IIf(Parameters!ReportConfig.Label = "" OR (First(Fields!TITLE_TX.Value, "LenderSpecificTitleHeaderFooter") &lt;&gt; "" and First(Fields!SUBTITLE_TX.Value, "LenderSpecificTitleHeaderFooter") = "")," ",Parameters!Division.Label &amp; " / " &amp; Parameters!Coverage.Label))</Value>
+                  <Style>
+                    <FontSize>12pt</FontSize>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Center</TextAlign>
+              </Style>
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Division</rd:DefaultName>
+          <Top>0.90278in</Top>
+          <Left>2.13484in</Left>
+          <Height>0.25in</Height>
+          <Width>5.45819in</Width>
+          <ZIndex>7</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="ExecutionTime1">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>=FormatDateTime(Globals!ExecutionTime, DateFormat.ShortDate)</Value>
+                  <Style>
+                    <FontSize>9pt</FontSize>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style />
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>ExecutionTime1</rd:DefaultName>
+          <Top>0.26389in</Top>
+          <Left>8.54789in</Left>
+          <Height>0.25in</Height>
+          <Width>1in</Width>
+          <ZIndex>8</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="Textbox134">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>Run Date:</Value>
+                  <Style>
+                    <FontSize>9pt</FontSize>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Right</TextAlign>
+              </Style>
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox26</rd:DefaultName>
+          <Top>0.26389in</Top>
+          <Left>7.60345in</Left>
+          <Height>0.25in</Height>
+          <Width>0.93056in</Width>
+          <ZIndex>9</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="Textbox135">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>Run Time:</Value>
+                  <Style>
+                    <FontSize>9pt</FontSize>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Right</TextAlign>
+              </Style>
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox26</rd:DefaultName>
+          <Top>0.54167in</Top>
+          <Left>7.60345in</Left>
+          <Height>0.25in</Height>
+          <Width>0.93056in</Width>
+          <ZIndex>10</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="ExecutionTime2">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>=FormatDateTime(Globals!ExecutionTime, 3)</Value>
+                  <Style>
+                    <FontSize>9pt</FontSize>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style />
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>ExecutionTime1</rd:DefaultName>
+          <Top>0.54167in</Top>
+          <Left>8.54789in</Left>
+          <Height>0.25in</Height>
+          <Width>1in</Width>
+          <ZIndex>11</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="Textbox140">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>=First(Fields!LENDER_NAME_TX.Value, "DataSet1")</Value>
+                  <Style>
+                    <FontSize>12pt</FontSize>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Center</TextAlign>
+              </Style>
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox1</rd:DefaultName>
+          <Left>2.13137in</Left>
+          <Height>0.25in</Height>
+          <Width>5.4443in</Width>
+          <ZIndex>12</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="BranchHeader">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>=Join(Parameters!Branch.Label,",")</Value>
+                  <Style>
+                    <FontSize>9pt</FontSize>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style />
+            </Paragraph>
+          </Paragraphs>
+          <Top>0.26389in</Top>
+          <Left>1.3083in</Left>
+          <Height>0.25in</Height>
+          <Width>0.77098in</Width>
+          <ZIndex>13</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+      </ReportItems>
+      <Style>
+        <Border>
+          <Style>None</Style>
+        </Border>
+      </Style>
+    </PageHeader>
+    <PageHeight>21.59cm</PageHeight>
+    <PageWidth>27.94cm</PageWidth>
+    <LeftMargin>0.254cm</LeftMargin>
+    <RightMargin>0.254cm</RightMargin>
+    <TopMargin>0.254cm</TopMargin>
+    <BottomMargin>0.254cm</BottomMargin>
+    <Style />
+  </Page>
+  <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
+  <rd:ReportID>b4a661ed-d664-4a36-8599-15439e7a0fb6</rd:ReportID>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+</Report>

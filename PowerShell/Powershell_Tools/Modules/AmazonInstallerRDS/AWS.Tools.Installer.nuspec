@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata>
+    <id>AWS.Tools.Installer</id>
+    <version>1.0.2.4</version>
+    <authors>Amazon.com, Inc</authors>
+    <owners>Amazon.com, Inc</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <licenseUrl>https://aws.amazon.com/apache-2-0/</licenseUrl>
+    <projectUrl>https://github.com/aws/aws-tools-for-powershell</projectUrl>
+    <iconUrl>https://sdk-for-net.amazonwebservices.com/images/AWSLogo128x128.png</iconUrl>
+    <description>The AWS.Tools.Installer module makes it easier to install, update and uninstall other AWS.Tools modules (see https://www.powershellgallery.com/packages/AWS.Tools.Common/).
+You can use a single command like 'Install-AWSToolsModule EC2,S3' to install multiple modules.
+You can also update all your installed AWS.Tools modules and remove old versions by running `Update-AWSToolsModule -CleanUp`.</description>
+    <releaseNotes>https://github.com/aws/aws-tools-for-powershell/blob/master/CHANGELOG.md</releaseNotes>
+    <copyright>Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.</copyright>
+    <tags>AWS cloud Windows PSEdition_Desktop PSEdition_Core Linux MacOS Mac PSModule PSIncludes_Function PSFunction_Uninstall-AWSToolsModule PSFunction_Install-AWSToolsModule PSFunction_Update-AWSToolsModule PSCommand_Uninstall-AWSToolsModule PSCommand_Install-AWSToolsModule PSCommand_Update-AWSToolsModule</tags>
+    <dependencies>
+      <dependency id="PowerShellGet" version="2.2.1" />
+    </dependencies>
+  </metadata>
+</package>

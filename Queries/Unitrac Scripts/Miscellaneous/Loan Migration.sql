@@ -1,0 +1,437 @@
+Use Unitrac
+
+---- DROP TABLE #TMPLOAN
+SELECT * 
+INTO #TMPLOAN
+FROM LOAN 
+WHERE LOAN.LENDER_ID = XX
+AND LOAN.NUMBER_TX IN  ()
+
+
+
+
+---- DROP TABLE #TMPLOAN_01
+SELECT * 
+INTO #TMPLOAN_01
+FROM #TMPLOAN
+
+
+
+
+----- DROP TABLE #TMPRC
+
+SELECT T1.ID AS LOAN_ID ,  T1.NUMBER_TX , T1.BRANCH_CODE_TX , T1.DIVISION_CODE_TX , T1.RECORD_TYPE_CD , 
+T1.STATUS_CD AS LN_STATUS_CD , T1.EXTRACT_UNMATCH_COUNT_NO AS LN_EXTRACT_UNMATCH_COUNT_NO , 
+COLL.ID AS COLL_ID , COLL.COLLATERAL_CODE_ID , COLL.PROPERTY_ID , COLL.PRIMARY_LOAN_IN , 
+COLL.STATUS_CD AS COLL_STATUS_CD , COLL.EXTRACT_UNMATCH_COUNT_NO AS COLL_EXTRACT_UNMATCH_COUNT_NO ,
+PR.RECORD_TYPE_CD AS PR_RECORD_TYPE_CD , PR.ADDRESS_ID , 
+OA.LINE_1_TX , OA.CITY_TX , OA.STATE_PROV_TX , OA.POSTAL_CODE_TX , 
+RC.ID AS RC_ID , RC.TYPE_CD AS RC_TYPE_CD , RC.NOTICE_DT , RC.NOTICE_SEQ_NO , 
+RC.NOTICE_TYPE_CD , RC.CPI_QUOTE_ID , RC.LAST_EVENT_DT , 
+RC.LAST_EVENT_SEQ_ID , RC.LAST_SEQ_CONTAINER_ID , RC.RECORD_TYPE_CD AS RC_RECORD_TYPE_CD , 
+CC.CODE_TX AS CC_CODE_TX , CC.DESCRIPTION_TX AS CC_DESCRIPTION_TX ,
+0 AS EXCLUDE
+INTO #TMPRC
+FROM #TMPLOAN_01 t1
+JOIN COLLATERAL COLL ON COLL.LOAN_ID = T1.ID
+AND COLL.PURGE_DT IS NULL AND T1.PURGE_DT IS NULL
+JOIN PROPERTY PR ON PR.ID = COLL.PROPERTY_ID
+AND PR.PURGE_DT IS NULL
+LEFT JOIN OWNER_ADDRESS OA ON OA.ID = PR.ADDRESS_ID
+JOIN REQUIRED_COVERAGE RC ON RC.PROPERTY_ID = PR.ID
+AND RC.PURGE_DT IS NULL
+JOIN COLLATERAL_CODE CC ON CC.ID = COLL.COLLATERAL_CODE_ID
+ORDER BY T1.NUMBER_TX
+
+
+
+SELECT T1.LOAN_ID INTO #TMPLOANID
+FROM #TMPRC T1
+JOIN COLLATERAL COLL ON COLL.PROPERTY_ID = T1.PROPERTY_ID
+AND COLL.ID <> T1.COLL_ID
+AND COLL.LOAN_ID <> T1.LOAN_ID
+AND  COLL.PURGE_DT IS NULL
+JOIN LOAN ON LOAN.ID = COLL.LOAN_ID
+AND LOAN.PURGE_DT IS NULL
+
+UPDATE #TMPRC SET EXCLUDE = 1
+WHERE LOAN_ID IN 
+(SELECT LOAN_ID FROM #TMPLOANID)
+
+---- DROP TABLE #TMPRC_01
+SELECT * 
+INTO #TMPRC_01
+FROM #TMPRC
+WHERE EXCLUDE = 0
+ORDER BY NUMBER_TX
+
+
+--- DROP TABLE #TMPRC_02
+SELECT * 
+INTO #TMPRC_02
+FROM #TMPRC
+WHERE EXCLUDE = 1
+ORDER BY NUMBER_TX
+
+
+
+
+
+SELECT LN.*
+into unitrachdstorage..INC0507876_LN
+FROM LOAN LN JOIN #TMPRC_01 T1 ON T1.LOAN_ID = LN.ID
+
+SELECT PR.*
+into unitrachdstorage..INC0507876_PR
+FROM PROPERTY PR JOIN #TMPRC_01 T1 ON T1.PROPERTY_ID = PR.ID
+
+ SELECT  SF.*
+ into unitrachdstorage..INC0507876_SF
+	FROM #TMPRC_01 t
+	JOIN SEARCH_FULLTEXT sf ON sf.PROPERTY_ID = t.PROPERTY_ID
+
+SELECT wi.*
+ into unitrachdstorage..INC0507876_WI
+	FROM WORK_ITEM WI JOIN #TMPRC_01 T1 ON T1.LOAN_ID = WI.RELATE_ID
+where WI.status_cd not in ('Complete', 'Error', 'Withdrawn')
+and WI.purge_dt is null
+and WI.relate_type_cd = 'Allied.UniTrac.Loan'
+
+SELECT EQ.*
+ into unitrachdstorage..INC0507876_EQ
+	from #TMPRC_01 t    
+    inner join EVALUATION_QUEUE eq on T.RC_ID = eq.REQUIRED_COVERAGE_ID and eq.PURGE_DT is null
+	
+	
+ SELECT EE.*
+  into unitrachdstorage..INC0507876_EE
+	from #TMPRC_01 t   
+    inner join EVALUATION_EVENT ee on ee.REQUIRED_COVERAGE_ID = T.RC_ID and ee.PURGE_DT is null
+	where ee.STATUS_CD = 'PEND'
+
+	SELECT RC.*
+	  into unitrachdstorage..INC0507876_RC
+	from #TMPRC_01 t    
+    inner join REQUIRED_COVERAGE rc on rc.ID = T.RC_ID 
+    and rc.PURGE_DT is null 
+
+UPDATE LN SET LENDER_ID = 2047 , RECORD_TYPE_CD = CASE WHEN LN.RECORD_TYPE_CD IN ( 'D' , 'A') THEN 'G' ELSE LN.RECORD_TYPE_CD END ,
+STATUS_CD = 'A', EXTRACT_UNMATCH_COUNT_NO = 0  , UPDATE_DT = GETDATE() , UPDATE_USER_TX = 'INC0507876', 
+LOCK_ID = LN.LOCK_ID % 255 + 1
+---- SELECT DISTINCT LN.ID , LN.LENDER_ID , LN.STATUS_CD , LN.EXTRACT_UNMATCH_COUNT_NO , LN.DIVISION_CODE_TX
+FROM LOAN LN JOIN #TMPRC_01 T1 ON T1.LOAN_ID = LN.ID
+
+
+
+
+UPDATE PR SET LENDER_ID = 2047 , 
+RECORD_TYPE_CD = CASE WHEN PR.RECORD_TYPE_CD IN ( 'D' , 'A') THEN 'G' ELSE PR.RECORD_TYPE_CD END ,
+UPDATE_DT = GETDATE() , UPDATE_USER_TX = 'INC0507876', 
+LOCK_ID = PR.LOCK_ID % 255 + 1
+---- SELECT DISTINCT PR.ID , PR.RECORD_TYPE_CD
+FROM PROPERTY PR JOIN #TMPRC_01 T1 ON T1.PROPERTY_ID = PR.ID
+
+----- 182
+
+
+INSERT INTO
+	PROPERTY_CHANGE (
+		ENTITY_NAME_TX,
+		ENTITY_ID,
+		USER_TX,
+		ATTACHMENT_IN,
+		CREATE_DT,
+		AGENCY_ID,
+		DESCRIPTION_TX,
+		DETAILS_IN,
+		FORMATTED_IN,
+		LOCK_ID,
+		PARENT_NAME_TX,
+		PARENT_ID,
+		TRANS_STATUS_CD,
+		UTL_IN)
+SELECT DISTINCT
+	'Allied.UniTrac.Loan',
+	LOAN_ID,
+	'INC0507876',
+	'N',
+	GETDATE(),
+	1,
+	'Moved Loan from Lender XXXX to XXXX',
+	'N',
+	'Y',
+	1,
+	'Allied.UniTrac.Loan',
+	LOAN_ID,
+	'PEND',
+	'N'
+FROM #TMPRC_01
+---- 218
+
+
+update SEARCH_FULLTEXT
+	set LENDER_ID = XXXX,
+		UPDATE_DT = GETDATE()
+		----- SELECT DISTINCT SF.PROPERTY_ID
+	FROM #TMPRC_01 t
+	JOIN SEARCH_FULLTEXT sf ON sf.PROPERTY_ID = t.PROPERTY_ID
+	----- 182
+	
+update WI
+set CONTENT_XML.modify('replace value of (/Content/Lender/Code/text())[1] with ("1045")'),
+	UPDATE_DT = GETDATE(),
+	UPDATE_USER_TX = 'INC0507876',
+	LOCK_ID = (WI.LOCK_ID + 1) % 256
+	----- SELECT *
+	FROM WORK_ITEM WI JOIN #TMPRC_01 T1 ON T1.LOAN_ID = WI.RELATE_ID
+where WI.status_cd not in ('Complete', 'Error', 'Withdrawn')
+and WI.purge_dt is null
+and WI.relate_type_cd = 'Allied.UniTrac.Loan'
+----- 2
+
+update WI
+set CONTENT_XML.modify('replace value of (/Content/Lender/Id/text())[1] with ("2047")'),
+	UPDATE_DT = GETDATE(),
+	UPDATE_USER_TX = 'INC0507876',
+	LOCK_ID = (WI.LOCK_ID + 1) % 256
+	----- SELECT *
+	FROM WORK_ITEM WI JOIN #TMPRC_01 T1 ON T1.LOAN_ID = WI.RELATE_ID
+where WI.status_cd not in ('Complete', 'Error', 'Withdrawn')
+and WI.purge_dt is null
+and WI.relate_type_cd = 'Allied.UniTrac.Loan'
+----- 2
+
+update WI
+set CONTENT_XML.modify('replace value of (/Content/Lender/Name/text())[1] with ("Vibrant Credit Union")'),
+	UPDATE_DT = GETDATE(),
+	UPDATE_USER_TX = 'INC0507876',
+	LOCK_ID = (WI.LOCK_ID + 1) % 256
+	----- SELECT *
+	FROM WORK_ITEM WI JOIN #TMPRC_01 T1 ON T1.LOAN_ID = WI.RELATE_ID
+where WI.status_cd not in ('Complete', 'Error', 'Withdrawn')
+and WI.purge_dt is null
+and WI.relate_type_cd = 'Allied.UniTrac.Loan'
+----- 2
+	
+update EQ
+	set PURGE_DT = GETDATE(),
+		UPDATE_DT = GETDATE(),
+		UPDATE_USER_TX = 'INC0507876',
+		LOCK_ID = (eq.LOCK_ID + 1) % 256
+		---- SELECT EQ.*
+	from #TMPRC_01 t    
+    inner join EVALUATION_QUEUE eq on T.RC_ID = eq.REQUIRED_COVERAGE_ID and eq.PURGE_DT is null
+	----- 0
+	
+update ee
+	set STATUS_CD = 'CLR',
+		PURGE_DT = GETDATE() ,
+		UPDATE_DT = GETDATE() ,
+		UPDATE_USER_TX = 'INC0507876',
+		LOCK_ID = (ee.LOCK_ID + 1) % 256
+		---- SELECT *
+	from #TMPRC_01 t   
+    inner join EVALUATION_EVENT ee on ee.REQUIRED_COVERAGE_ID = T.RC_ID and ee.PURGE_DT is null
+	where ee.STATUS_CD = 'PEND'
+	
+	
+---- NO CPI QUOTE & NO NOTICE CYCLE
+update rc
+	set UPDATE_DT = GETDATE() ,
+		UPDATE_USER_TX = 'INC0507876',
+		LOCK_ID = (rc.LOCK_ID + 1) % 256,
+		GOOD_THRU_DT = null,
+		LENDER_PRODUCT_ID = null,
+		LCGCT_ID = null,
+		NOTICE_DT = null,
+		NOTICE_TYPE_CD = NULL,
+		NOTICE_SEQ_NO = null,
+		CPI_QUOTE_ID = null,
+		LAST_EVENT_SEQ_ID = null,
+		LAST_EVENT_DT = null,
+		LAST_SEQ_CONTAINER_ID = null ,
+		RECORD_TYPE_CD = CASE WHEN RC.RECORD_TYPE_CD IN ( 'D' , 'A') THEN 'G' ELSE RC.RECORD_TYPE_CD END 
+		---- SELECT RC.RECORD_TYPE_CD , RC.CPI_QUOTE_ID , RC.NOTICE_SEQ_NO ,  *
+	from #TMPRC_01 t    
+    inner join REQUIRED_COVERAGE rc on rc.ID = T.RC_ID 
+    and rc.PURGE_DT is null 
+
+
+SELECT LN.*
+into unitrachdstorage..INC0507876_LN
+FROM LOAN LN JOIN #TMPRC_02 T1 ON T1.LOAN_ID = LN.ID
+
+SELECT PR.*
+into unitrachdstorage..INC0507876_PR
+FROM PROPERTY PR JOIN #TMPRC_02 T1 ON T1.PROPERTY_ID = PR.ID
+
+ SELECT  SF.*
+ into unitrachdstorage..INC0507876_SF
+	FROM #TMPRC_02 t
+	JOIN SEARCH_FULLTEXT sf ON sf.PROPERTY_ID = t.PROPERTY_ID
+
+SELECT wi.*
+ into unitrachdstorage..INC0507876_WI
+	FROM WORK_ITEM WI JOIN #TMPRC_02 T1 ON T1.LOAN_ID = WI.RELATE_ID
+where WI.status_cd not in ('Complete', 'Error', 'Withdrawn')
+and WI.purge_dt is null
+and WI.relate_type_cd = 'Allied.UniTrac.Loan'
+
+SELECT EQ.*
+ into unitrachdstorage..INC0507876_EQ
+	from #TMPRC_02 t    
+    inner join EVALUATION_QUEUE eq on T.RC_ID = eq.REQUIRED_COVERAGE_ID and eq.PURGE_DT is null
+	
+	
+ SELECT EE.*
+  into unitrachdstorage..INC0507876_EE
+	from #TMPRC_02 t   
+    inner join EVALUATION_EVENT ee on ee.REQUIRED_COVERAGE_ID = T.RC_ID and ee.PURGE_DT is null
+	where ee.STATUS_CD = 'PEND'
+
+	SELECT RC.*
+	  into unitrachdstorage..INC0507876_RC
+	from #TMPRC_02 t    
+    inner join REQUIRED_COVERAGE rc on rc.ID = T.RC_ID 
+    and rc.PURGE_DT is null 
+
+UPDATE LN SET LENDER_ID = 2047 , RECORD_TYPE_CD = CASE WHEN LN.RECORD_TYPE_CD IN ( 'D' , 'A') THEN 'G' ELSE LN.RECORD_TYPE_CD END ,
+STATUS_CD = 'A', EXTRACT_UNMATCH_COUNT_NO = 0  , UPDATE_DT = GETDATE() , UPDATE_USER_TX = 'INC0507876', 
+LOCK_ID = LN.LOCK_ID % 255 + 1
+---- SELECT DISTINCT LN.ID , LN.LENDER_ID , LN.STATUS_CD , LN.EXTRACT_UNMATCH_COUNT_NO , LN.DIVISION_CODE_TX
+FROM LOAN LN JOIN #TMPRC_02 T1 ON T1.LOAN_ID = LN.ID
+
+
+
+
+UPDATE PR SET LENDER_ID = 2047 , 
+RECORD_TYPE_CD = CASE WHEN PR.RECORD_TYPE_CD IN ( 'D' , 'A') THEN 'G' ELSE PR.RECORD_TYPE_CD END ,
+UPDATE_DT = GETDATE() , UPDATE_USER_TX = 'INC0507876', 
+LOCK_ID = PR.LOCK_ID % 255 + 1
+---- SELECT DISTINCT PR.ID , PR.RECORD_TYPE_CD
+FROM PROPERTY PR JOIN #TMPRC_02 T1 ON T1.PROPERTY_ID = PR.ID
+
+----- 182
+
+
+INSERT INTO
+	PROPERTY_CHANGE (
+		ENTITY_NAME_TX,
+		ENTITY_ID,
+		USER_TX,
+		ATTACHMENT_IN,
+		CREATE_DT,
+		AGENCY_ID,
+		DESCRIPTION_TX,
+		DETAILS_IN,
+		FORMATTED_IN,
+		LOCK_ID,
+		PARENT_NAME_TX,
+		PARENT_ID,
+		TRANS_STATUS_CD,
+		UTL_IN)
+SELECT DISTINCT
+	'Allied.UniTrac.Loan',
+	LOAN_ID,
+	'INC0507876',
+	'N',
+	GETDATE(),
+	1,
+	'Moved Loan from Lender 1999 to 1045',
+	'N',
+	'Y',
+	1,
+	'Allied.UniTrac.Loan',
+	LOAN_ID,
+	'PEND',
+	'N'
+FROM #TMPRC_01
+---- 218
+
+
+update SEARCH_FULLTEXT
+	set LENDER_ID = 2047,
+		UPDATE_DT = GETDATE()
+		----- SELECT DISTINCT SF.PROPERTY_ID
+	FROM #TMPRC_02 t
+	JOIN SEARCH_FULLTEXT sf ON sf.PROPERTY_ID = t.PROPERTY_ID
+	----- 182
+	
+update WI
+set CONTENT_XML.modify('replace value of (/Content/Lender/Code/text())[1] with ("1045")'),
+	UPDATE_DT = GETDATE(),
+	UPDATE_USER_TX = 'INC0507876',
+	LOCK_ID = (WI.LOCK_ID + 1) % 256
+	----- SELECT *
+	FROM WORK_ITEM WI JOIN #TMPRC_02 T1 ON T1.LOAN_ID = WI.RELATE_ID
+where WI.status_cd not in ('Complete', 'Error', 'Withdrawn')
+and WI.purge_dt is null
+and WI.relate_type_cd = 'Allied.UniTrac.Loan'
+----- 2
+
+update WI
+set CONTENT_XML.modify('replace value of (/Content/Lender/Id/text())[1] with ("2047")'),
+	UPDATE_DT = GETDATE(),
+	UPDATE_USER_TX = 'INC0507876',
+	LOCK_ID = (WI.LOCK_ID + 1) % 256
+	----- SELECT *
+	FROM WORK_ITEM WI JOIN #TMPRC_02 T1 ON T1.LOAN_ID = WI.RELATE_ID
+where WI.status_cd not in ('Complete', 'Error', 'Withdrawn')
+and WI.purge_dt is null
+and WI.relate_type_cd = 'Allied.UniTrac.Loan'
+----- 2
+
+update WI
+set CONTENT_XML.modify('replace value of (/Content/Lender/Name/text())[1] with ("Vibrant Credit Union")'),
+	UPDATE_DT = GETDATE(),
+	UPDATE_USER_TX = 'INC0507876',
+	LOCK_ID = (WI.LOCK_ID + 1) % 256
+	----- SELECT *
+	FROM WORK_ITEM WI JOIN #TMPRC_02 T1 ON T1.LOAN_ID = WI.RELATE_ID
+where WI.status_cd not in ('Complete', 'Error', 'Withdrawn')
+and WI.purge_dt is null
+and WI.relate_type_cd = 'Allied.UniTrac.Loan'
+----- 2
+	
+update EQ
+	set PURGE_DT = GETDATE(),
+		UPDATE_DT = GETDATE(),
+		UPDATE_USER_TX = 'INC0507876',
+		LOCK_ID = (eq.LOCK_ID + 1) % 256
+		---- SELECT EQ.*
+	from #TMPRC_02 t    
+    inner join EVALUATION_QUEUE eq on T.RC_ID = eq.REQUIRED_COVERAGE_ID and eq.PURGE_DT is null
+	----- 0
+	
+update ee
+	set STATUS_CD = 'CLR',
+		PURGE_DT = GETDATE() ,
+		UPDATE_DT = GETDATE() ,
+		UPDATE_USER_TX = 'INC0507876',
+		LOCK_ID = (ee.LOCK_ID + 1) % 256
+		---- SELECT *
+	from #TMPRC_02 t   
+    inner join EVALUATION_EVENT ee on ee.REQUIRED_COVERAGE_ID = T.RC_ID and ee.PURGE_DT is null
+	where ee.STATUS_CD = 'PEND'
+	
+	
+---- NO CPI QUOTE & NO NOTICE CYCLE
+update rc
+	set UPDATE_DT = GETDATE() ,
+		UPDATE_USER_TX = 'INC0507876',
+		LOCK_ID = (rc.LOCK_ID + 1) % 256,
+		GOOD_THRU_DT = null,
+		LENDER_PRODUCT_ID = null,
+		LCGCT_ID = null,
+		NOTICE_DT = null,
+		NOTICE_TYPE_CD = NULL,
+		NOTICE_SEQ_NO = null,
+		CPI_QUOTE_ID = null,
+		LAST_EVENT_SEQ_ID = null,
+		LAST_EVENT_DT = null,
+		LAST_SEQ_CONTAINER_ID = null ,
+		RECORD_TYPE_CD = CASE WHEN RC.RECORD_TYPE_CD IN ( 'D' , 'A') THEN 'G' ELSE RC.RECORD_TYPE_CD END 
+		---- SELECT RC.RECORD_TYPE_CD , RC.CPI_QUOTE_ID , RC.NOTICE_SEQ_NO ,  *
+	from #TMPRC_02 t    
+    inner join REQUIRED_COVERAGE rc on rc.ID = T.RC_ID 
+    and rc.PURGE_DT is null 

@@ -1,0 +1,274 @@
+
+-- get all RC's that have Summary Status as 'N' and have Status as 'A'
+-- 634
+IF OBJECT_ID ( 'tempdb.dbo.#TMP_NEW' ) IS NOT NULL
+	DROP TABLE #TMP_NEW
+
+GO
+
+SELECT
+DISTINCT
+	rc.ID,
+	rc.PROPERTY_ID,
+	rc.CPI_QUOTE_ID,
+	rc.NOTICE_SEQ_NO,
+	rc.TYPE_CD,
+	rc.STATUS_CD,
+	rc.SUMMARY_STATUS_CD,
+	rc.SUMMARY_SUB_STATUS_CD,
+	rc.INSURANCE_STATUS_CD,
+	rc.INSURANCE_SUB_STATUS_CD,
+	rc.CPI_STATUS_CD,
+	rc.CPI_SUB_STATUS_CD
+INTO #TMP_NEW
+FROM
+	LOAN l
+	JOIN COLLATERAL c ON c.LOAN_ID=l.ID AND c.PURGE_DT IS NULL
+	JOIN REQUIRED_COVERAGE rc ON rc.PROPERTY_ID= c.PROPERTY_ID AND rc.PURGE_DT IS NULL AND rc.RECORD_TYPE_CD='G'
+	JOIN LENDER_ORGANIZATION lo ON lo.TYPE_CD = 'DIV' AND l.LENDER_ID = lo.LENDER_ID AND lo.CODE_TX = l.DIVISION_CODE_TX AND lo.CODE_TX IN ('3')
+WHERE
+	RC.id IN (SELECT ID FROM UniTracHDStorage..INC0273458_RC)
+----- GET THE LIST OF RC'S IN #TMPRC
+-- 1
+
+IF OBJECT_ID('tempdb..#TMPRC') IS NOT NULL
+	DROP TABLE #TMPRC
+
+SELECT
+	*
+INTO #TMPRC
+FROM
+	#TMP_NEW
+WHERE
+	CPI_QUOTE_ID > 0
+
+-- 1
+
+IF OBJECT_ID('tempdb..#tmpIH') IS NOT NULL
+	DROP TABLE #tmpIH
+
+SELECT
+	IH.ID AS IH_ID
+INTO #tmpIH 
+FROM
+	#TMPRC tmp
+	JOIN INTERACTION_HISTORY IH
+		ON IH.RELATE_ID = tmp.CPI_QUOTE_ID
+WHERE
+	IH.TYPE_CD = 'CPI'
+	AND IH.RELATE_CLASS_TX = 'ALLIED.UNITRAC.CPIQUOTE'
+	AND tmp.ID = ISNULL(IH.SPECIAL_HANDLING_XML.value('(/SH/RC)[1]', 'BIGINT'), 0)
+	AND tmp.PROPERTY_ID = IH.property_id
+	AND ISNULL(IH.SPECIAL_HANDLING_XML.value('(/SH/Status)[1]', 'varchar(20)'), '') = 'Open'
+	AND IH.PURGE_DT IS NULL
+
+-- 634
+IF OBJECT_ID('tempdb..#TMP_NEW_RCs') IS NOT NULL
+DROP TABLE #TMP_NEW_RCs
+
+SELECT DISTINCT
+	tn.ID
+INTO #TMP_NEW_RCs
+FROM
+	#TMP_NEW tn
+
+
+--634
+IF EXISTS (SELECT * 
+                 FROM UniTracHDStorage.INFORMATION_SCHEMA.TABLES 
+                 WHERE TABLE_SCHEMA = 'dbo' 
+                 AND  TABLE_NAME = 'BUG31822_RC_UPDATE_DETAILS')
+BEGIN
+	DROP TABLE UniTracHDStorage.dbo.BUG31822_RC_UPDATE_DETAILS
+END
+
+SELECT
+	*
+INTO UniTracHDStorage.dbo.BUG31822_RC_UPDATE_DETAILS
+FROM
+	#TMP_NEW tn
+
+		-- 1
+		INSERT INTO PROPERTY_CHANGE
+				(
+					ENTITY_NAME_TX,
+					ENTITY_ID,
+					USER_TX,
+					ATTACHMENT_IN,
+					CREATE_DT,
+					AGENCY_ID,
+					DESCRIPTION_TX,
+					DETAILS_IN,
+					FORMATTED_IN,
+					LOCK_ID,
+					PARENT_NAME_TX,
+					PARENT_ID,
+					TRANS_STATUS_CD,
+					UTL_IN
+				)
+			SELECT DISTINCT
+				'Allied.UniTrac.RequiredCoverage',
+				tf.ID,
+				'UNITRAC',
+				'N',
+				GETDATE(),
+				1,
+				'Notice Cycle Cleared',
+				'N',
+				'Y',
+				1,
+				'Allied.UniTrac.RequiredCoverage',
+				TF.ID,
+				'PEND',
+				'N'
+			FROM
+				#TMP_NEW tf
+			WHERE
+				NOTICE_SEQ_NO > 0
+
+
+		--1
+		UPDATE QT
+		SET
+			QT.CLOSE_REASON_CD	= 'NCC',
+			QT.CLOSE_DT			= GETDATE(),
+			QT.UPDATE_DT		= GETDATE(),
+			QT.UPDATE_USER_TX	= 'INC0273458',
+			QT.LOCK_ID			= (QT.LOCK_ID % 255) + 1
+		--SELECT COUNT(*)
+		FROM
+			CPI_QUOTE QT
+			JOIN #TMPRC RC
+				ON RC.CPI_QUOTE_ID = QT.ID
+
+		--1
+		UPDATE IH
+		SET
+			SPECIAL_HANDLING_XML.modify('replace value of (/SH/Status/text())[1] with "Closed" '),
+			UPDATE_DT		= GETDATE(),
+			UPDATE_USER_TX	= 'INC0273458',
+			LOCK_ID			= (LOCK_ID % 255) + 1
+		--SELECT COUNT(*)
+		FROM
+			INTERACTION_HISTORY IH
+			JOIN #tmpIH
+				ON #tmpIH.IH_ID = IH.ID
+
+
+		-- Update RequiredCoverage Status from Track to Active
+
+
+		-- 634
+		UPDATE RC
+		SET
+			SUMMARY_STATUS_CD		= 'A',
+			INSURANCE_STATUS_CD		= 'A',
+			BEGAN_NEW_IN			= 'N',
+			GOOD_THRU_DT			= NULL,
+			CPI_QUOTE_ID			= NULL,
+			NOTICE_DT				= NULL,
+			NOTICE_TYPE_CD			= NULL,
+			NOTICE_SEQ_NO			= NULL,
+			LAST_EVENT_SEQ_ID		= NULL,
+			LAST_EVENT_DT			= NULL,
+			LAST_SEQ_CONTAINER_ID	= NULL,
+			UPDATE_DT				= GETDATE(),
+			UPDATE_USER_TX			= 'INC0273458',
+			LOCK_ID					= (RC.LOCK_ID % 255) + 1
+		---- SELECT COUNT(*)
+		FROM
+			REQUIRED_COVERAGE RC
+			JOIN #TMP_NEW_RCs TMP
+				ON TMP.ID = RC.ID
+
+		-- Add Property change log
+		-- 634
+		INSERT INTO PROPERTY_CHANGE
+				(
+					ENTITY_NAME_TX,
+					ENTITY_ID,
+					USER_TX,
+					ATTACHMENT_IN,
+					CREATE_DT,
+					AGENCY_ID,
+					DESCRIPTION_TX,
+					DETAILS_IN,
+					FORMATTED_IN,
+					LOCK_ID,
+					PARENT_NAME_TX,
+					PARENT_ID,
+					TRANS_STATUS_CD,
+					UTL_IN
+				)
+			SELECT DISTINCT
+				'Allied.UniTrac.RequiredCoverage',
+				TMP.ID,
+				'UNITRAC',
+				'N',
+				GETDATE(),
+				1,
+				'Changed Summary Status from New to Audit',
+				'N',
+				'Y',
+				1,
+				'Allied.UniTrac.RequiredCoverage',
+				TMP.ID,
+				'PEND',
+				'N'
+			FROM
+				#TMP_NEW_RCs TMP
+
+		-- 2491
+		UPDATE EVALUATION_EVENT
+		SET
+			STATUS_CD		= 'CLR',
+			UPDATE_DT		= GETDATE(),
+			UPDATE_USER_TX	= 'INC0273458',
+			LOCK_ID			= (LOCK_ID % 255) + 1
+		-- SELECT ee.*
+		FROM
+			EVALUATION_EVENT ee
+			JOIN #TMP_NEW te
+				ON ee.REQUIRED_COVERAGE_ID = te.ID
+		WHERE
+			ee.STATUS_CD = 'PEND'
+			AND ee.EVENT_SEQUENCE_ID > 0
+			AND ee.PURGE_DT IS NULL
+
+
+
+
+			UPDATE  REQUIRED_COVERAGE
+SET  
+        INSURANCE_STATUS_CD = 'F' ,
+        INSURANCE_SUB_STATUS_CD = 'D' ,
+        SUMMARY_STATUS_CD = 'F' ,
+        SUMMARY_SUB_STATUS_CD = 'D' ,
+       -- GOOD_THRU_DT = NULL ,
+        UPDATE_DT = GETDATE() ,
+        UPDATE_USER_TX = 'INC0253579' ,
+        BEGAN_NEW_IN = 'N' ,
+        CPI_QUOTE_ID = NULL ,
+        NOTICE_DT = NULL ,
+        NOTICE_TYPE_CD = NULL ,
+        NOTICE_SEQ_NO = NULL ,
+        LAST_EVENT_SEQ_ID = NULL ,
+        LAST_EVENT_DT = NULL ,
+        LAST_SEQ_CONTAINER_ID = NULL ,
+        LOCK_ID = LOCK_ID % 255 + 1
+-- SELECT GOOD_THRU_DT,* FROM REQUIRED_COVERAGE 
+WHERE   ID IN ( SELECT  id
+                FROM    UniTracHDStorage..INC0273458_RC ) --AND SUMMARY_STATUS_CD <> 'E'
+        AND PURGE_DT IS NULL
+--12993
+
+UPDATE OWNER_POLICY
+ SET STATUS_CD = 'F' ,
+SUB_STATUS_CD = 'D', 
+UPDATE_DT = GETDATE() , 
+UPDATE_USER_TX = 'INC0253579', 
+LOCK_ID = LOCK_ID % 255 + 1
+-- SELECT * FROM Unitrac..OWNER_POLICY
+WHERE ID IN (SELECT id FROM UniTracHDStorage..INC0273458_OP)  AND PURGE_DT IS NULL
+--13427
+

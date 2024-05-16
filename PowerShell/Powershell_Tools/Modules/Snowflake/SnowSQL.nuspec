@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>SnowSQL</id>
+    <version>0.1.2.26730560</version>
+    <authors>Kevin Marquette</authors>
+    <owners>loanDepot</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <licenseUrl>https://github.com/loanDepot/SnowSQL</licenseUrl>
+    <projectUrl>https://github.com/loanDepot/SnowSQL</projectUrl>
+    <description>User and Role management for Snowflake using SnowSQL</description>
+    <releaseNotes></releaseNotes>
+    <copyright>(c) 2019 loanDepot. All rights reserved.</copyright>
+    <tags>loandDepot Snowflake PSEdition_Desktop PSEdition_Core PSModule PSIncludes_Function PSFunction_Add-SnowSqlRoleMember PSFunction_Disable-SnowSqlUser PSFunction_Enable-SnowSqlUser PSFunction_Get-SnowSqlConnection PSFunction_Get-SnowSqlRole PSFunction_Get-SnowSqlRoleMember PSFunction_Get-SnowSqlUser PSFunction_Invoke-SnowSql PSFunction_New-SnowSqlRole PSFunction_New-SnowSqlUser PSFunction_Open-SnowSqlConnection PSFunction_Remove-SnowSqlRoleMember PSCommand_Add-SnowSqlRoleMember PSCommand_Disable-SnowSqlUser PSCommand_Enable-SnowSqlUser PSCommand_Get-SnowSqlConnection PSCommand_Get-SnowSqlRole PSCommand_Get-SnowSqlRoleMember PSCommand_Get-SnowSqlUser PSCommand_Invoke-SnowSql PSCommand_New-SnowSqlRole PSCommand_New-SnowSqlUser PSCommand_Open-SnowSqlConnection PSCommand_Remove-SnowSqlRoleMember</tags>
+  </metadata>
+</package>

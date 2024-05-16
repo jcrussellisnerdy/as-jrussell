@@ -1,0 +1,68 @@
+USE [master]
+GO
+CREATE LOGIN [ELDREDGE_A\SQL_IVOS_Development] FROM WINDOWS WITH DEFAULT_DATABASE=[tempdb]
+GO
+USE [DBA]
+GO
+CREATE USER [ELDREDGE_A\SQL_IVOS_Development] FOR LOGIN [ELDREDGE_A\SQL_IVOS_Development]
+GO
+USE [DBA]
+GO
+ALTER ROLE [db_datareader] ADD MEMBER [ELDREDGE_A\SQL_IVOS_Development]
+GO
+USE [IVOS]
+GO
+CREATE USER [ELDREDGE_A\SQL_IVOS_Development] FOR LOGIN [ELDREDGE_A\SQL_IVOS_Development]
+GO
+USE [IVOS]
+GO
+ALTER ROLE [db_datareader] ADD MEMBER [ELDREDGE_A\SQL_IVOS_Development]
+GO
+USE [IVOS]
+GO
+--ALTER ROLE [db_datawriter] ADD MEMBER [ELDREDGE_A\SQL_IVOS_Development]
+GO
+USE [IVOSHDStorage]
+GO
+CREATE USER [ELDREDGE_A\SQL_IVOS_Development] FOR LOGIN [ELDREDGE_A\SQL_IVOS_Development]
+GO
+USE [IVOSHDStorage]
+GO
+ALTER ROLE [db_datareader] ADD MEMBER [ELDREDGE_A\SQL_IVOS_Development]
+GO
+USE [IVOSHDStorage]
+GO
+--ALTER ROLE [db_datawriter] ADD MEMBER [ELDREDGE_A\SQL_IVOS_Development]
+GO
+USE [Jasper]
+GO
+CREATE USER [ELDREDGE_A\SQL_IVOS_Development] FOR LOGIN [ELDREDGE_A\SQL_IVOS_Development]
+GO
+USE [Jasper]
+GO
+ALTER ROLE [db_datareader] ADD MEMBER [ELDREDGE_A\SQL_IVOS_Development]
+GO
+USE [Jasper]
+GO
+--ALTER ROLE [db_datawriter] ADD MEMBER [ELDREDGE_A\SQL_IVOS_Development]
+GO
+USE [jasperserver]
+GO
+CREATE USER [ELDREDGE_A\SQL_IVOS_Development] FOR LOGIN [ELDREDGE_A\SQL_IVOS_Development]
+GO
+USE [jasperserver]
+GO
+ALTER ROLE [db_datareader] ADD MEMBER [ELDREDGE_A\SQL_IVOS_Development]
+GO
+USE [jasperserver]
+GO
+--ALTER ROLE [db_datawriter] ADD MEMBER [ELDREDGE_A\SQL_IVOS_Development]
+GO
+USE [tempdb]
+GO
+CREATE USER [ELDREDGE_A\SQL_IVOS_Development] FOR LOGIN [ELDREDGE_A\SQL_IVOS_Development]
+GO
+USE [tempdb]
+GO
+ALTER ROLE [db_datareader] ADD MEMBER [ELDREDGE_A\SQL_IVOS_Development]
+GO

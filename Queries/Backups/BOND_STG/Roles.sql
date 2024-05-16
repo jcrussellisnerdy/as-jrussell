@@ -1,0 +1,52 @@
+USE ROLE ACCOUNTADMIN; 
+
+DECLARE ROLE_NAME varchar default (select count(*) from snowflake.account_usage.roles where NAME = 'OWNER_BOND_STAGE'AND DELETED_ON IS NULL) ;
+BEGIN 
+IF (ROLE_NAME = 0)
+THEN 
+BEGIN
+CREATE ROLE OWNER_BOND_STAGE;
+RETURN 'SUCCESS: Role created';
+END ;
+ELSEIF (ROLE_NAME <> 0)
+THEN 
+BEGIN 
+RETURN 'WARNING: Role exists';
+END;
+END IF;
+END;
+
+
+
+DECLARE ROLE_NAME varchar default (select count(*) from snowflake.account_usage.roles where NAME = 'READWRITE_BOND_STAGE'AND DELETED_ON IS NULL) ;
+BEGIN 
+IF (ROLE_NAME = 0)
+THEN 
+BEGIN
+CREATE ROLE READWRITE_BOND_STAGE;
+RETURN 'SUCCESS: Role created';
+END ;
+ELSEIF (ROLE_NAME <> 0)
+THEN 
+BEGIN 
+RETURN 'WARNING: Role exists';
+END;
+END IF;
+END;
+
+
+DECLARE ROLE_NAME varchar default (select count(*) from snowflake.account_usage.roles where NAME = 'READ_BOND_STAGE'AND DELETED_ON IS NULL) ;
+BEGIN 
+IF (ROLE_NAME = 0)
+THEN 
+BEGIN
+CREATE ROLE READ_BOND_STAGE;
+RETURN 'SUCCESS: Role created';
+END ;
+ELSEIF (ROLE_NAME <> 0)
+THEN 
+BEGIN 
+RETURN 'WARNING: Role exists';
+END;
+END IF;
+END;

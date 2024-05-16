@@ -1,0 +1,27 @@
+SELECT *
+FROM LENDER
+WHERE CODE_TX = '2982'
+
+SELECT *
+FROM LOAN
+WHERE LENDER_ID = 2271
+
+SELECT *
+FROM LENDER_PAYEE_CODE_FILE
+WHERE LENDER_ID = 2257 AND PAYEE_CODE_TX = '118-1068'
+
+SELECT *
+FROM LENDER_PAYEE_CODE_FILE L
+join unitrachdstorage..INC0363748 LL on L.PAYEE_CODE_TX = LL.[Lender Payee Code]
+WHERE LENDER_ID = 2257 
+
+
+select * from unitrachdstorage..INC0363748 
+
+
+
+update L set department_code_tx = LL.[F2], L.LOCK_ID = L.LOCK_ID+1, UPDATE_DT = GETDATE() , UPDATE_USER_TX = 'INC0363748'
+--SELECT department_code_tx , LL.[F2],*
+FROM LENDER_PAYEE_CODE_FILE L
+join unitrachdstorage..INC0363748 LL on L.PAYEE_CODE_TX = LL.[Lender Payee Code]
+WHERE LENDER_ID = 2257 

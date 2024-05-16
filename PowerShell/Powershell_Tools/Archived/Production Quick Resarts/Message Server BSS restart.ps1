@@ -1,0 +1,1 @@
+﻿Get-Service	 -ComputerName	 Unitrac-WH08	 -Name	MSGSRVRBSS	|Restart-Service
