@@ -1,0 +1,2 @@
+C:\Downloads\Test\obj\Debug\Test.rptprojAssemblyReference.cache
+C:\Downloads\Test\obj\Debug\Test.rptproj.CoreCompileInputs.cache

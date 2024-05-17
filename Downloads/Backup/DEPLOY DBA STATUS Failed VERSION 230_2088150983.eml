@@ -1,0 +1,165 @@
+Received: from MW4PR04CA0088.namprd04.prod.outlook.com (2603:10b6:303:6b::33)
+ by CO6PR19MB5420.namprd19.prod.outlook.com (2603:10b6:303:14f::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5250.15; Fri, 13 May
+ 2022 15:14:02 +0000
+Received: from CO1NAM11FT063.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:303:6b:cafe::dd) by MW4PR04CA0088.outlook.office365.com
+ (2603:10b6:303:6b::33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5227.23 via Frontend
+ Transport; Fri, 13 May 2022 15:14:02 +0000
+Authentication-Results: spf=pass (sender IP is 205.220.165.166)
+ smtp.mailfrom=alliedsolutions.net; dkim=pass (signature was verified)
+ header.d=alliedsolutions.net;dmarc=pass action=none
+ header.from=alliedsolutions.net;compauth=pass reason=100
+Received-SPF: Pass (protection.outlook.com: domain of alliedsolutions.net
+ designates 205.220.165.166 as permitted sender)
+ receiver=protection.outlook.com; client-ip=205.220.165.166;
+ helo=mx0a-001c9401.pphosted.com;
+Received: from mx0a-001c9401.pphosted.com (205.220.165.166) by
+ CO1NAM11FT063.mail.protection.outlook.com (10.13.175.37) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5250.13 via Frontend Transport; Fri, 13 May 2022 15:14:02 +0000
+Received: from pps.filterd (m0218921.ppops.net [127.0.0.1])
+	by mx0a-001c9401.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 24DAFiFX031633
+	for <fa979978.alliedsolutions.net@amer.teams.ms>; Fri, 13 May 2022 10:14:01 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedsolutions.net; h=message-id :
+ mime-version : from : to : reply-to : date : subject :
+ content-transfer-encoding : content-type; s=as1;
+ bh=LEoPLPiF5yHsppoSk1VgiL5cmnqw0rplr+vHHQxG0AU=;
+ b=FIdHMvv53AWfeLmUi1ft0B0brJdF/vYBMbiOP6+AAnMqq9O+XGjukr3xZFDnUx2JRY4J
+ UgT41Vzvu62ytGMtnrL3GOVz8+Ie95kRgplwTv9jrt2ZFAfLeXhmb2jlgiqHR6ancd25
+ 6gnuH4bNj0gsvMeCf951neRWNa55v21oVPu9cp0f/v6S+sQl/sr3YP8P3W6uxWXl4fdp
+ k+U/2TP++rPUysu07WqFvSO0UGe4zDCl64L2SpCTLFL38AG4oeBwBNyhRsP5wvKdX/dF
+ OG3QWtPrELACM2/fMU2YG3rjTnkI7URa7tWYlpQqElg8nb4lNYdLyCM5i+BN9luBN63y jg== 
+Received: from mail.alliedsolutions.net (mail.alliedsolutions.net [64.56.213.53])
+	by mx0a-001c9401.pphosted.com (PPS) with ESMTPS id 3g1ndxgbs6-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT)
+	for <fa979978.alliedsolutions.net@amer.teams.ms>; Fri, 13 May 2022 10:14:01 -0500
+Received: from mailrelay.alliedsolutions.net ([10.9.7.17])
+          by mail.alliedsolutions.net (IBM Domino Release 9.0.1FP10 HF383)
+          with ESMTP id 2022051310140079-558946 ;
+          Fri, 13 May 2022 10:14:00 -0500 
+Received: from DBA-SQLPRD-01 (DBA-SQLPRD-01.colo.as.local [10.9.3.14])
+	by mailrelay.alliedsolutions.net (8.14.7/8.14.7) with ESMTP id 24DFE0Cq019727
+	for <fa979978.alliedsolutions.net@amer.teams.ms>; Fri, 13 May 2022 10:14:00 -0500
+Message-Id: <202205131514.24DFE0Cq019727@mailrelay.alliedsolutions.net>
+Importance: Low
+MIME-Version: 1.0
+From: no-reply-DBA@alliedsolutions.net
+To: fa979978.alliedsolutions.net@amer.teams.ms
+Reply-To: no-reply-DBA@alliedsolutions.net
+Date: 13 May 2022 10:14:00 -0500
+Subject: DEPLOY: DBA STATUS: Failed VERSION: 2.3.0
+X-MIMETrack: Itemize by SMTP Server on AS-SMTP/ASI(Release 9.0.1FP10 HF383|November 19, 2018) at
+ 05/13/2022 10:14:00 AM,
+	Serialize by Router on AS-SMTP/ASI(Release 9.0.1FP10 HF383|November 19, 2018) at
+ 05/13/2022 10:14:01 AM,
+	Serialize complete at 05/13/2022 10:14:01 AM
+X-TNEFEvaluated: 1
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset=utf-8
+X-Proofpoint-ORIG-GUID: tocv_zJ782K0gTdchd7yPDW2uxFU_pQq
+X-Proofpoint-GUID: tocv_zJ782K0gTdchd7yPDW2uxFU_pQq
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.858,Hydra:6.0.486,FMLib:17.11.64.514
+ definitions=2022-05-13_04,2022-05-13_01,2022-02-23_01
+X-Proofpoint-Spam-Reason: safe
+Return-Path: no-reply-DBA@alliedsolutions.net
+X-EOPAttributedMessage: 0
+X-EOPTenantAttributedMessage: 9cc2390c-a595-4596-ad80-a78c3216353a:0
+X-MS-PublicTrafficType: Email
+X-MS-Exchange-Forest-ArrivalHubServer: CO6PR19MB5420.namprd19.prod.outlook.com
+X-MS-Exchange-Forest-MessageScope: f0cb0384-30c2-4a0b-b602-787a2b708b29
+X-MS-Office365-Filtering-Correlation-Id: 3f2ad0bf-3200-49f5-eab3-08da34f3368f
+X-MS-TrafficTypeDiagnostic: CO6PR19MB5420:EE_
+X-MS-Exchange-Forest-Language: en
+X-MS-Exchange-Forest-IndexAgent-0:
+ AQ0CZW4AAegBAAAPAAADH4sIAAAAAAAEANVTX0/bMBC/0DZpy9oOMR
+ Da030BR7DHvrVLC53QxIjGy1JNbnJMVUNsbKcTX3Cfi0u3ogWNatrb
+ LFuyLr9/d4p/+L0u/raiyQ3OCutkkZIdor3PbUZr+Z3S07PQZKG0Ya
+ 5SmddZTwyMV0utKRviKQqM5R3hDRm7VEWdEKdmqZ3FW7nMK/S7XrcO
+ qNaX6Wh2OYkqoU+XczZZqxWJ+D5P7zIUMZk1ma3zy0lRRNLJhbSE0X
+ iEKCbGKDNKHYfC2CmNYlbo0k05Cb4fJp8tB05yQ4VdkPlGJjlfuoty
+ kTBb8EmYYyi7MiqlrDSUqFyGW4uxTFelDjkMCk63UJb+676s/rp1uS
+ ZbAf6+t7rcHMMkI52rh2gcanuGwklO4S6Udbua/ImKxpsmhSGtpirP
+ yDzXR5GZh+uywKnMeSTiVpl0dz5ygucfs4Er9ZU0/LM6HtH8xS+7Xg
+ P0G9DswH7Pg0Po70GDdwsOO9ANvI4H4EGzCa0AjgJo+157Uzn2odOA
+ lu9BDwIf2n0Y1OlBuwL4+/CqCT5LeR58qOpVxYeApQbwmn2Z2KjE3/
+ 6D4Mc/CTJ4c/mlOfAO+rC34ba6z3sMnuoDOGCRVrVPqiQenEDzDRxv L0c14iM968p1egQAAA==
+X-MS-Exchange-Forest-IndexAgent: 1 499
+X-MS-Exchange-Forest-EmailMessageHash: F44D6F37
+X-MS-Exchange-Forest-RulesExecuted: CO6PR19MB5420
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+ =?utf-8?B?Tk1DQkRrWmx3TTRxRlBGcGYvTDZERzRSVGNaWVAxSE83ZFVsOFhZYmY4dncw?=
+ =?utf-8?B?MDRSNTd2SCs4TnMwcFVkbGVUZVF6TXMyZkRVVEF5cC9rakRvMkJDTGtGY0No?=
+ =?utf-8?B?ODlKS09EenpnVEFsZGZ0MTNERTkyQkJXS1hZYytJQmEwK2g4Qm9lNno3TDlJ?=
+ =?utf-8?B?UlBMTkpqeUJ6Q0R1K1NKdzJndDdJZzJURGNjNG5KOWljV0hJSEV5R1JSMzB6?=
+ =?utf-8?B?d1kyZWhxSVdyeVppcVVxRHF1UlorZmhQVmMwdDZRTS80YkZZVXZGTHRpbXJw?=
+ =?utf-8?B?UzAxaTltRFNoUDBORjlGQkVQVkhLWW5wRW80SVM1UFU4YU9ubmU3YU9td3Uv?=
+ =?utf-8?B?ZjFJUmJYUXBkb1ErV1dNS2tkbkFrWXhBZGhIb1VITnhsUkRlWTBodWYzOFhH?=
+ =?utf-8?B?WnhDWjA1U0RCZHMrSDlmdTAwMTFpak9Qc0lmR2I5Skg4QTA0QUdUcnFDS3Vw?=
+ =?utf-8?B?OXpyTStEZ2ZYc3d6S3IzRkxmYit0TFA1dWFRQjJGSXk2UUhmSDJtNTBBQi81?=
+ =?utf-8?B?ZFhMNkVvZG42TThYbEdqR2grT1oyeGxwUFRvbUJ4Q2V2eWR0ZUdLSTR2RjZZ?=
+ =?utf-8?B?VzBDUmE1SkpxZ2dJR1hPYTVOOTNhVzViNDV5c29iN2NrR1psV0QvZHhwSzhB?=
+ =?utf-8?B?RGdIaXRHOHBVQ2x0NzNHSk9nVk9BOCtVc0ZwM2QyVThqNHY4MG9yaXg4RWFU?=
+ =?utf-8?B?aml1NWExMXNIMEUxYms0YjlNSmJZL1I3bC93UHBGM1l6MXYyakl5YldmdEFU?=
+ =?utf-8?B?U0lOVDgwOFllanhSRFVGQzhPUU1rM3BSMmVJVnZvYUdEUTdoVTEyTjZMeUdS?=
+ =?utf-8?B?WWhVVzZybE9XYktqM0J6ZDhhNnMwZ3FvUkpienFHNjJVUFhZWjg1T3VONU16?=
+ =?utf-8?B?SnJzTDIxVEFia1VxSzZ1TDJpbDduWFJ6U3EyVjc4ZDQwc0hHV0FTdFhtQzRn?=
+ =?utf-8?B?Nmh5d2VWdXRuVlpqc1B5bnFQS0wrdCtSQ0srRjZudmh6TGdNbnRNNjdRS0FX?=
+ =?utf-8?B?SGpLUDI5TWczYmZ1TmFuU2F0REZQUGFaS05VSWJrcklNUk41bFNEUG1PVzAx?=
+ =?utf-8?B?Y2YzYlFUbktxam1yUFp3c2FueldqcHgvL1ZsNEsyL3BEUG1KT3J2aWcyeHFm?=
+ =?utf-8?B?ZVhHNHl6VC9MbmpxN1haMmp3WVBWWExLMndLWHBFRUMvSVJLWWMybUsyT0o3?=
+ =?utf-8?B?TDdLSDNtLytkQVhLeFpmS2FUQ0ZrQjZ2VXZ3aWVNWlhoTFEvdjZpWjVoOGpL?=
+ =?utf-8?B?eEt1SkhpNUtzeDFJMy8rTnlIa3pmVHRPSzZ0ZzRQVVU0RXBmbWk5WXgzcUZG?=
+ =?utf-8?B?WFE0RU5OTm9tUmxucVJjZVRhYU44b2hCQXFmdzhPVGRNUDZ3enNMVC84VGJj?=
+ =?utf-8?B?cDVncVNoeEZlVk9ZU3MyeDFlcEFFcURsUmpEKzB1bVFEQnE4TW0zVWFTSWMz?=
+ =?utf-8?B?Q1pNMnl3ZTZjNmNoVldWM0NKUFZKaTlZMk9ZaHpETWhIZXgzK3R5Sms2SUVP?=
+ =?utf-8?B?ZzlMZXNVQVQrcWJtOFQrRXV3cFZNNDJUWUYxdThXaURGM1hFcFRBVW96MDNQ?=
+ =?utf-8?B?a0hiKy82Y1hHd0JzVW5iZ1BRYnNFS21wMFN2aGcyTVlpbmYyMzE0ZlZIbkhB?=
+ =?utf-8?B?a29WbXZoSldKeTE1UU9TRUsyTllvU2ZGYUhnR1RZcXk0WjNoTFJLaGttS1hQ?=
+ =?utf-8?B?V1RUeG1pNGloRUJ1ck5OcXJ2aWxDUkNFZjh4ZUEyb3poN0paRE5QUG5tSjBu?=
+ =?utf-8?B?ZlpyY2dRVjNHY2svV2VuSzhuQlVtMmg4c3pYN000TnVrVThNQSs3alo5QjdV?=
+ =?utf-8?B?bmFkbERPTjNGM09jM3FzRUw0Q1BpRlFDZjJkVXdyYktKbm9SdW5HbURQQUty?=
+ =?utf-8?B?L3B0M2h4V21FUDdVeTEwdXBxaWc0YmFmd0s5KzdOc0w2R1RtTlpHbGJYckEv?=
+ =?utf-8?B?THhPL0ZhN1dWZ2d5OHpzUWNQcTI2VTVEbFFqRTFCSmdmUEdsVUsxZG9SVGFD?=
+ =?utf-8?B?dmx0M2VtcmdiaXdZb1NSZXprdmtwdkpNcFJMd3piTGRZZ0M2RlVEbVV5S3R5?=
+ =?utf-8?B?U3Y0MmtqaDluUXhPWnp2TDFmU0p5NUo1eU1VSzBNTGl5blFTUWR6bmxxUkEy?=
+ =?utf-8?B?S3dRdnFld0lkaGZISnk0KzFEYXNOaCtTa2VCTC93MjZEeHlKOGhXSUp0amZ0?=
+ =?utf-8?B?cnloY2NxNmhLaDBuNUJzY2xnVXpTQzE2a3ViMDdJYlFORDlEUUhWdUlBOW8w?=
+ =?utf-8?B?VFd0dU5HVGc3Y3RCM0hzellRVXZyYmtQNVo2NVhnUFRPWU85Z3NNclZaSDVP?=
+ =?utf-8?B?a1NqbnVYY1FJZmRFd3ZMeWtmSkUxT1lNaDljbGhpR2F4L0tTQ1NCWWpVQ2w5?=
+ =?utf-8?Q?PuWRUQhtOtAd3VK9DLCTGZELxrY7ZG9Nfjf6I?=
+X-Forefront-Antispam-Report:
+ CIP:205.220.165.166;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mx0a-001c9401.pphosted.com;PTR:mx0a-001c9401.pphosted.com;CAT:NONE;SFS:(13230001)(336012)(9686003)(26005)(1076003)(6916009)(86362001)(5660300002)(1096003)(356005)(4744005)(7596003)(7636003)(83380400001)(8676002);DIR:INB;
+X-OriginatorOrg: amer.teams.ms
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 May 2022 15:14:02.2351
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3f2ad0bf-3200-49f5-eab3-08da34f3368f
+X-MS-Exchange-CrossTenant-Id: 9cc2390c-a595-4596-ad80-a78c3216353a
+X-MS-Exchange-CrossTenant-AuthSource:
+ CO1NAM11FT063.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: Internet
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO6PR19MB5420
+
+DQogICAgICAgICAgICBERVYgSW5zdGFuY2VzOiBzcWxzZGV2YXdlYzAxLnJkLmFzLmxv
+Y2FsDQogICAgICAgICAgICBJbnN0YW5jZXMgU2tpcHBlZDogMCAtIFNhbWUgVmVyc2lv
+bg0KICAgICAgICAgICAgU2NyaXB0cyBmYWlsZWQ6IDINCiAgICAgICAgICAgIA0KICAg
+ICAgICAgICAgICAgIFtGQUlMRUQgLSBTUUxdIEludm9rZS1TcWxjbWQgLVNlcnZlcklu
+c3RhbmNlIHNxbHNkZXZhd2VjMDEucmQuYXMubG9jYWwgLURhdGFiYXNlIERCQSAgLUVy
+cm9yQWN0aW9uIFN0b3AgLUlucHV0RmlsZSBDOlxVc2Vyc1xscmVuc2JlcmdlclxHaXRI
+dWJcREJBLURCQVxTdG9yZWRQcm9jZWR1cmVcb2xhLkRhdGFiYXNlQmFja3VwLnNxbCAt
+dmVyYm9zZQ0KICAgICAgICAgICAgICAgIFtGQUlMRUQgLSBTUUxdIEludm9rZS1TcWxj
+bWQgLVNlcnZlckluc3RhbmNlIHNxbHNkZXZhd2VjMDEucmQuYXMubG9jYWwgLURhdGFi
+YXNlIERCQSAgLUVycm9yQWN0aW9uIFN0b3AgLUlucHV0RmlsZSBDOlxVc2Vyc1xscmVu
+c2JlcmdlclxHaXRIdWJcREJBLURCQVxTdG9yZWRQcm9jZWR1cmVcb2xhLnNwX0RhdGFi
+YXNlUmVzdG9yZS5zcWwgLXZlcmJvc2UNCiAgICAgICAgICAgICAgICBbRkFJTEVEIC0g
+U3RvcmVkUHJvY2VkdXJlXSAuXGRlcGxveURCLnBzMSAtdGFyZ2V0SG9zdCBzcWxzZGV2
+YXdlYzAxLnJkLmFzLmxvY2FsIC10YXJnZXREQiBEQkEgLXJlcG9Gb2xkZXIgU3RvcmVk
+UHJvY2VkdXJlIC1kcnlSdW4gRmFsc2UgLWZvcmNlDQogICAgICAgICAgICAgICAgW0ZB
+SUxFRCAtIFNldC1TUUxTdGFydHVwUGFyYW1ldGVyc10gU2V0LVNRTFN0YXJ0dXBQYXJh
+bWV0ZXJzIHNxbHNkZXZhd2VjMDEucmQuYXMubG9jYWw=
+

@@ -1,0 +1,19 @@
+DECLARE @AREA as varchar(100);
+SET @AREA = 'DDDDDDDD'   /* Replace 'DDDDDDDD' with new Product  */;
+
+WITH New_Service_Level as (
+Select 
+AREACATEGORYISSUEID,
+ISSUE,
+ISNUMERIC(Substring(ISSUE,CHARINDEX('(',ISSUE,1)+1,(CHARINDEX(')',ISSUE,1) -(CHARINDEX('(',ISSUE,1)+1)))) as gg2,
+CASE WHEN ISNUMERIC(Substring(ISSUE,CHARINDEX('(',ISSUE,1)+1,(CHARINDEX(')',ISSUE,1) -(CHARINDEX('(',ISSUE,1)+1)))) = 1
+	THEN CAST(Substring(ISSUE,CHARINDEX('(',ISSUE,1)+1,(CHARINDEX(')',ISSUE,1) -(CHARINDEX('(',ISSUE,1)+1))) as int)
+	ELSE NULL END as NewValue
+from sysdba.AREACATEGORYISSUE
+where AREA = @AREA --and issue like '%(%)'
+)
+Update sysdba.AREACATEGORYISSUE
+Set Service_Level_Expectation = NewValue
+FROM sysdba.AREACATEGORYISSUE 
+LEFT OUTER JOIN New_Service_Level on New_Service_Level.AREACATEGORYISSUEID = sysdba.AREACATEGORYISSUE.AREACATEGORYISSUEID
+where AREA = @AREA	

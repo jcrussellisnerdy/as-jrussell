@@ -1,0 +1,9 @@
+APP-DEPLOY.as.local
+NWX-SQLPRD-01.colo.as.local
+TFS-BUILD-05.colo.as.local
+TFS-SERVER-03.colo.as.local
+TFS-SERVER-04.colo.as.local
+DBA-SQLPRD-01.colo.as.local\I01
+PINGFED-DB-01.colo.as.local
+SW-ORIONDB-01.colo.as.local
+TRAPPERKEEPER.colo.as.local

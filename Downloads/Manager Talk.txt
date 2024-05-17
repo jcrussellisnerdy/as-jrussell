@@ -1,0 +1,18 @@
+Can you please reinforce that tickets should NOT be assigned directly to users over teams. Granted it that this is 
+during the freeze but this could have a been an issue considering that I was out when this ticket was created and assigned.
+
+I am sure Patience and Steve has mention how bad the Informatica DPM Project has become. 
+
+AIH-9267 I have been working with Michael Poetz on this ticket and he's been helpful from a System Admin stand point but Rashid 
+really has not been helpful at all. At one point he just said let's give everything read access but due to our rules that isn't
+something we do with accounts. 
+
+In most all my Production tickets I am placing a note that the "Due to the change freeze this work will be executed on or after January 3rd"
+
+
+Title change I am noticing and it's been pretty prevelent that I have been doing the work as a Production DBA moreover the Developmental DBA
+I know at one point we are going to move to Cloud DBA can we change that to Production DBA and also do I need approval to reach out to the
+receptionist to have the reprint of the name tag..... maybe I am more of a Hybrid Prod/Developmental DBA 
+
+During the last week of March or first week of April I will be taking a vacation. 
+

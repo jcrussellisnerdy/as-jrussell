@@ -1,0 +1,11 @@
+
+Staging Connection
+
+mongodb+srv://StgMongoAdmin:kyLPSlupNIsBWQoCf5ag@azure-unitrac-stg-01-pl-0.trj4f.mongodb.net/test
+
+QA Connection
+mongodb+srv://QAMongoAdmin:kPHdzAyTnETRa8XMfDlh@azure-unitrac-qa-01-pl-1.jka42.mongodb.net/test
+
+ utrcprdawcl01.ezi0q.mongodb.net
+ 
+ 

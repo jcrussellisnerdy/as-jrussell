@@ -1,0 +1,61 @@
+USE [master]
+GO
+IF NOT EXISTS (SELECT * FROM sys.server_principals WHERE [name] = 'ELDREDGE_A\Database Administrators')
+    BEGIN
+        CREATE LOGIN [ELDREDGE_A\Database Administrators] FROM WINDOWS WITH DEFAULT_DATABASE=[master]
+    END;
+GO
+ALTER SERVER ROLE [processadmin] ADD MEMBER [ELDREDGE_A\Database Administrators]
+GO
+ALTER SERVER ROLE [setupadmin] ADD MEMBER [ELDREDGE_A\Database Administrators]
+GO
+GRANT ADMINISTER BULK OPERATIONS TO [ELDREDGE_A\Database Administrators] WITH GRANT OPTION 
+GO
+GRANT ALTER ANY CONNECTION TO [ELDREDGE_A\Database Administrators] WITH GRANT OPTION 
+GO
+GRANT ALTER ANY CREDENTIAL TO [ELDREDGE_A\Database Administrators] WITH GRANT OPTION 
+GO
+GRANT ALTER ANY LINKED SERVER TO [ELDREDGE_A\Database Administrators] WITH GRANT OPTION 
+GO
+GRANT ALTER ANY LOGIN TO [ELDREDGE_A\Database Administrators] WITH GRANT OPTION 
+GO
+GRANT ALTER ANY SERVER AUDIT TO [ELDREDGE_A\Database Administrators] WITH GRANT OPTION 
+GO
+GRANT ALTER ANY SERVER ROLE TO [ELDREDGE_A\Database Administrators] WITH GRANT OPTION 
+GO
+GRANT ALTER SERVER STATE TO [ELDREDGE_A\Database Administrators] WITH GRANT OPTION 
+GO
+GRANT ALTER TRACE TO [ELDREDGE_A\Database Administrators] WITH GRANT OPTION 
+GO
+GRANT CREATE ANY DATABASE TO [ELDREDGE_A\Database Administrators] WITH GRANT OPTION 
+GO
+GRANT VIEW ANY DATABASE TO [ELDREDGE_A\Database Administrators] WITH GRANT OPTION 
+GO
+GRANT VIEW SERVER STATE TO [ELDREDGE_A\Database Administrators] WITH GRANT OPTION
+GO
+GRANT VIEW ANY DEFINITION TO [ELDREDGE_A\Database Administrators] WITH GRANT OPTION
+GO
+
+-------------------------
+
+Testing databases on AWS
+
+	 EXEC msdb.dbo.sp_send_dbmail
+						@recipients = 'joseph.russell@alliedsolutions.net',
+						@subject = 'Test',
+						@body = 'I can do anything'
+
+Msg 229, Level 14, State 5, Procedure msdb.dbo.sp_send_dbmail, Line 1 [Batch Start Line 25]
+The EXECUTE permission was denied on the object 'sp_send_dbmail', database 'msdb', schema 'dbo'.
+
+ALTER DATABASE tempdb
+                ADD FILE (
+                               FILENAME = 'D:\rdsdbdata\DATA\tempdb2.ndf',
+                               NAME = tempdev2,
+                               SIZE = 72MB,
+                               FILEGROWTH = 65536KB)
+
+Msg 5011, Level 14, State 2, Line 63
+User does not have permission to alter database 'tempdb', the database does not exist, or the database is not in a state that allows access checks.
+
+

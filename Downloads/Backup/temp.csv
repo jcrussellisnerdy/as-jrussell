@@ -1,0 +1,69 @@
+﻿SQLSDEVVMDB01,DATA,1,tempdev,8,17,*** GROWN ***,"ALTER DATABASE TempDB MODIFY FILE (NAME = 'tempdev', SIZE = 17MB);",H:\TempDB\tempdb.mdf
+SQLSDEVVMDB01,LOG,2,templog,0,2,*** GROWN ***,"ALTER DATABASE TempDB MODIFY FILE (NAME = 'templog', SIZE = 2MB);",H:\TempDB\templog.ldf
+SQLSDEVVMDB02,DATA,1,tempdev,8,10,*** GROWN ***,"ALTER DATABASE TempDB MODIFY FILE (NAME = 'tempdev', SIZE = 10MB);",H:\TEMPDB\tempdb.mdf
+SQLSDEVVMDB02,LOG,2,templog,0,3,*** GROWN ***,"ALTER DATABASE TempDB MODIFY FILE (NAME = 'templog', SIZE = 3MB);",H:\TEMPDB\templog.ldf
+SQLSDEVVMDB03,DATA,1,tempdev,8,10,*** GROWN ***,"ALTER DATABASE TempDB MODIFY FILE (NAME = 'tempdev', SIZE = 10MB);",H:\TEMPDB\tempdb.mdf
+SQLSDEVVMDB03,LOG,2,templog,0,3,*** GROWN ***,"ALTER DATABASE TempDB MODIFY FILE (NAME = 'templog', SIZE = 3MB);",H:\TEMPDB\templog.ldf
+CP-SQLSTG-03,DATA,1,tempdev,8,72,*** GROWN ***,"ALTER DATABASE TempDB MODIFY FILE (NAME = 'tempdev', SIZE = 72MB);",G:\Tempdb\tempdb.mdf
+CP-SQLSTG-03,LOG,2,templog,8,72,*** GROWN ***,"ALTER DATABASE TempDB MODIFY FILE (NAME = 'templog', SIZE = 72MB);",G:\Tempdb\templog.ldf
+CP-SQLSTG-03,DATA,3,temp2,8,72,*** GROWN ***,"ALTER DATABASE TempDB MODIFY FILE (NAME = 'temp2', SIZE = 72MB);",G:\Tempdb\tempdb_mssql_2.ndf
+INFA-SQLPROD-01,DATA,1,tempdev,8,1869,*** GROWN ***,"ALTER DATABASE TempDB MODIFY FILE (NAME = 'tempdev', SIZE = 1869MB);",F:\MSSQL\Data\tempdb.mdf
+CHIME-DB-01,DATA,1,tempdev,8,37,*** GROWN ***,"ALTER DATABASE TempDB MODIFY FILE (NAME = 'tempdev', SIZE = 37MB);",G:\TEMPDB\tempdb.mdf
+DBA-SQLQA-01\I01,DATA,1,tempdev,8,72,*** GROWN ***,"ALTER DATABASE TempDB MODIFY FILE (NAME = 'tempdev', SIZE = 72MB);",H:\TempDB\tempdb.mdf
+DBA-SQLQA-01\I01,DATA,3,temp2,8,72,*** GROWN ***,"ALTER DATABASE TempDB MODIFY FILE (NAME = 'temp2', SIZE = 72MB);",H:\TempDB\tempdb_mssql_2.ndf
+DBA-SQLQA-01\I01,DATA,4,temp3,8,72,*** GROWN ***,"ALTER DATABASE TempDB MODIFY FILE (NAME = 'temp3', SIZE = 72MB);",H:\TempDB\tempdb_mssql_3.ndf
+DBA-SQLQA-01\I01,DATA,5,temp4,8,72,*** GROWN ***,"ALTER DATABASE TempDB MODIFY FILE (NAME = 'temp4', SIZE = 72MB);",H:\TempDB\tempdb_mssql_4.ndf
+FTP-DB1,DATA,1,tempdev,8,80,*** GROWN ***,"ALTER DATABASE TempDB MODIFY FILE (NAME = 'tempdev', SIZE = 80MB);",E:\Program Files\Microsoft SQL Server\MSSQL11.MSSQLSERVER\MSSQL\DATA\tempdb.mdf
+CP-SQLQA-02,LOG,2,templog,8,72,*** GROWN ***,"ALTER DATABASE TempDB MODIFY FILE (NAME = 'templog', SIZE = 72MB);",G:\Tempdb\templog.ldf
+OCR-SQLPRD-08,LOG,2,templog,16249,28709,*** GROWN ***,"ALTER DATABASE TempDB MODIFY FILE (NAME = 'templog', SIZE = 28709MB);",G:\TEMPDB\templog.ldf
+CP-SQLSTG-02,DATA,1,tempdev,8,72,*** GROWN ***,"ALTER DATABASE TempDB MODIFY FILE (NAME = 'tempdev', SIZE = 72MB);",G:\Tempdb\tempdb.mdf
+CP-SQLSTG-02,LOG,2,templog,8,72,*** GROWN ***,"ALTER DATABASE TempDB MODIFY FILE (NAME = 'templog', SIZE = 72MB);",G:\Tempdb\templog.ldf
+CP-SQLSTG-02,DATA,3,temp2,8,72,*** GROWN ***,"ALTER DATABASE TempDB MODIFY FILE (NAME = 'temp2', SIZE = 72MB);",G:\Tempdb\tempdb_mssql_2.ndf
+NWX-SQLPRD-01,DATA,1,tempdev,8,2248,*** GROWN ***,"ALTER DATABASE TempDB MODIFY FILE (NAME = 'tempdev', SIZE = 2248MB);",D:\Program Files\Microsoft SQL Server\MSSQL13.MSSQLSERVER\MSSQL\DATA\tempdb.mdf
+NWX-SQLPRD-01,DATA,3,temp2,8,2248,*** GROWN ***,"ALTER DATABASE TempDB MODIFY FILE (NAME = 'temp2', SIZE = 2248MB);",F:\TEMPDB\tempdb_mssql_2.ndf
+NWX-SQLPRD-01,DATA,4,temp3,8,2248,*** GROWN ***,"ALTER DATABASE TempDB MODIFY FILE (NAME = 'temp3', SIZE = 2248MB);",D:\Program Files\Microsoft SQL Server\MSSQL13.MSSQLSERVER\MSSQL\Data\tempdb_mssql_3.ndf
+NWX-SQLPRD-01,DATA,5,temp4,8,2248,*** GROWN ***,"ALTER DATABASE TempDB MODIFY FILE (NAME = 'temp4', SIZE = 2248MB);",F:\TEMPDB\tempdb_mssql_4.ndf
+OCR-SQLPRD-01,DATA,1,tempdev,509,1039,*** GROWN ***,"ALTER DATABASE TempDB MODIFY FILE (NAME = 'tempdev', SIZE = 1039MB);",G:\TEMPDB\tempdb.mdf
+OCR-SQLPRD-01,DATA,3,tempdev8,509,1039,*** GROWN ***,"ALTER DATABASE TempDB MODIFY FILE (NAME = 'tempdev8', SIZE = 1039MB);",G:\TEMPDB\tempdb8.ndf
+OCR-SQLPRD-01,DATA,4,tempdev7,509,1039,*** GROWN ***,"ALTER DATABASE TempDB MODIFY FILE (NAME = 'tempdev7', SIZE = 1039MB);",G:\TEMPDB\tempdb7.ndf
+OCR-SQLPRD-01,DATA,5,tempdev6,509,1039,*** GROWN ***,"ALTER DATABASE TempDB MODIFY FILE (NAME = 'tempdev6', SIZE = 1039MB);",G:\TEMPDB\tempdb6.ndf
+OCR-SQLPRD-01,DATA,6,tempdev5,509,1039,*** GROWN ***,"ALTER DATABASE TempDB MODIFY FILE (NAME = 'tempdev5', SIZE = 1039MB);",G:\TEMPDB\tempdb5.ndf
+OCR-SQLPRD-01,DATA,7,tempdev4,509,1039,*** GROWN ***,"ALTER DATABASE TempDB MODIFY FILE (NAME = 'tempdev4', SIZE = 1039MB);",G:\TEMPDB\tempdb4.ndf
+OCR-SQLPRD-01,DATA,8,tempdev3,509,1039,*** GROWN ***,"ALTER DATABASE TempDB MODIFY FILE (NAME = 'tempdev3', SIZE = 1039MB);",G:\TEMPDB\tempdb3.ndf
+OCR-SQLPRD-01,DATA,9,tempdev2,509,1039,*** GROWN ***,"ALTER DATABASE TempDB MODIFY FILE (NAME = 'tempdev2', SIZE = 1039MB);",G:\TEMPDB\tempdb2.ndf
+CP-SQLQA-03,LOG,2,templog,8,72,*** GROWN ***,"ALTER DATABASE TempDB MODIFY FILE (NAME = 'templog', SIZE = 72MB);",G:\Tempdb\templog.ldf
+EDI-PRDAPP-03,DATA,1,tempdev,8,72,*** GROWN ***,"ALTER DATABASE TempDB MODIFY FILE (NAME = 'tempdev', SIZE = 72MB);",E:\TEMPDB\tempdb.mdf
+EDI-PRDAPP-03,DATA,3,temp2,8,72,*** GROWN ***,"ALTER DATABASE TempDB MODIFY FILE (NAME = 'temp2', SIZE = 72MB);",E:\TEMPDB\tempdb_mssql_2.ndf
+CP-SQLSTG-01,DATA,1,tempdev,8,72,*** GROWN ***,"ALTER DATABASE TempDB MODIFY FILE (NAME = 'tempdev', SIZE = 72MB);",G:\Tempdb\tempdb.mdf
+CP-SQLSTG-01,LOG,2,templog,8,72,*** GROWN ***,"ALTER DATABASE TempDB MODIFY FILE (NAME = 'templog', SIZE = 72MB);",G:\Tempdb\templog.ldf
+CP-SQLSTG-01,DATA,3,temp2,8,72,*** GROWN ***,"ALTER DATABASE TempDB MODIFY FILE (NAME = 'temp2', SIZE = 72MB);",G:\Tempdb\tempdb_mssql_2.ndf
+SITECORE-BUILD,DATA,1,tempdev,8,20,*** GROWN ***,"ALTER DATABASE TempDB MODIFY FILE (NAME = 'tempdev', SIZE = 20MB);",G:\TEMPDB\tempdb.mdf
+GP-SQLPRD-01\I01,DATA,1,tempdev,8,328,*** GROWN ***,"ALTER DATABASE TempDB MODIFY FILE (NAME = 'tempdev', SIZE = 328MB);",H:\I01\tempdb.mdf
+GP-SQLPRD-01\I01,LOG,2,templog,8,4552,*** GROWN ***,"ALTER DATABASE TempDB MODIFY FILE (NAME = 'templog', SIZE = 4552MB);",H:\I01\templog.ldf
+GP-SQLPRD-01\I01,DATA,3,temp2,8,328,*** GROWN ***,"ALTER DATABASE TempDB MODIFY FILE (NAME = 'temp2', SIZE = 328MB);",H:\I01\tempdb_mssql_2.ndf
+GP-SQLPRD-01\I01,DATA,4,temp3,8,328,*** GROWN ***,"ALTER DATABASE TempDB MODIFY FILE (NAME = 'temp3', SIZE = 328MB);",H:\I01\tempdb_mssql_3.ndf
+GP-SQLPRD-01\I01,DATA,5,temp4,8,328,*** GROWN ***,"ALTER DATABASE TempDB MODIFY FILE (NAME = 'temp4', SIZE = 328MB);",H:\I01\tempdb_mssql_4.ndf
+GP-SQLPRD-01\I02,DATA,1,tempdev,8,136,*** GROWN ***,"ALTER DATABASE TempDB MODIFY FILE (NAME = 'tempdev', SIZE = 136MB);",H:\I02\tempdb.mdf
+GP-SQLPRD-01\I02,LOG,2,templog,1024,1408,*** GROWN ***,"ALTER DATABASE TempDB MODIFY FILE (NAME = 'templog', SIZE = 1408MB);",H:\I02\templog.ldf
+GP-SQLPRD-01\I02,DATA,3,temp2,8,136,*** GROWN ***,"ALTER DATABASE TempDB MODIFY FILE (NAME = 'temp2', SIZE = 136MB);",H:\I02\tempdb_mssql_2.ndf
+GP-SQLPRD-01\I02,DATA,4,temp3,8,136,*** GROWN ***,"ALTER DATABASE TempDB MODIFY FILE (NAME = 'temp3', SIZE = 136MB);",H:\I02\tempdb_mssql_3.ndf
+GP-SQLPRD-01\I02,DATA,5,temp4,8,136,*** GROWN ***,"ALTER DATABASE TempDB MODIFY FILE (NAME = 'temp4', SIZE = 136MB);",H:\I02\tempdb_mssql_4.ndf
+PROPHIX-DB-01,DATA,1,tempdev,8,72,*** GROWN ***,"ALTER DATABASE TempDB MODIFY FILE (NAME = 'tempdev', SIZE = 72MB);",E:\Program Files\Microsoft SQL Server\MSSQL13.MSSQLSERVER\MSSQL\DATA\tempdb.mdf
+PROPHIX-DB-01,DATA,3,temp2,8,72,*** GROWN ***,"ALTER DATABASE TempDB MODIFY FILE (NAME = 'temp2', SIZE = 72MB);",E:\Program Files\Microsoft SQL Server\MSSQL13.MSSQLSERVER\MSSQL\DATA\tempdb_mssql_2.ndf
+TFS-BUILD-07,DATA,1,tempdev,8,19,*** GROWN ***,"ALTER DATABASE TempDB MODIFY FILE (NAME = 'tempdev', SIZE = 19MB);",C:\Program Files\Microsoft SQL Server\MSSQL12.MSSQLSERVER\MSSQL\DATA\tempdb.mdf
+TRAPPERKEEPER,DATA,1,tempdev,8,3010,*** GROWN ***,"ALTER DATABASE TempDB MODIFY FILE (NAME = 'tempdev', SIZE = 3010MB);",E:\Program Files\Microsoft SQL Server\MSSQL11.MSSQLSERVER\MSSQL\Data\tempdb.mdf
+TFS-SERVER-04,DATA,1,tempdev,66,642,*** GROWN ***,"ALTER DATABASE TempDB MODIFY FILE (NAME = 'tempdev', SIZE = 642MB);",G:\TempDB\tempdev.mdf
+TFS-SERVER-04,DATA,3,temp2,127,703,*** GROWN ***,"ALTER DATABASE TempDB MODIFY FILE (NAME = 'temp2', SIZE = 703MB);",G:\TempDB\temp2.mdf
+TFS-SERVER-04,DATA,4,temp3,822,1398,*** GROWN ***,"ALTER DATABASE TempDB MODIFY FILE (NAME = 'temp3', SIZE = 1398MB);",G:\TempDB\temp3.mdf
+TFS-SERVER-04,DATA,5,temp4,380,956,*** GROWN ***,"ALTER DATABASE TempDB MODIFY FILE (NAME = 'temp4', SIZE = 956MB);",G:\TempDB\temp4.mdf
+TFS-BUILD-06,DATA,1,tempdev,16,18,*** GROWN ***,"ALTER DATABASE TempDB MODIFY FILE (NAME = 'tempdev', SIZE = 18MB);",C:\Program Files\Microsoft SQL Server\MSSQL12.MSSQLSERVER\MSSQL\DATA\tempdb.mdf
+WWW-DB-01\WWWSITECOREPROD,DATA,1,tempdev,8,129,*** GROWN ***,"ALTER DATABASE TempDB MODIFY FILE (NAME = 'tempdev', SIZE = 129MB);",E:\MSSQL\MSSQL12.WWWSITECOREPROD\Data\tempdb.mdf
+UIPA-PRD-DB1,DATA,1,tempdev,8,1032,*** GROWN ***,"ALTER DATABASE TempDB MODIFY FILE (NAME = 'tempdev', SIZE = 1032MB);",E:\TEMPDB\tempdb.mdf
+UIPA-PRD-DB1,DATA,3,temp2,8,1032,*** GROWN ***,"ALTER DATABASE TempDB MODIFY FILE (NAME = 'temp2', SIZE = 1032MB);",E:\TEMPDB\tempdb_mssql_2.ndf
+UIPA-PRD-DB1,DATA,4,temp3,8,1032,*** GROWN ***,"ALTER DATABASE TempDB MODIFY FILE (NAME = 'temp3', SIZE = 1032MB);",E:\TEMPDB\tempdb_mssql_3.ndf
+UIPA-PRD-DB1,DATA,5,temp4,8,1032,*** GROWN ***,"ALTER DATABASE TempDB MODIFY FILE (NAME = 'temp4', SIZE = 1032MB);",E:\TEMPDB\tempdb_mssql_4.ndf
+EDW-DEV-DB1,LOG,2,templog,8,72,*** GROWN ***,"ALTER DATABASE TempDB MODIFY FILE (NAME = 'templog', SIZE = 72MB);",H:\TEMPDB\templog.ldf
+UTSTAGE-UTL1,DATA,1,tempdev,8,328,*** GROWN ***,"ALTER DATABASE TempDB MODIFY FILE (NAME = 'tempdev', SIZE = 328MB);",E:\TEMPDB\tempdb.mdf
+UTSTAGE-UTL1,LOG,2,templog,8,1480,*** GROWN ***,"ALTER DATABASE TempDB MODIFY FILE (NAME = 'templog', SIZE = 1480MB);",E:\TEMPDB\templog.ldf
+UTSTAGE-UTL1,DATA,3,temp2,8,328,*** GROWN ***,"ALTER DATABASE TempDB MODIFY FILE (NAME = 'temp2', SIZE = 328MB);",E:\TEMPDB\tempdb_mssql_2.ndf
+UTQA-SQL-14,LOG,2,templog,10239,22039,*** GROWN ***,"ALTER DATABASE TempDB MODIFY FILE (NAME = 'templog', SIZE = 22039MB);",G:\TEMPDB\templog.ldf

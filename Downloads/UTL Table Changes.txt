@@ -1,0 +1,12 @@
+ UTL    
+ 
+ SELECT
+ 
+dbo.PROCESS_DEFINITION 
+ 
+ UPDATE 
+ 
+dbo.PROCESS_DEFINITION 
+ 
+ 
+ 

@@ -1,0 +1,8 @@
+UTQA2-APP4
+UTQA2-APP3
+UTQA2-APP2
+UTQA2-APP1
+UTQA2-ASR1.rd.as.local
+UTQA2-ASR2.rd.as.local
+UTQA2-ASR3.rd.as.local
+UTQA2-ASR4.rd.as.local

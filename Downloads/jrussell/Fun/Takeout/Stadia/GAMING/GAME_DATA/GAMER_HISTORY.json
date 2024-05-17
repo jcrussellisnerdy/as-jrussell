@@ -1,0 +1,635 @@
+{
+  "gamerHistory": {
+    "applications": [{
+      "applicationName": "Cyberpunk 2077",
+      "mostRecentPlayTime": "2021-12-29T03:06:12.102221Z",
+      "totalTimePlayed": "405447s",
+      "averageTimePlayedPerSession": "3620s"
+    }, {
+      "applicationName": "Madden NFL 22",
+      "mostRecentPlayTime": "2021-12-29T03:05:50.442624Z",
+      "totalTimePlayed": "578555s",
+      "averageTimePlayedPerSession": "2251s"
+    }, {
+      "applicationName": "PGA TOUR 2K21",
+      "mostRecentPlayTime": "2021-12-29T03:05:25.865463Z",
+      "totalTimePlayed": "79148s",
+      "averageTimePlayedPerSession": "1084s"
+    }, {
+      "applicationName": "NBA 2K21",
+      "mostRecentPlayTime": "2021-12-29T03:04:55.363214Z",
+      "totalTimePlayed": "278961s",
+      "averageTimePlayedPerSession": "2490s"
+    }, {
+      "applicationName": "Get Packed: Fully Loaded",
+      "mostRecentPlayTime": "2021-12-20T02:18:39.001567Z",
+      "totalTimePlayed": "81960s",
+      "averageTimePlayedPerSession": "1092s"
+    }, {
+      "applicationName": "Family Feud®",
+      "mostRecentPlayTime": "2021-12-19T15:17:46.131364Z",
+      "totalTimePlayed": "11982s",
+      "averageTimePlayedPerSession": "998s"
+    }, {
+      "applicationName": "Monopoly",
+      "mostRecentPlayTime": "2021-12-19T15:17:18.247694Z",
+      "totalTimePlayed": "31479s",
+      "averageTimePlayedPerSession": "1499s"
+    }, {
+      "applicationName": "Stacks On Stacks (On Stacks)",
+      "mostRecentPlayTime": "2021-12-19T15:16:45.348711Z",
+      "totalTimePlayed": "20821s",
+      "averageTimePlayedPerSession": "905s"
+    }, {
+      "applicationName": "Monster Jam Steel Titans",
+      "mostRecentPlayTime": "2021-12-19T15:16:16.789650Z",
+      "totalTimePlayed": "9338s",
+      "averageTimePlayedPerSession": "1167s"
+    }, {
+      "applicationName": "PAC-MAN™ Mega Tunnel Battle",
+      "mostRecentPlayTime": "2021-12-19T15:15:43.634377Z",
+      "totalTimePlayed": "3461s",
+      "averageTimePlayedPerSession": "576s"
+    }, {
+      "applicationName": "Cake Bash",
+      "mostRecentPlayTime": "2021-12-19T15:14:39.826100Z",
+      "totalTimePlayed": "30600s",
+      "averageTimePlayedPerSession": "1176s"
+    }, {
+      "applicationName": "UNO®",
+      "mostRecentPlayTime": "2021-12-19T15:13:31.773669Z",
+      "totalTimePlayed": "16209s",
+      "averageTimePlayedPerSession": "415s"
+    }, {
+      "applicationName": "Mafia III: Definitive Edition",
+      "mostRecentPlayTime": "2021-12-19T15:12:30.334801Z",
+      "totalTimePlayed": "32386s",
+      "averageTimePlayedPerSession": "1079s"
+    }, {
+      "applicationName": "Crayta",
+      "mostRecentPlayTime": "2021-12-19T15:10:24.462212Z",
+      "totalTimePlayed": "160379s",
+      "averageTimePlayedPerSession": "1145s"
+    }, {
+      "applicationName": "Destiny 2",
+      "mostRecentPlayTime": "2021-12-19T15:08:56.482404Z",
+      "totalTimePlayed": "23812s",
+      "averageTimePlayedPerSession": "721s"
+    }, {
+      "applicationName": "STAR WARS Jedi: Fallen Order™",
+      "mostRecentPlayTime": "2021-12-19T15:08:21.474842Z",
+      "totalTimePlayed": "37323s",
+      "averageTimePlayedPerSession": "1622s"
+    }, {
+      "applicationName": "PUBG: BATTLEGROUNDS",
+      "mostRecentPlayTime": "2021-12-19T15:07:51.958968Z",
+      "totalTimePlayed": "179276s",
+      "averageTimePlayedPerSession": "1368s"
+    }, {
+      "applicationName": "TRANSFORMERS: BATTLEGROUNDS - Complete Edition",
+      "mostRecentPlayTime": "2021-12-19T15:05:37.854238Z",
+      "totalTimePlayed": "581s",
+      "averageTimePlayedPerSession": "581s"
+    }, {
+      "applicationName": "Destroy All Humans!",
+      "mostRecentPlayTime": "2021-12-19T14:53:58.889914Z",
+      "totalTimePlayed": "1358s",
+      "averageTimePlayedPerSession": "1358s"
+    }, {
+      "applicationName": "FORECLOSED",
+      "mostRecentPlayTime": "2021-12-19T14:30:54.602937Z",
+      "totalTimePlayed": "586s",
+      "averageTimePlayedPerSession": "586s"
+    }, {
+      "applicationName": "Unto The End",
+      "mostRecentPlayTime": "2021-12-19T14:20:47.283005Z",
+      "totalTimePlayed": "110s",
+      "averageTimePlayedPerSession": "110s"
+    }, {
+      "applicationName": "The Falconeer",
+      "mostRecentPlayTime": "2021-12-19T14:18:32.082357Z",
+      "totalTimePlayed": "192s",
+      "averageTimePlayedPerSession": "192s"
+    }, {
+      "applicationName": "Wreckfest",
+      "mostRecentPlayTime": "2021-12-19T14:14:42.500869Z",
+      "totalTimePlayed": "423s",
+      "averageTimePlayedPerSession": "423s"
+    }, {
+      "applicationName": "Hundred Days - Winemaking Simulator",
+      "mostRecentPlayTime": "2021-12-19T14:07:11.212371Z",
+      "totalTimePlayed": "48s",
+      "averageTimePlayedPerSession": "24s"
+    }, {
+      "applicationName": "Wave Break",
+      "mostRecentPlayTime": "2021-11-23T22:46:14.316280Z",
+      "totalTimePlayed": "484s",
+      "averageTimePlayedPerSession": "161s"
+    }, {
+      "applicationName": "Wavetale",
+      "mostRecentPlayTime": "2021-11-11T00:18:58.376144Z",
+      "totalTimePlayed": "342s",
+      "averageTimePlayedPerSession": "342s"
+    }, {
+      "applicationName": "DIRT 5",
+      "mostRecentPlayTime": "2021-11-02T22:22:30.313947Z",
+      "totalTimePlayed": "1047s",
+      "averageTimePlayedPerSession": "1047s"
+    }, {
+      "applicationName": "Kemono Heroes",
+      "mostRecentPlayTime": "2021-11-02T22:04:43.640919Z",
+      "totalTimePlayed": "242s",
+      "averageTimePlayedPerSession": "242s"
+    }, {
+      "applicationName": "Saints Row IV: Re-Elected",
+      "mostRecentPlayTime": "2021-11-02T22:00:26.268864Z",
+      "totalTimePlayed": "501s",
+      "averageTimePlayedPerSession": "250s"
+    }, {
+      "applicationName": "PAW Patrol Mighty Pups Save Adventure Bay",
+      "mostRecentPlayTime": "2021-10-28T23:19:22.159699Z",
+      "totalTimePlayed": "21883s",
+      "averageTimePlayedPerSession": "4376s"
+    }, {
+      "applicationName": "Little Big Workshop",
+      "mostRecentPlayTime": "2021-10-24T22:47:27.716428Z",
+      "totalTimePlayed": "5701s",
+      "averageTimePlayedPerSession": "1140s"
+    }, {
+      "applicationName": "Control Ultimate Edition",
+      "mostRecentPlayTime": "2021-10-08T16:31:37.952599Z",
+      "totalTimePlayed": "1400s",
+      "averageTimePlayedPerSession": "700s"
+    }, {
+      "applicationName": "Hello Engineer",
+      "mostRecentPlayTime": "2021-10-05T22:49:31.351467Z",
+      "totalTimePlayed": "143s",
+      "averageTimePlayedPerSession": "35s"
+    }, {
+      "applicationName": "DreamWorks Spirit Lucky\u0027s Big Adventure",
+      "mostRecentPlayTime": "2021-10-03T00:24:31.297309Z",
+      "totalTimePlayed": "811s",
+      "averageTimePlayedPerSession": "405s"
+    }, {
+      "applicationName": "Tom Clancy\u0027s Rainbow Six Siege",
+      "mostRecentPlayTime": "2021-09-10T21:10:05.445035Z",
+      "totalTimePlayed": "186s",
+      "averageTimePlayedPerSession": "186s"
+    }, {
+      "applicationName": "Watch Dogs: Legion",
+      "mostRecentPlayTime": "2021-09-04T22:38:09.570752Z",
+      "totalTimePlayed": "2700s",
+      "averageTimePlayedPerSession": "900s"
+    }, {
+      "applicationName": "Serious Sam Collection",
+      "mostRecentPlayTime": "2021-09-04T16:12:07.762743Z",
+      "totalTimePlayed": "147129s",
+      "averageTimePlayedPerSession": "1131s"
+    }, {
+      "applicationName": "Darksiders II Deathinitive Edition",
+      "mostRecentPlayTime": "2021-09-03T21:40:18.427955Z",
+      "totalTimePlayed": "1543s",
+      "averageTimePlayedPerSession": "771s"
+    }, {
+      "applicationName": "Legend of Keepers: Career of a Dungeon Manager",
+      "mostRecentPlayTime": "2021-09-01T21:56:37.333064Z",
+      "totalTimePlayed": "223s",
+      "averageTimePlayedPerSession": "223s"
+    }, {
+      "applicationName": "ARK: Survival Evolved",
+      "mostRecentPlayTime": "2021-09-01T21:44:44.168079Z",
+      "totalTimePlayed": "406s",
+      "averageTimePlayedPerSession": "406s"
+    }, {
+      "applicationName": "Lara Croft and the Guardian of Light",
+      "mostRecentPlayTime": "2021-08-30T01:00:33.226820Z",
+      "totalTimePlayed": "146s",
+      "averageTimePlayedPerSession": "146s"
+    }, {
+      "applicationName": "Lara Croft and the Temple of Osiris",
+      "mostRecentPlayTime": "2021-08-30T00:57:42.465305Z",
+      "totalTimePlayed": "4328s",
+      "averageTimePlayedPerSession": "721s"
+    }, {
+      "applicationName": "SpongeBobSquarePants:Battle for Bikini BottomRehydrated",
+      "mostRecentPlayTime": "2021-08-25T23:09:08.946036Z",
+      "totalTimePlayed": "22150s",
+      "averageTimePlayedPerSession": "1845s"
+    }, {
+      "applicationName": "Madden NFL 21",
+      "mostRecentPlayTime": "2021-08-22T13:33:35.651107Z",
+      "totalTimePlayed": "1802082s",
+      "averageTimePlayedPerSession": "2665s"
+    }, {
+      "applicationName": "GRIME",
+      "mostRecentPlayTime": "2021-08-14T22:30:53.597953Z",
+      "totalTimePlayed": "2207s",
+      "averageTimePlayedPerSession": "551s"
+    }, {
+      "applicationName": "Resident Evil 7 biohazard Gold Edition",
+      "mostRecentPlayTime": "2021-08-10T21:09:35.976159Z",
+      "totalTimePlayed": "5030s",
+      "averageTimePlayedPerSession": "628s"
+    }, {
+      "applicationName": "Far Cry 5",
+      "mostRecentPlayTime": "2021-08-09T19:39:55.608293Z",
+      "totalTimePlayed": "5155s",
+      "averageTimePlayedPerSession": "1031s"
+    }, {
+      "applicationName": "GRID",
+      "mostRecentPlayTime": "2021-08-08T15:25:01.614477Z",
+      "totalTimePlayed": "45985s",
+      "averageTimePlayedPerSession": "901s"
+    }, {
+      "applicationName": "Marvel\u0027s Avengers",
+      "mostRecentPlayTime": "2021-08-01T23:15:45.091553Z",
+      "totalTimePlayed": "22009s",
+      "averageTimePlayedPerSession": "1467s"
+    }, {
+      "applicationName": "Epistory - Typing Chronicles",
+      "mostRecentPlayTime": "2021-08-01T13:59:11.465827Z",
+      "totalTimePlayed": "203s",
+      "averageTimePlayedPerSession": "203s"
+    }, {
+      "applicationName": "It Came From Space And Ate Our Brains",
+      "mostRecentPlayTime": "2021-08-01T13:55:30.249323Z",
+      "totalTimePlayed": "264s",
+      "averageTimePlayedPerSession": "264s"
+    }, {
+      "applicationName": "Killer Queen Black",
+      "mostRecentPlayTime": "2021-08-01T13:50:48.078156Z",
+      "totalTimePlayed": "165s",
+      "averageTimePlayedPerSession": "165s"
+    }, {
+      "applicationName": "Olympic Games Tokyo 2020 – The Official Video Game™",
+      "mostRecentPlayTime": "2021-08-01T01:15:22.153399Z",
+      "totalTimePlayed": "6578s",
+      "averageTimePlayedPerSession": "657s"
+    }, {
+      "applicationName": "F1® 2020",
+      "mostRecentPlayTime": "2021-07-25T13:49:11.929046Z",
+      "totalTimePlayed": "5010s",
+      "averageTimePlayedPerSession": "835s"
+    }, {
+      "applicationName": "NBA 2K20",
+      "mostRecentPlayTime": "2021-07-25T13:15:42.142338Z",
+      "totalTimePlayed": "1063633s",
+      "averageTimePlayedPerSession": "2626s"
+    }, {
+      "applicationName": "Terraria",
+      "mostRecentPlayTime": "2021-07-03T22:39:33.091923Z",
+      "totalTimePlayed": "757s",
+      "averageTimePlayedPerSession": "378s"
+    }, {
+      "applicationName": "Power Rangers: Battle for the Grid",
+      "mostRecentPlayTime": "2021-07-03T22:38:49.519963Z",
+      "totalTimePlayed": "57109s",
+      "averageTimePlayedPerSession": "951s"
+    }, {
+      "applicationName": "Moonlighter",
+      "mostRecentPlayTime": "2021-07-03T22:13:21.753965Z",
+      "totalTimePlayed": "225s",
+      "averageTimePlayedPerSession": "225s"
+    }, {
+      "applicationName": "The Darkside Detective",
+      "mostRecentPlayTime": "2021-07-03T22:09:21.649774Z",
+      "totalTimePlayed": "255s",
+      "averageTimePlayedPerSession": "255s"
+    }, {
+      "applicationName": "Street Power Football",
+      "mostRecentPlayTime": "2021-07-03T22:04:44.509554Z",
+      "totalTimePlayed": "467s",
+      "averageTimePlayedPerSession": "467s"
+    }, {
+      "applicationName": "Thumper",
+      "mostRecentPlayTime": "2021-06-26T14:09:09.974112Z",
+      "totalTimePlayed": "5510s",
+      "averageTimePlayedPerSession": "367s"
+    }, {
+      "applicationName": "DOOM 64",
+      "mostRecentPlayTime": "2021-06-26T14:07:59.955268Z",
+      "totalTimePlayed": "2481s",
+      "averageTimePlayedPerSession": "354s"
+    }, {
+      "applicationName": "MotoGP™20",
+      "mostRecentPlayTime": "2021-06-24T00:28:40.757798Z",
+      "totalTimePlayed": "1286s",
+      "averageTimePlayedPerSession": "643s"
+    }, {
+      "applicationName": "The Legend of Heroes: Trails of Cold Steel III",
+      "mostRecentPlayTime": "2021-06-06T20:23:55.725370Z",
+      "totalTimePlayed": "517s",
+      "averageTimePlayedPerSession": "517s"
+    }, {
+      "applicationName": "Chronos: Before the Ashes",
+      "mostRecentPlayTime": "2021-06-06T20:13:34.876004Z",
+      "totalTimePlayed": "968s",
+      "averageTimePlayedPerSession": "968s"
+    }, {
+      "applicationName": "Blue Fire",
+      "mostRecentPlayTime": "2021-06-06T19:57:01.120613Z",
+      "totalTimePlayed": "437s",
+      "averageTimePlayedPerSession": "437s"
+    }, {
+      "applicationName": "Hotline Miami 2:Wrong Number",
+      "mostRecentPlayTime": "2021-05-05T01:08:57.374920Z",
+      "totalTimePlayed": "1726s",
+      "averageTimePlayedPerSession": "863s"
+    }, {
+      "applicationName": "FLOOR KIDS",
+      "mostRecentPlayTime": "2021-05-03T21:13:36.448706Z",
+      "totalTimePlayed": "1480s",
+      "averageTimePlayedPerSession": "740s"
+    }, {
+      "applicationName": "Trine 4: The Nightmare Prince",
+      "mostRecentPlayTime": "2021-05-02T23:58:15.507171Z",
+      "totalTimePlayed": "557s",
+      "averageTimePlayedPerSession": "557s"
+    }, {
+      "applicationName": "Ys VIII: Lacrimosa of DANA",
+      "mostRecentPlayTime": "2021-04-01T23:55:37.030572Z",
+      "totalTimePlayed": "1932s",
+      "averageTimePlayedPerSession": "1932s"
+    }, {
+      "applicationName": "PIKUNIKU",
+      "mostRecentPlayTime": "2021-04-01T23:23:08.855898Z",
+      "totalTimePlayed": "3652s",
+      "averageTimePlayedPerSession": "1826s"
+    }, {
+      "applicationName": "Reigns",
+      "mostRecentPlayTime": "2021-03-31T21:12:52.729342Z",
+      "totalTimePlayed": "1318s",
+      "averageTimePlayedPerSession": "1318s"
+    }, {
+      "applicationName": "AVICII Invector",
+      "mostRecentPlayTime": "2021-03-06T13:53:09.048053Z",
+      "totalTimePlayed": "856s",
+      "averageTimePlayedPerSession": "428s"
+    }, {
+      "applicationName": "Tom Clancy\u0027s Ghost Recon Breakpoint",
+      "mostRecentPlayTime": "2021-01-24T15:11:25.206486Z",
+      "totalTimePlayed": "1477s",
+      "averageTimePlayedPerSession": "738s"
+    }, {
+      "applicationName": "Hotline Miami",
+      "mostRecentPlayTime": "2021-01-01T23:51:24.859516Z",
+      "totalTimePlayed": "290s",
+      "averageTimePlayedPerSession": "290s"
+    }, {
+      "applicationName": "Ary and the Secret of Seasons",
+      "mostRecentPlayTime": "2021-01-01T23:46:11.743209Z",
+      "totalTimePlayed": "506s",
+      "averageTimePlayedPerSession": "506s"
+    }, {
+      "applicationName": "Figment",
+      "mostRecentPlayTime": "2021-01-01T23:37:16.476111Z",
+      "totalTimePlayed": "925s",
+      "averageTimePlayedPerSession": "925s"
+    }, {
+      "applicationName": "El Hijo - A Wild West Tale",
+      "mostRecentPlayTime": "2021-01-01T23:21:32.582012Z",
+      "totalTimePlayed": "149s",
+      "averageTimePlayedPerSession": "149s"
+    }, {
+      "applicationName": "Cthulhu Saves Christmas",
+      "mostRecentPlayTime": "2021-01-01T23:18:39.678617Z",
+      "totalTimePlayed": "1345s",
+      "averageTimePlayedPerSession": "672s"
+    }, {
+      "applicationName": "Submerged: Hidden Depths",
+      "mostRecentPlayTime": "2020-12-05T19:39:22.675Z",
+      "totalTimePlayed": "1748s",
+      "averageTimePlayedPerSession": "582s"
+    }, {
+      "applicationName": "Outcasters",
+      "mostRecentPlayTime": "2020-12-05T19:14:57.245Z",
+      "totalTimePlayed": "685s",
+      "averageTimePlayedPerSession": "171s"
+    }, {
+      "applicationName": "HITMAN - World of Assassination",
+      "mostRecentPlayTime": "2020-12-05T19:14:15.673Z",
+      "totalTimePlayed": "10927s",
+      "averageTimePlayedPerSession": "840s"
+    }, {
+      "applicationName": "Into the Breach",
+      "mostRecentPlayTime": "2020-12-05T17:33:57.882Z",
+      "totalTimePlayed": "137s",
+      "averageTimePlayedPerSession": "137s"
+    }, {
+      "applicationName": "Secret Neighbor",
+      "mostRecentPlayTime": "2020-12-05T17:31:17.405Z",
+      "totalTimePlayed": "1138s",
+      "averageTimePlayedPerSession": "569s"
+    }, {
+      "applicationName": "Kine",
+      "mostRecentPlayTime": "2020-12-03T22:44:01.098Z",
+      "totalTimePlayed": "68s",
+      "averageTimePlayedPerSession": "68s"
+    }, {
+      "applicationName": "EVERSPACE™",
+      "mostRecentPlayTime": "2020-12-03T22:10:45.989Z",
+      "totalTimePlayed": "322s",
+      "averageTimePlayedPerSession": "322s"
+    }, {
+      "applicationName": "Immortals Fenyx Rising™ Demo",
+      "mostRecentPlayTime": "2020-11-18T00:40:46.843Z",
+      "totalTimePlayed": "14166s",
+      "averageTimePlayedPerSession": "2361s"
+    }, {
+      "applicationName": "République",
+      "mostRecentPlayTime": "2020-11-02T03:37:50.697Z",
+      "totalTimePlayed": "1773s",
+      "averageTimePlayedPerSession": "886s"
+    }, {
+      "applicationName": "Risk of Rain 2",
+      "mostRecentPlayTime": "2020-11-02T03:21:22.869Z",
+      "totalTimePlayed": "834s",
+      "averageTimePlayedPerSession": "417s"
+    }, {
+      "applicationName": "Sundered: Eldritch Edition",
+      "mostRecentPlayTime": "2020-11-02T03:09:43.097Z",
+      "totalTimePlayed": "1819s",
+      "averageTimePlayedPerSession": "606s"
+    }, {
+      "applicationName": "Sniper Elite 4",
+      "mostRecentPlayTime": "2020-11-01T23:20:11.867Z",
+      "totalTimePlayed": "1653s",
+      "averageTimePlayedPerSession": "1653s"
+    }, {
+      "applicationName": "The Gardens Between",
+      "mostRecentPlayTime": "2020-11-01T22:21:21.051Z",
+      "totalTimePlayed": "494s",
+      "averageTimePlayedPerSession": "494s"
+    }, {
+      "applicationName": "Hello Neighbor: Hide and Seek",
+      "mostRecentPlayTime": "2020-11-01T22:12:39.579Z",
+      "totalTimePlayed": "264s",
+      "averageTimePlayedPerSession": "264s"
+    }, {
+      "applicationName": "The Elder Scrolls Online: Tamriel Unlimited",
+      "mostRecentPlayTime": "2020-10-21T00:08:38.434Z",
+      "totalTimePlayed": "23884s",
+      "averageTimePlayedPerSession": "1706s"
+    }, {
+      "applicationName": "Dead by Daylight",
+      "mostRecentPlayTime": "2020-10-17T01:22:49.691Z",
+      "totalTimePlayed": "1933s",
+      "averageTimePlayedPerSession": "322s"
+    }, {
+      "applicationName": "Metro Last Light Redux",
+      "mostRecentPlayTime": "2020-10-17T01:20:47.933Z",
+      "totalTimePlayed": "5663s",
+      "averageTimePlayedPerSession": "809s"
+    }, {
+      "applicationName": "Metro 2033 Redux",
+      "mostRecentPlayTime": "2020-10-17T01:20:02.129Z",
+      "totalTimePlayed": "1509s",
+      "averageTimePlayedPerSession": "215s"
+    }, {
+      "applicationName": "Strange Brigade",
+      "mostRecentPlayTime": "2020-10-17T01:17:24.531Z",
+      "totalTimePlayed": "5003s",
+      "averageTimePlayedPerSession": "714s"
+    }, {
+      "applicationName": "Zombie Army 4: Dead War",
+      "mostRecentPlayTime": "2020-10-17T01:16:58.244Z",
+      "totalTimePlayed": "20813s",
+      "averageTimePlayedPerSession": "1040s"
+    }, {
+      "applicationName": "GYLT",
+      "mostRecentPlayTime": "2020-10-17T01:15:21.799Z",
+      "totalTimePlayed": "6514s",
+      "averageTimePlayedPerSession": "723s"
+    }, {
+      "applicationName": "Hello Neighbor",
+      "mostRecentPlayTime": "2020-10-17T01:07:23.844Z",
+      "totalTimePlayed": "2385s",
+      "averageTimePlayedPerSession": "596s"
+    }, {
+      "applicationName": "Gunsport",
+      "mostRecentPlayTime": "2020-10-17T01:06:36.813Z",
+      "totalTimePlayed": "932s",
+      "averageTimePlayedPerSession": "310s"
+    }, {
+      "applicationName": "SUPER BOMBERMAN R ONLINE",
+      "mostRecentPlayTime": "2020-10-17T01:05:53.777Z",
+      "totalTimePlayed": "300s",
+      "averageTimePlayedPerSession": "100s"
+    }, {
+      "applicationName": "Celeste",
+      "mostRecentPlayTime": "2020-10-17T01:01:09.727Z",
+      "totalTimePlayed": "135s",
+      "averageTimePlayedPerSession": "67s"
+    }, {
+      "applicationName": "Jotun: Valhalla Edition",
+      "mostRecentPlayTime": "2020-10-17T01:00:37.770Z",
+      "totalTimePlayed": "431s",
+      "averageTimePlayedPerSession": "143s"
+    }, {
+      "applicationName": "Embr",
+      "mostRecentPlayTime": "2020-10-17T00:57:18.152Z",
+      "totalTimePlayed": "1142s",
+      "averageTimePlayedPerSession": "571s"
+    }, {
+      "applicationName": "Little Nightmares",
+      "mostRecentPlayTime": "2020-10-17T00:55:19.601Z",
+      "totalTimePlayed": "3029s",
+      "averageTimePlayedPerSession": "605s"
+    }, {
+      "applicationName": "Rock of Ages 3: Make \u0026 Break",
+      "mostRecentPlayTime": "2020-10-17T00:53:06.021Z",
+      "totalTimePlayed": "295s",
+      "averageTimePlayedPerSession": "147s"
+    }, {
+      "applicationName": "Just Shapes \u0026 Beats",
+      "mostRecentPlayTime": "2020-10-17T00:50:29.003Z",
+      "totalTimePlayed": "243s",
+      "averageTimePlayedPerSession": "121s"
+    }, {
+      "applicationName": "Orcs Must Die! 3",
+      "mostRecentPlayTime": "2020-10-17T00:49:24.945Z",
+      "totalTimePlayed": "645s",
+      "averageTimePlayedPerSession": "322s"
+    }, {
+      "applicationName": "Spitlings",
+      "mostRecentPlayTime": "2020-10-17T00:47:26.847Z",
+      "totalTimePlayed": "2057s",
+      "averageTimePlayedPerSession": "342s"
+    }, {
+      "applicationName": "Monster Boy and the Cursed Kingdom",
+      "mostRecentPlayTime": "2020-10-17T00:42:50.673Z",
+      "totalTimePlayed": "854s",
+      "averageTimePlayedPerSession": "427s"
+    }, {
+      "applicationName": "West of Loathing",
+      "mostRecentPlayTime": "2020-10-17T00:41:19.618Z",
+      "totalTimePlayed": "1027s",
+      "averageTimePlayedPerSession": "513s"
+    }, {
+      "applicationName": "Panzer Dragoon: Remake",
+      "mostRecentPlayTime": "2020-10-17T00:40:42.210Z",
+      "totalTimePlayed": "1061s",
+      "averageTimePlayedPerSession": "265s"
+    }, {
+      "applicationName": "SUPERHOT",
+      "mostRecentPlayTime": "2020-10-17T00:39:27.860Z",
+      "totalTimePlayed": "444s",
+      "averageTimePlayedPerSession": "222s"
+    }, {
+      "applicationName": "SUPERHOT: MIND CONTROL DELETE",
+      "mostRecentPlayTime": "2020-10-01T23:12:24.053Z",
+      "totalTimePlayed": "185s",
+      "averageTimePlayedPerSession": "185s"
+    }, {
+      "applicationName": "Human: Fall Flat Stadia Edition",
+      "mostRecentPlayTime": "2020-10-01T23:08:53.692Z",
+      "totalTimePlayed": "538s",
+      "averageTimePlayedPerSession": "538s"
+    }, {
+      "applicationName": "The Division 2 - Standard Edition",
+      "mostRecentPlayTime": "2020-09-27T15:16:55.425Z",
+      "totalTimePlayed": "4230s",
+      "averageTimePlayedPerSession": "1057s"
+    }, {
+      "applicationName": "The Crew 2",
+      "mostRecentPlayTime": "2020-09-05T23:15:08.526Z",
+      "totalTimePlayed": "7699s",
+      "averageTimePlayedPerSession": "3849s"
+    }, {
+      "applicationName": "Kona",
+      "mostRecentPlayTime": "2020-08-09T22:17:14.736Z",
+      "totalTimePlayed": "5015s",
+      "averageTimePlayedPerSession": "1671s"
+    }, {
+      "applicationName": "Borderlands®3",
+      "mostRecentPlayTime": "2020-08-07T21:45:02.796Z",
+      "totalTimePlayed": "1316s",
+      "averageTimePlayedPerSession": "658s"
+    }, {
+      "applicationName": "The Turing Test",
+      "mostRecentPlayTime": "2020-07-03T22:20:00.456Z",
+      "totalTimePlayed": "13118s",
+      "averageTimePlayedPerSession": "1093s"
+    }, {
+      "applicationName": "SteamWorld Dig",
+      "mostRecentPlayTime": "2020-07-03T22:04:07.954Z",
+      "totalTimePlayed": "35s",
+      "averageTimePlayedPerSession": "35s"
+    }, {
+      "applicationName": "SteamWorld Heist",
+      "mostRecentPlayTime": "2020-05-13T21:41:07.694Z",
+      "totalTimePlayed": "2890s",
+      "averageTimePlayedPerSession": "963s"
+    }, {
+      "applicationName": "SteamWorld Dig 2",
+      "mostRecentPlayTime": "2020-05-13T20:55:37.888Z",
+      "totalTimePlayed": "3031s",
+      "averageTimePlayedPerSession": "606s"
+    }, {
+      "applicationName": "SteamWorld Quest: Hand of Gilgamech",
+      "mostRecentPlayTime": "2020-05-13T20:52:59.685Z",
+      "totalTimePlayed": "210s",
+      "averageTimePlayedPerSession": "70s"
+    }]
+  }
+}

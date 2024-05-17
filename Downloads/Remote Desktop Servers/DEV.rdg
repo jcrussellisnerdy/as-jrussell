@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RDCMan programVersion="2.7" schemaVersion="3">
+  <file>
+    <credentialsProfiles />
+    <properties>
+      <expanded>False</expanded>
+      <name>DEV</name>
+    </properties>
+    <server>
+      <properties>
+        <name>DS-SQLDEV-14.rd.as.local</name>
+      </properties>
+    </server>
+    <server>
+      <properties>
+        <name>INFRDEVAWDB01.RD.AS.LOCAL</name>
+      </properties>
+    </server>
+    <server>
+      <properties>
+        <name>SQLSDEVAWEC01.RD.AS.LOCAL</name>
+      </properties>
+    </server>
+    <server>
+      <properties>
+        <name>SQLSDEVAWEC02.RD.AS.LOCAL</name>
+      </properties>
+    </server>
+    <server>
+      <properties>
+        <name>SQLSDEVAWEC03.RD.AS.LOCAL</name>
+      </properties>
+    </server>
+    <server>
+      <properties>
+        <name>SQLSDEVAWEC04.RD.AS.LOCAL</name>
+      </properties>
+    </server>
+    <server>
+      <properties>
+        <name>WWW-DBTEST-01</name>
+      </properties>
+    </server>
+  </file>
+  <connected />
+  <favorites />
+  <recentlyUsed />
+</RDCMan>

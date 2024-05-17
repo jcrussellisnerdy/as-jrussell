@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RDCMan programVersion="2.7" schemaVersion="3">
+  <file>
+    <credentialsProfiles />
+    <properties>
+      <expanded>True</expanded>
+      <name>TST</name>
+    </properties>
+    <server>
+      <properties>
+        <name>DBA-SQLQA-01.RD.AS.LOCAL</name>
+      </properties>
+    </server>
+    <server>
+      <properties>
+        <name>DS-SQLTEST-14.rd.as.local</name>
+      </properties>
+    </server>
+    <server>
+      <properties>
+        <name>GP-SQLTST-01.colo.as.local</name>
+      </properties>
+    </server>
+    <server>
+      <properties>
+        <name>IQQ-RPTTEST.rd.as.local</name>
+      </properties>
+    </server>
+    <server>
+      <properties>
+        <name>POS-SQLTEST-14.rd.as.local</name>
+      </properties>
+    </server>
+    <server>
+      <properties>
+        <name>SQLSTSTAWEC01.RD.AS.LOCAL</name>
+      </properties>
+    </server>
+    <server>
+      <properties>
+        <name>SQLSTSTAWEC02.RD.AS.LOCAL</name>
+      </properties>
+    </server>
+    <server>
+      <properties>
+        <name>SQLSTSTAWEC03.RD.AS.LOCAL</name>
+      </properties>
+    </server>
+    <server>
+      <properties>
+        <name>SQLSTSTAWEC04.RD.AS.LOCAL</name>
+      </properties>
+    </server>
+    <server>
+      <properties>
+        <name>UIPA-TST-DB1.rd.as.local</name>
+      </properties>
+    </server>
+    <server>
+      <properties>
+        <name>UTQA-UTL1.rd.as.local</name>
+      </properties>
+    </server>
+  </file>
+  <connected />
+  <favorites />
+  <recentlyUsed />
+</RDCMan>

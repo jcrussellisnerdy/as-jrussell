@@ -1,0 +1,8 @@
+use role owner_edw_prod; 
+use warehouse edw_prod_infa_wh;
+USE database EDW_PROD;
+use schema CDW;
+
+
+create table EDW_PROD.CDW.DIM_DATE as select * from EDW_PRODSUPPORT.CDW.DIM_DATE;
+

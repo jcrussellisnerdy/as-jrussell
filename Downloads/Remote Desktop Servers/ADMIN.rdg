@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RDCMan programVersion="2.7" schemaVersion="3">
+  <file>
+    <credentialsProfiles />
+    <properties>
+      <expanded>False</expanded>
+      <name>ADMIN</name>
+    </properties>
+    <server>
+      <properties>
+        <name>APP-DEPLOY.as.local</name>
+      </properties>
+    </server>
+    <server>
+      <properties>
+        <name>DBA-SQLPRD-01.colo.as.local\I01</name>
+      </properties>
+    </server>
+    <server>
+      <properties>
+        <name>NWX-SQLPRD-01.colo.as.local</name>
+      </properties>
+    </server>
+    <server>
+      <properties>
+        <name>PINGFED-DB-01.colo.as.local</name>
+      </properties>
+    </server>
+    <server>
+      <properties>
+        <name>SW-ORIONDB-01.colo.as.local</name>
+      </properties>
+    </server>
+    <server>
+      <properties>
+        <name>TFS-BUILD-05.colo.as.local</name>
+      </properties>
+    </server>
+    <server>
+      <properties>
+        <name>TFS-SERVER-03.colo.as.local</name>
+      </properties>
+    </server>
+    <server>
+      <properties>
+        <name>TFS-SERVER-04.colo.as.local</name>
+      </properties>
+    </server>
+    <server>
+      <properties>
+        <name>TRAPPERKEEPER.colo.as.local</name>
+      </properties>
+    </server>
+  </file>
+  <connected />
+  <favorites />
+  <recentlyUsed />
+</RDCMan>

@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RDCMan programVersion="2.7" schemaVersion="3">
+  <file>
+    <credentialsProfiles />
+    <properties>
+      <expanded>True</expanded>
+      <name>STG</name>
+    </properties>
+    <server>
+      <properties>
+        <name>IQQ-RPTSTG.rd.as.local</name>
+      </properties>
+    </server>
+    <server>
+      <properties>
+        <name>POS-SQLSTAGING1.colo.as.local</name>
+      </properties>
+    </server>
+    <server>
+      <properties>
+        <name>SQLSSTGAWEC01.RD.AS.LOCAL</name>
+      </properties>
+    </server>
+    <server>
+      <properties>
+        <name>SQLSSTGAWEC02.RD.AS.LOCAL</name>
+      </properties>
+    </server>
+    <server>
+      <properties>
+        <name>SQLSSTGAWEC03.RD.AS.LOCAL</name>
+      </properties>
+    </server>
+    <server>
+      <properties>
+        <name>SQLSSTGAWEC04.RD.AS.LOCAL</name>
+      </properties>
+    </server>
+    <server>
+      <properties>
+        <name>SQLSSTGAWEC05.RD.AS.LOCAL</name>
+      </properties>
+    </server>
+    <server>
+      <properties>
+        <name>SQLSSTGAWEC06.RD.AS.LOCAL</name>
+      </properties>
+    </server>
+    <server>
+      <properties>
+        <name>SQLSSTGAWEC07.RD.AS.LOCAL</name>
+      </properties>
+    </server>
+    <server>
+      <properties>
+        <name>SQLSSTGOPDB01.RD.AS.LOCAL</name>
+      </properties>
+    </server>
+    <server>
+      <properties>
+        <name>SQLSSTGOPDB02.RD.AS.LOCAL</name>
+      </properties>
+    </server>
+    <server>
+      <properties>
+        <name>SQLSSTGOPDB03.RD.AS.LOCAL</name>
+      </properties>
+    </server>
+    <server>
+      <properties>
+        <name>UTSTAGE-RPT01.colo.as.local</name>
+      </properties>
+    </server>
+    <server>
+      <properties>
+        <name>UTSTAGE-UTL1.rd.as.local</name>
+      </properties>
+    </server>
+  </file>
+  <connected />
+  <favorites />
+  <recentlyUsed />
+</RDCMan>

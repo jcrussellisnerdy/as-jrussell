@@ -1,0 +1,2 @@
+We have severe waits on UIPA-PRD-DB1 that has been out of hand today due to a query where it seems that it is being created which tell me some kind of tool externally is tied to the database.
+The database is just waiting on confirmation that it has recieved the information. 

@@ -1,0 +1,1 @@
+truncate table  EDW_PROD.STG.STG_UT_OWNER_POLICY;

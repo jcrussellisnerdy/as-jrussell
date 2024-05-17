@@ -1,0 +1,340 @@
+﻿28.28172037 04/19/16 08:06:49: [1968] [2028] BLICEMON: * Monochrome Printer Driver version 13.74.544
+28.28525905 04/19/16 08:06:49: [1968] [2028] BLICEMON: * devmode.h version: 1374
+28.28631316 04/19/16 08:06:49: [1968] [2028] BLICEMON: * Loading Module: C:\Windows\System32\spoolsv.exe
+28.28980166 04/19/16 08:06:49: [1968] [2028] BLICEMON: CreatePortListFromRegistry called
+28.29085159 04/19/16 08:06:49: [1968] [2028] BLICEMON: CreatePortListFromRegistry: Creating key: PortList
+28.29206346 04/19/16 08:06:49: [1968] [2028] BLICEMON: CreatePortListFromRegistry: Checking key
+28.29473201 04/19/16 08:06:49: [1968] [2028] BLICEMON: CreatePortListFromRegistry: Found port: ININFaxPort:.
+28.29589294 04/19/16 08:06:49: [1968] [2028] BLICEMON: CreatePortListFromRegistry: PortName ININFaxPort: NOT found.
+28.29700978 04/19/16 08:06:49: [1968] [2028] BLICEMON: CreatePortListFromRegistry: Calling AddBIPortInfo
+28.29836458 04/19/16 08:06:49: [1968] [2028] BLICEMON: CreatePortListFromRegistry finished (return 1)
+27.37380016 04/20/16 07:59:57: [1980] [2036] BLICEMON: * Monochrome Printer Driver version 13.74.544
+27.37492307 04/20/16 07:59:57: [1980] [2036] BLICEMON: * devmode.h version: 1374
+27.37589773 04/20/16 07:59:57: [1980] [2036] BLICEMON: * Loading Module: C:\Windows\System32\spoolsv.exe
+27.37688493 04/20/16 07:59:57: [1980] [2036] BLICEMON: CreatePortListFromRegistry called
+27.37790330 04/20/16 07:59:57: [1980] [2036] BLICEMON: CreatePortListFromRegistry: Creating key: PortList
+27.37906992 04/20/16 07:59:57: [1980] [2036] BLICEMON: CreatePortListFromRegistry: Checking key
+27.38006738 04/20/16 07:59:57: [1980] [2036] BLICEMON: CreatePortListFromRegistry: Found port: ININFaxPort:.
+27.38125985 04/20/16 07:59:57: [1980] [2036] BLICEMON: CreatePortListFromRegistry: PortName ININFaxPort: NOT found.
+27.38230673 04/20/16 07:59:57: [1980] [2036] BLICEMON: CreatePortListFromRegistry: Calling AddBIPortInfo
+27.38333005 04/20/16 07:59:57: [1980] [2036] BLICEMON: CreatePortListFromRegistry finished (return 1)
+69.23832749 04/21/16 19:01:02: [1996] [2020] BLICEMON: * Monochrome Printer Driver version 13.74.544
+69.24544306 04/21/16 19:01:02: [1996] [2020] BLICEMON: * devmode.h version: 1374
+69.26103694 04/21/16 19:01:02: [1996] [2020] BLICEMON: * Loading Module: C:\Windows\System32\spoolsv.exe
+69.27623130 04/21/16 19:01:02: [1996] [2020] BLICEMON: CreatePortListFromRegistry called
+69.30807401 04/21/16 19:01:02: [1996] [2020] BLICEMON: CreatePortListFromRegistry: Creating key: PortList
+69.31891290 04/21/16 19:01:02: [1996] [2020] BLICEMON: CreatePortListFromRegistry: Checking key
+69.34898157 04/21/16 19:01:02: [1996] [2020] BLICEMON: CreatePortListFromRegistry: Found port: ININFaxPort:.
+69.36676725 04/21/16 19:01:02: [1996] [2020] BLICEMON: CreatePortListFromRegistry: PortName ININFaxPort: NOT found.
+69.37710855 04/21/16 19:01:02: [1996] [2020] BLICEMON: CreatePortListFromRegistry: Calling AddBIPortInfo
+69.38379838 04/21/16 19:01:02: [1996] [2020] BLICEMON: CreatePortListFromRegistry finished (return 1)
+70.38456679 04/22/16 10:44:54: [1912] [1988] BLICEMON: * Monochrome Printer Driver version 13.74.544
+70.39763345 04/22/16 10:44:54: [1912] [1988] BLICEMON: * devmode.h version: 1374
+70.41066628 04/22/16 10:44:54: [1912] [1988] BLICEMON: * Loading Module: C:\Windows\System32\spoolsv.exe
+70.41500321 04/22/16 10:44:54: [1912] [1988] BLICEMON: CreatePortListFromRegistry called
+70.41899878 04/22/16 10:44:54: [1912] [1988] BLICEMON: CreatePortListFromRegistry: Creating key: PortList
+70.42354364 04/22/16 10:44:54: [1912] [1988] BLICEMON: CreatePortListFromRegistry: Checking key
+70.49123377 04/22/16 10:44:54: [1912] [1988] BLICEMON: CreatePortListFromRegistry: Found port: ININFaxPort:.
+70.49546236 04/22/16 10:44:54: [1912] [1988] BLICEMON: CreatePortListFromRegistry: PortName ININFaxPort: NOT found.
+70.49965484 04/22/16 10:44:54: [1912] [1988] BLICEMON: CreatePortListFromRegistry: Calling AddBIPortInfo
+70.50355690 04/22/16 10:44:54: [1912] [1988] BLICEMON: CreatePortListFromRegistry finished (return 1)
+29.77073583 04/25/16 08:06:47: [2016] [2044] BLICEMON: * Monochrome Printer Driver version 13.74.544
+29.77609873 04/25/16 08:06:47: [2016] [2044] BLICEMON: * devmode.h version: 1374
+29.78034253 04/25/16 08:06:47: [2016] [2044] BLICEMON: * Loading Module: C:\Windows\System32\spoolsv.exe
+29.78228881 04/25/16 08:06:47: [2016] [2044] BLICEMON: CreatePortListFromRegistry called
+29.78582936 04/25/16 08:06:47: [2016] [2044] BLICEMON: CreatePortListFromRegistry: Creating key: PortList
+29.78706631 04/25/16 08:06:47: [2016] [2044] BLICEMON: CreatePortListFromRegistry: Checking key
+29.78834697 04/25/16 08:06:47: [2016] [2044] BLICEMON: CreatePortListFromRegistry: Found port: ININFaxPort:.
+29.78948357 04/25/16 08:06:47: [2016] [2044] BLICEMON: CreatePortListFromRegistry: PortName ININFaxPort: NOT found.
+29.79054680 04/25/16 08:06:47: [2016] [2044] BLICEMON: CreatePortListFromRegistry: Calling AddBIPortInfo
+29.79158380 04/25/16 08:06:47: [2016] [2044] BLICEMON: CreatePortListFromRegistry finished (return 1)
+43.12043104 04/25/16 20:58:50: [2000] [1244] BLICEMON: * Monochrome Printer Driver version 13.74.544
+43.13315597 04/25/16 20:58:50: [2000] [1244] BLICEMON: * devmode.h version: 1374
+43.13656793 04/25/16 20:58:50: [2000] [1244] BLICEMON: * Loading Module: C:\Windows\System32\spoolsv.exe
+43.13845599 04/25/16 20:58:50: [2000] [1244] BLICEMON: CreatePortListFromRegistry called
+43.14438968 04/25/16 20:58:50: [2000] [1244] BLICEMON: CreatePortListFromRegistry: Creating key: PortList
+43.14646134 04/25/16 20:58:50: [2000] [1244] BLICEMON: CreatePortListFromRegistry: Checking key
+43.15064951 04/25/16 20:58:50: [2000] [1244] BLICEMON: CreatePortListFromRegistry: Found port: ININFaxPort:.
+43.15339931 04/25/16 20:58:50: [2000] [1244] BLICEMON: CreatePortListFromRegistry: PortName ININFaxPort: NOT found.
+43.16752878 04/25/16 20:58:50: [2000] [1244] BLICEMON: CreatePortListFromRegistry: Calling AddBIPortInfo
+43.17031849 04/25/16 20:58:50: [2000] [1244] BLICEMON: CreatePortListFromRegistry finished (return 1)
+30.53906624 04/26/16 08:03:22: [1164] [1276] BLICEMON: * Monochrome Printer Driver version 13.74.544
+30.54194877 04/26/16 08:03:22: [1164] [1276] BLICEMON: * devmode.h version: 1374
+30.54410677 04/26/16 08:03:22: [1164] [1276] BLICEMON: * Loading Module: C:\Windows\System32\spoolsv.exe
+30.54609600 04/26/16 08:03:22: [1164] [1276] BLICEMON: CreatePortListFromRegistry called
+30.55340249 04/26/16 08:03:22: [1164] [1276] BLICEMON: CreatePortListFromRegistry: Creating key: PortList
+30.55570305 04/26/16 08:03:22: [1164] [1276] BLICEMON: CreatePortListFromRegistry: Checking key
+30.55845519 04/26/16 08:03:22: [1164] [1276] BLICEMON: CreatePortListFromRegistry: Found port: ININFaxPort:.
+30.56038284 04/26/16 08:03:22: [1164] [1276] BLICEMON: CreatePortListFromRegistry: PortName ININFaxPort: NOT found.
+30.56421722 04/26/16 08:03:22: [1164] [1276] BLICEMON: CreatePortListFromRegistry: Calling AddBIPortInfo
+30.56626992 04/26/16 08:03:22: [1164] [1276] BLICEMON: CreatePortListFromRegistry finished (return 1)
+72.40868242 04/26/16 18:13:33: [1976] [2008] BLICEMON: * Monochrome Printer Driver version 13.74.544
+72.42975898 04/26/16 18:13:33: [1976] [2008] BLICEMON: * devmode.h version: 1374
+72.49995781 04/26/16 18:13:33: [1976] [2008] BLICEMON: * Loading Module: C:\Windows\System32\spoolsv.exe
+72.50699308 04/26/16 18:13:33: [1976] [2008] BLICEMON: CreatePortListFromRegistry called
+72.51437617 04/26/16 18:13:33: [1976] [2008] BLICEMON: CreatePortListFromRegistry: Creating key: PortList
+72.52219792 04/26/16 18:13:33: [1976] [2008] BLICEMON: CreatePortListFromRegistry: Checking key
+72.56500790 04/26/16 18:13:33: [1976] [2008] BLICEMON: CreatePortListFromRegistry: Found port: ININFaxPort:.
+72.57184589 04/26/16 18:13:33: [1976] [2008] BLICEMON: CreatePortListFromRegistry: PortName ININFaxPort: NOT found.
+72.57836192 04/26/16 18:13:33: [1976] [2008] BLICEMON: CreatePortListFromRegistry: Calling AddBIPortInfo
+72.58856969 04/26/16 18:13:33: [1976] [2008] BLICEMON: CreatePortListFromRegistry finished (return 1)
+30.54912733 04/27/16 08:01:16: [1976] [2004] BLICEMON: * Monochrome Printer Driver version 13.74.544
+30.55032817 04/27/16 08:01:16: [1976] [2004] BLICEMON: * devmode.h version: 1374
+30.55131310 04/27/16 08:01:16: [1976] [2004] BLICEMON: * Loading Module: C:\Windows\System32\spoolsv.exe
+30.55233299 04/27/16 08:01:16: [1976] [2004] BLICEMON: CreatePortListFromRegistry called
+30.55330348 04/27/16 08:01:16: [1976] [2004] BLICEMON: CreatePortListFromRegistry: Creating key: PortList
+30.55449063 04/27/16 08:01:16: [1976] [2004] BLICEMON: CreatePortListFromRegistry: Checking key
+30.55545845 04/27/16 08:01:16: [1976] [2004] BLICEMON: CreatePortListFromRegistry: Found port: ININFaxPort:.
+30.55640080 04/27/16 08:01:16: [1976] [2004] BLICEMON: CreatePortListFromRegistry: PortName ININFaxPort: NOT found.
+30.55737661 04/27/16 08:01:16: [1976] [2004] BLICEMON: CreatePortListFromRegistry: Calling AddBIPortInfo
+30.55833758 04/27/16 08:01:16: [1976] [2004] BLICEMON: CreatePortListFromRegistry finished (return 1)
+37.92552020 04/27/16 19:02:01: [1560] [1532] BLICEMON: * Monochrome Printer Driver version 13.74.544
+37.92676513 04/27/16 19:02:01: [1560] [1532] BLICEMON: * devmode.h version: 1374
+37.92815679 04/27/16 19:02:01: [1560] [1532] BLICEMON: * Loading Module: C:\Windows\System32\spoolsv.exe
+37.93130959 04/27/16 19:02:01: [1560] [1532] BLICEMON: CreatePortListFromRegistry called
+37.93260926 04/27/16 19:02:01: [1560] [1532] BLICEMON: CreatePortListFromRegistry: Creating key: PortList
+37.94188255 04/27/16 19:02:01: [1560] [1532] BLICEMON: CreatePortListFromRegistry: Checking key
+37.94502471 04/27/16 19:02:01: [1560] [1532] BLICEMON: CreatePortListFromRegistry: Found port: ININFaxPort:.
+37.94948745 04/27/16 19:02:01: [1560] [1532] BLICEMON: CreatePortListFromRegistry: PortName ININFaxPort: NOT found.
+37.95073162 04/27/16 19:02:01: [1560] [1532] BLICEMON: CreatePortListFromRegistry: Calling AddBIPortInfo
+37.95188151 04/27/16 19:02:01: [1560] [1532] BLICEMON: CreatePortListFromRegistry finished (return 1)
+40.55286271 04/29/16 07:49:42: [1672] [1700] BLICEMON: * Monochrome Printer Driver version 13.74.544
+40.55478769 04/29/16 07:49:42: [1672] [1700] BLICEMON: * devmode.h version: 1374
+40.55559661 04/29/16 07:49:42: [1672] [1700] BLICEMON: * Loading Module: C:\Windows\System32\spoolsv.exe
+40.55626146 04/29/16 07:49:42: [1672] [1700] BLICEMON: CreatePortListFromRegistry called
+40.55706506 04/29/16 07:49:42: [1672] [1700] BLICEMON: CreatePortListFromRegistry: Creating key: PortList
+40.55859622 04/29/16 07:49:42: [1672] [1700] BLICEMON: CreatePortListFromRegistry: Checking key
+40.56175245 04/29/16 07:49:42: [1672] [1700] BLICEMON: CreatePortListFromRegistry: Found port: ININFaxPort:.
+40.56226372 04/29/16 07:49:42: [1672] [1700] BLICEMON: CreatePortListFromRegistry: PortName ININFaxPort: NOT found.
+40.56267237 04/29/16 07:49:42: [1672] [1700] BLICEMON: CreatePortListFromRegistry: Calling AddBIPortInfo
+40.56355693 04/29/16 07:49:42: [1672] [1700] BLICEMON: CreatePortListFromRegistry finished (return 1)
+83.75270826 04/29/16 20:27:56: [2008] [2040] BLICEMON: * Monochrome Printer Driver version 13.74.544
+83.77876908 04/29/16 20:27:56: [2008] [2040] BLICEMON: * devmode.h version: 1374
+83.79227409 04/29/16 20:27:56: [2008] [2040] BLICEMON: * Loading Module: C:\Windows\System32\spoolsv.exe
+83.81371895 04/29/16 20:27:56: [2008] [2040] BLICEMON: CreatePortListFromRegistry called
+83.82600030 04/29/16 20:27:56: [2008] [2040] BLICEMON: CreatePortListFromRegistry: Creating key: PortList
+83.84742615 04/29/16 20:27:56: [2008] [2040] BLICEMON: CreatePortListFromRegistry: Checking key
+83.86923518 04/29/16 20:27:56: [2008] [2040] BLICEMON: CreatePortListFromRegistry: Found port: ININFaxPort:.
+83.87627677 04/29/16 20:27:56: [2008] [2040] BLICEMON: CreatePortListFromRegistry: PortName ININFaxPort: NOT found.
+83.88254366 04/29/16 20:27:56: [2008] [2040] BLICEMON: CreatePortListFromRegistry: Calling AddBIPortInfo
+83.88890177 04/29/16 20:27:56: [2008] [2040] BLICEMON: CreatePortListFromRegistry finished (return 1)
+29.32926175 05/02/16 15:48:37: [876] [1476] BLICEMON: * Monochrome Printer Driver version 13.74.544
+29.33031395 05/02/16 15:48:37: [876] [1476] BLICEMON: * devmode.h version: 1374
+29.33266696 05/02/16 15:48:37: [876] [1476] BLICEMON: * Loading Module: C:\Windows\System32\spoolsv.exe
+29.33374311 05/02/16 15:48:37: [876] [1476] BLICEMON: CreatePortListFromRegistry called
+29.33479456 05/02/16 15:48:37: [876] [1476] BLICEMON: CreatePortListFromRegistry: Creating key: PortList
+29.33775083 05/02/16 15:48:37: [876] [1476] BLICEMON: CreatePortListFromRegistry: Checking key
+29.33943976 05/02/16 15:48:37: [876] [1476] BLICEMON: CreatePortListFromRegistry: Found port: ININFaxPort:.
+29.34053301 05/02/16 15:48:37: [876] [1476] BLICEMON: CreatePortListFromRegistry: PortName ININFaxPort: NOT found.
+29.34168861 05/02/16 15:48:37: [876] [1476] BLICEMON: CreatePortListFromRegistry: Calling AddBIPortInfo
+29.34358660 05/02/16 15:48:38: [876] [1476] BLICEMON: CreatePortListFromRegistry finished (return 1)
+29.12948795 05/03/16 08:03:04: [1164] [1528] BLICEMON: * Monochrome Printer Driver version 13.74.544
+29.14657914 05/03/16 08:03:04: [1164] [1528] BLICEMON: * devmode.h version: 1374
+29.15543283 05/03/16 08:03:04: [1164] [1528] BLICEMON: * Loading Module: C:\Windows\System32\spoolsv.exe
+29.15676102 05/03/16 08:03:04: [1164] [1528] BLICEMON: CreatePortListFromRegistry called
+29.15780030 05/03/16 08:03:04: [1164] [1528] BLICEMON: CreatePortListFromRegistry: Creating key: PortList
+29.15905056 05/03/16 08:03:04: [1164] [1528] BLICEMON: CreatePortListFromRegistry: Checking key
+29.16008491 05/03/16 08:03:04: [1164] [1528] BLICEMON: CreatePortListFromRegistry: Found port: ININFaxPort:.
+29.16108428 05/03/16 08:03:04: [1164] [1528] BLICEMON: CreatePortListFromRegistry: PortName ININFaxPort: NOT found.
+29.16218400 05/03/16 08:03:04: [1164] [1528] BLICEMON: CreatePortListFromRegistry: Calling AddBIPortInfo
+29.16317349 05/03/16 08:03:04: [1164] [1528] BLICEMON: CreatePortListFromRegistry finished (return 1)
+71.26350637 05/03/16 18:17:59: [2016] [2040] BLICEMON: * Monochrome Printer Driver version 13.74.544
+71.26746726 05/03/16 18:17:59: [2016] [2040] BLICEMON: * devmode.h version: 1374
+71.27128484 05/03/16 18:17:59: [2016] [2040] BLICEMON: * Loading Module: C:\Windows\System32\spoolsv.exe
+71.27504427 05/03/16 18:18:00: [2016] [2040] BLICEMON: CreatePortListFromRegistry called
+71.27897475 05/03/16 18:18:00: [2016] [2040] BLICEMON: CreatePortListFromRegistry: Creating key: PortList
+71.28370615 05/03/16 18:18:00: [2016] [2040] BLICEMON: CreatePortListFromRegistry: Checking key
+71.28786128 05/03/16 18:18:00: [2016] [2040] BLICEMON: CreatePortListFromRegistry: Found port: ININFaxPort:.
+71.29206165 05/03/16 18:18:00: [2016] [2040] BLICEMON: CreatePortListFromRegistry: PortName ININFaxPort: NOT found.
+71.30049811 05/03/16 18:18:00: [2016] [2040] BLICEMON: CreatePortListFromRegistry: Calling AddBIPortInfo
+71.30451716 05/03/16 18:18:00: [2016] [2040] BLICEMON: CreatePortListFromRegistry finished (return 1)
+19.14572984 05/04/16 08:04:05: [2012] [2036] BLICEMON: * Monochrome Printer Driver version 13.74.544
+19.14691242 05/04/16 08:04:05: [2012] [2036] BLICEMON: * devmode.h version: 1374
+19.14823451 05/04/16 08:04:05: [2012] [2036] BLICEMON: * Loading Module: C:\Windows\System32\spoolsv.exe
+19.14934221 05/04/16 08:04:05: [2012] [2036] BLICEMON: CreatePortListFromRegistry called
+19.15046473 05/04/16 08:04:05: [2012] [2036] BLICEMON: CreatePortListFromRegistry: Creating key: PortList
+19.15161652 05/04/16 08:04:05: [2012] [2036] BLICEMON: CreatePortListFromRegistry: Checking key
+19.15260524 05/04/16 08:04:05: [2012] [2036] BLICEMON: CreatePortListFromRegistry: Found port: ININFaxPort:.
+19.15365515 05/04/16 08:04:05: [2012] [2036] BLICEMON: CreatePortListFromRegistry: PortName ININFaxPort: NOT found.
+19.15527983 05/04/16 08:04:05: [2012] [2036] BLICEMON: CreatePortListFromRegistry: Calling AddBIPortInfo
+19.15641755 05/04/16 08:04:05: [2012] [2036] BLICEMON: CreatePortListFromRegistry finished (return 1)
+29.49446206 05/04/16 16:40:42: [1984] [1432] BLICEMON: * Monochrome Printer Driver version 13.74.544
+29.49563401 05/04/16 16:40:42: [1984] [1432] BLICEMON: * devmode.h version: 1374
+29.49667975 05/04/16 16:40:42: [1984] [1432] BLICEMON: * Loading Module: C:\Windows\System32\spoolsv.exe
+29.49772853 05/04/16 16:40:42: [1984] [1432] BLICEMON: CreatePortListFromRegistry called
+29.49877009 05/04/16 16:40:42: [1984] [1432] BLICEMON: CreatePortListFromRegistry: Creating key: PortList
+29.49995495 05/04/16 16:40:42: [1984] [1432] BLICEMON: CreatePortListFromRegistry: Checking key
+29.50107862 05/04/16 16:40:42: [1984] [1432] BLICEMON: CreatePortListFromRegistry: Found port: ININFaxPort:.
+29.50210612 05/04/16 16:40:42: [1984] [1432] BLICEMON: CreatePortListFromRegistry: PortName ININFaxPort: NOT found.
+29.50314653 05/04/16 16:40:42: [1984] [1432] BLICEMON: CreatePortListFromRegistry: Calling AddBIPortInfo
+29.50422610 05/04/16 16:40:42: [1984] [1432] BLICEMON: CreatePortListFromRegistry finished (return 1)
+14.85652710 05/04/16 19:57:43: [2024] [1112] BLICEMON: * Monochrome Printer Driver version 13.74.544
+14.85793283 05/04/16 19:57:43: [2024] [1112] BLICEMON: * devmode.h version: 1374
+14.85895348 05/04/16 19:57:43: [2024] [1112] BLICEMON: * Loading Module: C:\Windows\System32\spoolsv.exe
+14.86215876 05/04/16 19:57:43: [2024] [1112] BLICEMON: CreatePortListFromRegistry called
+14.86326798 05/04/16 19:57:43: [2024] [1112] BLICEMON: CreatePortListFromRegistry: Creating key: PortList
+14.86598479 05/04/16 19:57:43: [2024] [1112] BLICEMON: CreatePortListFromRegistry: Checking key
+14.86769994 05/04/16 19:57:43: [2024] [1112] BLICEMON: CreatePortListFromRegistry: Found port: ININFaxPort:.
+14.86880917 05/04/16 19:57:43: [2024] [1112] BLICEMON: CreatePortListFromRegistry: PortName ININFaxPort: NOT found.
+14.87001191 05/04/16 19:57:43: [2024] [1112] BLICEMON: CreatePortListFromRegistry: Calling AddBIPortInfo
+14.87104244 05/04/16 19:57:43: [2024] [1112] BLICEMON: CreatePortListFromRegistry finished (return 1)
+25.30105452 05/05/16 20:10:08: [1996] [2028] BLICEMON: * Monochrome Printer Driver version 13.74.544
+25.30227169 05/05/16 20:10:08: [1996] [2028] BLICEMON: * devmode.h version: 1374
+25.30344629 05/05/16 20:10:08: [1996] [2028] BLICEMON: * Loading Module: C:\Windows\System32\spoolsv.exe
+25.30456349 05/05/16 20:10:08: [1996] [2028] BLICEMON: CreatePortListFromRegistry called
+25.30565484 05/05/16 20:10:08: [1996] [2028] BLICEMON: CreatePortListFromRegistry: Creating key: PortList
+25.30692600 05/05/16 20:10:08: [1996] [2028] BLICEMON: CreatePortListFromRegistry: Checking key
+25.30836593 05/05/16 20:10:08: [1996] [2028] BLICEMON: CreatePortListFromRegistry: Found port: ININFaxPort:.
+25.30948465 05/05/16 20:10:08: [1996] [2028] BLICEMON: CreatePortListFromRegistry: PortName ININFaxPort: NOT found.
+25.31059729 05/05/16 20:10:08: [1996] [2028] BLICEMON: CreatePortListFromRegistry: Calling AddBIPortInfo
+25.31373259 05/05/16 20:10:08: [1996] [2028] BLICEMON: CreatePortListFromRegistry finished (return 1)
+20.43364274 05/06/16 16:31:41: [1984] [2008] BLICEMON: * Monochrome Printer Driver version 13.74.544
+20.43478010 05/06/16 16:31:41: [1984] [2008] BLICEMON: * devmode.h version: 1374
+20.43554112 05/06/16 16:31:41: [1984] [2008] BLICEMON: * Loading Module: C:\Windows\System32\spoolsv.exe
+20.43636373 05/06/16 16:31:41: [1984] [2008] BLICEMON: CreatePortListFromRegistry called
+20.43709321 05/06/16 16:31:41: [1984] [2008] BLICEMON: CreatePortListFromRegistry: Creating key: PortList
+20.43792988 05/06/16 16:31:41: [1984] [2008] BLICEMON: CreatePortListFromRegistry: Checking key
+20.43865366 05/06/16 16:31:41: [1984] [2008] BLICEMON: CreatePortListFromRegistry: Found port: ININFaxPort:.
+20.43938427 05/06/16 16:31:41: [1984] [2008] BLICEMON: CreatePortListFromRegistry: PortName ININFaxPort: NOT found.
+20.44010843 05/06/16 16:31:41: [1984] [2008] BLICEMON: CreatePortListFromRegistry: Calling AddBIPortInfo
+20.44082308 05/06/16 16:31:41: [1984] [2008] BLICEMON: CreatePortListFromRegistry finished (return 1)
+64.11250277 05/06/16 21:14:03: [1804] [1828] BLICEMON: * Monochrome Printer Driver version 13.74.544
+64.11802683 05/06/16 21:14:03: [1804] [1828] BLICEMON: * devmode.h version: 1374
+64.12287426 05/06/16 21:14:03: [1804] [1828] BLICEMON: * Loading Module: C:\Windows\System32\spoolsv.exe
+64.13034497 05/06/16 21:14:03: [1804] [1828] BLICEMON: CreatePortListFromRegistry called
+64.14245556 05/06/16 21:14:03: [1804] [1828] BLICEMON: CreatePortListFromRegistry: Creating key: PortList
+64.16712339 05/06/16 21:14:03: [1804] [1828] BLICEMON: CreatePortListFromRegistry: Checking key
+64.19398838 05/06/16 21:14:03: [1804] [1828] BLICEMON: CreatePortListFromRegistry: Found port: ININFaxPort:.
+64.21856080 05/06/16 21:14:03: [1804] [1828] BLICEMON: CreatePortListFromRegistry: PortName ININFaxPort: NOT found.
+64.22301327 05/06/16 21:14:03: [1804] [1828] BLICEMON: CreatePortListFromRegistry: Calling AddBIPortInfo
+64.22727112 05/06/16 21:14:03: [1804] [1828] BLICEMON: CreatePortListFromRegistry finished (return 1)
+52.53241577 05/06/16 21:18:18: [1980] [2008] BLICEMON: * Monochrome Printer Driver version 13.74.544
+52.53655123 05/06/16 21:18:18: [1980] [2008] BLICEMON: * devmode.h version: 1374
+52.54056086 05/06/16 21:18:18: [1980] [2008] BLICEMON: * Loading Module: C:\Windows\System32\spoolsv.exe
+52.54444885 05/06/16 21:18:18: [1980] [2008] BLICEMON: CreatePortListFromRegistry called
+52.54828515 05/06/16 21:18:18: [1980] [2008] BLICEMON: CreatePortListFromRegistry: Creating key: PortList
+52.55262854 05/06/16 21:18:18: [1980] [2008] BLICEMON: CreatePortListFromRegistry: Checking key
+52.55648574 05/06/16 21:18:18: [1980] [2008] BLICEMON: CreatePortListFromRegistry: Found port: ININFaxPort:.
+52.56024525 05/06/16 21:18:18: [1980] [2008] BLICEMON: CreatePortListFromRegistry: PortName ININFaxPort: NOT found.
+52.56533408 05/06/16 21:18:18: [1980] [2008] BLICEMON: CreatePortListFromRegistry: Calling AddBIPortInfo
+52.56917683 05/06/16 21:18:18: [1980] [2008] BLICEMON: CreatePortListFromRegistry finished (return 1)
+23.04450528 05/07/16 12:24:45: [2008] [2032] BLICEMON: * Monochrome Printer Driver version 13.74.544
+23.04587110 05/07/16 12:24:45: [2008] [2032] BLICEMON: * devmode.h version: 1374
+23.04694460 05/07/16 12:24:45: [2008] [2032] BLICEMON: * Loading Module: C:\Windows\System32\spoolsv.exe
+23.04813328 05/07/16 12:24:45: [2008] [2032] BLICEMON: CreatePortListFromRegistry called
+23.04923681 05/07/16 12:24:45: [2008] [2032] BLICEMON: CreatePortListFromRegistry: Creating key: PortList
+23.05053268 05/07/16 12:24:45: [2008] [2032] BLICEMON: CreatePortListFromRegistry: Checking key
+23.05163925 05/07/16 12:24:45: [2008] [2032] BLICEMON: CreatePortListFromRegistry: Found port: ININFaxPort:.
+23.05272757 05/07/16 12:24:45: [2008] [2032] BLICEMON: CreatePortListFromRegistry: PortName ININFaxPort: NOT found.
+23.05387596 05/07/16 12:24:45: [2008] [2032] BLICEMON: CreatePortListFromRegistry: Calling AddBIPortInfo
+23.05498024 05/07/16 12:24:45: [2008] [2032] BLICEMON: CreatePortListFromRegistry finished (return 1)
+14.84135200 05/07/16 13:46:06: [1996] [2020] BLICEMON: * Monochrome Printer Driver version 13.74.544
+14.84245172 05/07/16 13:46:06: [1996] [2020] BLICEMON: * devmode.h version: 1374
+14.84342752 05/07/16 13:46:06: [1996] [2020] BLICEMON: * Loading Module: C:\Windows\System32\spoolsv.exe
+14.84441472 05/07/16 13:46:06: [1996] [2020] BLICEMON: CreatePortListFromRegistry called
+14.84538519 05/07/16 13:46:06: [1996] [2020] BLICEMON: CreatePortListFromRegistry: Creating key: PortList
+14.84649479 05/07/16 13:46:06: [1996] [2020] BLICEMON: CreatePortListFromRegistry: Checking key
+14.84747971 05/07/16 13:46:06: [1996] [2020] BLICEMON: CreatePortListFromRegistry: Found port: ININFaxPort:.
+14.84845133 05/07/16 13:46:06: [1996] [2020] BLICEMON: CreatePortListFromRegistry: PortName ININFaxPort: NOT found.
+14.84944157 05/07/16 13:46:06: [1996] [2020] BLICEMON: CreatePortListFromRegistry: Calling AddBIPortInfo
+14.85041927 05/07/16 13:46:06: [1996] [2020] BLICEMON: CreatePortListFromRegistry finished (return 1)
+27.87827256 05/09/16 08:07:12: [904] [740] BLICEMON: * Monochrome Printer Driver version 13.74.544
+27.88786101 05/09/16 08:07:12: [904] [740] BLICEMON: * devmode.h version: 1374
+27.89276548 05/09/16 08:07:12: [904] [740] BLICEMON: * Loading Module: C:\Windows\System32\spoolsv.exe
+27.89458289 05/09/16 08:07:12: [904] [740] BLICEMON: CreatePortListFromRegistry called
+27.89636571 05/09/16 08:07:12: [904] [740] BLICEMON: CreatePortListFromRegistry: Creating key: PortList
+27.89843401 05/09/16 08:07:12: [904] [740] BLICEMON: CreatePortListFromRegistry: Checking key
+27.90023241 05/09/16 08:07:12: [904] [740] BLICEMON: CreatePortListFromRegistry: Found port: ININFaxPort:.
+27.90198938 05/09/16 08:07:12: [904] [740] BLICEMON: CreatePortListFromRegistry: PortName ININFaxPort: NOT found.
+27.90376536 05/09/16 08:07:12: [904] [740] BLICEMON: CreatePortListFromRegistry: Calling AddBIPortInfo
+27.90559076 05/09/16 08:07:12: [904] [740] BLICEMON: CreatePortListFromRegistry finished (return 1)
+16.84567333 05/09/16 18:47:43: [1992] [1268] BLICEMON: * Monochrome Printer Driver version 13.74.544
+16.84709312 05/09/16 18:47:43: [1992] [1268] BLICEMON: * devmode.h version: 1374
+16.84820576 05/09/16 18:47:43: [1992] [1268] BLICEMON: * Loading Module: C:\Windows\System32\spoolsv.exe
+16.85017978 05/09/16 18:47:43: [1992] [1268] BLICEMON: CreatePortListFromRegistry called
+16.85123959 05/09/16 18:47:43: [1992] [1268] BLICEMON: CreatePortListFromRegistry: Creating key: PortList
+16.85247235 05/09/16 18:47:43: [1992] [1268] BLICEMON: CreatePortListFromRegistry: Checking key
+16.85354470 05/09/16 18:47:43: [1992] [1268] BLICEMON: CreatePortListFromRegistry: Found port: ININFaxPort:.
+16.85463454 05/09/16 18:47:43: [1992] [1268] BLICEMON: CreatePortListFromRegistry: PortName ININFaxPort: NOT found.
+16.85573121 05/09/16 18:47:43: [1992] [1268] BLICEMON: CreatePortListFromRegistry: Calling AddBIPortInfo
+16.85754406 05/09/16 18:47:43: [1992] [1268] BLICEMON: CreatePortListFromRegistry finished (return 1)
+35.65888744 05/10/16 18:59:35: [1104] [1564] BLICEMON: * Monochrome Printer Driver version 13.74.544
+35.66127694 05/10/16 18:59:35: [1104] [1564] BLICEMON: * devmode.h version: 1374
+35.67020466 05/10/16 18:59:35: [1104] [1564] BLICEMON: * Loading Module: C:\Windows\System32\spoolsv.exe
+35.67281729 05/10/16 18:59:35: [1104] [1564] BLICEMON: CreatePortListFromRegistry called
+35.67597388 05/10/16 18:59:35: [1104] [1564] BLICEMON: CreatePortListFromRegistry: Creating key: PortList
+35.67857929 05/10/16 18:59:35: [1104] [1564] BLICEMON: CreatePortListFromRegistry: Checking key
+35.68929400 05/10/16 18:59:35: [1104] [1564] BLICEMON: CreatePortListFromRegistry: Found port: ININFaxPort:.
+35.71514888 05/10/16 18:59:35: [1104] [1564] BLICEMON: CreatePortListFromRegistry: PortName ININFaxPort: NOT found.
+35.71732284 05/10/16 18:59:35: [1104] [1564] BLICEMON: CreatePortListFromRegistry: Calling AddBIPortInfo
+35.71948578 05/10/16 18:59:35: [1104] [1564] BLICEMON: CreatePortListFromRegistry finished (return 1)
+31.75696692 05/12/16 07:53:46: [892] [1412] BLICEMON: * Monochrome Printer Driver version 13.74.544
+31.75915532 05/12/16 07:53:46: [892] [1412] BLICEMON: * devmode.h version: 1374
+31.76091114 05/12/16 07:53:46: [892] [1412] BLICEMON: * Loading Module: C:\Windows\System32\spoolsv.exe
+31.76518760 05/12/16 07:53:46: [892] [1412] BLICEMON: CreatePortListFromRegistry called
+31.76725132 05/12/16 07:53:46: [892] [1412] BLICEMON: CreatePortListFromRegistry: Creating key: PortList
+31.76926981 05/12/16 07:53:46: [892] [1412] BLICEMON: CreatePortListFromRegistry: Checking key
+31.77312812 05/12/16 07:53:46: [892] [1412] BLICEMON: CreatePortListFromRegistry: Found port: ININFaxPort:.
+31.77782994 05/12/16 07:53:46: [892] [1412] BLICEMON: CreatePortListFromRegistry: PortName ININFaxPort: NOT found.
+31.77988416 05/12/16 07:53:46: [892] [1412] BLICEMON: CreatePortListFromRegistry: Calling AddBIPortInfo
+31.78197905 05/12/16 07:53:46: [892] [1412] BLICEMON: CreatePortListFromRegistry finished (return 1)
+28.66213907 05/13/16 08:14:56: [940] [1612] BLICEMON: * Monochrome Printer Driver version 13.74.544
+28.66346458 05/13/16 08:14:56: [940] [1612] BLICEMON: * devmode.h version: 1374
+28.66468518 05/13/16 08:14:56: [940] [1612] BLICEMON: * Loading Module: C:\Windows\System32\spoolsv.exe
+28.66594113 05/13/16 08:14:56: [940] [1612] BLICEMON: CreatePortListFromRegistry called
+28.66712789 05/13/16 08:14:56: [940] [1612] BLICEMON: CreatePortListFromRegistry: Creating key: PortList
+28.66863928 05/13/16 08:14:56: [940] [1612] BLICEMON: CreatePortListFromRegistry: Checking key
+28.66988155 05/13/16 08:14:56: [940] [1612] BLICEMON: CreatePortListFromRegistry: Found port: ININFaxPort:.
+28.67111963 05/13/16 08:14:56: [940] [1612] BLICEMON: CreatePortListFromRegistry: PortName ININFaxPort: NOT found.
+28.67234479 05/13/16 08:14:56: [940] [1612] BLICEMON: CreatePortListFromRegistry: Calling AddBIPortInfo
+28.67359465 05/13/16 08:14:56: [940] [1612] BLICEMON: CreatePortListFromRegistry finished (return 1)
+34.15861950 05/13/16 17:26:59: [2016] [2040] BLICEMON: * Monochrome Printer Driver version 13.74.544
+34.16071053 05/13/16 17:26:59: [2016] [2040] BLICEMON: * devmode.h version: 1374
+34.16199267 05/13/16 17:26:59: [2016] [2040] BLICEMON: * Loading Module: C:\Windows\System32\spoolsv.exe
+34.16390124 05/13/16 17:26:59: [2016] [2040] BLICEMON: CreatePortListFromRegistry called
+34.16525142 05/13/16 17:26:59: [2016] [2040] BLICEMON: CreatePortListFromRegistry: Creating key: PortList
+34.16689962 05/13/16 17:26:59: [2016] [2040] BLICEMON: CreatePortListFromRegistry: Checking key
+34.16866945 05/13/16 17:26:59: [2016] [2040] BLICEMON: CreatePortListFromRegistry: Found port: ININFaxPort:.
+34.17099843 05/13/16 17:26:59: [2016] [2040] BLICEMON: CreatePortListFromRegistry: PortName ININFaxPort: NOT found.
+34.17225130 05/13/16 17:26:59: [2016] [2040] BLICEMON: CreatePortListFromRegistry: Calling AddBIPortInfo
+34.17535230 05/13/16 17:26:59: [2016] [2040] BLICEMON: CreatePortListFromRegistry finished (return 1)
+26.92936775 05/16/16 20:29:34: [2016] [2040] BLICEMON: * Monochrome Printer Driver version 13.74.544
+26.93990126 05/16/16 20:29:34: [2016] [2040] BLICEMON: * devmode.h version: 1374
+26.95547571 05/16/16 20:29:34: [2016] [2040] BLICEMON: * Loading Module: C:\Windows\System32\spoolsv.exe
+26.96075311 05/16/16 20:29:34: [2016] [2040] BLICEMON: CreatePortListFromRegistry called
+26.97410682 05/16/16 20:29:34: [2016] [2040] BLICEMON: CreatePortListFromRegistry: Creating key: PortList
+26.98449929 05/16/16 20:29:34: [2016] [2040] BLICEMON: CreatePortListFromRegistry: Checking key
+26.98687247 05/16/16 20:29:34: [2016] [2040] BLICEMON: CreatePortListFromRegistry: Found port: ININFaxPort:.
+26.98898525 05/16/16 20:29:34: [2016] [2040] BLICEMON: CreatePortListFromRegistry: PortName ININFaxPort: NOT found.
+26.99112768 05/16/16 20:29:34: [2016] [2040] BLICEMON: CreatePortListFromRegistry: Calling AddBIPortInfo
+26.99350694 05/16/16 20:29:34: [2016] [2040] BLICEMON: CreatePortListFromRegistry finished (return 1)
+30.13952865 05/18/16 08:04:06: [1468] [1616] BLICEMON: * Monochrome Printer Driver version 13.74.544
+30.14575864 05/18/16 08:04:06: [1468] [1616] BLICEMON: * devmode.h version: 1374
+30.15999497 05/18/16 08:04:06: [1468] [1616] BLICEMON: * Loading Module: C:\Windows\System32\spoolsv.exe
+30.16721064 05/18/16 08:04:06: [1468] [1616] BLICEMON: CreatePortListFromRegistry called
+30.16824726 05/18/16 08:04:06: [1468] [1616] BLICEMON: CreatePortListFromRegistry: Creating key: PortList
+30.17732823 05/18/16 08:04:06: [1468] [1616] BLICEMON: CreatePortListFromRegistry: Checking key
+30.18206468 05/18/16 08:04:06: [1468] [1616] BLICEMON: CreatePortListFromRegistry: Found port: ININFaxPort:.
+30.19073702 05/18/16 08:04:06: [1468] [1616] BLICEMON: CreatePortListFromRegistry: PortName ININFaxPort: NOT found.
+30.19299272 05/18/16 08:04:06: [1468] [1616] BLICEMON: CreatePortListFromRegistry: Calling AddBIPortInfo
+30.19562399 05/18/16 08:04:06: [1468] [1616] BLICEMON: CreatePortListFromRegistry finished (return 1)
+36.99617857 05/18/16 18:48:09: [2008] [2044] BLICEMON: * Monochrome Printer Driver version 13.74.544
+37.02161332 05/18/16 18:48:09: [2008] [2044] BLICEMON: * devmode.h version: 1374
+37.02843471 05/18/16 18:48:09: [2008] [2044] BLICEMON: * Loading Module: C:\Windows\System32\spoolsv.exe
+37.03069191 05/18/16 18:48:09: [2008] [2044] BLICEMON: CreatePortListFromRegistry called
+37.03530743 05/18/16 18:48:09: [2008] [2044] BLICEMON: CreatePortListFromRegistry: Creating key: PortList
+37.03758629 05/18/16 18:48:09: [2008] [2044] BLICEMON: CreatePortListFromRegistry: Checking key
+37.03955992 05/18/16 18:48:09: [2008] [2044] BLICEMON: CreatePortListFromRegistry: Found port: ININFaxPort:.
+37.04145410 05/18/16 18:48:09: [2008] [2044] BLICEMON: CreatePortListFromRegistry: PortName ININFaxPort: NOT found.
+37.04339807 05/18/16 18:48:09: [2008] [2044] BLICEMON: CreatePortListFromRegistry: Calling AddBIPortInfo
+37.04924406 05/18/16 18:48:09: [2008] [2044] BLICEMON: CreatePortListFromRegistry finished (return 1)
+31.78221810 05/20/16 07:49:55: [896] [1536] BLICEMON: * Monochrome Printer Driver version 13.74.544
+31.78415145 05/20/16 07:49:55: [896] [1536] BLICEMON: * devmode.h version: 1374
+31.78578336 05/20/16 07:49:55: [896] [1536] BLICEMON: * Loading Module: C:\Windows\System32\spoolsv.exe
+31.81319545 05/20/16 07:49:55: [896] [1536] BLICEMON: CreatePortListFromRegistry called
+31.81503491 05/20/16 07:49:55: [896] [1536] BLICEMON: CreatePortListFromRegistry: Creating key: PortList
+31.82816430 05/20/16 07:49:55: [896] [1536] BLICEMON: CreatePortListFromRegistry: Checking key
+31.83168470 05/20/16 07:49:55: [896] [1536] BLICEMON: CreatePortListFromRegistry: Found port: ININFaxPort:.
+31.83341278 05/20/16 07:49:55: [896] [1536] BLICEMON: CreatePortListFromRegistry: PortName ININFaxPort: NOT found.
+31.83882548 05/20/16 07:49:55: [896] [1536] BLICEMON: CreatePortListFromRegistry: Calling AddBIPortInfo
+31.84078430 05/20/16 07:49:55: [896] [1536] BLICEMON: CreatePortListFromRegistry finished (return 1)

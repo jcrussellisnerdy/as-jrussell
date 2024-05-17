@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RDCMan programVersion="2.7" schemaVersion="3">
+  <file>
+    <credentialsProfiles />
+    <properties>
+      <expanded>True</expanded>
+      <name>DEV</name>
+    </properties>
+    <server>
+      <properties>
+        <name>ALLIED-UT-DEV2</name>
+      </properties>
+    </server>
+    <server>
+      <properties>
+        <name>DS-SQLDEV-14</name>
+      </properties>
+    </server>
+    <server>
+      <properties>
+        <name>EDW-DEV-DB1</name>
+      </properties>
+    </server>
+    <server>
+      <properties>
+        <name>SQLSDEVAWEC01</name>
+      </properties>
+    </server>
+    <server>
+      <properties>
+        <name>SQLSDEVVMDB01</name>
+      </properties>
+    </server>
+    <server>
+      <properties>
+        <name>SQLSDEVVMDB02</name>
+      </properties>
+    </server>
+    <server>
+      <properties>
+        <name>SQLSDEVVMDB03</name>
+      </properties>
+    </server>
+    <server>
+      <properties>
+        <name>WWW-DBTEST-01</name>
+      </properties>
+    </server>
+  </file>
+  <connected />
+  <favorites />
+  <recentlyUsed />
+</RDCMan>

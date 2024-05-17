@@ -1,0 +1,47 @@
+Jan 3
+
+
+ODEPT-133 : Training
+
+Funny enough this dropped into my lap this morning as a first one. Unitrac Mass Queue Deleted job it seems that it did what it was supposed but didn't clear as intended. The only reason I am seeing that it didn't is due to the following error: 
+
+UPDATE failed because the following SET options have incorrect settings: 'QUOTED_IDENTIFIER'. Verify that SET options are correct for use with indexed views and/or indexes on computed columns and/or filtered indexes and/or query notifications and/or XML data type methods and/or spatial index operations.
+
+
+Upon investigation and I was able to login as that user and run it with not seeing the error but I did read through this thread to see this as a potential fix.
+
+https://stackoverflow.com/questions/1243991/update-failed-because-the-following-set-options-have-incorrect-settings-quoted
+
+
+USE Unitrac
+
+
+
+select * INTO #tmpWQ_ALL 
+FROM USER_WORK_QUEUE_RELATE uwq
+WHERE CAST(uwq.purge_dt AS DATE) >= CAST(GETDATE()-1 AS DATE)
+
+
+ select ID INTO #tmpWQ  
+FROM USER_WORK_QUEUE_RELATE uwq
+WHERE CAST(uwq.purge_dt AS DATE) >= CAST(GETDATE()-1 AS DATE)
+
+
+
+
+--SElECT * FROM #tmpWQ_ALL
+
+--SElECT * FROM USER_WORK_QUEUE_RELATE
+--WHERE CAST(purge_dt AS DATE) >= CAST(GETDATE()-1 AS DATE)
+
+
+
+
+
+
+
+
+update WQ
+set PURGE_DT = NULL, LOCK_ID= LOCK_ID+1
+FROM #tmpWQ_ALL WQ
+where WQ.ID IN (select ID FROM #tmpWQ  )

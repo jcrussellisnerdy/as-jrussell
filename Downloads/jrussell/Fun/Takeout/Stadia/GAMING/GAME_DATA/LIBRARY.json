@@ -1,0 +1,545 @@
+{
+  "library": {
+    "entitlements": [{
+      "skuName": "Submerged: Hidden Depths",
+      "skuDescription": "Mysterious villages cling to the crumbling tips of skyscrapers, remnants of the drowned city below. Enigmatic creatures ride the wake as your boat breaks the waves, while deep below, lost treasures sparkle amongst the growing darkness. Submerged: Hidden Depths is a relaxing, third-person exploration game set in a hauntingly beautiful world of water and ruins. Play as siblings - one determined to use her curse for good, the other determined to not let it destroy them. Navigate the tranquil blue waters and pounding whitecaps as you scour the city ruins for the seeds of its salvation."
+    }, {
+      "skuName": "Trails of Cold Steel III: Rean\u0027s Unspeakable Costume",
+      "skuDescription": "A costume for Rean from his impressionable younger years. Wearing it will (not) unleash the dark power within. Comes in a set with two accessories. Unspeakable Costume R x1 World Rejector x1 Midnight Heaven x1"
+    }, {
+      "skuName": "NBA 2K20 Legend Edition",
+      "skuDescription": "The NBA 2K20 Legend Edition includes the following digital items: 100,000 Virtual Currency, 50,000 MyTEAM Points, 20 MyCAREER Skill Boosts, MyPLAYER Clothing Capsule, MyPLAYER Apparel Collection, MyPLAYER Shoe Collection, 20 MyTEAM League Packs (delivered one a week), 20 MyTEAM Heat Check Packs (delivered one a week), 5 MyTEAM Themed Packs (one per theme release across the next five releases), and 2 Sapphire MyTEAM Cover Athlete Cards. See MyTEAM Pack Drop Rates below."
+    }, {
+      "skuName": "PUBG - Payback Pack",
+      "skuDescription": "Return to Sanhok and Get the best out of your Payback. Meet the secret of Sanhok 4 hidden in the lush jungle with Survivor Pass : Payback.\u003cbr\u003e\u003cbr\u003eIncludes:\u003cbr\u003e- Survivor Pass: Payback\u003cbr\u003e- 5 Levels\u003cbr\u003e- Retro Track Jacket\u003cbr\u003e- Her Galaxy Shirt\u003cbr\u003e- Her Galaxy Shorts\u003cbr\u003e- Soccer Cleats and Socks (Teal)"
+    }, {
+      "skuName": "Reigns",
+      "skuDescription": "Sit on the throne as a benevolent (or malevolent) medieval monarch of the modern age and swipe your royal controller either left or right to impose your will upon the kingdom. Survive the seemingly never-ending gauntlet of requests from your advisors, peasants, allies, and enemies while maintaining balance between the influential factions of your kingdom. But beware; each decision you make might have implications and unfortunate consequences down the road that could put your reign and family’s dynasty at risk!"
+    }, {
+      "skuName": "Street Power Football",
+      "skuDescription": "Sick style and high-energy action come together in this arcade-style football experience. Face off against street football legends or friends in a variety of over-the-top game modes and playgrounds, unleashing tricks and crushing Super Powers as you grow your status to become Street King."
+    }, {
+      "skuName": "Kona",
+      "skuDescription": "Northern Canada, 1970. A strange blizzard ravages Atamipek Lake. Step into the shoes of a detective to explore the eerie village, investigate surreal events, and battle the elements to survive. Kona is a chilly interactive tale you won\u0027t soon forget."
+    }, {
+      "skuName": "TRANSFORMERS: BATTLEGROUNDS - Complete Edition",
+      "skuDescription": "As evil MEGATRON closes in on The Allspark, BUMBLEBEE and the Autobots need a new commander to help save Earth – you! Assemble your squad and roll out for a battle that will rage from Central City to Cybertron... and team up in the local multiplayer arcade!\u003cbr\u003e\u003cbr\u003eTRANSFORMERS: BATTLEGROUNDS - Complete Edition:\u003cbr\u003eIncludes:\u003cbr\u003e\u003cbr\u003eTRANSFORMERS: BATTLEGROUNDS\u003cbr\u003eGold Autobot Skin Pack\u003cbr\u003eEnergon Autobot Skin Pack\u003cbr\u003eBattle Autobot Skin Pack\u003cbr\u003eNeon Autobot Skin Pack\u003cbr\u003eNemesis Prime \u0026 Goldfire Bumblebee Skin Pack\u003cbr\u003eCUBE Game - Arcade Add-on\u003cbr\u003e\u003cbr\u003eTRANSFORMERS: BATTLEGROUNDS – SHATTERED SPACEBRIDGE"
+    }, {
+      "skuName": "Lara Croft and the Temple of Osiris",
+      "skuDescription": "Lara Croft and the Temple of Osiris is the sequel to the critically-acclaimed Lara Croft and the Guardian of Light, and the first-ever four-player co-op experience with Lara Croft. Featuring stunning visuals and a brand-new story, players must work together to explore the temple, defeat hordes of enemies from the Egyptian underworld, solve devious puzzles, and avoid deadly traps. All the while, players will compete for treasure, powerful artifacts, and ultimate bragging rights."
+    }, {
+      "skuName": "DreamWorks Spirit Lucky\u0027s Big Adventure",
+      "skuDescription": "Where will Lucky’s treasure map lead you? Ride as Lucky on her faithful mustang, Spirit, and begin a wild new adventure in Miradero. There’s a whole wide-open frontier full of exciting quests and wildlife to explore. With Lucky’s fearless best friends Abigail and Pru by your side, you’re bound to have lots of fun!\u003cbr\u003e\u003cbr\u003eYou’ll need to navigate dangers too, like the horse wrangler Hendricks, who’s a little too interested in your treasure hunt. But with the PALs together, and the bond between Lucky and Spirit growing stronger, you’re ready to become a true frontier expert. Friendship, nurturing, and exploration hold the key to unraveling the mystery – and outsmarting the villainous Hendricks.\u003cbr\u003e\u003cbr\u003eIt’s a thrilling and adventurous life in the country."
+    }, {
+      "skuName": "HITMAN - World of Assassination",
+      "skuDescription": "State Share\u003cbr\u003eTo play Hitman game states that are shared with you, claim or buy the relevant bundle or add-on below. Ask the original player which content the game state uses.\u003cbr\u003e\u003cbr\u003eExperience a globetrotting adventure as Agent 47 and travel to exotic sandbox locations that are meticulously crafted and packed full of creative opportunities.\u003cbr\u003e\u003cbr\u003eWhen you purchase HITMAN 1, HITMAN 2 or HITMAN 3 on Stadia, you’ll play them seamlessly within HITMAN: World of Assassination."
+    }, {
+      "skuName": "HITMAN - World of Assassination",
+      "skuDescription": "State Share\u003cbr\u003eTo play Hitman game states that are shared with you, claim or buy the relevant bundle or add-on below. Ask the original player which content the game state uses.\u003cbr\u003e\u003cbr\u003eExperience a globetrotting adventure as Agent 47 and travel to exotic sandbox locations that are meticulously crafted and packed full of creative opportunities.\u003cbr\u003e\u003cbr\u003eWhen you purchase HITMAN 1, HITMAN 2 or HITMAN 3 on Stadia, you’ll play them seamlessly within HITMAN: World of Assassination."
+    }, {
+      "skuName": "Madden NFL 22 - 20 Staff Points",
+      "skuDescription": "Pre-order Madden NFL 22 and receive the following:\u003cbr\u003eFranchise: 20 Staff Points"
+    }, {
+      "skuName": "Embr",
+      "skuDescription": "Fight fires for fun and profit in this unpredictable and frantic multiplayer game. Team up with friends, take on daily challenges and climb to the top of the corporate firefighting ladder. More than one way to become a hero!\u003cbr\u003e\u003cbr\u003eTeam up with friends to become the most über firefighters money can buy. Rush into burning buildings filled with dangerous hazards, valuables, and top-of-the-line security systems. Fight fires, save lives, salvage goods, and make life-changing money. Buy high tech tools with advanced upgrades, and fresh outfits that unlock new ways to play."
+    }, {
+      "skuName": "PUBG – Breakthrough Pack",
+      "skuDescription": "Break into PUBG Season 10 with the PUBG - Breakthrough Pack! This pack unlocks Survivor Pass: Breakthrough, 5 instant levels for it, and a cool skin set. Pick it up now for a limited time!\u003cbr\u003e\u003cbr\u003eIncludes:\u003cbr\u003e- Survivor Pass: Breakthrough\u003cbr\u003e- 5 Levels\u003cbr\u003e- Fractured Spade Tank Top\u003cbr\u003e- Prototype Sweatpants\u003cbr\u003e- OCW Slippers\u003cbr\u003e\u003cbr\u003e• This product is only available until April 1st (00:00 PDT)\u003cbr\u003e• Survivor Pass: Breakthrough and Levels can be purchased separately through the in-game store.\u003cbr\u003e• All of the items in this product are provided in the form of a crate, which can be opened in the Customize menu."
+    }, {
+      "skuName": "Control Ultimate Edition",
+      "skuDescription": "Control Ultimate Edition contains the main game and all previously released Expansions (\"The Foundation\" and \"AWE\") in one great value package.\u003cbr\u003e\u003cbr\u003eA corruptive presence has invaded the Federal Bureau of Control…Only you have the power to stop it. The world is now your weapon in an epic fight to annihilate an ominous enemy through deep and unpredictable environments. Containment has failed, humanity is at stake. Will you regain control?\u003cbr\u003e\u003cbr\u003eWinner of over 80 awards, Control is a visually stunning third-person action-adventure that will keep you on the edge of your seat. Blending open-ended environments with the signature world-building and storytelling of renowned developer, Remedy Entertainment, Control presents an expansive and intensely gratifying gameplay experience."
+    }, {
+      "skuName": "Monopoly",
+      "skuDescription": "Grow your empire anywhere, anytime, with MONOPOLY for Stadia! Immerse yourself in a mix of the original family-favorite board game enriched with new ways to play: • Choose among three lively 3D boards • Play on-the-go, with up to 6 players • Not enough time for a full game? Enjoy new modes for faster sessions • Select your own rules and spice things up with the new Action Cards Trading your way to success has never been so fun!"
+    }, {
+      "skuName": "Madden NFL 22",
+      "skuDescription": "Pre-Order Madden NFL 22 to receive:\u003cbr\u003e\u003cbr\u003eBrady or Mahomes Power Up Item\u003cbr\u003eElite Passer Strategy Item\u003cbr\u003e20 Franchise Staff Points\u003cbr\u003eChoice of 1 of 32 NFL Stars\u003cbr\u003e\u003cbr\u003eMadden NFL 22 is where gameday happens.\u003cbr\u003e\u003cbr\u003eAll-new features in Franchise include staff management, an enhanced scenario engine, and weekly strategy. Share avatar progress and player class between Face of The Franchise and The Yard with unified progression. And for the first time ever in Ultimate Team, adjust Superstar X-Factors at halftime.\u003cbr\u003e\u003cbr\u003e\u003cb\u003eFranchise\u003c/b\u003e\u003cbr\u003eStaff management \u0026 talent trees\u003cbr\u003eEnhanced scenario engine\u003cbr\u003eWeekly strategy\u003cbr\u003e\u003cbr\u003eThis game includes optional purchase of virtual currency that can be used to acquire a random selection of virtual in-game items through “packs”. EA displays pack probabilities in-game. See ‘Loot box drop rates’ below for information on how probabilities are calculated."
+    }, {
+      "skuName": "PlayerUnknown\u0027s Battlegrounds – Highlands Edition",
+      "skuDescription": "This bundle includes Playerunknown\u0027s Battlegrounds basegame, Survivor Pass: Highlands and a Skin set."
+    }, {
+      "skuName": "Resident Evil 7 biohazard Gold Edition",
+      "skuDescription": "Experience one of the scariest, most highly acclaimed games of 2017 with Resident Evil 7 Gold Edition – complete with all Season Pass content. As Ethan Winters, explore the seemingly abandoned Baker farm and uncover the truth behind the disappearance of your wife, Mia. The Gold Edition contains the full game plus Banned Footage Vol. 1 and 2 extra content packs, the End of Zoe epilogue episode, and the \u0027Not a Hero\u0027 epilogue chapter starring Chris Redfield."
+    }, {
+      "skuName": "500 Crayta Credits",
+      "skuDescription": "Use Crayta Credits in our in-game Store to purchase exclusive outfits and other cosmetics!"
+    }, {
+      "skuName": "500 Crayta Credits",
+      "skuDescription": "Use Crayta Credits in our in-game Store to purchase exclusive outfits and other cosmetics!"
+    }, {
+      "skuName": "République",
+      "skuDescription": "Developed over five years by industry veterans (Metal Gear Solid, Halo, F.E.A.R.), République is a thrilling and topical stealth-action game that explores the perils of government surveillance in the Internet Age.You receive a call from Hope, a woman trapped inside a mysterious totalitarian state. By hacking into the nation\u0027s elaborate surveillance network and taking control, you guide Hope through a web of danger and deception across five thrilling episodes."
+    }, {
+      "skuName": "The Elder Scrolls Online: Tamriel Unlimited",
+      "skuDescription": "The fantasy role-playing series, The Elder Scrolls, goes online – no game subscription required. Embark upon quests across Tamriel and engage in massive player versus player battles. Experience this multiplayer role-playing game on your own or with your friends, guild mates, and thousands of alliance members. The choices are yours in the world of The Elder Scrolls Online: Tamriel Unlimited."
+    }, {
+      "skuName": "Monster Jam Steel Titans",
+      "skuDescription": "Real Trucks. Real Action. Monster Jam! Monster Jam Steel Titans delivers the complete Monster Jam experience for everybody to enjoy!\u003cbr\u003e\u003cbr\u003eAll the trucks, stunts, stadiums, racing and massive air in one game! Play in various game modes including Stadium and outdoor Racing, various Stunt Challenges and Destruction modes!"
+    }, {
+      "skuName": "Strange Brigade",
+      "skuDescription": "Egypt, 1930\u0027s. Erased from ancient history and buried in a nameless tomb for 4,000 years, Seteki the Witch Queen has risen once again. Only one troop of daring heroes can stand against the fearsome power of Seteki and her army of mummified monstrosities: The Strange Brigade! Explore remarkable ruins, solve perilous puzzles and uncover tantalising treasure while blasting your way through an array of undead enemies in thrilling third-person action that’s certain to bring out your inner adventurer!"
+    }, {
+      "skuName": "PUBG - Stadia Premiere Set",
+      "skuDescription": "This set includes Premiere Hoodie, Premiere Glasses, Premiere Helmet (Level 3), Premiere Parachute and Premiere Pan"
+    }, {
+      "skuName": "Wavetale",
+      "skuDescription": "Surf the waters of a submerged city! Fight gigantic sea monsters, save your neighbors and uncover the secrets hidden under the surface. \u003cbr\u003eExplore the open sea and the decaying archipelago of Strandville in Wavetale, a story-driven action-adventure game introducing you to fed-up fishermen, secretive hermits—and maybe a pirate or two. Traverse calm waters and surging waves as Sigrid, a young girl who befriends a mysterious shadow that provides her with the power to walk on water. \u003cbr\u003e Speed through the waves, swing yourself from housetops with your net, and defeat monstrous enemies to save the citizens of the islands. All with a little help from the shadows down below—and your cranky grandmother."
+    }, {
+      "skuName": "The Falconeer: Warrior Edition",
+      "skuDescription": "The Falconeer: Warrior Edition includes the fully updated game, plus \u0027The Hunter\u0027 AOC, adding a new player class with a flyable Ormir dragon and a set of pyro pot guided rockets, and the new \u0027Edge of the World\u0027 AOC, containing 3 additional side quests and new boss encounters.\u003cbr\u003eSoar through the skies aboard a majestic warbird, explore a stunning oceanic world and engage in epic aerial dogfights, in this BAFTA nominated air combat game from solo developer, Tomas Sala."
+    }, {
+      "skuName": "1,000 Crayta Credits",
+      "skuDescription": "Use Crayta Credits in our in-game Store to purchase exclusive outfits and other cosmetics!"
+    }, {
+      "skuName": "Monster Boy and the Cursed Kingdom",
+      "skuDescription": "A legendary series returns with a grand new adventure! Enjoy a colorful action-adventure game made alongside Ryuichi Nishizawa, creator of the original Wonder Boy in Monster World series. Monster Boy and the Cursed Kingdom borrows the best from the classic series to deliver a fresh, modern adventure with fun gameplay, memorable music and gorgeous hand drawn animations. Can Jin save Monster World Kingdom? Help our young hero defeat challenging enemies, discover hidden locations, upgrade powerful equipment, and more! You\u0027ll also unlock special forms with unique skills used to open new paths where mighty bosses and secret treasures await."
+    }, {
+      "skuName": "Family Feud®",
+      "skuDescription": "Experience one of America’s hottest gameshows at home now! Customize your character, challenge your friends, family, and even other players online for a chance to bring the big prize home. Play four exciting game modes: Classic mode features the authentic Family Feud® experience. Choose a difficulty and take on an AI team just as determined as you are! Party Battle lets you get into teams with your family and friends as you battle each other in local multiplayer. Couch vs. Couch brings the experience online! Play against others across the world. The Live Show feature allows you to broadcast your game and play with your viewers!"
+    }, {
+      "skuName": "NBA 2K20 Legend Edition Bonus",
+      "skuDescription": "The NBA 2K20 Legend Edition includes the following digital items: 100,000 Virtual Currency, 50,000 MyTEAM Points, 20 MyCAREER Skill Boosts, MyPLAYER Clothing Capsule, MyPLAYER Apparel Collection, MyPLAYER Shoe Collection, 20 MyTEAM League Packs (delivered one a week), 20 MyTEAM Heat Check Packs (delivered one a week), 5 MyTEAM Themed Packs (one per theme release across the next five releases), and 2 Sapphire MyTEAM Cover Athlete Cards. See MyTEAM Pack Drop Rates below."
+    }, {
+      "skuName": "Jotun: Valhalla Edition",
+      "skuDescription": "Jotun is a hand-drawn action-exploration game set in Norse mythology. In Jotun, you play Thora, a Viking warrior who died an inglorious death and must prove herself to the Gods to enter Valhalla. Explore vast regions of Norse Purgatory to find runes to unleash the jotun, giant Norse elementals. Fight them using only your massive two-handed axe, the blessings of the Gods and your skills! Impress the Gods!"
+    }, {
+      "skuName": "PixelJunk Raiders",
+      "skuDescription": "SOS! Tantal is under attack by fiendish aliens bent on harvesting the population\u0027s life force! Shake off that hypersleep and slash, smash, raid and rescue your way through hundreds of unique missions, all while unraveling the mystery of the enigmatic Keepers. Use State Share to share stages with the turrets, mines and other imprints you\u0027ve left behind, or jump into another mercenary\u0027s stage and use their imprints to your strategic advantage."
+    }, {
+      "skuName": "Serious Sam Collection",
+      "skuDescription": "Step into the shoes of the legendary action hero Sam \"Serious\" Stone and experience one of the most explosive shooter game series of all time, as you save the world from a merciless alien invasion."
+    }, {
+      "skuName": "SUPER BOMBERMAN R ONLINE Premium Edition",
+      "skuDescription": "\"By purchasing this bundle, you will be able to play SUPER BOMBERMAN R ONLINE with all the content and features in the Premium Pack unlocked from the start, which includes 14 additional characters and creating your own private matches.\u003cbr\u003e\u003cbr\u003eItems included in this bundle:\u003cbr\u003e・SUPER BOMBERMAN R ONLINE \u003cbr\u003e・SUPER BOMBERMAN R ONLINE Premium Pack\""
+    }, {
+      "skuName": "El Hijo - A Wild West Tale",
+      "skuDescription": "“El Hijo - A Wild West Tale” is an exciting spaghetti-western stealth game, in which you guide a 6-year-old boy on his quest to find his mother.\u003cbr\u003e\u003cbr\u003e“El Hijo - A Wild West Tale” is a non-violent stealth game, replacing violence with the mischievous, playfulness of a young child. One core element of the gameplay is “El Hijo” using the shadows to his advantage to hide from outlaws. The gameplay is extended naturally, as variations of existing mechanics are gradually introduced and then combined to increase the challenge. These twists on familiar mechanics are often a product of the varied environments that the boy must traverse to reach his ultimate goal: Freedom."
+    }, {
+      "skuName": "PlayerUnknown\u0027s Battlegrounds - Payback Edition",
+      "skuDescription": "Return to Sanhok and Get the best out of your Payback.\u003cbr\u003e\u003cbr\u003eMeet the new  Sanhok where the first legendary Squad who managed to escape from the Battlegrounds were born from. This epic escape of the Squad was recorded in the secret lab in Sanhok, still left abandoned waiting for someone to find them.\u003cbr\u003e\u003cbr\u003eThis bundle includes Playerunknown\u0027s Battlegrounds basegame, Survivor Pass: Payback and PUBG Season 8 themed Skin set."
+    }, {
+      "skuName": "FORECLOSED",
+      "skuDescription": "FORECLOSED is a narrative-driven action-adventure set in a Cyberpunk world filled with action, suspense, \u0026 experimental augmentations. Follow the story of Evan Kapnos in this sleek comic book styled game as he unravels the conspiracy behind his identity foreclosure. Who is responsible \u0026 why?"
+    }, {
+      "skuName": "Destiny 2",
+      "skuDescription": "Dive into the world of Destiny 2 to explore the mysteries of the solar system and experience responsive first-person shooter combat.\u003cbr\u003e\u003cbr\u003e\u003cb\u003eAn Immersive Story\u003c/b\u003e\u003cbr\u003eYou are a Guardian, defender of the Last City of humanity in a solar system under siege by infamous villains. Look to the stars and stand against the darkness. Your legend begins now.\u003cbr\u003e\u003cbr\u003e\u003cb\u003eGuardian Classes\u003c/b\u003e\u003cbr\u003eChoose from the armored Titan, mystic Warlock, or swift Hunter.\u003cbr\u003e\u003cbr\u003e\u003cb\u003eCooperative and Competitive Multiplayer\u003c/b\u003e\u003cbr\u003ePlay with or against your friends and other Guardians in various PvE and PvP game modes.\u003cbr\u003e\u003cbr\u003e\u003cb\u003eExotic Weapons and Armor\u003c/b\u003e\u003cbr\u003eThousands of weapons, millions of options. Discover new gear combinations and define your own personal style. The hunt for the perfect arsenal begins."
+    }, {
+      "skuName": "Hello Engineer",
+      "skuDescription": "Hello Engineer is a multiplayer machinery-building construction game set in the Hello Neighbor universe. Scavenge, craft, and overcome challenges in the sandbox world of a mysterious amusement park. Put together incredible machines built of scrap, and beware of the Neighbor!"
+    }, {
+      "skuName": "HITMAN 2 - Standard Edition",
+      "skuDescription": "Travel the globe and track your targets across exotic sandbox locations in HITMAN 2. From sun-drenched streets to dark and dangerous rainforests, nowhere is safe from the world\u0027s most creative assassin, Agent 47.\u003cbr\u003e\u003cbr\u003ePrepare to experience the ultimate spy thriller story; your mission is to eliminate the elusive Shadow Client and unravel his militia, but when 47 learns his target\u0027s true identity and the truth about his past, it changes everything."
+    }, {
+      "skuName": "The Falconeer",
+      "skuDescription": "Soar through the skies aboard a majestic warbird, explore a stunning oceanic world and engage in epic aerial dogfights, in this BAFTA nominated air combat game from solo developer, Tomas Sala.\u003cbr\u003eYou take on the role of Falconeer, a powerful airborne warrior traversing a vast oceanic world torn apart by generations of poisonous decisions and dissent. Throughout multiple campaigns, you will experience life from many different perspectives and loyalties as you embark on a journey of discovery, and solve the mystery of the Ursee, its people and history."
+    }, {
+      "skuName": "Rock of Ages 3: Make \u0026 Break",
+      "skuDescription": "Rock of Ages 3: Make \u0026 Break is competitive tower defense and arcade action rolled up with ACE Team\u0027s quirky, Monty Python-esque humor into one giant, creative game for the ages."
+    }, {
+      "skuName": "Lightspeed Pack",
+      "skuDescription": "Contains three Lightspeed Outfits, the Cat Drone, and more!"
+    }, {
+      "skuName": "Risk of Rain 2",
+      "skuDescription": "Escape a chaotic alien planet by fighting through hordes of frenzied monsters. Combine loot in surprising ways and master each character until you become the havoc you feared upon your first crash landing. No run will ever be the same.\u003cbr\u003e\u003cbr\u003e\u003cb\u003eSURVIVE AN ALIEN PLANET\u003c/b\u003e: Fight your way to the final boss and escape or continue your run indefinitely to see just how long you can survive.\u003cbr\u003e\u003cbr\u003e\u003cb\u003eDISCOVER POWERFUL NEW ITEMS\u003c/b\u003e: More than 110 items keep each run fresh and full of new challenges.\u003cbr\u003e\u003cbr\u003e\u003cb\u003eUNLOCK NEW WAYS TO PLAY\u003c/b\u003e: Unlock a crew of ten playable survivors, each with their own unique combat style and alternate skills to master.\u003cbr\u003e\u003cbr\u003e\u003cb\u003ePLAY SOLO OR CO-OP\u003c/b\u003e: Tackle the adventure solo or with friends in online co-op, or compete in the challenge of the Prismatic Trials."
+    }, {
+      "skuName": "Cthulhu Saves Christmas",
+      "skuDescription": "The master of insanity, Cthulhu, has lost his powers (again!?) and the only way he can get them back is by rescuing Santa Claus from the League of Christmas Evil! Join Cthulhu, the Snow Maiden, Baba Yaga-chan, and Belsnickel as they build R\u0027lyehtionships, fight the League of Christmas Evil, and catch the Christmas spirit! Fhtagn!"
+    }, {
+      "skuName": "Wave Break",
+      "skuDescription": "Wave Break is a classic arcade-style skate tricking game, with a splash of water, guns and explosions - set in an 80s crime-filled Miami Vice themed world. Score massive points with massive combos, play with friends online, or enjoy the single player campaign mode."
+    }, {
+      "skuName": "Stadia Pro",
+      "skuDescription": "Stadia Pro is Stadia\u0027s premium subscription service and your gateway to the best that Stadia has to offer."
+    }, {
+      "skuName": "Dead by Daylight",
+      "skuDescription": "Death Is Not an Escape. \u003cbr\u003e\u003cbr\u003e Dead by Daylight is a multiplayer (4vs1) horror game where one player takes on the role of the savage Killer, and the other four players play as Survivors, trying to escape the Killer and avoid being caught, tortured and killed. \u003cbr\u003e\u003cbr\u003e Survivors play in third-person and have the advantage of better situational awareness. The Killer plays in first-person and is more focused on their prey. \u003cbr\u003e\u003cbr\u003e The Survivors\u0027 goal in each encounter is to escape the Killing Ground without getting caught by the Killer - something that sounds easier than it is, especially when the environment changes every time you play."
+    }, {
+      "skuName": "Mafia III: Definitive Edition",
+      "skuDescription": "Part three of the Mafia crime saga - 1968, New Bordeaux, LA.\u003cbr\u003e\u003cbr\u003eAfter years of combat in Vietnam, Lincoln Clay knows this truth: family isn’t who you’re born with, it’s who you die for. When his surrogate family, the black mob, is betrayed and killed by the Italian Mafia, Lincoln builds a new family on the ashes of the old and blazes a path of military-grade revenge through the Mafioso responsible."
+    }, {
+      "skuName": "Stadia Pro Access (Destiny 2: The Collection)",
+      "skuDescription": "Dive into the world of Destiny 2 to experience responsive FPS combat, explore the mysteries of our solar system, and unleash elemental abilities against powerful enemies. Experience Destiny 2’s cinematic story alone or with friends, join other Guardians for challenging co-op missions, or compete against them in a variety of PvP modes. Destiny 2: The Collection includes Destiny 2, Destiny 2: Forsaken, and Destiny 2: Shadowkeep."
+    }, {
+      "skuName": "Secret Neighbor",
+      "skuDescription": "Hello Neighbor Multiplayer. Secret Neighbor is a Multiplayer Social Horror Game where a group of intruders try to rescue their friend from the Neighbor\u0027s creepy basement. Only problem is one of the intruders is the Neighbor in disguise."
+    }, {
+      "skuName": "F1® 2020",
+      "skuDescription": "F1® 2020 allows you to create your F1® team for the very first time and race alongside the official teams and drivers. Alternatively, challenge your friends in new split-screen with casual race options for more relaxed racing. Compete on 22 circuits, with current and classic content."
+    }, {
+      "skuName": "Little Nightmares II",
+      "skuDescription": "Return to a world of charming horror in Little Nightmares II, a suspense adventure game in which you play as Mono, a young boy trapped in a world that has been distorted by the humming transmission of a distant tower.\u003cbr\u003e\u003cbr\u003eWith Six, the girl in the yellow raincoat, as his guide, Mono sets out to discover the dark secrets of The Signal Tower. Their journey won\u0027t be easy; Mono and Six will face a host of new threats from the terrible residents of this world.\u003cbr\u003e\u003cbr\u003eWill you dare to face this collection of new, little nightmares?"
+    }, {
+      "skuName": "Celeste",
+      "skuDescription": "Help Madeline survive her inner demons on her journey to the top of Celeste Mountain, in this super-tight platformer from the creators of TowerFall. Brave hundreds of hand-crafted challenges, uncover devious secrets, and piece together the mystery of the mountain."
+    }, {
+      "skuName": "The Legend of Heroes: Trails of Cold Steel III",
+      "skuDescription": "Rean Schwarzer, a military student turned war hero, finds himself at the center of a dark plot that threatens to upheave the foundations of his homeland. To face the oncoming storm, he must prepare a new generation of heroes as an instructor at the newly-formed branch campus and guide them toward an unknown future..."
+    }, {
+      "skuName": "Thumper",
+      "skuDescription": "Thumper is rhythm violence: classic rhythm-action, blistering speed, and brutal physicality. You are a space beetle. Brave the hellish void and confront a maniacal giant head from the future."
+    }, {
+      "skuName": "Human: Fall Flat Stadia Edition",
+      "skuDescription": "Human: Fall Flat is a hilarious, light-hearted physics platformer set in a world of floating dreamscapes. \u003cbr\u003e Each dream level provides a new environment to navigate, from mansions, castles and Aztec adventures to snowy mountains, eerie nightscapes and industrial locations. Multiple routes through each level, and perfectly playful puzzles ensure exploration and ingenuity are rewarded.\u003cbr\u003eShould your Human fall from a rope, misjudge a platform or even get pushed off a cliff by a friend, never fear: they will simply fall back into the dream, ready to try again and again.\u003cbr\u003eHuman: Fall Flat can be played solo or with up to 16 players online for even more laughter."
+    }, {
+      "skuName": "Premium Pack",
+      "skuDescription": "Upgrade your Crayta experience with a variety of Premium-only cosmetics!"
+    }, {
+      "skuName": "High Noon Pack",
+      "skuDescription": "Contains three High Noon Outfits, the Crow Drone, and more!"
+    }, {
+      "skuName": "Killer Queen Black",
+      "skuDescription": "Killer Queen Black, inspired by the hit arcade game, Killer Queen, let\u0027s you fight for your hive with three ways to win. Will you claim your victory by hopping on the snail, hoarding berries, or wiping out the enemy\u0027s queen? Play Killer Queen Black casually in quickplay matches, up the intensity in ranked matches, or invite friends to a private room. Easy to play, hard to master, fun for all! An epic, platform strategy game for up to eight players online or locally."
+    }, {
+      "skuName": "HITMAN 2",
+      "skuDescription": "Travel the globe and track your targets across exotic sandbox locations in HITMAN 2. From sun-drenched streets to dark and dangerous rainforests, nowhere is safe from the world\u0027s most creative assassin, Agent 47.\u003cbr\u003e\u003cbr\u003ePrepare to experience the ultimate spy thriller story; your mission is to eliminate the elusive Shadow Client and unravel his militia, but when 47 learns his target\u0027s true identity and the truth about his past, it changes everything."
+    }, {
+      "skuName": "PUBG: BATTLEGROUNDS",
+      "skuDescription": "* Please note that this game will be provided for free from Jan 12th, 2022.\u003cbr/\u003eThis is Battle Royale.\u003cbr/\u003eLand, loot and outwit your opponents to become the last player left standing in a thrilling game experience full of unexpected, adrenaline-pumping moments. \u003cbr/\u003eFor more information, please visit www.pubg.com."
+    }, {
+      "skuName": "PUBG: BATTLEGROUNDS",
+      "skuDescription": "* Please note that this game will be provided for free from Jan 12th, 2022.\u003cbr/\u003eThis is Battle Royale.\u003cbr/\u003eLand, loot and outwit your opponents to become the last player left standing in a thrilling game experience full of unexpected, adrenaline-pumping moments. \u003cbr/\u003eFor more information, please visit www.pubg.com."
+    }, {
+      "skuName": "PUBG: BATTLEGROUNDS",
+      "skuDescription": "* Please note that this game will be provided for free from Jan 12th, 2022.\u003cbr/\u003eThis is Battle Royale.\u003cbr/\u003eLand, loot and outwit your opponents to become the last player left standing in a thrilling game experience full of unexpected, adrenaline-pumping moments. \u003cbr/\u003eFor more information, please visit www.pubg.com."
+    }, {
+      "skuName": "PUBG: BATTLEGROUNDS",
+      "skuDescription": "* Please note that this game will be provided for free from Jan 12th, 2022.\u003cbr/\u003eThis is Battle Royale.\u003cbr/\u003eLand, loot and outwit your opponents to become the last player left standing in a thrilling game experience full of unexpected, adrenaline-pumping moments. \u003cbr/\u003eFor more information, please visit www.pubg.com."
+    }, {
+      "skuName": "Crayta: Deluxe Upgrade",
+      "skuDescription": "Deluxe Edition upgrade for Crayta: Premium Edition.\u003cbr\u003eIncludes:\u003cbr\u003e• Mesmer Outfit Collection\u003cbr\u003e• Hexx Outfit Collection\u003cbr\u003e• Exclusive Digit Craytawear Colourway\u003cbr\u003e• Jellyfish Drone\u003cbr\u003e• Hocus Pocus Emote\u003cbr\u003e• Thunderbolt Emoticon\u003cbr\u003e• 2 Exclusive Icons\u003cbr\u003e• 5 Exclusive Sprays"
+    }, {
+      "skuName": "STAR WARS Jedi: Fallen Order™",
+      "skuDescription": "A galaxy-spanning adventure awaits in STAR WARS Jedi: Fallen Order, a 3rd person action-adventure title from Respawn Entertainment. This narratively-driven single player game puts you in the role of a Jedi Padawan who narrowly escaped the purge of Order 66 following the events of Episode 3: Revenge of the Sith. On a quest to rebuild the Jedi Order, you must pick up the pieces of your shattered past to complete your training, develop new powerful Force abilities, and master the art of the iconic lightsaber - all while staying one step ahead of the Empire and its deadly Inquisitors."
+    }, {
+      "skuName": "GRID",
+      "skuDescription": "GRID is a racing experience like no other. Offering unrivalled wheel-to-wheel racing for everyone, where every race is unpredictable as you create rivals and nemeses on your road to conquering the world of motorsport. Play now and get your heart racing."
+    }, {
+      "skuName": "Kemono Heroes",
+      "skuDescription": "When the Moon God turns the inhabitants of the forest to stone, four Animal Ninja Masters must fight their way to Mt. Fuji and break his spell. Use swift moves, an arsenal of tools, and each Master’s unique abilities to save your home!"
+    }, {
+      "skuName": "West of Loathing",
+      "skuDescription": "Say howdy to West of Loathing -- a single-player slapstick comedy adventure role-playing game set in the wild west of the Kingdom of Loathing universe. Traverse snake-infested gulches, punch skeletons wearing cowboy hats, grapple with demon cows, and investigate a wide variety of disgusting spittoons. Talk your way out of trouble as a silver-tongued Snake Oiler, plumb the refried mysteries of the cosmos as a wise and subtle Beanslinger, or let your fists do the talking as a fierce Cow Puncher. Explore a vast open world and encounter a colorful cast of characters, some of whom are good, many of whom are bad, and a few of whom are ugly."
+    }, {
+      "skuName": "Little Nightmares",
+      "skuDescription": "Immerse yourself in Little Nightmares, a dark whimsical tale that will confront you with your childhood fears! Help Six escape The Maw – a vast, mysterious vessel inhabited by corrupted souls looking for their next meal. As you progress on your journey, explore the most disturbing dollhouse offering a prison to escape from and a playground full of secrets to discover. Reconnect with your inner child to unleash your imagination and find the way out!"
+    }, {
+      "skuName": "Sundered: Eldritch Edition",
+      "skuDescription": "Sundered is a chaotic hand­-drawn metroidvania where you resist or embrace ancient eldritch powers. Confront hordes of terrifying enemies in an ever-changing world inspired by the works of H.P. Lovecraft. Sundered is a challenging and unique take on a classic genre from the creators of Jotun, now with local co-op! You play Eshe, a wanderer in a ruined world, trapped in ever-­changing caverns filled with hordes of terrifying enemies. Harness the power of corrupted relics to defeat gigantic bosses, at the cost of your humanity. Resist or embrace."
+    }, {
+      "skuName": "PUBG – Highlands Pack",
+      "skuDescription": "The hidden wonders of Paramo await! Gear up with Survivor Pass: Highlands, 5 Levels, and an exclusive skin set!\u003cbr\u003eThe Highlands Pack is only available for a limited time!"
+    }, {
+      "skuName": "Stacks On Stacks (On Stacks)",
+      "skuDescription": "Stacks On Stacks (On Stacks) is a zany 3D tower builder. Play as the Master Stacker, Rockit, who must use her psychic helmet to stack the colorful bricks falling all over her madcap world. BUILD stable towers by executing architectural feats of balancing. INCORPORATE mixed-up materials into your towers: works of art, aquariums, magnets, and more. DEFEND your towers against invading ghosts, a fireball-breathing dragon, and other outlandish hazards. KNOCK your finished towers back down with a wrecking ball."
+    }, {
+      "skuName": "Madden NFL 21",
+      "skuDescription": "Rise to fame in Madden NFL 21.  \u003cbr\u003e\u003cbr\u003eMadden NFL 21 delivers new features and modes including:\u003cbr\u003e\u003cbr\u003eFace of the Franchise: Rise to Fame: Rise to fame and become immortalized .\u003cbr\u003e\u003cbr\u003eTake Control: Master innovative running enhancements and live playbooks.\u003cbr\u003e\u003cbr\u003eX-Factor 2.0: New X-Factor abilities.\u003cbr\u003e\u003cbr\u003eThis game includes optional purchase of virtual currency that can be used to acquire a random selection of virtual in-game items through “packs”. EA displays pack probabilities in-game. See ‘Loot box drop rates’ below for information on how probabilities are calculated."
+    }, {
+      "skuName": "Madden NFL 22 Cover Athlete Bundle",
+      "skuDescription": "Pre-order Madden NFL 22 and receive the following:\u003cbr\u003eFace of the Franchise: The General Player Class Starting at Level 10 with a Tom Brady Gear Capsule"
+    }, {
+      "skuName": "PAW Patrol Mighty Pups Save Adventure Bay",
+      "skuDescription": "A fallen meteor has given the pups mighty powers – and left Adventure Bay in a mighty mess. Now it’s up to you and the Pups to use their powers, rescue skills and gadgets to make the town PAWsome again!\u003cbr\u003e\u003cbr\u003eEmbark on super-heroic missions with the Mighty Pups and Chase’s Super Speed, Marshall’s Mighty Heat, Skye’s Whirlwind Power and the whole mighty PAW Patrol team. Explore the town and journey to Jake’s snowboarding resort, Tracker’s jungle and beyond, as you work together to rescue friends!\u003cbr\u003e\u003cbr\u003eSo, head to the Lookout and get ready for Mighty action! After you’re done saving the day, get playful with Pup-Pup Boogie, jump rope and more fun activities side-quests. And bring a friend along in 2-player co-op mode. Mighty Pups, GO!"
+    }, {
+      "skuName": "SUPER BOMBERMAN R ONLINE Premium Pack",
+      "skuDescription": "\"This Add-On pack contains 14 additional characters equipped with special types and abilities, as well as the feature to create private matches with your friends.\u003cbr\u003eCharacters included in this bundle:\u003cbr\u003e・Simon Belmont Bomber from Castlevania\u003cbr\u003e・Pyramid Head Bomber from Silent Hill\u003cbr\u003e・Raiden Bomber from Metal Gear Solid\u003cbr\u003e・Alucard Bomber from Castlevania\u003cbr\u003e・Vic Viper Bomber from Gradius\u003cbr\u003e・Bill Bomber from Contra\u003cbr\u003e・Lance Bomber from Contra\u003cbr\u003e・Naked Snake Bomber from Metal Gear Solid\u003cbr\u003e・Richter Bomber from Castlevania\u003cbr\u003e・Bubble Head Bomber from Silent Hill\u003cbr\u003e・Princess Tomato Bomber from Princess Tomato in the Salad Kingdom\u003cbr\u003e・Mimi Bomber from Pop\u0027n Music\u003cbr\u003e・Nyami Bomber from Pop\u0027n Music\u003cbr\u003e・Robbie the Rabbit Bomber from Silent Hill\""
+    }, {
+      "skuName": "Tally Ho Pack",
+      "skuDescription": "Contains three Tally Ho Outfits, the Beetle Drone, and more!"
+    }, {
+      "skuName": "Legend of Keepers: Career of a Dungeon Manager",
+      "skuDescription": "Legend of Keepers is the perfect mix between Dungeon Management and Roguelite. You have been hired as a dungeon master by the Dungeons Company. Your job is simple: protect their dungeons!"
+    }, {
+      "skuName": "ARK: Survival Evolved",
+      "skuDescription": "ARK: Survival Evolved has arrived on Stadia™ \u003cbr\u003eStranded on the shores of a mysterious island, you must learn to survive. Use your cunning to kill or tame the primeval creatures roaming the land, and encounter other players to thrive, dominate... and maybe even escape! \u003cbr\u003eHunt, harvest resources, craft items, grow crops, research technologies, and build shelters to withstand the harsh elements. Use your cunning and resources to kill or tame feral beasts in a dynamic, living ecosystem. Form tribes with or prey on hundreds of other players in a persistent, shared environment.\u003cbr\u003eExplore the formidable and imposing landscape to discover exotic random creatures and unlock the secret wonders of the ARK!"
+    }, {
+      "skuName": "Crayta: Premium Upgrade",
+      "skuDescription": "Premium Edition upgrade."
+    }, {
+      "skuName": "Crayta: Premium Upgrade",
+      "skuDescription": "Premium Edition upgrade."
+    }, {
+      "skuName": "Madden NFL 22 Pre-Order Content",
+      "skuDescription": "Pre-order Madden NFL 22 and receive the following:\u003cbr\u003e\u003cbr\u003eChoice of Tom Brady or Patrick Mahomes Power Up Item\u003cbr\u003eElite Passer Strategy Card in Madden Ultimate Team\u003cbr\u003eLevel Up Vanity\u003cbr\u003eMadden Ultimate Team: Choice of 1 out of 32 NFL Stars"
+    }, {
+      "skuName": "The Gardens Between",
+      "skuDescription": "Best friends Arina and Frendt fall into a series of vibrant, dreamlike island gardens peppered with everyday objects from their childhood. Together they embark on an emotional journey that examines the significance of their friendship: the memories they’ve built, what must be let go, and what should never be left behind.\u003cbr\u003e\u003cbr\u003eLost in a mysterious realm where cause and effect are malleable, the friends find that time flows in all directions. Manipulate time to solve puzzles and reach the apex of each isle. Follow the duo as they unpack and explore their significant moments spent together, lighting up constellations and illuminating threads of a bittersweet narrative."
+    }, {
+      "skuName": "Dirtbag Pack",
+      "skuDescription": "Contains three Dirtbag Outfits, the Rabbit Drone, and more!"
+    }, {
+      "skuName": "Gunsport",
+      "skuDescription": "CYBERPUNK VOLLEYBALL WITH GUNS • Online PvP • Solo Campaign • Local Co-Op • 5 teams/stages \u003cbr\u003e\u003cbr\u003e In the tradition of the great arcade titles, Gunsport is a game about precise action and timing. The aim of the game is to get the ball into the opponent\u0027s goal, making the best use of your limited shots. The only way to get the ball into the goal is by shooting it there, using of your team\u0027s unique special weapons and each stage\u0027s gimmicks or game-changing rulesets. Gunsport is familiar but different - this is Future Millennium Sporting Action!"
+    }, {
+      "skuName": "Kine",
+      "skuDescription": "Kine is a 3D narrative puzzle game about three daring machines that aspire to be musicians. Embark across a theatrical dreamscape by solving a wide variety of increasingly difficult 3D puzzles. Guide Euler, Quat, and Roo as they struggle to form a band, build bonds, and find their big break!"
+    }, {
+      "skuName": "Trails of Cold Steel III: Free Sample Set A",
+      "skuDescription": "A free sample of healing and support items.  Teara Balm x 1 Celestial Balm x 1 EP Charge II x 1 U-Material x 10"
+    }, {
+      "skuName": "Trine 4: The Nightmare Prince",
+      "skuDescription": "The Trine series returns to the magic of 2.5D with Trine 4: The Nightmare Prince! The three heroes of the best-selling adventure series are back, sent on a quest to retrieve the troubled young Prince Selius. Amadeus the Wizard, Pontius the Knight, and Zoya the Thief are joined together once again on a thrilling quest through fantastical fairytale landscapes teeming with danger. Prince Selius suffers from intensely dark dreams and, due to his magical talents, monstrous nightmares are able to slip into reality and wreak havoc on the waking world. Amadeus, Pontius, and Zoya must find the afflicted prince and resolve the desperate situation before the world is engulfed by the Nightmare Prince\u0027s shadows."
+    }, {
+      "skuName": "SteamWorld Dig 2",
+      "skuDescription": "SteamWorld Dig 2 takes you on a platform mining adventure forged in Metroidvania flames. When an old trading town is struck by mysterious earthquakes, it’s up to a lone steambot and her unlikely companion to uncover what trembling terrors lie beneath."
+    }, {
+      "skuName": "Metro Last Light Redux",
+      "skuDescription": "The awe-inspiring immersive experience of a lifetime. Join the external and internal fights that could change everything for a single Artyom. Just when hope is lost, this Artyom finds it time and time again. This game may be 3D in pixels, but it\u0027s infinitely dimensional in meaning."
+    }, {
+      "skuName": "PAC-MAN™ Mega Tunnel Battle",
+      "skuDescription": "Prove your mettle in the world’s biggest simultaneous multiplayer PAC-MAN experience! Jump into 64-player games and show everyone who\u0027s the leader of the PAC! Invade other players\u0027 mazes, eat their dots and power ups - even other players! - and dominate the mazes! But watch out: viewers can vote on power-ups that can cause you - or your opponents! - to stumble on the field and be eliminated from battle! Invade, defend, and rack up high scores across a field of 64 interconnected mazes. Take advantage of brand-new power-ups, spy on neighboring boards, and much more! Spectator interactivity means even viewers are part of all the thrilling action! And customize your PAC-MAN and your home maze with fun skins to show off unique looks!"
+    }, {
+      "skuName": "GYLT",
+      "skuDescription": "Face your fears in GYLT, a haunting tale about bullying and childhood nightmares, as you help Sally navigate a creepy world to rescue her missing cousin Emily. GYLT is available only on Stadia!"
+    }, {
+      "skuName": "PGA TOUR 2K21",
+      "skuDescription": "Play against the pros. Play with your crew. In PGA TOUR 2K21, you can play by the rules or create your own.\u003cbr\u003e\u003cbr\u003eFeaturing an all-new PGA TOUR Career Mode with licensed courses and 12 licensed pros to compete against in your quest for the FedExCup.\u003cbr\u003e\u003cbr\u003eCreate your dream course with our deep course creator to share with other players and run your own clubhouse with Online Societies."
+    }, {
+      "skuName": "The Darkside Detective",
+      "skuDescription": "Grab your trench coat, tune your sixth sense and join the Darkside Division as they investigate the outright bizarre, the downright dangerous and the mildly confusing cases of Twin Lakes. Flesh-hungry tentacles, mafian zombies, and the occasional missing sock are no match for The Darkside Detective."
+    }, {
+      "skuName": "Madden NFL 22",
+      "skuDescription": "Experience BO KNOWS now! Login to Madden NFL 22 from November 19, 2021 through January 14, 2022, and receive a BO KNOWS Ultimate Team starter pack including an 85 rated Bo Jackson item, a Raiders uniform, and NIKE x BO KNOWS gear in The Yard. Jump in to play limited-time BO KNOWS events.\u003cbr\u003e\u003cbr\u003e Madden NFL 22 is where gameday happens.\u003cbr\u003e\u003cbr\u003eAll-new features in Franchise include staff management, an enhanced scenario engine, and weekly strategy. Share avatar progress and player class between Face of The Franchise and The Yard with unified progression. And for the first time ever in Ultimate Team, adjust Superstar X-Factors at halftime.\u003cbr\u003e\u003cbr\u003eThis game includes optional purchase of virtual currency that can be used to acquire a random selection of virtual in-game items through “packs”. EA displays pack probabilities in-game. See ‘Loot box drop rates’ below for information on how probabilities are calculated."
+    }, {
+      "skuName": "Unto The End",
+      "skuDescription": "Unto The End is a hand-crafted cinematic platformer about a desperate journey home. Master combat through improvisation and observation in intense sword fights. Spot opportunities to use artifacts and trade supplies. An adventure told through your actions, how will you make it home?"
+    }, {
+      "skuName": "Moonlighter",
+      "skuDescription": "Moonlighter is an Action RPG with rogue-lite elements following the everyday routines of Will, an adventurous shopkeeper that dreams of becoming a hero. During a long-passed archaeological excavation, a set of Gates were discovered. People quickly realized that these ancient passages lead to different realms and dimensions – providing brave and reckless adventurers with treasures beyond measure. Rynoka, a small commercial village, was founded near the excavation site providing refuge and a place for adventurers to sell their hard-earned riches."
+    }, {
+      "skuName": "SteamWorld Quest: Hand of Gilgamech",
+      "skuDescription": "Triumph over evil with the hand you’re dealt! SteamWorld Quest is the roleplaying card game you’ve been waiting for! Lead a party of aspiring heroes through a beautifully hand-drawn world and intense battles using only your wits and a handful of cards. Take on whatever threat comes your way by crafting your own deck choosing from over 100 unique punch-cards! What awaits you is a luscious treasure chest filled with gold, dragons, vivid worlds, magic, knights in shining armor as well as XP, turn-based battles and all that good RPG stuff! The game’s humorous mix of traditional fantasy and steampunk robots makes for an unforgettable experience with lots of laughs."
+    }, {
+      "skuName": "SpongeBobSquarePants:Battle for Bikini BottomRehydrated",
+      "skuDescription": "Are you ready, kids? The cult classic is back, faithfully remade in spongetastic splendor! Play as SpongeBob, Patrick and Sandy and show the evil Plankton that crime pays even less than Mr. Krabs. Want to save Bikini Bottom from lots of rampant robots? Of course you do! Want to underpants bungee jump? Why wouldn\u0027t you! Want to join forces in a brand new multiplayer mode? The battle is on!"
+    }, {
+      "skuName": "Journey to the Savage Planet",
+      "skuDescription": "WELCOME TO THE PIONEER PROGRAM! As the newest recruit of Kindred Aerospace - The 4th best interstellar space exploration company - Your job is to determine if the planet ARY-26 is fit for humans. You may be short on equipment and experience, but you\u0027ll figure it out!"
+    }, {
+      "skuName": "Darksiders II Deathinitive Edition",
+      "skuDescription": "Become the terrifying force which everything fears but nothing can escape. Awakened by the End of Days, Death, the most feared of the legendary Four Horsemen embarks on a quest to redeem his brother\u0027s name. Along the way, the Horseman discovers that an ancient grudge may threaten all of Creation. Death lives!"
+    }, {
+      "skuName": "Cyberpunk 2077",
+      "skuDescription": "Cyberpunk 2077 is an open-world, action-adventure story set in Night City, a megalopolis obsessed with power, glamour and body modification. You play as V, a mercenary outlaw going after a one-of-a-kind implant that is the key to immortality. You can customize your character’s cyberware, skillset and playstyle, and explore a vast city where the choices you make shape the story and the world around you."
+    }, {
+      "skuName": "Madden NFL 22",
+      "skuDescription": "Pre-Order Madden NFL 22 to receive:\u003cbr\u003e\u003cbr\u003eBrady or Mahomes Power Up Item\u003cbr\u003eElite Passer Strategy Item\u003cbr\u003e20 Franchise Staff Points\u003cbr\u003eChoice of 1 of 32 NFL Stars\u003cbr\u003e\u003cbr\u003eMadden NFL 22 is where gameday happens.\u003cbr\u003e\u003cbr\u003eAll-new features in Franchise include staff management, an enhanced scenario engine, and weekly strategy. Share avatar progress and player class between Face of The Franchise and The Yard with unified progression. And for the first time ever in Ultimate Team, adjust Superstar X-Factors at halftime.\u003cbr\u003e\u003cbr\u003e\u003cb\u003eFranchise\u003c/b\u003e\u003cbr\u003eStaff management \u0026 talent trees\u003cbr\u003eEnhanced scenario engine\u003cbr\u003eWeekly strategy\u003cbr\u003e\u003cbr\u003eThis game includes optional purchase of virtual currency that can be used to acquire a random selection of virtual in-game items through “packs”. EA displays pack probabilities in-game. See ‘Loot box drop rates’ below for information on how probabilities are calculated."
+    }, {
+      "skuName": "Get Packed: Fully Loaded",
+      "skuDescription": "Get Packed: Fully Loaded is the expanded edition of the couch co-op removals game that’s full of calamity and physics-based carnage for 1-4 players.\u003cbr\u003e\u003cbr\u003eWhen a greedy salt mining company takes over Ditchlington, Last Ditch Removals must handle the hostile eviction.\u003cbr\u003e\u003cbr\u003eWith little time and even less caution, your ragtag removals team gets to work rapidly relocating the entire town… leaving a trail of destruction, explosions, and furniture fragments in your wake!\u003cbr\u003e\u003cbr\u003eNew Additional Content Includes:\u003cbr\u003e6 Levels Across 2 Stages\u003cbr\u003eTime Attack Mode \u003cbr\u003e2 Competitive Levels\u003cbr\u003e5 Converted Single Player to Multiplayer Levels\u003cbr\u003e6 New Characters\u003cbr\u003e19 new pieces of clothing and accessories\u003cbr\u003eNew Achievements"
+    }, {
+      "skuName": "Zombie Army 4: Dead War",
+      "skuDescription": "Hitler’s hordes are back for more in this spine-chilling shooter! Occult enemies, epic weapons and a new campaign for 1-4 players await, as you fight to save humankind from undead Armageddon!"
+    }, {
+      "skuName": "Cake Bash",
+      "skuDescription": "Fight to be the tastiest cake in Cake Bash! A frantic four player party game where adorable drawn-to-life cakes beat the crumbs out of each other.\u003cbr\u003e\u003cbr\u003ePick your favourite cake and battle in a variety of lifelike arenas with unique goals - cover yourself in sweeties or hurl fruit into a pie, there’s plenty for everyone!\u003cbr\u003e\u003cbr\u003eCompete on the same screen, find challengers online or battle well-baked bots. It’s time to get out of the oven and into the fray!"
+    }, {
+      "skuName": "Just Shapes \u0026 Beats",
+      "skuDescription": "Just Shapes \u0026 Beats is a chaotic co-op musical bullet-hell based on three simple things: avoid Shapes, move to the rad Beats, and die, repeatedly. It’s a new spin on SHMUPs, adding a layer of coop that\u0027s at the core of the game: \u0027cause everything is better with friends."
+    }, {
+      "skuName": "Into the Breach",
+      "skuDescription": "The remnants of human civilization are threatened by gigantic creatures breeding beneath the earth. You must control powerful mechs from the future to hold off this alien threat. Each attempt to save the world presents a new randomly generated challenge in this turn-based strategy game from the makers of FTL."
+    }, {
+      "skuName": "Panzer Dragoon: Remake",
+      "skuDescription": "A new, remade version of the Panzer Dragoon game - true to the original, with improved graphics and controls, that suit modern gaming standards! On a far, lone planet, you encounter two dragons awaken from the ancient times. Armed with a deadly gun from the past and the guidance of your armored blue dragon,  you must fulfill your destiny and keep the Prototype Dragon from reaching the Tower or die trying.  Features:  - Pilot through seven unbelievably realistic levels ranging from tropical blue ocean cities to intricate subterranean ruins.  - Attack approaching from all sides enemies quickly and without mercy, with improved 360-degree controls and lock-on targeting."
+    }, {
+      "skuName": "Hello Neighbor: Hide and Seek",
+      "skuDescription": "Hello Neighbor: Hide and Seek follows the tragic story of the Neighbor’s family in this dramatic prequel to Hello Neighbor. Experience playing a game of hide-and-seek with your brother as you both deal with the loss of a family member. The game explains events that lead up to the original Stealth Horror hit Hello Neighbor."
+    }, {
+      "skuName": "NBA 2K21",
+      "skuDescription": "NBA 2K21 is the latest title in the world-renowned, best-selling NBA 2K series, delivering an industry-leading sports video game experience. With extensive improvements upon its best-in-class graphics and gameplay, competitive and community online features, and deep, varied game modes, NBA 2K21 offers one-of-a-kind immersion into all facets of NBA basketball and culture - where Everything is Game.\u003cbr\u003eSee MyTEAM Pack Drop Rates below."
+    }, {
+      "skuName": "AVICII Invector",
+      "skuDescription": "Belt up and blast into the rhythmic regions of unexplored space in AVICII Invector. Created in collaboration with the late superstar DJ, AVICII Invector is a pulse-pounding, frenetic rhythm-action experience. Soar through vocal melodies, sweep each fade and attack every beat in 25 of AVICII’s biggest hits, including global chart toppers: Without You, Wake Me Up and Lay Me Down."
+    }, {
+      "skuName": "Trails of Cold Steel III: Free Sample Set B",
+      "skuDescription": "A free sample of healing and support items.  Brave Seed x1 Spirit Incense x1 Zeram Powder x1  *These items can also be obtained in-game. *If maximum capacity is exceeded, the excess is discarded."
+    }, {
+      "skuName": "MotoGP™20",
+      "skuDescription": "Experience all the thrills of the more-complete-than-ever Managerial Career mode and decide whether to join a 2020 season team or join a totally brand new team. Discover more realistic physics, improved graphics, new 3D models for the riders and face scans of official team managers, plus new animations. You will also have to learn how to manage the wear of tyres. Customize bikes and suits! Find the best combination of sponsor and livery, and choose colours and materials. Coordinate everything with your suit to win in style! Compete with legendary riders! New historic content and a new gaming mode await you to let you relive MotoGP™ history."
+    }, {
+      "skuName": "Sniper Elite 4",
+      "skuDescription": "Continuing the series’ World War Two heritage, Sniper Elite 4 delivers critically acclaimed gunplay across the striking landscapes of wartime Italy, from sun-drenched Mediterranean coastal towns to giddying mountain monasteries and more. Sniper Elite 4 combines genre-defining ballistics, breathless emergent stealth and gripping third-person action. Experience unrivalled freedom across levels many times the size of Sniper Elite 3’s. Exploit the environment, carve your own approach, manipulate the battlefield and hunt your enemies."
+    }, {
+      "skuName": "Lara Croft and the Guardian of Light",
+      "skuDescription": "Lara Croft and the Guardian of Light is an action/adventure game featuring Lara Croft. This brand extension combines the hallmarks of the Tomb Raider franchise including exploration \u0026 discovery, platforming, and puzzle solving combined with character progression, fun fast-paced combat, and elements of human cooperation and competition."
+    }, {
+      "skuName": "Ys VIII: Lacrimosa of DANA",
+      "skuDescription": "Ys returns with a brand new adventure for the first time in 8 years! Adol awakens shipwrecked and stranded on a cursed island. There, he and the other shipwrecked passengers he rescues form a village to challenge fearsome beasts and mysterious ruins on the isolated island. Amidst this, Adol begins to dream of a mysterious blue-haired maiden living in an unknown world. Join Adol as he unravels the riddle of the cursed isle and the blue-haired maiden Dana in Ys VIII: Lacrimosa of DANA!"
+    }, {
+      "skuName": "PUBG - BADLANDS LEISURE SET",
+      "skuDescription": "This set includes Miramar Beach Shirt, Badlands Gold Trim Boots, Marksman Aviators and White Weather Slacks."
+    }, {
+      "skuName": "NBA 2K20",
+      "skuDescription": "NBA 2K has evolved into much more than a basketball simulation. 2K continues to redefine what’s possible in sports gaming with NBA 2K20, featuring best in class graphics and gameplay, ground breaking game modes, and unparalleled player control and customization. Plus, with its immersive open-world Neighborhood, NBA 2K20 is a platform for gamers and ballers to come together and create what’s next in basketball culture. See MyTEAM Pack Drop Rates below."
+    }, {
+      "skuName": "Zombie Army 4: Left 4 Dead Character Pack 1",
+      "skuDescription": "The four characters from Left 4 Dead join the Resistance in this free Character Pack!"
+    }, {
+      "skuName": "Hotline Miami 2:Wrong Number",
+      "skuDescription": "Hotline Miami 2: Wrong Number is the brutal conclusion to the Hotline Miami saga, set against a backdrop of escalating violence and retribution over spilled blood in the original game. Follow the paths of several distinct factions – each with their own questionable methods and uncertain motivations – as unforeseen consequences intersect and reality once again slips back into a brilliant haze of neon and bloodshed."
+    }, {
+      "skuName": "DOOM 64",
+      "skuDescription": "Celebrate DOOM\u0027s 25th anniversary  with the release of DOOM 64, originally released on the Nintendo 64 in 1997, and now available for the first time on Stadia. Fight against demons in your crusade to hunt down the Mother of Demons and stop Hell\u0027s invasion. As you battle through more than 30 action-packed levels, be on the lookout for enhanced weapons and secrets to help you put an end to the demonic threat."
+    }, {
+      "skuName": "Valkyria Chronicles 4 Complete Edition",
+      "skuDescription": "In this acclaimed, standalone action-strategy RPG, it is the Second Europan War (EWII) and Commander Claude Wallace and the members of Squad E will take a leading role in Operation Northern Cross. Bone-chilling blizzards, waves of imperial soldiers, and the godlike powers of the Valkyria stand in your way. As commander, you will test your will against the bonds of your allies and the sacrifices all parties in war must make. Enjoy the power of commanding your squad and game experience as you move smoothly across sessions and screens. The Complete Edition delivers the full game plus all bonus content, providing add-on missions and unlockable rewards. Includes: Squad E to the Beach, A Captainless Squad, Expert Level Skirmishes, The Two Valkyria, Advance Ops, A United Front with Squad 7."
+    }, {
+      "skuName": "Destiny 2: The Collection",
+      "skuDescription": "Dive into the world of Destiny 2 to experience responsive FPS combat, explore the mysteries of our solar system, and unleash elemental abilities against powerful enemies. Experience Destiny 2’s cinematic story alone or with friends, join other Guardians for challenging co-op missions, or compete against them in a variety of PvP modes. Destiny 2: The Collection includes Destiny 2, Destiny 2: Forsaken, and Destiny 2: Shadowkeep."
+    }, {
+      "skuName": "Hotline Miami",
+      "skuDescription": "Hotline Miami is a high-octane action game overflowing with raw brutality, hard-boiled gunplay and skull crushing close combat. Set in an alternative 1989 Miami, you will assume the role of a mysterious antihero on a murderous rampage against the shady underworld at the behest of voices on your answering machine. Soon you\u0027ll find yourself struggling to get a grip of what is going on and why you are prone to these acts of violence."
+    }, {
+      "skuName": "Ary and the Secret of Seasons",
+      "skuDescription": "Journey across the magnificent world of Valdi! Ary and the Secret of Seasons is an award-winning adventure game following a young girl named Aryelle, or Ary, as she journeys across the great world of Valdi. By becoming the Guardian of Winter, Ary gains the ability to manipulate the seasons around her. Ary will learn to control the seasons and use them to defeat enemies, overcome obstacles, and solve complex puzzles on her adventure across Valdi."
+    }, {
+      "skuName": "PlayerUnknown\u0027s Battlegrounds - Pioneer Edition",
+      "skuDescription": "This is Battle Royale. Land, loot and outwit your opponents to become the last player standing in a thrilling game experience full of unexpected, adrenaline-pumping moments. This bundle includes Playerunknown\u0027s Battlegrounds basegame, Survivor Pass: Cold Front and Stadia Premiere set."
+    }, {
+      "skuName": "Crayta",
+      "skuDescription": "Play from a continuously growing library of user-generated multiplayer games across a huge variety of genres. From team-based shooters and obstacle courses to farming simulators and cooking games, there’s going to be something for everyone.\u003cbr\u003e\u003cbr\u003eCrayta is a truly collaborative game creation platform built on Unreal Engine 4 - you and your friends can jump in and create games together in the cloud, regardless of your experience.\u003cbr\u003e\u003cbr\u003eGain XP as you complete Creator Challenges and unlock tonnes of cosmetics as you progress through our free Strength \u0026 Sorcery Battle Pass! The Strength \u0026 Sorcery Battle Pass takes you to a magical realm where you can be a mage, a fairy or even a warrior. Which side will you be choosing - the enchanted forest or the medieval castle?"
+    }, {
+      "skuName": "Crayta",
+      "skuDescription": "Play from a continuously growing library of user-generated multiplayer games across a huge variety of genres. From team-based shooters and obstacle courses to farming simulators and cooking games, there’s going to be something for everyone.\u003cbr\u003e\u003cbr\u003eCrayta is a truly collaborative game creation platform built on Unreal Engine 4 - you and your friends can jump in and create games together in the cloud, regardless of your experience.\u003cbr\u003e\u003cbr\u003eGain XP as you complete Creator Challenges and unlock tonnes of cosmetics as you progress through our free Strength \u0026 Sorcery Battle Pass! The Strength \u0026 Sorcery Battle Pass takes you to a magical realm where you can be a mage, a fairy or even a warrior. Which side will you be choosing - the enchanted forest or the medieval castle?"
+    }, {
+      "skuName": "Crayta",
+      "skuDescription": "Play from a continuously growing library of user-generated multiplayer games across a huge variety of genres. From team-based shooters and obstacle courses to farming simulators and cooking games, there’s going to be something for everyone.\u003cbr\u003e\u003cbr\u003eCrayta is a truly collaborative game creation platform built on Unreal Engine 4 - you and your friends can jump in and create games together in the cloud, regardless of your experience.\u003cbr\u003e\u003cbr\u003eGain XP as you complete Creator Challenges and unlock tonnes of cosmetics as you progress through our free Strength \u0026 Sorcery Battle Pass! The Strength \u0026 Sorcery Battle Pass takes you to a magical realm where you can be a mage, a fairy or even a warrior. Which side will you be choosing - the enchanted forest or the medieval castle?"
+    }, {
+      "skuName": "Little Big Workshop",
+      "skuDescription": "Imagine a magical factory, appearing right in your living room. A carefully planned masterpiece, where diligent workers throw together anything customers want. Rubber ducks and dressers, drones and electric guitars, scooters and other wonderful goods can be created from many different materials and sold for hard cash – cash you invest right back into your factory to get more machines, more workers and grow your business. In Little Big Workshop you become a factory tycoon!"
+    }, {
+      "skuName": "UNO®",
+      "skuDescription": "One of the most iconic classic games which we all grew to know and love! UNO makes its return with an assortment of exciting new features such as added video chat support and an all new theme system which adds more fun!\u003cbr\u003eMatch cards either by matching color or value and play action cards to change things up. Race against others to empty your hand before everyone else in either Classic play or customize your experience with a variety of House Rules and match settings to ensure you and your friends never play the same game twice! Also, get ready to shake things up with new branded themes introducing never-before-seen Theme Cards that really change the way you play the game!"
+    }, {
+      "skuName": "Chronos: Before the Ashes",
+      "skuDescription": "Chronos: Before the Ashes is an atmospheric RPG that chronicles a hero’s lifelong quest to save their homeland from a great evil.  Grow wiser, stronger and more powerful as you explore the depths of the mysterious labyrinth. But beware, the labyrinth takes a heavy toll – each time your hero dies, they lose a year of their life!"
+    }, {
+      "skuName": "Crayta: Premium Edition",
+      "skuDescription": "Crayta brings together players of all abilities and backgrounds to create and play multiplayer games with their families, friends, and the rest of the world. Create and collaborate in real-time, then share your games instantly with the Crayta community. Powerful, flexible, accessible, fun – game creation is now a game in itself!"
+    }, {
+      "skuName": "GRIME",
+      "skuDescription": "An unusual material collapses in on itself, the world shudders and contracts, and suddenly you are squeezed into existence.\u003cbr\u003eWhat awaits you is a world unknown, alien in its own familiarity, and you must survive what terrors you face. Explore your surreal surroundings, absorb the many enemies you encounter, and use their own traits against them as you let yourself become far more than you once were.\u003cbr\u003eGRIME lets you play to your preference, upgrading only those traits you feel most suited to your unique style. You’ll find there is more than one way to break open an enemy as you move through a variety of evocative environments, meet their inhabitants, and discover the source of their madness."
+    }, {
+      "skuName": "FLOOR KIDS",
+      "skuDescription": "Floor Kids is a new breakdance battle game featuring unique freestyle gameplay, rhythm challenges, and multiplayer sessions. Discover stylized hand-drawn graphics by award-winning animator JonJon set to an original soundtrack by world-renowned scratch DJ/producer Kid Koala. Innovative controls allow you the freedom to play the way you like with a dynamic scoring system that rewards your moves based on musicality, originality, and style. Build up your crew of bboys and bgirls, unlocking new characters and locations as you cross the city, busting hundreds of different moves and countless combinations on your journey from the corner to the club. Bring Your Skills. Build Your Crew. Find Your Style."
+    }, {
+      "skuName": "The Falconeer - Edge of the World",
+      "skuDescription": "Take on epic new missions, embark on new adventures and discover stories that will lead you to spectacular new locations on the periphery of civilization, in ‘Edge of the World’, an extensive new expansion for this BAFTA nominated game.\u003cbr\u003eContains three brand new mini campaigns with nine new missions, exotic locations, two new playable classes with unique mounts, and the Imperial Shocklance weapon!"
+    }, {
+      "skuName": "HITMAN - The Complete First Season",
+      "skuDescription": "Featuring all of the Season One locations and episodes from the Prologue, Paris, Sapienza, Marrakesh, Bangkok, Colorado, and Hokkaido.  As Agent 47, you will perform contract hits on powerful, high-profile targets in an intense spy-thriller story across a world of assassination.\u003cbr\u003e\u003cbr\u003eAs you complete missions and contracts new weapons, items and equipment become available for use across all locations.  Learn the tools of the trade as you earn your way to Silent Assassin status.  \u003cbr\u003eHITMAN includes a wealth of content and game modes, catering to long-time fans and new players in equal measure.  A world of assassination awaits you in this award-winning stealth action game."
+    }, {
+      "skuName": "The Falconeer - The Hunter",
+      "skuDescription": "Take to the skies aboard a feathered serpent and unleash fiery vengeance from above with The Hunter content pack. Includes a new ‘Mongres Hunter’ player Class, with a flyable Ormir dragon, an exclusive set of pyro pot guided rockets and additional outfits for your player avatar."
+    }, {
+      "skuName": "UNO® Winter Theme",
+      "skuDescription": "Winter takes over UNO! Add some fun, cozyness and joy to your UNO deck with the Winter Theme. This contains new avatars, environment, and music for you and your friends to enjoy! A fun new way to enjoy your UNO game in the comfort of your living room!"
+    }, {
+      "skuName": "Wreckfest",
+      "skuDescription": "Break the rules and take full-contact racing to the limit with Wreckfest!\u003cbr\u003e\u003cbr\u003eExpect epic crashes, neck-to-neck fights over the finish line and brand-new ways for metal to bend – These are the once-in-a-lifetime moments that can only be achieved in Wreckfest, with its true-to-life physics simulation crafted by legendary developer Bugbear, who also brought you FlatOut 1 \u0026 2!\u003cbr\u003e\u003cbr\u003eBurn rubber and shred metal in the ultimate driving playground!"
+    }, {
+      "skuName": "SUPERHOT",
+      "skuDescription": "Blurring the lines between cautious strategy and unbridled mayhem, SUPERHOT is the FPS in which time moves only when you move. No regenerating health bars. No conveniently placed ammo drops. It\u0027s just you, outnumbered and outgunned, grabbing the weapons of fallen enemies to shoot, slice, and maneuver through a hurricane of slow-motion bullets.\u003cbr\u003eWith its unique, stylized graphics SUPERHOT finally adds something new and disruptive to the FPS genre. SUPERHOT’s polished, minimalist visual language helps you concentrate on the most important - on the fluidity of gameplay and cinematic beauty of the fight."
+    }, {
+      "skuName": "It Came From Space And Ate Our Brains",
+      "skuDescription": "A merciless alien species that feeds on human brains (duh) has invaded the Earth. Who can stand up to them? You, obviously! Save the world—or at least yourself. Send aliens to oblivion in It Came From Space and Ate Our Brains—a unique top-down arcade shooter.\u003cbr\u003e\u003cbr\u003eAddicting gameplay elements, co-op mode, and a way to turn aliens into goo? It’s all here! Explore atmospheric locations with a flashlight and a weapon powerful enough to blast those unwanted intergalactic guests back into space. Survive hordes of enemies trying to corner you and get inside your skull… at least until you set a new high score and die like a badass!"
+    }, {
+      "skuName": "PUBG - Survivor Pass : Cold Front",
+      "skuDescription": "Dress for the season with Survivor Pass: Cold Front."
+    }, {
+      "skuName": "Juna\u0027s \"Lloyd Bannings\" Costume",
+      "skuDescription": "A costume for Juna that lets her dress up as her hero, Lloyd."
+    }, {
+      "skuName": "Hundred Days - Winemaking Simulator",
+      "skuDescription": "In Hundred Days you will have complete control of a new Winery. First choose which vines to grow, learn how to grow them and when to harvest. Then following the entire winemaking process deciding on the type of wine you want to produce or the market requires. You will also have to sell the wine produced to allow your company to expand. As in reality, every choice made, from the vineyard to the sales, will be able to influence the wine produced both in quantity and quality. A quality wine will increase the reputation of your company worldwide, it may have come at a higher price and will allow you to grow better and faster."
+    }, {
+      "skuName": "The Elder Scrolls Online: Standard Edition",
+      "skuDescription": "Includes The Elder Scrolls Online Base game and the Morrowind Chapter. Join over 10 million players in the award-winning online multiplayer RPG and experience an ever-expanding story set across Tamriel. Explore a rich, living world with friends or embark on a solo adventure – the choice is yours to make in a persistent Elder Scrolls world."
+    }, {
+      "skuName": "Outcasters",
+      "skuDescription": "Fight your friends and team up to beat your enemies in chaotic eight player shot-curving combat.\u003cbr\u003e\u003cbr\u003eOutcasters is a frantic, fast-paced and competitive game from Splash Damage.\u003cbr\u003e\u003cbr\u003eBattle your way across vibrant, colorful vinyl arenas and curve your shots to creatively defeat your opponents.\u003cbr\u003e\u003cbr\u003e With customizable Outcasters and all sorts of power-ups this is a chaotically fun multiplayer brawler that gives a hook-shot an all new meaning."
+    }, {
+      "skuName": "Hello Neighbor",
+      "skuDescription": "Hello Neighbor is a stealth horror game about sneaking into your neighbor\u0027s house to figure out what horrible secrets he\u0027s hiding in the basement. You play against an advanced AI that learns from your every move. Really enjoying climbing through that backyard window? Expect a bear trap there. Sneaking through the front door? There\u0027ll be cameras there soon. Trying to escape? The Neighbor will find a shortcut and catch you."
+    }, {
+      "skuName": "The Elder Scrolls Online: Morrowind Upgrade",
+      "skuDescription": "Morrowind is on the verge of destruction, and it’s up to you to save it from a deadly Daedric threat. Embark on a dangerous journey through legendary locales."
+    }, {
+      "skuName": "Enter The Gungeon",
+      "skuDescription": "Enter the Gungeon is a bullet hell dungeon crawler following a band of misfits seeking to shoot, loot, dodge roll and table-flip their way to personal absolution by reaching the legendary Gungeon’s ultimate treasure: the gun that can kill the past. Select a hero [or team up in co-op] and battle your way to the bottom of the Gungeon by surviving a challenging and evolving series of floors filled with the dangerously adorable Gundead and fearsome Gungeon bosses armed to the teeth. Gather precious loot, discover hidden secrets, and chat with opportunistic merchants and shopkeepers to purchase powerful items to gain an edge."
+    }, {
+      "skuName": "Metro 2033 Redux",
+      "skuDescription": "In 2013 the world was devastated by an apocalyptic event. A handful of survivors took refuge in the depths of the Moscow underground…The year is 2033. You are Artyom, born in the last days before the fire, but raised Underground. One fateful event sparks a desperate mission to the heart of the Metro system, to warn the remnants of mankind of a terrible impending threat. Metro 2033 Redux is the definitive version of the cult classic ‘Metro 2033’. Fans of the original game will find the unique world of Metro transformed with incredible lighting, physics and dynamic weather effects. Newcomers will get the chance to experience one of the finest story-driven shooters of all time; an epic adventure combining gripping survival horror, exploration and tactical combat and stealth."
+    }, {
+      "skuName": "Figment",
+      "skuDescription": "Figment is an action-adventure game that invites you to explore a unique surreal universe filled with music, humor and multi layered narrative. Join Dusty and his ever-optimistic friend, Piper, on an adventure through the different sides of the mind seeking to restore the courage that\u0027s been lost."
+    }, {
+      "skuName": "EVERSPACE™",
+      "skuDescription": "EVERSPACE™ combines fast-paced combat with roguelike elements, great visuals and a captivating story. It takes you on a challenging journey through an ever-changing, beautifully crafted universe full of surprises. Shoot, craft and loot your way to victory while the odds are stacked against you."
+    }, {
+      "skuName": "PlayerUnknown\u0027s Battlegrounds – Breakthrough Edition",
+      "skuDescription": "This bundle includes Playerunknown\u0027s Battlegrounds basegame, Survivor Pass: Breakthrough, 5 Levels and a Skin set.\u003cbr\u003e\u003cbr\u003e• This product is only available until April 1st (00:00 PDT)"
+    }, {
+      "skuName": "Zombie Army 4: Left 4 Dead Character Pack 2",
+      "skuDescription": "Four more characters from Left 4 Dead join the Resistance in this free Character Pack!"
+    }, {
+      "skuName": "Crayta: Premium Edition",
+      "skuDescription": "Premium Edition includes:\u003cbr\u003e• Premium Pack\u003cbr\u003e• Lightspeed Pack\u003cbr\u003e• High Noon Pack\u003cbr\u003e• Tally Ho Pack\u003cbr\u003e• Dirtbag Pack\u003cbr\u003e• 500 Crayta Credits"
+    }, {
+      "skuName": "SUPER BOMBERMAN R ONLINE",
+      "skuDescription": "Drop bombs and collect power-ups to blast your way through SUPER BOMBERMAN R ONLINE! You can compete against up to 64 players from around the world in this explosive survival battle.\u003cbr\u003e\u003cbr\u003eWith the new BATTLE 64 mode, move from one area to another and blast away your rivals in an epic online survival battle! Fight your way to the end and outlast all other players to be BOMBER ONE!"
+    }, {
+      "skuName": "HITMAN - The Complete First Season Pack",
+      "skuDescription": "Featuring all of the Season One locations and episodes from the Prologue, Paris, Sapienza, Marrakesh, Bangkok, Colorado, and Hokkaido.  As Agent 47, you will perform contract hits on powerful, high-profile targets in an intense spy-thriller story across a world of assassination.\u003cbr\u003e\u003cbr\u003eAs you complete missions and contracts new weapons, items and equipment become available for use across all locations.  Learn the tools of the trade as you earn your way to Silent Assassin status.  \u003cbr\u003eHITMAN includes a wealth of content and game modes, catering to long-time fans and new players in equal measure.  A world of assassination awaits you in this award-winning stealth action game."
+    }, {
+      "skuName": "The Turing Test",
+      "skuDescription": "The Turing Test is a challenging first-person puzzle game set on Jupiter’s moon, Europa. You are Ava Turing, an engineer for the International Space Agency (ISA) sent to discover the cause behind the disappearance of the ground crew stationed there. Upon arrival a series of puzzles awaits you – tests which, according to the station’s AI, Tom, can only be solved by a human. These puzzles have apparently been set by the missing ground crew – but why have they created them and what are they hiding from?"
+    }, {
+      "skuName": "DIRT 5",
+      "skuDescription": "Let Loose in DIRT 5 -  the boldest off-road racing experience ever, with a star-studded Career, four-player split-screen, innovative online modes, livery editor and more. Blaze a trail on global tracks, covering gravel, ice, snow and sand, with cars ranging from rally icons, to trucks, to GT heroes."
+    }, {
+      "skuName": "Spitlings",
+      "skuDescription": "You know what the problem with multiplayer games is, right? The other players! It’s always THEIR FAULT if you lose! We’ve got the perfect game to blame your friends for their incapability: Spitlings! This chaotic action arcade game for up to four players is a modern take on the hardcore classics. You’re in control of a Spitling, a charming rectangular creature with teeth it can spit or use to jump! Makes no sense? Who cares, it’s FUN! Spitlings is a cute but hardcore Arcade game that’s made for playing its hundreds of levels locally/online with friends. Keep playing to unlock new music tracks, unique characters to play with and intense visual themes for certain levels."
+    }, {
+      "skuName": "PIKUNIKU",
+      "skuDescription": "Pikuniku is an absurdly wonderful puzzle-exploration game that takes place in a strange but playful world where not everything is as happy as it seems. Help peculiar characters overcome struggles, uncover a deep state conspiracy, and start a fun little revolution in this delightful dystopian adventure!"
+    }, {
+      "skuName": "Epistory - Typing Chronicles",
+      "skuDescription": "Epistory is an atmospheric adventure typing game that tells the story of a writer lacking inspiration who asks her muse to help write her latest book. In Epistory you play the muse, a fictional character in a world where everything is untold. Your adventure begins on a blank page, but the world will soon become larger and livelier as you gather inspiration, solve its mysteries and defeat its enemies.  As you progress and explore the fantasy origami world, the story literally unfolds in the writer’s mind and the mysteries of the magic power of the words are revealed."
+    }, {
+      "skuName": "Terraria",
+      "skuDescription": "The world is at your fingertips as you fight for survival, fortune, and glory. Delve deep into cavernous expanses, test your mettle in combat, or construct your own city - In the World of Terraria, the choice is yours! \u003cbr\u003e\u003cbr\u003eBlending elements of classic action games with the freedom of sandbox-style creativity, Terraria is a unique gaming experience where both the journey and the destination are completely in the player’s control. \u003cbr\u003e\u003cbr\u003eTerraria offers more content than ever - including the brand new \"Journey\u0027s End\" Update! \u003cbr\u003ePresenting an impressive catalogue of 5,000+ items, 25+ NPCs, and 400+ enemies and blending elements of classic action games with sandbox-style creativity, Terraria is truly a unique adventure!"
+    }, {
+      "skuName": "Blue Fire",
+      "skuDescription": "A Dark World Awaits - Travel through the perished world of Penumbra to explore unique areas filled with diverse enemies, sharp 3D platforming challenges, quests, collectibles, and more. \u003cbr\u003e Embark on an extraordinary journey through the desolated kingdom of Penumbra and discover the hidden secrets of this long-forgotten land. Explore mystical temples, encounter survivors and take on strange quests to collect valuable items. Along your adventure, slash your way through daunting adversaries, roam across mysterious and abandoned regions, leap through deadly traps and ultimately master the art of movement."
+    }, {
+      "skuName": "SteamWorld Heist",
+      "skuDescription": "In SteamWorld Heist, you command a steam-driven pirate crew in a series of epic tactical shootouts. It’s turn-based strategy with a twist: You manually aim the guns of your robots, allowing for insane skill shots and bullet-bouncing action! As the captain you will board, loot and shoot your way through enemy spaceships. Overcome the challenges of the vast frontier by upgrading your recruits with unique abilities, weapons – and even stylish hats!"
+    }, {
+      "skuName": "SUPERHOT: MIND CONTROL DELETE",
+      "skuDescription": "Built on the foundations of SUPERHOT and SUPERHOT VR, MIND CONTROL DELETE continues to bring you more of SUPERHOT’s signature power fantasy.\u003cbr\u003e\u003cbr\u003eTime moves only when you move. Enemies pour in from every direction. You are in complete control as you shoot, slice, and explode your way through dozens and dozens of increasingly challenging combat encounters. The closer you get to the core, the more powerful you become. You amass an arsenal of skills and weapons. You uncover snippets of precious knowledge - of the meaning that you crave so much.\u003cbr\u003e\u003cbr\u003eThe third game in the SUPERHOT franchise - MIND CONTROL DELETE gives you more insight into the world of SUPERHOT, more story, more signature gameplay. Keep dancing the slow motion ballet of destruction for so much longer than ever before. "
+    }, {
+      "skuName": "Trails of Cold Steel III: Faculty Swimsuit Set",
+      "skuDescription": "A set of swimsuits for Juna, Altina, and Musse that look just like Aurelia\u0027s.  Faculty Swimsuit - Juna x1 Faculty Swimsuit - Altina x1 Faculty Swimsuit - Musse x1"
+    }, {
+      "skuName": "SteamWorld Dig",
+      "skuDescription": "SteamWorld Dig is a platform mining adventure with strong Metroidvanian influences. Take the role of Rusty, a lone mining steambot, as he arrives at an old mining town in great need. Dig your way through the old earth, gaining riches while uncovering the ancient threat that lurks below..."
+    }, {
+      "skuName": "Crayta: Deluxe Edition",
+      "skuDescription": "Crayta brings together players of all abilities and backgrounds to create and play multiplayer games with their families, friends, and the rest of the world. Create and collaborate in real-time, then share your games instantly with the Crayta community. Powerful, flexible, accessible, fun – game creation is now a game in itself!\u003cbr\u003eThe Deluxe Edition also includes:\u003cbr\u003e• Mesmer Outfit Collection\u003cbr\u003e• Hexx Outfit Collection\u003cbr\u003e• Exclusive Digit Craytawear Colourway\u003cbr\u003e• Jellyfish Drone\u003cbr\u003e• Hocus Pocus Emote\u003cbr\u003e• Thunderbolt Emoticon\u003cbr\u003e• 2 Exclusive Icons\u003cbr\u003e• 5 Exclusive Sprays"
+    }, {
+      "skuName": "Orcs Must Die! 3",
+      "skuDescription": "Orcs Must Die! 3 ushers orc-slaying mayhem to a previously unimaginable scale. All new War Scenarios pit players and their friends against the largest orc armies ever assembled. War Machines give players the essential firepower to heave, stab, carbonize, and disarticulate the abominable intruders. Orcs Must Die! 3 is the long-awaited successor to the award-winning series."
+    }, {
+      "skuName": "Destroy All Humans!",
+      "skuDescription": "The cult-classic returns! Terrorize the people of 1950\u0027s Earth in the role of the evil alien Crypto-137. Harvest their DNA and bring down the US government in the faithful remake of the legendary alien invasion action adventure. Annihilate puny humans using an assortment of alien weaponry and psychic abilities. Reduce their cities to rubble  with your flying Saucer! One giant step on mankind!"
+    }, {
+      "skuName": "Saints Row IV: Re-Elected",
+      "skuDescription": "You are the President of the United States of America, and you must save all of us on Earth.\u003cbr\u003eThe Boss of the Saints has been elected to the Presidency of the United States but the Saints are just getting started. \u003cbr\u003eAfter a catastrophic alien invasion of Earth, led by the evil Overlord Zinyak, the Saints have been transported to a bizarro-Steelport simulation. With homies new and old at their side, and an arsenal of superpowers and strange weapons, they must fight to free humanity from alien granddaddy Zinyak’s mental grasp."
+    }, {
+      "skuName": "Power Rangers: Battle for the Grid",
+      "skuDescription": "Generations of Power Rangers collide across the multiverse’s 25 year history. Experience authentic, but reimagined Power Rangers gameplay. This easy to learn, but hard to master fighting game is designed to welcome players of all skill levels."
+    }]
+  }
+}

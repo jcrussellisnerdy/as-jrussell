@@ -1,0 +1,61 @@
+USE SHAVLIK
+
+
+
+IF EXISTS ( SELECT  *
+            FROM    sys.objects
+            WHERE   object_ID = OBJECT_ID(N'[dbo].[xtr_CurrentPatchCount]')
+                    AND type IN (N'P') ) 
+    DROP PROCEDURE [dbo].[xtr_CurrentPatchCount] ;
+GO
+
+
+
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[xtr_CurrentPatchCount]') AND type in (N'P', N'PC'))
+BEGIN
+	/* Create Empty Stored Procedure */
+	EXEC dbo.sp_executesql @statement = N'CREATE PROCEDURE [dbo].[xtr_CurrentPatchCount] AS RETURN 0;';
+END;
+GO
+
+
+ALTER PROCEDURE [dbo].[xtr_CurrentPatchCount](@BATCHID Int)
+ 
+ --EXEC sp_CurrentPatchCount
+
+AS
+BEGIN
+DECLARE @ENTITYNAME VARCHAR(100) = 'xtr_CurrentPatchCount'
+
+BEGIN TRY
+TRUNCATE TABLE xtrCurrentPatchCount
+
+INSERT INTO xtrCurrentPatchCount
+
+SELECT AMS.MACHINEID AS MACHINE, VS.VALUE AS SEVERITY,
+SUM(CASE WHEN INSTALLSTATEID = 3 THEN 1 ELSE 0 END) AS INSTALLED,
+SUM(CASE WHEN INSTALLSTATEID = 4 THEN 1 ELSE 0 END) AS NOTINSTALLED,
+SUM(CASE WHEN INSTALLSTATEID = 6 THEN 1 ELSE 0 END) AS MISSINGSERVICEPACK,
+SUM(CASE WHEN INSTALLSTATEID = 2 THEN 1 ELSE 0 END) AS INFORMATIONAL
+
+FROM xtrCurrentPatchStatus PP
+LEFT OUTER JOIN 
+Reporting2.AssessedMachineState AMS ON AMS.ID = PP.ASSESSEDMACHINESTATEID
+LEFT OUTER JOIN
+Reporting2.Patch P ON PP.PATCHID = P.ID
+LEFT OUTER JOIN
+Reporting2.VendorSeverity VS ON VS.ID = P.VENDORSEVERITYID
+GROUP BY AMS.MACHINEID,  VS.VALUE
+
+
+RETURN CAST(@@rowcount AS INT)
+
+END TRY
+
+
+BEGIN CATCH
+	EXEC xtr_LogErrorInfo @BATCHID, @ENTITYNAME
+	
+END CATCH
+
+END

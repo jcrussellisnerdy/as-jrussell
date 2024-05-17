@@ -1,0 +1,59 @@
+USE SHAVLIK
+
+
+IF EXISTS ( SELECT  *
+            FROM    sys.objects
+            WHERE   object_ID = OBJECT_ID(N'[dbo].[xtr_DeleteCPatches]')
+                    AND type IN (N'P') ) 
+    DROP PROCEDURE [dbo].[xtr_DeleteCPatches] ;
+GO
+
+
+
+
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[xtr_DeleteCPatches]') AND type in (N'P', N'PC'))
+BEGIN
+	/* Create Empty Stored Procedure */
+	EXEC dbo.sp_executesql @statement = N'CREATE PROCEDURE [dbo].[xtr_DeleteCPatches] AS RETURN 0;';
+END;
+GO
+
+ 
+ALTER  PROCEDURE [dbo].[xtr_DeleteCPatches] (	@PATCHCODE nvarchar(256), @BATCHID Int)
+AS
+BEGIN
+DECLARE @ENTITYNAME VARCHAR(100) = 'xtr_DeleteCPatches'
+DECLARE @SQL nvarchar(max)
+
+BEGIN TRY
+
+SET @SQL = 'DELETE  xtrCurrentPatchStatus FROM xtrCurrentPatchStatus C
+			INNER JOIN
+			(SELECT A.ID,  A.MACHINEID, PATCHID, PRODUCTID,   MAX(ASSESSEDMACHINESTATEID) AS MAXAMS , 
+			SCANDATE, INSTALLSTATEID
+			FROM xtrCurrentPatchStatus A
+			INNER JOIN 
+			(SELECT DISTINCT MACHINEID, MAX(ASSESSEDMACHINESTATEID) AS MAXID
+			FROM xtrCurrentPatchStatus
+			WHERE BULLETIN LIKE ''' + @PATCHCODE + ''' AND INSTALLSTATEID = 3
+			GROUP BY MACHINEID ) B
+			ON A.MACHINEID = B.MACHINEID AND A.ASSESSEDMACHINESTATEID < B.MAXID
+			WHERE BULLETIN LIKE ''' + @PATCHCODE + ''' AND INSTALLSTATEID = 4
+			GROUP BY  A.MACHINEID,PATCHID, PRODUCTID,   SCANDATE,  ID, INSTALLSTATEID) D
+			ON C.PATCHID = d.PATCHID AND C.PRODUCTID = D.PRODUCTID AND C.ASSESSEDMACHINESTATEID = D.MAXAMS'
+
+			
+			EXEC sp_executesql @SQL
+
+			RETURN CAST(@@rowcount AS INT)
+
+				
+END TRY
+
+BEGIN CATCH
+	EXEC xtr_LogErrorInfo @BATCHID, @ENTITYNAME
+	
+END CATCH
+
+
+END

@@ -1,0 +1,231 @@
+Received: from BN6PR17CA0030.namprd17.prod.outlook.com (2603:10b6:405:75::19)
+ by MWHPR19MB1598.namprd19.prod.outlook.com (2603:10b6:300:cb::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5227.23; Tue, 10 May
+ 2022 01:04:53 +0000
+Received: from BN8NAM11FT047.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:405:75:cafe::f0) by BN6PR17CA0030.outlook.office365.com
+ (2603:10b6:405:75::19) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5227.23 via Frontend
+ Transport; Tue, 10 May 2022 01:04:52 +0000
+Authentication-Results: spf=pass (sender IP is 205.220.165.166)
+ smtp.mailfrom=alliedsolutions.net; dkim=pass (signature was verified)
+ header.d=alliedsolutions.net;dmarc=bestguesspass action=none
+ header.from=alliedsolutions.net;compauth=pass reason=109
+Received-SPF: Pass (protection.outlook.com: domain of alliedsolutions.net
+ designates 205.220.165.166 as permitted sender)
+ receiver=protection.outlook.com; client-ip=205.220.165.166;
+ helo=mx0a-001c9401.pphosted.com;
+Received: from mx0a-001c9401.pphosted.com (205.220.165.166) by
+ BN8NAM11FT047.mail.protection.outlook.com (10.13.177.220) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5227.15 via Frontend Transport; Tue, 10 May 2022 01:04:51 +0000
+Received: from pps.filterd (m0218921.ppops.net [127.0.0.1])
+	by mx0a-001c9401.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 24A0f97Z027993
+	for <79059233.alliedsolutions.net@amer.teams.ms>; Mon, 9 May 2022 20:04:50 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedsolutions.net; h=date : from
+ : reply-to : to : message-id : subject : mime-version :
+ content-transfer-encoding : content-type; s=as1;
+ bh=NRncgwsn7arwdV/M5Me/Q7oqz5oYAOTBa7IAFJNjm4g=;
+ b=wy7jqXkfpr0U2/LR4+OVXa2bDDA7wkkl87x8o19+DnhHvXNS+BmU/YHV4hWgnB12mdoS
+ qBcxr0xa7gHzP9UXUEgwLXuKEJktcewKQCrZp1lSiwoTSd1911EhSAppSH6yaegJRz+8
+ uWtgzHDXwkMp0xQ912Dm+mQQ9VKjs3lnIZTDemDlLLMJGy9yPCMAfBjGK0u42nwO7eht
+ jFochZWulCO486hwd3erQjii/b8iEYJlvBkWBHuNPeX+itIu1pzsNuTSNzSlH2zNXXDM
+ d8BsvxA7yN5ytxDYiX8peRFgw4NAdSedjUOzRDVIrHfms7NC6A2niwBZbiq2iLD7Ed1a uQ== 
+Received: from mail.alliedsolutions.net (mail.alliedsolutions.net [64.56.213.53])
+	by mx0a-001c9401.pphosted.com (PPS) with ESMTPS id 3fybw504rb-2
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT)
+	for <79059233.alliedsolutions.net@amer.teams.ms>; Mon, 09 May 2022 20:04:50 -0500
+Received: from Mailrelay-02.colo.as.local ([10.9.7.16])
+          by mail.alliedsolutions.net (IBM Domino Release 9.0.1FP10 HF383)
+          with ESMTP id 2022050920044929-453762 ;
+          Mon, 9 May 2022 20:04:49 -0500 
+Received: from IGNTPRDAP01.colo.as.local (IGNTPRDAP01.colo.as.local [10.9.3.28])
+	by Mailrelay-02.colo.as.local (8.14.7/8.14.7) with ESMTP id 24A14n7L008639
+	for <79059233.alliedsolutions.net@amer.teams.ms>; Mon, 9 May 2022 20:04:49 -0500
+Date: Mon, 9 May 2022 20:04:49 -0500 (CDT)
+From: AlliedIgnite@alliedsolutions.net
+Reply-To: NoReply-DPA@AlliedSolutions.net
+To: 79059233.alliedsolutions.net@amer.teams.ms
+Message-ID: <1929717830.33760.1652144689209@alliedsolutions.net>
+Subject: DPA Alert Notification: Production-CustomerFacing - SQL Server Job
+ Failure (ON-SQLCLSTPRD-2) - HIGH
+MIME-Version: 1.0
+X-MIMETrack: Itemize by SMTP Server on AS-SMTP/ASI(Release 9.0.1FP10 HF383|November 19, 2018) at
+ 05/09/2022 08:04:49 PM,
+	Serialize by Router on AS-SMTP/ASI(Release 9.0.1FP10 HF383|November 19, 2018) at
+ 05/09/2022 08:04:50 PM,
+	Serialize complete at 05/09/2022 08:04:50 PM
+X-TNEFEvaluated: 1
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
+X-Proofpoint-ORIG-GUID: Hj-z5XMMv97deY66uqkodTq3pIcS5G9s
+X-Proofpoint-GUID: Hj-z5XMMv97deY66uqkodTq3pIcS5G9s
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.858,Hydra:6.0.486,FMLib:17.11.64.514
+ definitions=2022-05-09_06,2022-05-09_02,2022-02-23_01
+X-Proofpoint-Spam-Reason: safe
+Return-Path: AlliedIgnite@alliedsolutions.net
+X-EOPAttributedMessage: 0
+X-EOPTenantAttributedMessage: 9cc2390c-a595-4596-ad80-a78c3216353a:0
+X-MS-PublicTrafficType: Email
+X-MS-Exchange-Forest-ArrivalHubServer: MWHPR19MB1598.namprd19.prod.outlook.com
+X-MS-Exchange-Forest-MessageScope: f0cb0384-30c2-4a0b-b602-787a2b708b29
+X-MS-Office365-Filtering-Correlation-Id: 5bba4b26-8e73-4797-5544-08da32211649
+X-MS-TrafficTypeDiagnostic: MWHPR19MB1598:EE_
+X-MS-Exchange-Forest-Language: en
+X-MS-Exchange-Forest-IndexAgent-0:
+ AQ0CZW4AAYUEAAAPAAADH4sIAAAAAAAEAN1XbXPaRhBeGQRCmInjad
+ Jp+mWnMx23MwELarcp3wgQjzs4EJDzoS+TOcQZVAtJczrF5kf0P3dP
+ wjFpGifGNhns0ch3ut199tnd2zv++a7hcSHrOHjVwQEXb7nA34Ihvm
+ CuFwteMktmi0k2ZBHHQz+SzHd4HbsvyyTf7AzsXr9Vrimp9jl3YukG
+ PtrulESOAn/EZljGI3pbvz7FmlWr0atu7dX3nimN1y4/wwQdB5LJOK
+ rjRMqwvrt7ePBSGW70rGr9WbX206575uz6412mhCOlq1xs8cgRbqgw
+ 6zhncWx3sFaxCFQ6E04Wq3VsTrhziocn2Dggho7yS8zqmDrMR8gijC
+ Mu6Eun1W+3DtpvGn8S+pxgudkpD946FWLvBEJwR2I08yU7R58zgTv2
+ xI12KvgHiQ/sht3GvZplWX/hD20hAoFVq/ZjBdGecIwkD/GE4spHlZ
+ KJ878+j2KPPLf7x+1rMau9z6wn3Ola8epxcXKkBgdMTqjq1FzVAVHb
+ r+OrmIvZfHpdRs0g9kboBxJPXH9E/gWClEMROHxENY07IUFFynZlNA
+ wqavamyUJJa+9g3Ui6zlUBqFFh3l0Efqbkph5hz2N+k1HOcfXheId9
+ HLEx/2LR+OUyGkd82h3+vcJIOCnwAu7dhmGQDEmARae4b1X39j9oYk
+ tvdbWnkR4VAXZhhlwKPddhHyW1X6XZDVm1SGOGvViMeRrv6MPevIa0
+ VJKISIdLyUXHHYrE//XnlSbq9bGNNp+GgaJF3kvB6JSw2dD7n5N1DV
+ nOT9bGoK9uKy51g9tjRbrhnMqZKycYXVw8FhhZ1fcYWTdnRAJcYrfZ
+ x+fqmnAfknTRDw+nIXNVu26fh8n/pseZH4cLHE8I8sK1xsE6kUzb4+
+ W9A4/DEZP8PuQvLUl1e01s3qfGkbJ4EXte2ebnEpuCnXn8FpvIl991
+ XYc22XPmn/7ORdCN5QI3d125XR5uXboN3ucD7oorNZHrBP64H/u+64
+ 97dCVb8S8LErr923QS6ildLunXCp4Ri2hGitPymPtcUEMdVbAVJA4L
+ Cv8MZYByQaVkAuiQz0A2l7zzUDSgYIC5ocEDyJhaUQPQQC+AmYVcDg
+ oZDTbpgewGZLOabgAYsJkFXVerRlaD7yFfhCJNM0omkwOTBkUoKRQt
+ mwFQKFohMZshMZKhp5Dg0oBQDA1MIIENU4OHUKSPmcQB8pBWs2AYWk
+ FXbhu6lksMKs/Jhxw8VD6A8TmIeUXzlhHJJqkU5kHLmLB5NUQapcRO
+ niJAy6UkXBTGb0F/DE8WcbMAKdAncfNgkPNEf2n0J6A/gm+WRqePS0
+ N/Dfo2PP5M6KTkdCWp5a+bX7KWDAhzg3xW8gugyaDwkbqi1dwSFXUD
+ xHxJe7BKgjSgEiKtnGaskuZyWzWRITu6aiPX4bjKsqExWVYqCwSTlm
+ tQL727VJpQXG0SFakVlw2hkFohMbLKjUnjLW17xbH9InvzP01+C7aX
+ 7vCPQN+Crz7Z4VUqk485DbYSI6nnKVm1+i85j2TjyhkAAA==
+X-MS-Exchange-Forest-IndexAgent: 1 1168
+X-MS-Exchange-Forest-EmailMessageHash: C3669A36
+X-MS-Exchange-Forest-RulesExecuted: MWHPR19MB1598
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+ =?utf-8?B?UGFjZzlTc2JPMkVWbkY4ZEg0a0N0dDFuN1BoVmQxTkNnditYSkV2WEg2SXNu?=
+ =?utf-8?B?ajZpWG94cmoxVWdNUU5xVTQyaUE3bjhMNUhCaGdOeWZEUGlkaSs4TkhtcVJF?=
+ =?utf-8?B?ZVd3Vk50Mkp5OGFYRXlwZHBpZU1yT1p5Q0hBcU1xNForV3pVQUozQ0E2cldO?=
+ =?utf-8?B?bVk2NHJrOUZIY1c3VmtTVlpuKytvOHJON2tEcWM4eitpc1YvNUJValIwc1d0?=
+ =?utf-8?B?RjUvS2lxV1U1M055WjBUVHpsU3QxZWx0Y1JFTXBFMVRCZE1XeCtDKzRqdEtT?=
+ =?utf-8?B?VHJyN205UXdRV2hJOS81dnpLcTRxc1hrZlRhZ1Z0c0VLZXYxTDVISHdIWVZX?=
+ =?utf-8?B?WG5VR29hYUJoUlNVL2doZVJ5ZUsvK3RpbWNiTE8zbU8wK1BrTk5CTDc1TkY3?=
+ =?utf-8?B?SDdrVk1HcGVwZnRUY0hRczBSbnBXTEM0VXVUTVV0SlFHT3hDb2w4Ni9OQURZ?=
+ =?utf-8?B?TmVZTlFHVVVZM2hranB4RjFRTnRIWDVLTmF0VEg0ZVBINitZV1hFbWc5ZHpG?=
+ =?utf-8?B?Vkp2aTJTRGRaNk16d2ZtcjBEQUo3QThDeXdleHh1OCtON0doQys1K0pOekNp?=
+ =?utf-8?B?YmcwY2hsM2o0encrb21RbUU3elgvVEc0eGE0a3AvUUxjak1aSmwrbnlUZFdY?=
+ =?utf-8?B?Mk5UTUI5cU9xMjk5QzAvcElrTXpLUE5qb0RnN1Y4TjZqRDcrYU9qZVcrQVVa?=
+ =?utf-8?B?eUd1S3lrSVRodVJlRzBidVZaclRZM014Ymo1Zi84SGF0QUs1b1F1ZkdORGZv?=
+ =?utf-8?B?b3EvVzBLUEVGY0hMUGtZRnpIYkxEb0tXM2dGYWZ6TEMwNGJ4c2RyR2MvbUx3?=
+ =?utf-8?B?Nk12VW4zZTNiYitoVXF6eXlaYkNjUFJRdnhqdTMzWDBneGcrWjJaSFdiSVk1?=
+ =?utf-8?B?dWw5MFVEQmVqY0FTR0VPL0F3VWE4enZ3Zm56bHdqN0VQSzNHS0NHRFFBSE56?=
+ =?utf-8?B?UEtwT2tGc2loWGNFcXhVQldHMEI1R242T0FRK2RjL3FUTzBQM01LMnpvTEdk?=
+ =?utf-8?B?bVJjMUlpVkFmbFJGeW9oWjQxYXBhRWQ3MHdmWS9NRlVUZDFJUDJUKzY5TStT?=
+ =?utf-8?B?MjlyRnpoZUpnY3JNVEx4Z01uVnRKd012d2x0QzlIWWpFV3FuNlpTYVYvV2Q5?=
+ =?utf-8?B?eGw4dGhER2c3cFpjRlhQQnNJRXRyc2djQnhBRVJuSmIyL2VZZ3dudDd3djFN?=
+ =?utf-8?B?eng1ck55eXpTdmhld0g0UTg5OGJrZE10SytYUGI2eGlLcEltQVI5OEtjLzZT?=
+ =?utf-8?B?WCtzc0dxVnVpZ2sxVE9xeW5OTnFaNUYrWUlURk9xQ1pkeHFBOHFSdXBUeFly?=
+ =?utf-8?B?RTlTWkNBZTdENnNEVG0yNS8wc0JMMzJqR3QyZmJSdlE3YkhmbDhaL0RmK1ow?=
+ =?utf-8?B?VnRsallJQlB5S0E1cTBsY1B2blRKVkNHNTVFeDZiMHlGSHdoSzBDK3hBV1hE?=
+ =?utf-8?B?T1lHaDlsWnkzRDJDNm9KbFZaMUV0Qy9SUVV5aml0cDU2MVpnZG1nRlAyc2hu?=
+ =?utf-8?B?Tlo0MzM0WUZJS1NIYXkxc3ZJTGZwNGFuZWEvZlg4MFVNL093QXZFN3lMbEhI?=
+ =?utf-8?B?U0ROV25BOFNpcW5kbFNQVTBadW1FbTdLUUtEOFcyNXZXRWZxU0t2bHdOWVcy?=
+ =?utf-8?B?VkliOXJ4YUhycjVYM1dFdHArd0p6MGIrTEVSR29HUFN1OU1ZcGlKQ3h5VWZ1?=
+ =?utf-8?B?QWVOYnBETXh3VllPYlhPUTN1Sm5KZTM3dDlEM2lydkV4Z3hUZDBFaTZyMDQ1?=
+ =?utf-8?B?QXBCUytFT0NXZFdpSDludi9lMWJLcjB4alJLTTc1VVp6TzN6V1NrVVR1Zkcy?=
+ =?utf-8?B?VkZYQkxxYXhSUFJGdWlKK0hGd1kxTDdGR290SEptNkJVNCtNRFU1SDFSa1Bv?=
+ =?utf-8?B?NlpXQjBlV3JRRUd0ZnQ2WkJNSEZ3QTNhSy9SUmFWZU9nV2Fyd1JQMWVWSDhw?=
+ =?utf-8?B?VHBKeHE4OWpSU1N1L2VHWXZEbSs1T0J6MldZYkwxVkRrdkptTTZ3ei9Hc1B0?=
+ =?utf-8?B?M25IYmh1em4vbngzVTZBak82NTZ5R0xWODRFeTF5MjRjQ3lBWU5PYkdwQUpn?=
+ =?utf-8?B?TXBTeWpQcFB4UjczT3VIOUhzLzR4N0tlM2NtR1czMkdZQXhYNXhEbDkxZGpP?=
+ =?utf-8?B?WWI4Mkx1ZmtnSXlQRFBxbnJRUlJEZm55QitoclIvSUFEZHlGSlc4aWdWV0tY?=
+ =?utf-8?B?R05rTUJ4YjdrczZsOTJuNHpMc0VsL3EvSC9abmJ2VStYZThNM2dySHZySys1?=
+ =?utf-8?B?MEkwQ0c0OG5xcFptaXM1cHFzNzN6bnNRN1FvazRKMGJvek8zL042KzFuT1g0?=
+ =?utf-8?B?d1FrTWVMVzJXZENUVU44eVVoL2xjMzYzK0ZqWmZlWEkzamZZZmtORW1rdkl5?=
+ =?utf-8?B?UmZHbWV2SFd1SzhHVXpWd3pieVM2TE15QVFtbmlURzY0MWhCOVB5a0JWbTIr?=
+ =?utf-8?B?OVFYNlRHZGkxWlZmU1ZKODZ5aUFrT0Q5UWF5aUt2SEsremF5UENSUUZQb0FE?=
+ =?utf-8?B?WFNVTkRhYWlsMDB2RVluT2NNR0gvSEc0U0tYYjY1clJsZGVrRUhhcTc5NkpL?=
+ =?utf-8?B?bzJjcE5qZmIxZ0RXcmJlU0VYWDBxdUtaRFluejVKck9KalRtVGxFL29idzN5?=
+ =?utf-8?B?Szh2dGNmdz09?=
+X-Forefront-Antispam-Report:
+ CIP:205.220.165.166;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mx0a-001c9401.pphosted.com;PTR:mx0a-001c9401.pphosted.com;CAT:NONE;SFS:(13230001)(356005)(1096003)(2616005)(5660300002)(36756003)(83380400001)(966005)(9686003)(26005)(8676002)(6916009)(336012)(7636003)(15650500001)(7596003)(86362001)(121003001);DIR:INB;
+X-OriginatorOrg: amer.teams.ms
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 May 2022 01:04:51.3217
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5bba4b26-8e73-4797-5544-08da32211649
+X-MS-Exchange-CrossTenant-Id: 9cc2390c-a595-4596-ad80-a78c3216353a
+X-MS-Exchange-CrossTenant-AuthSource:
+ BN8NAM11FT047.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: Internet
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR19MB1598
+
+Alert: SQL Server Job Failure
+
+Database Instance: ON-SQLCLSTPRD-2
+
+Execution Time: Monday - May 09, 2022 20:04:48
+
+View Alert Status: http://IGNTPRDAP01:8123/iwc/ng/alerts
+
+Job Description: Alert: UTL 2.0 Matches: 1: Check If AG Secondary: Executed as user: ELDREDGE_A\PRDSQLCLST-CL-Svc. Incorrect syntax near 'This'. [SQLSTATE 42000] (Error 102).  The step failed.
+	Result: TRUE 
+
+Job Description: Alert: UTL 2.0 Matches: 2: Check If AG Primary: Executed as user: ELDREDGE_A\PRDSQLCLST-CL-Svc. Incorrect syntax near 'This'. [SQLSTATE 42000] (Error 102).  The step failed.
+	Result: TRUE 
+
+Job Description: PerfMon: Gather PerfStats: 5: QueryStats: Executed as user: ELDREDGE_A\PRDSQLCLST-CL-Svc. Could not find stored procedure 'perfstats.dbo.perf_CaptureQueryStatistics'. [SQLSTATE 42000] (Error 2812).  The step failed.
+	Result: TRUE 
+
+Job Description: PerfMon: Gather PerfStats: 6: Capture PlanCache Stats: Executed as user: ELDREDGE_A\PRDSQLCLST-CL-Svc. Could not find stored procedure 'perfstats.dbo.perf_CapturePlanCacheUsage'. [SQLSTATE 42000] (Error 2812).  The step failed.
+	Result: TRUE 
+
+Job Description: PerfMon: Gather PerfStats: 7: Capture MemObjStats: Executed as user: ELDREDGE_A\PRDSQLCLST-CL-Svc. Could not find stored procedure 'perfstats.dbo.perf_captureMemObjStats'. [SQLSTATE 42000] (Error 2812).  The step failed.
+	Result: TRUE 
+
+Job Description: Script: Task 50145: 1: Check If AG Primary: Executed as user: ELDREDGE_A\PRDSQLCLST-CL-Svc. This is not a Primary Replica [SQLSTATE 42000] (Error 51000).  The step failed.
+	Result: TRUE 
+
+Job Description: Daily Purge process: 1: Check If AG Primary: Executed as user: ELDREDGE_A\PRDSQLCLST-CL-Svc. This is not a Primary Replica [SQLSTATE 42000] (Error 51000).  The step failed.
+	Result: TRUE 
+
+Job Description: Tasks: LetterLibrary: 1: Check If AG Primary: Executed as user: ELDREDGE_A\PRDSQLCLST-CL-Svc. This is not a Primary Replica [SQLSTATE 42000] (Error 51000).  The step failed.
+	Result: TRUE 
+
+Job Description: Purge VUT Temporary Extract Tables: 1: Check If AG Primary: Executed as user: ELDREDGE_A\PRDSQLCLST-CL-Svc. This is not a Primary Replica [SQLSTATE 42000] (Error 51000).  The step failed.
+	Result: TRUE 
+
+Job Description: Alert: ASR Monitor: 1: Check If AG Primary: Executed as user: ELDREDGE_A\PRDSQLCLST-CL-Svc. AG primary with secondary [SQLSTATE 01000] (Error 50000).  The step failed.
+	Result: TRUE 
+
+Job Description: Reset OCR Batch: 1: Check If AG Primary: Executed as user: ELDREDGE_A\PRDSQLCLST-CL-Svc. This is not a Primary Replica [SQLSTATE 42000] (Error 51000).  The step failed.
+	Result: TRUE 
+
+Job Description: Script: Impaired Expired Cleanup: 1: Check for Primary AG: Executed as user: ELDREDGE_A\PRDSQLCLST-CL-Svc. This is not a Primary Replica [SQLSTATE 42000] (Error 51000).  The step failed.
+	Result: TRUE 
+
+Job Description: Daily Statistics Update: 1: Check If AG Primary: Executed as user: ELDREDGE_A\PRDSQLCLST-CL-Svc. This is not a Primary Replica [SQLSTATE 42000] (Error 51000).  The step failed.
+	Result: TRUE 
+
+Job Description: Reset UTL Errors: 1: Check If AG Primary: Executed as user: ELDREDGE_A\PRDSQLCLST-CL-Svc. This is not a Primary Replica [SQLSTATE 42000] (Error 51000).  The step failed.
+	Result: TRUE 
+
+Job Description: Alert: Check Full-Text Crawler: 1: Check If AG Primary: Executed as user: ELDREDGE_A\PRDSQLCLST-CL-Svc. This is not a Primary Replica [SQLSTATE 42000] (Error 51000).  The step failed.
+	Result: TRUE 
+
+Job Description: Script: OceanBankZeroOut: 1: Check if AG Primary: Executed as user: ELDREDGE_A\PRDSQLCLST-CL-Svc. This is not a Primary Replica [SQLSTATE 42000] (Error 51000).  The step failed.
+	Result: TRUE 
+
+Job Description: Purge VUT Old Temporary Extract Tables: 1: Check If AG Primary: Executed as user: ELDREDGE_A\PRDSQLCLST-CL-Svc. This is not a Primary Replica [SQLSTATE 42000] (Error 51000).  The step failed.
+	Result: TRUE 
+
+Job Description: PerfMon: Gather PerfStats: 1: LongRunningProcs: Executed as user: ELDREDGE_A\PRDSQLCLST-CL-Svc. Could not find stored procedure 'perfstats.dbo.perf_CaptureProcStats'. [SQLSTATE 42000] (Error 2812).  The step failed.
+	Result: TRUE 
+
+This message was system-generated. Do not reply to this message
