@@ -1,6 +1,6 @@
 DECLARE @SQLcmd VARCHAR(MAX)
 DECLARE @data VARCHAR(MAX)
-DECLARE @Name NVARCHAR(50) = ''
+DECLARE @DatabaseName VARCHAR(100) =''
 DECLARE @TYPE NVARCHAR(10) = ''
 DECLARE @Variable VARCHAR(MAX)=''
 DECLARE @DryRun INT = 0
@@ -28,10 +28,10 @@ SELECT @SQLcmd = 'SELECT @@servername as ServerName,[Database_Name] = DB_NAME()
 
 IF @DryRun = 0
   BEGIN
-      IF @Name <> ''
+      IF @DatabaseName <> ''
          AND @TYPE = ''
         BEGIN
-            SELECT @data = ' USE [' + @Name + ']  ' + @SQLcmd + ''
+            SELECT @data = ' USE [' + @DatabaseName + ']  ' + @SQLcmd + ''
 
             EXEC ( @data)
         END
@@ -63,7 +63,7 @@ IF @DryRun = 0
               @data
 
             IF @TYPE <> ''
-               AND @Name = ''
+               AND @DatabaseName = ''
               BEGIN
                   SELECT *
                   FROM   #DatafileSize
@@ -71,12 +71,12 @@ IF @DryRun = 0
                  ORDER  BY CONVERT(INT,ABS([SpaceUsedMB])) DESC
               END
             ELSE IF @TYPE <> ''
-               AND @Name <> ''
+               AND @DatabaseName <> ''
               BEGIN
                   SELECT *
                   FROM   #DatafileSize
                   WHERE  TYPE = @type
-                         AND DatabaseName = @Name
+                         AND DatabaseName = @DatabaseName
                   ORDER  BY CONVERT(INT,ABS([SpaceUsedMB])) DESC
               END
             ELSE IF @Variable <> ''

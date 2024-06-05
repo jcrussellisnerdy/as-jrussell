@@ -1,4 +1,233 @@
+use role accountadmin;
+DESC NETWORK POLICY DEFAULT;
 
+
+
+SELECT   h.start_time, *   
+FROM snowflake.account_usage.query_history h   
+LEFT JOIN snowflake.account_usage.users u     ON u.name = h.user_name    AND u.disabled = FALSE    AND u.deleted_on IS NULL    
+LEFT OUTER JOIN information_schema.tables t     ON t.created = h.start_time 
+WHERE h.query_text like '%221.122.91.0%'
+ORDER BY h.START_TIME ASC 
+
+
+
+USE DATABASE EDW_PROD;
+
+
+
+
+SELECT DISTINCT h.database_name,
+h.SCHEMA_NAME,
+       t.table_name,
+       h.user_name,
+       h.role_name,h.QUERY_TYPE, 
+       h.EXECUTION_STATUS, H.QUERY_TEXT
+  FROM snowflake.account_usage.query_history h 
+  LEFT JOIN snowflake.account_usage.users u
+    ON u.name = h.user_name 
+   AND u.disabled = FALSE 
+   AND u.deleted_on IS NULL
+   LEFT OUTER JOIN information_schema.tables t
+    ON t.created = h.start_time
+ WHERE execution_status = 'SUCCESS' 
+   AND H.START_TIME >= '2024-02-08 10:30:29.929 -0800'
+AND QUERY_TYPE in ('REVOKE','CREATE_VIEW',
+'UPDATE','RENAME_TABLE','CREATE_CONSTRAINT',
+'INSERT','ALTER_TABLE_ADD_COLUMN','RENAME_COLUMN',
+'BEGIN_TRANSACTION','MERGE','RESTORE','DELETE',
+'ALTER_SESSION','COMMIT','RENAME_VIEW','CREATE_TABLE',
+'ALTER_NETWORK_POLICY','ALTER_TABLE_MODIFY_COLUMN',
+'TRUNCATE_TABLE','DROP','ALTER_TABLE_DROP_COLUMN',
+'REMOVE_FILES','CREATE_TABLE_AS_SELECT','CREATE',
+'CREATE_SEQUENCE')
+AND USER_NAME = (select current_user)
+AND h.database_name = (select current_database() )
+
+
+SHOW INTEGRATIONS
+
+
+
+WITH QueryInfo AS (
+                    SELECT 
+                        TO_DATE(MAX(start_time)) AS create_date
+                    FROM
+                        snowflake.account_usage.query_history
+                    WHERE
+                        execution_status = 'SUCCESS'
+                        AND query_text ILIKE 'select system$generate_scim_access_token%'
+                    )
+                    SELECT
+                        create_date AS "Create Date",
+                        DATEADD('months', 6, create_date) AS "Expire Date",
+                        CASE
+                            WHEN create_date <= DATEADD('MONTH', -6, CURRENT_DATE()) THEN 'Expired'
+                            ELSE 'Not Expired'
+                        END AS "Status"
+                    FROM
+                        QueryInfo;
+
+
+SELECT * FROM SNOWFLAKE.ACCOUNT_USAGE.SCHEMATA
+WHERE SCHEMA_NAME = 'IDP_STG'
+
+show roles
+
+select EVENT_TIMESTAMP, EVENT_TYPE, USER_NAME, CLIENT_IP, FIRST_AUTHENTICATION_FACTOR, SECOND_AUTHENTICATION_FACTOR, IS_SUCCESS, ERROR_MESSAGE, ERROR_MESSAGE,*
+from snowflake.account_usage.login_history
+where event_timestamp >= '2024-05-21'
+AND IS_SUCCESS <> 'YES'
+
+----all roles users are in 
+call dba.info.GetUSERROLES('ALCLARK');
+OWNER_EDW_STGSUPPORT
+READ_EDW_STGSUPPORT
+READWRITE_EDW_STGSUPPORT
+
+SHOW SECURITY INTEGRATIONS 
+--SELECT system$generate_scim_access_token('GENERIC_SCIM_PROVISIONING')
+
+
+SELECT JSON_EXTRACT_PATH_TEXT(SYSTEM$GET_LOGIN_FAILURE_DETAILS('0ce9eb56-821d-4ca9-a774-04ae89a0cf5a'), 'errorCode');
+
+SELECT SYSTEM$VERIFY_EXTERNAL_OAUTH_TOKEN('GENERIC_SCIM_PROVISIONING');
+
+SELECT SYSTEM$FINISH_OAUTH_FLOW
+SELECT SYSTEM$TYPEOF('oauth');
+
++-----------------------------------------------------------------------------------------------+
+| Token Validation finished.{"Validation Result":"Passed","Issuer":"<URL>","User":"<username>"} |
++-----------------------------------------------------------------------------------------------+
+
+select SYSTEM$SHOW_OAUTH_CLIENT_SECRETS;
+
+SHOW INTEGRATIONS
+select system$show_oauth_client_secrets('SCIM - GENERIC');
+
+DESC INTEGRATION 'EXTERNAL_OAUTH_PF_1';
+EXTERNAL_OAUTH_PF_1
+GENERIC_SCIM_PROVISIONING
+SELECT SYSTEM$VERIFY_EXTERNAL_OAUTH_TOKEN('');
+
++-----------------------------------------------------------------------------------------------+
+| Token Validation finished.{"Validation Result":"Passed","Issuer":"<URL>","User":"<username>"} |
++-----------------------------------------------------------------------------------------------+
+--JCALVERT
+SELECT
+  *
+FROM
+  show_parameters_in_account
+WHERE
+  "key" = 'STATEMENT_TIMEOUT_IN_SECONDS'
+  AND (
+    "value" < 21600
+    OR "value" >= 172800
+  );
+
+
+
+
+select  privilege, granted_on, grantee_name,table_catalog, table_schema
+     from SNOWFLAKE.ACCOUNT_USAGE.GRANTS_TO_ROLES
+     where granted_on = 'DATABASE'
+	    and deleted_on is null 
+     order by granted_on, name asc
+
+---documentwritten
+CALL DBA.DBA.TABLESMODIFIED('JRUSSELL')
+/*
+--per databases updates for the day
+CALL DBA.DBA.TABLESMODIFIED('JIRA_EXPORTS_PROD')
+
+--per user updates for the day
+CALL DBA.DBA.TABLESMODIFIED('RELLIS')
+
+--per admin level entire updates for the day
+CALL DBA.DBA.TABLESMODIFIED('ADMIN')
+
+--per databases, per user updates for the day
+CALL DBA.DBA.TABLESMODIFIED('')
+
+*/
+show /* JDBC:DatabaseMetaData.getColumns() */ columns in table "DBA"."INFORMATION_SCHEMA"."tables"
+
+SELECT * FROM INFORMATION_SCHEMA.COLUMNS
+WHERE TABLE_SCHEMA = 'INFORMATION_SCHEMA'
+AND COLUMN_NAME IN ('LAST_ALTERED','CREATED')
+
+---Access Add document written
+/*
+---For DBAs
+CALL DBA.DEPLOY.SetUserAccess('ACUMMINS', 'DBA');
+---For Employees in Data Management Team
+CALL DBA.DEPLOY.SetUserAccess('MBATCHELOR', 'DS_ANALYST_READ');
+CALL DBA.DEPLOY.SetUserAccess('SMYERS', 'DS_ANALYST_READ');
+---For Contractor
+CALL DBA.DEPLOY.SetUserAccess('SVC_PWBI_PRD01', 'BOND_ALLIED_EMPLOYEES');
+---For OffShore
+CALL DBA.DEPLOY.SetUserAccess('LJIRGAL', 'DS_ANALYST_EDIT');
+CALL DBA.DEPLOY.SetUserAccess('LJIRGAL', 'EDW_BI_READER');
+
+
+
+---To make an user ACTIVE
+
+CALL DBA.DEPLOY.SetUserAccess('JRUSSELL', 'ENABLED');
+
+
+---To make an user INACTIVE
+
+
+
+CALL DBA.DEPLOY.SetUserAccess('LUJIRGAL2', 'DISABLED');
+*/
+
+call DBA.info.GetSCIMToken()
+--document needed  for all the stored proc below
+CALL DBA.INFO.GETWAREHOUSEROLES('')
+
+
+show parameters like 'SAML_IDENTITY_PROVIDER' in account
+SHOW SECURITY INTEGRATIONS 
+
+select top 100 * 
+from account_usage.query_history 
+where QUERY_TEXT like '%select system$generate_scim_access_token%'
+order by start_time desc;
+
+
+
+   SELECT *
+                    FROM
+                        snowflake.account_usage.query_history
+                    WHERE
+                    start_time >= '2023-01-01'
+                     AND  execution_status = 'SUCCESS'
+                        AND query_text ILIKE 'select system$%token%'
+                        
+
+
+
+
+WITH QueryInfo AS (
+                    SELECT 
+                        TO_DATE(MAX(start_time)) AS create_date
+                    FROM
+                        snowflake.account_usage.query_history
+                    WHERE
+                        execution_status = 'SUCCESS'
+                        AND query_text ILIKE 'select system$%'
+                    )
+                    SELECT
+                        create_date AS "Create Date",
+                        DATEADD('months', 6, create_date) AS "Expire Date",
+                        CASE
+                            WHEN create_date <= DATEADD('MONTH', -6, CURRENT_DATE()) THEN 'Expired'
+                            ELSE 'Not Expired'
+                        END AS "Status"
+                    FROM
+                        QueryInfo;
 SHOW SCHEMAS
 
  select  count(*), table_type from information_schema.tables  

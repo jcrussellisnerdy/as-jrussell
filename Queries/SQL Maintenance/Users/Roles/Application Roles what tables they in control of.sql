@@ -1,5 +1,5 @@
-DECLARE @DatabaseName nvarchar(100) = 'LendingInsights' 
-DECLARE @AppRole nvarchar(100) = ''
+DECLARE @DatabaseName nvarchar(100) = 'Unitrac' 
+DECLARE @AppRole nvarchar(100) = 'AZDO_APP_ACCESS'
 DECLARE @sqlcmd nvarchar(MAX)
 DECLARE @DryRun INT = 0
 
@@ -42,7 +42,7 @@ From sys.database_role_members dm
 	join  sys.database_principals mp on mp.principal_id = dm.member_principal_id
 	where mp.name  = '''+ @AppRole  +''') >= 1
 BEGIN 
-select  CONCAT(''This role: '',mp.name ,'' has database role as '',rp.name ,''on to this database: '',DB_NAME())
+select  CONCAT(''This role: '',mp.name ,'' has database role as '',rp.name ,'' on to this database: '',DB_NAME())
 From sys.database_role_members dm
 	join  sys.database_principals rp on rp.principal_id = dm.role_principal_id
 	join  sys.database_principals mp on mp.principal_id = dm.member_principal_id

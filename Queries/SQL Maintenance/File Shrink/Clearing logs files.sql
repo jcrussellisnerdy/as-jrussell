@@ -6,7 +6,6 @@ DECLARE @TYPE NVARCHAR(10) = 'log' --rows (databases) , log (logs)
 DECLARE @DryRun INT = 0
 
 
-
 -- Create a temporary table to store the databases
 IF OBJECT_ID(N'tempdb..#TempDatabases') IS NOT NULL
   DROP TABLE #TempDatabases

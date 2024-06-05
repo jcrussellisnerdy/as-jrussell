@@ -1,5 +1,6 @@
-DECLARE @DatabaseName VARCHAR(100) ='UnitracArchive',
-        @TableName    VARCHAR(255) ='PROPERTY_CHANGE_UPDATE',
+DECLARE @DatabaseName VARCHAR(100) ='',
+        @TableName    VARCHAR(255) ='',
+		@FileGroup    VARCHAR(255) ='',
         @sqlcmd       VARCHAR(max),
         @DryRun       INT = 0
 
@@ -10,13 +11,28 @@ SELECT
 	DB_NAME() AS DatabaseName,
     t.NAME AS TableName,
     s.Name AS SchemaName,
+	fg.name AS [File_Group],
     p.rows AS RowCounts,
     SUM(a.total_pages) * 8 AS TotalSpaceKB, 
 	    SUM(a.used_pages) * 8 AS UsedSpaceKB, 
     (SUM(a.total_pages) - SUM(a.used_pages)) * 8 AS UnusedSpaceKB,
     SUM(a.total_pages) * 8 / 1024 / 1024. AS TotalSpaceGB, 
-    SUM(a.used_pages) * 8 / 1024 / 1024. AS UsedSpaceGB, 
-    (SUM(a.total_pages) - SUM(a.used_pages))* 8 / 1024 / 1024.  AS UnusedSpaceGB,
+       CASE
+         WHEN i.[type] = 1 THEN ''Clustered index''
+         WHEN i.[type] = 2 THEN ''Nonclustered unique index''
+         WHEN i.[type] = 3 THEN ''XML index''
+         WHEN i.[type] = 4 THEN ''Spatial index''
+         WHEN i.[type] = 5 THEN ''Clustered columnstore index''
+         WHEN i.[type] = 6 THEN ''Nonclustered columnstore index''
+         WHEN i.[type] = 7 THEN ''Nonclustered hash index''
+		 ELSE ''HEAP''
+       END                                        AS index_type,
+
+
+       CASE
+         WHEN i.is_unique = 1 THEN ''Unique''
+         ELSE ''Not unique''
+       END                                               AS [unique],
 	CONCAT(''select TOP 5 * from [''+DB_NAME()+''].[dbo].['',t.NAME,'']'') AS [Example Query]
 FROM 
     sys.tables t
@@ -26,6 +42,8 @@ INNER JOIN
     sys.partitions p ON i.object_id = p.OBJECT_ID AND i.index_id = p.index_id
 INNER JOIN 
     sys.allocation_units a ON p.partition_id = a.container_id
+	   INNER JOIN sys.data_spaces AS ds ON a.data_space_id = ds.data_space_id
+    INNER JOIN sys.filegroups AS fg ON ds.data_space_id = fg.data_space_id
 LEFT OUTER JOIN 
     sys.schemas s ON t.schema_id = s.schema_id
 WHERE 
@@ -35,58 +53,19 @@ WHERE
 	AND t.[name] like ''%'
                  + @TableName
                  + '%''
+    	AND  fg.name like ''%'
+                 + @FileGroup
+                 + '%''
 
-		--		 	AND t.[name] ='''
-                 + @TableName+'''
                 
 GROUP BY 
-    t.Name, s.Name, p.Rows
+    t.Name, s.Name, p.Rows, i.[type],i.is_unique, fg.name
 ORDER BY 
      SUM(a.used_pages) * 8 / 1024 / 1024. DESC'
 
 
 
-  
-IF @DatabaseName  ='?'
-BEGIN 
-IF @DryRun = 0
-  BEGIN
-  
-		  IF Object_id(N'tempdb..#TableFileSize') IS NOT NULL
-              DROP TABLE #TableFileSize
 
-            CREATE TABLE #TableFileSize
-              (
-                 [DatabaseName]  VARCHAR(100),
-                 [TableName]     VARCHAR(100),
-                 [SchemaName]    VARCHAR(100),
-                 [RowCounts]     BIGINT,
-                 [TotalSpaceKB]  INT,
-                 [UsedSpaceKB] INT,
-                 [UnusedSpaceKB]INT,
-                 [TotalSpaceGB]  NVARCHAR(100),
-                 [UsedSpaceGB]   NVARCHAR(100),
-                 [UnusedSpaceGB] NVARCHAR(100),
-                 [Example Query] VARCHAR(1000)
-              );
-
-            INSERT INTO #TableFileSize
-            EXEC Sp_msforeachdb
-              @SQLcmd
-
-            SELECT *
-            FROM   #TableFileSize
-			ORDER BY     [TotalSpaceKB] DESC
-  END
-ELSE
-  BEGIN
-      PRINT ( @SQLcmd + '
-	  
-	  exec sp_MSforeachdb @sqlcmd' )
-  END
-  END 
-  ELSE 
-  BEGIN 
 IF @DryRun = 0
   BEGIN
       EXEC ( @SQLcmd)
@@ -99,6 +78,6 @@ ELSE
 	  exec @sqlcmd')
   END
 
-  END
+  
 
 

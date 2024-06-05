@@ -1,4 +1,4 @@
-USE adatabase --Add DB 
+USE [UiPathInsights]
 
 /* DECLARE ALL variables at the top */
 DECLARE @sqlcmd VARCHAR(1000)
@@ -19,8 +19,8 @@ CREATE TABLE #TempTables
 
   INSERT INTO #TempTables (FQTN, TableName, SchemaName, IsProcessed)
 SELECT SCHEMA_NAME(schema_id)+'.'+ name, Name,SCHEMA_NAME(schema_id),  0 -- SELECT *
-FROM   sys.tables
---WHERE --PLACE SOMETHING HERE THAT MAKES SENSE!!!!
+FROM   sys.objects
+WHERE type= 'U'
 ORDER  BY object_id
 -- Loop through the remaining databases
 WHILE EXISTS( SELECT * FROM #TempTables WHERE IsProcessed = 0 )

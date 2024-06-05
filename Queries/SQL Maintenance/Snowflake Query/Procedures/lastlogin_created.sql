@@ -2,7 +2,7 @@ USE ROLE ACCOUNTADMIN;
 
 ---Users added to Snowflake in last 30 days
 
-CREATE or replace procedure DBA.info.lastlogin_created ()
+CREATE or replace procedure DBA.info.lastlogin_created()
 returns TABLE (AccountStatus VARCHAR, created_on TIMESTAMP_LTZ(6), login_name VARCHAR, first_name VARCHAR, last_name VARCHAR,display_name VARCHAR, email VARCHAR, LAST_SUCCESS_LOGIN TIMESTAMP_LTZ(6)  )
 LANGUAGE SQL
 AS 

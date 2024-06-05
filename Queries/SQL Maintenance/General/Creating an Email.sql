@@ -46,5 +46,8 @@ BEGIN
         END
 
 
+		
+EXEC msdb.dbo.sysmail_help_profile_sp;
+
 
 		*/

@@ -1,4 +1,4 @@
-USE adatabase --Add DB 
+USE [UiPathInsights]
 
 /* DECLARE ALL variables at the top */
 DECLARE @sqlcmd VARCHAR(1000)
@@ -6,7 +6,7 @@ DECLARE @DatabaseName SYSNAME = (select DB_NAME()) --Database Name
 DECLARE @TableName VARCHAR(1000)--Table Name
 DECLARE @FQTN VARCHAR(1000)--Table Name
 DECLARE @SchemaName VARCHAR(1000)--Table Name
-DECLARE @DryRun INT = 1 --1 to Preview / 0 to Execute 
+DECLARE @DryRun INT = 0 --1 to Preview / 0 to Execute 
 IF Object_id(N'tempdb..#TempTables') IS NOT NULL
   DROP TABLE #TempTables 
 CREATE TABLE #TempTables
@@ -19,8 +19,8 @@ CREATE TABLE #TempTables
 
   INSERT INTO #TempTables (FQTN, TableName, SchemaName, IsProcessed)
 SELECT SCHEMA_NAME(schema_id)+'.'+ name, Name,SCHEMA_NAME(schema_id),  0 -- SELECT *
-FROM   sys.tables
---WHERE --PLACE SOMETHING HERE THAT MAKES SENSE!!!!
+FROM   sys.objects
+WHERE type= 'V'
 ORDER  BY object_id
 -- Loop through the remaining databases
 WHILE EXISTS( SELECT * FROM #TempTables WHERE IsProcessed = 0 )
@@ -45,17 +45,17 @@ IF EXISTS (SELECT 1 FROM SYS.objects WHERE SCHEMA_NAME(schema_id)+''.''+ name = 
                  + ''')
   BEGIN 
     BEGIN TRY   
-		TRUNCATE TABLE [' + @SchemaName+ '].[' + @TableName+ ']
+		DROP VIEW [' + @SchemaName+ '].[' + @TableName+ ']
 		  END TRY  
     BEGIN CATCH  
-		PRINT ''WARNING: THERE WAS AN ISSUE WITH THE TABLE: ' + @FQTN + '''
+		PRINT ''WARNING: THERE WAS AN ISSUE WITH THE VIEW: ' + @FQTN + '''
    RETURN
     END CATCH  
-		PRINT ''SUCCESSFUL: TABLE WAS TRUNCATED: ' + @FQTN + ' ''
+		PRINT ''SUCCESSFUL: VIEW DROPPED: ' + @FQTN + ' ''
 		END 
 	ELSE 
 		BEGIN 
-		PRINT ''WARNING: PLEASE CHECK TABLE: ' + @FQTN + '''
+		PRINT ''WARNING: PLEASE CHECK VIEW: ' + @FQTN + '''
 		END 
 		
 END '
@@ -74,7 +74,7 @@ ELSE
     -- Update table
     UPDATE  #TempTables 
     SET IsProcessed = 1
-    WHERE TableName = @TableName AND SchemaName = @SchemaName
+    WHERE TableName = @TableName
   END
 
 
