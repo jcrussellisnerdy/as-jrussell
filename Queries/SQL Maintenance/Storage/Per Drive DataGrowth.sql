@@ -2,7 +2,7 @@ DECLARE @current_tracefilename VARCHAR(500);
 DECLARE @0_tracefilename VARCHAR(500);
 DECLARE @indx INT;
 
-DECLARE @DatabaseName VARCHAR(100) = 'UniTrac'
+DECLARE @DatabaseName VARCHAR(100) = ''
 
 
 SELECT @current_tracefilename = path

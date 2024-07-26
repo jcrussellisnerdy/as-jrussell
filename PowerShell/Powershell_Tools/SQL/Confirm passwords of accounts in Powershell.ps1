@@ -2,7 +2,7 @@
 $Credential = Get-Credential -Message "Enter your AD credentials"
 
 # Define the domain controller to use (optional)
-$DomainController = "AS-DC01"  # Replace with the actual domain controller or leave empty for automatic selection
+$DomainController = "ADDSASLAWAD02"  # Replace with the actual domain controller or leave empty for automatic selection
 
 # Extract the username from the entered credentials
 $Username = $Credential.UserName
@@ -24,3 +24,5 @@ try {
     Write-Host "Authentication failed for user: $Username"
     Write-Host "Error message: $($Error[0].Exception.Message)"
 }
+
+

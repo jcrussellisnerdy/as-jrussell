@@ -7,7 +7,7 @@ DECLARE @Info NVARCHAR(1) = 'Y'
 
 
 
-IF @info = 'Y' AND @DBNAME <> ''
+IF @info = 'Y' AND (@DBNAME <> '' OR @username <> '')
   BEGIN
       SELECT dec.client_net_address,
              des.host_name,des.login_name,
@@ -19,7 +19,7 @@ IF @info = 'Y' AND @DBNAME <> ''
              INNER JOIN sys.databases DB
                      ON DB.database_id = des.database_id
              CROSS APPLY sys.Dm_exec_sql_text(dec.most_recent_sql_handle) dest
-      WHERE  db.name = @DBNAME
+      WHERE  db.name LIKE '%' + @DBNAME + '%' 
 	  AND des.login_name LIKE '%' + @username + '%'
 --	  AND dest.text LIKE '%INSERT%'
 --	  AND des.session_id = @sessionid

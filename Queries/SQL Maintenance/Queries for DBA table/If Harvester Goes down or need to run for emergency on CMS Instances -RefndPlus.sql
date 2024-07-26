@@ -125,66 +125,7 @@ INSERT INTO #DatafileSize
 EXEC Sp_msforeachdb
   @SQLcmd
 
-IF Object_id(N'tempdb..#IOWarningResults') IS NOT NULL
-  DROP TABLE #IOWarningResults
 
-CREATE TABLE #IOWarningResults
-  (
-     LogDate     DATETIME,
-     ProcessInfo SYSNAME,
-     LogText     NVARCHAR(max)
-  );
-
-IF EXISTS (SELECT *
-           FROM   sys.databases
-           WHERE  name = 'rdsadmin')
-  BEGIN
-      INSERT INTO #IOWarningResults
-      EXEC rdsadmin.dbo.Rds_read_error_log
-        @index = 0,
-        @type = 1;
-
-      INSERT INTO #IOWarningResults
-      EXEC rdsadmin.dbo.Rds_read_error_log
-        @index = 1,
-        @type = 1;
-
-      INSERT INTO #IOWarningResults
-      EXEC rdsadmin.dbo.Rds_read_error_log
-        @index = 2,
-        @type = 1;
-
-      INSERT INTO #IOWarningResults
-      EXEC rdsadmin.dbo.Rds_read_error_log
-        @index = 0,
-        @type = 2;
-  END
-ELSE
-  BEGIN
-      INSERT INTO #IOWarningResults
-      EXEC Xp_readerrorlog
-        0,
-        1,
-        N'';
-
-      INSERT INTO #IOWarningResults
-      EXEC Xp_readerrorlog
-        1,
-        1,
-        N'';
-
-      INSERT INTO #IOWarningResults
-      EXEC Xp_readerrorlog
-        0,
-        2,
-        N'';
-
-      INSERT INTO #IOWarningResults
-      EXEC Xp_readerrorlog
-        1,
-        2,
-        N'';
-  END
 
 IF Object_id(N'tempdb..#LRT') IS NOT NULL
   DROP TABLE #LRT
@@ -274,45 +215,7 @@ select * from #LRT L
 join [DBA].[info].[Instance] I on I.SQLServerName=L.ServerName
 where TotalElapsedTime_min > 120  AND ServerEnvironment IN ('PRD','PROD') 
 
-SELECT ServerEnvironment, LogDate,
-       ProcessInfo,
-       LogText
-FROM   #IOWarningResults L
-cross apply [DBA].[info].[Instance] I 
-WHERE LogDate >= Dateadd(HOUR, -4, Getdate()) AND ServerEnvironment IN ('PRD','PROD') 
- AND processinfo <> 'Backup'
-	   AND logtext NOT LIKE '%Errorlog%reinitialized%'
-       AND logtext NOT LIKE '%Backup passed.%'
-       AND logtext NOT LIKE '%DBCC CHECKDB%'
-       AND logtext NOT LIKE '%All rights reserved.%'
-       AND logtext NOT LIKE '%Attempting to cycle error log. This is an informational message only; no user action is required.%'
-       AND logtext NOT LIKE '%UTC adjustment: %:00%'
-       AND logtext NOT LIKE '%DBCC CHECKDB%'
-       AND logtext NOT LIKE '%System Manufacturer: ''VMware, Inc.'', System Model: ''VMware Virtual Platform''.%'
-       AND logtext NOT LIKE '%Server process ID is%'
-       AND logtext NOT LIKE '%Authentication mode is %'
-       AND logtext NOT LIKE '%(c) Microsoft Corporation.%'
-       AND logtext NOT LIKE '%Default collation: SQL_Latin1_General_CP1_CI_AS (us_english 1033)%'
-       AND logtext NOT LIKE '%The service account is %. This is an informational message; no user action is required.%'
-       AND logtext NOT LIKE '%This is an informational message%'
-       AND logtext NOT LIKE '%The error log has been reinitialized. See the previous log for older entries.%'
-       AND logtext NOT LIKE '%The Service Broker endpoint is in disabled or stopped state.%'
-       AND logtext NOT LIKE '%Microsoft SQL Server %'
-       AND logtext NOT LIKE '%Logging SQL Server messages in file %'
-       AND logtext NOT LIKE '%System Manufacturer: %'
-       AND logtext NOT LIKE '%I/O was resumed %'
-       AND logtext NOT LIKE '%I/O is frozen %'
-       AND logtext NOT LIKE 'Login succeeded%'
-       AND logtext NOT LIKE 'Error:%'
-       AND logtext NOT LIKE '%ALTER TABLE%'
-       AND logtext NOT LIKE '%DbMgrPartnerCommitPolicy%'
-       AND logtext NOT LIKE '%last target outstanding%'
-       AND logtext NOT LIKE '%average writes per second%'
-       AND logtext NOT LIKE '%FlushCache%'
-       AND logtext NOT LIKE '%Deleting unrecoverable checkpoint table row%'
-       AND logtext NOT LIKE '%HkHostFreezeCkptTrimming()%'
-       AND ProcessInfo != 'Logon'
-ORDER  BY LogDate DESC;
+
 
 
 

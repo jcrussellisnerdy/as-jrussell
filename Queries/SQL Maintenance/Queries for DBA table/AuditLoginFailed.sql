@@ -30,7 +30,7 @@ ELSE IF @ClientHostName <> ''
   BEGIN
   SELECT DATEADD(HOUR, -6, TimeStampUTC) [Database Time],*
       FROM   dba.info.AuditLoginFailed A
-	  WHERE CAST(TimeStampUTC AS DATE) = CAST(GETDATE() AS DATE) 
+	  WHERE CAST(TimeStampUTC AS DATE) >= CAST(GETDATE()-3 AS DATE) 
       ORDER  BY TimeStampUTC DESC
   END
 

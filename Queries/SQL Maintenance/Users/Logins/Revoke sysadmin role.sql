@@ -20,7 +20,7 @@ FROM   master.sys.server_principals
 WHERE  Is_srvrolemember ('sysadmin', name) = 1
        AND is_disabled <> 1
        AND name NOT IN ( 'ELDREDGE_A\Database Administrators', 'NT SERVICE\SQLWriter', 'NT SERVICE\Winmgmt', 'NT SERVICE\MSSQLSERVER',
-                         'NT AUTHORITY\SYSTEM', 'NT SERVICE\SQLSERVERAGENT', 'ELDREDGE_A\svc_GTHB_PRD01' )
+                         'NT AUTHORITY\SYSTEM', 'NT SERVICE\SQLSERVERAGENT', 'ELDREDGE_A\svc_GTHB_PRD01' , 'BUILTIN\Administrators')
 
 WHILE EXISTS(SELECT *
              FROM   #nosysadminusers

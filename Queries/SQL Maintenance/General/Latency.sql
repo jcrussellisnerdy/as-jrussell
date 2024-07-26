@@ -40,7 +40,7 @@ FROM
    JOIN sys.master_files AS [mf]
    ON [vfs].[database_id] = [mf].[database_id]
       AND [vfs].[file_id] = [mf].[file_id]
--- WHERE [vfs].[file_id] = 2 -- log files
+ WHERE mf.database_id  IN (SELECT database_id from sys.databases WHERE database_id >=5 AND  name NOT IN ('DBA','Perfstats','HDTStorage')) 
 ORDER BY [Latency] DESC
 -- ORDER BY [ReadLatency] DESC
 -- ORDER BY [WriteLatency] DESC;

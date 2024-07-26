@@ -1,5 +1,5 @@
-DECLARE @DatabaseName VARCHAR(100) ='UiPath',
-        @TableName    VARCHAR(255) ='',
+DECLARE @DatabaseName VARCHAR(100) ='RPA',
+        @TableName    VARCHAR(255) ='Rpa_Vow_Result_Records',
         @sqlcmd       VARCHAR(max),
         @DryRun       INT = 0
 
