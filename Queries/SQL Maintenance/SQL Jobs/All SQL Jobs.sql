@@ -43,6 +43,6 @@ FROM
         ON [sJOB].[job_id] = [sJOBSCH].[job_id]
     LEFT JOIN [msdb].[dbo].[sysschedules] AS [sSCH]
         ON [sJOBSCH].[schedule_id] = [sSCH].[schedule_id]
-		WHERE sJOB.name = 'Tasks: LetterLibrary'
+	--	WHERE sJOB.name = 'Tasks: LetterLibrary'
 		ORDER BY [JobName]
 

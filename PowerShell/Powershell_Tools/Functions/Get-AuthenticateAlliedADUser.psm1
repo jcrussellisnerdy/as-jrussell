@@ -1,4 +1,4 @@
-﻿function Authenticate-AlliedADUser {
+﻿function Get-AuthenticateAlliedADUser {
     param (
         [string]$DomainController = "ADDSASLAWAD02"  # Replace with the actual domain controller or leave empty for automatic selection
     )
@@ -27,3 +27,5 @@
         Write-Host "Error message: $($Error[0].Exception.Message)"
     }
 }
+
+

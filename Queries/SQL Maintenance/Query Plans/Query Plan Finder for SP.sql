@@ -1,5 +1,5 @@
 ﻿-- Query to identify query using any speicific stored proc
-DECLARE @stpredproc    VARCHAR(255) ='GetWorkItemTask',
+DECLARE @stpredproc    VARCHAR(255) ='GetEscrowBatchDetails',
         @sqlcmd   VARCHAR(max),
 		@sym varchar(10) = '>=',
 		@Count varchar(10) = 0,
@@ -39,6 +39,11 @@ ORDER BY deqs.last_execution_time DESC
 OPTION (MAXDOP 1, RECOMPILE);
 
 '
+
+SELECT * 
+FROM sys.dm_exec_procedure_stats 
+WHERE object_id = OBJECT_ID('GetEscrowBatchDetails');
+
 
 IF @DryRun = 0
   BEGIN

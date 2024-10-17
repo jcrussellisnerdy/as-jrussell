@@ -24,8 +24,8 @@ SELECT SUSER_NAME(), USER_NAME();
   
 -- Set up your script as a variable
 DECLARE @Script NVARCHAR(2000)
-DECLARE @AccountName NVARCHAR(100) = 'ELDREDGE_A\hmaddi'
-DECLARE @DatabaseName SYSNAME = 'UNITRAC'
+DECLARE @AccountName NVARCHAR(100) = ''
+DECLARE @DatabaseName SYSNAME = ''
 DECLARE @WhatIf BIT = 0
 SET @Script = N' 
 

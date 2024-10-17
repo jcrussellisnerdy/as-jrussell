@@ -2,6 +2,7 @@
 DECLARE @SQL VARCHAR(max)
 DECLARE @JobName SYSNAME
 DECLARE @DryRun INT = 1 --1 preview / 0 executes it 
+DECLARE @Verbose INT = 0 --0 preview / 1 nothing  
 -- Create a temporary table to store the databases
 IF Object_id(N'tempdb..#TempAgentJobs') IS NOT NULL
   DROP TABLE #TempAgentJobs
@@ -45,4 +46,16 @@ WHILE EXISTS( SELECT * FROM #TempAgentJobs WHERE IsProcessed = 0 )
   END
 
 
+  
+  IF @Verbose = 0
+  BEGIN
+
+  SELECT L.loginname, S.*
+  FROM msdb..sysjobs s
+  JOIN #TempAgentJobs j ON j.JobName = S.name
+LEFT JOIN master.sys.syslogins l ON s.owner_sid = l.sid
+WHERE enabled = 1
+
+
+  END 
   

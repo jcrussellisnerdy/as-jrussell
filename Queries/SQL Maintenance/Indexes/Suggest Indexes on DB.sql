@@ -1,5 +1,5 @@
-DECLARE @DatabaseName VARCHAR(100) ='RPA',
-        @TableName    VARCHAR(255) ='Rpa_Vow_Result_Records',
+DECLARE @DatabaseName VARCHAR(100) ='Perfstats',
+        @TableName    VARCHAR(255) ='QueryPlanHistory',
         @sqlcmd       VARCHAR(max),
         @DryRun       INT = 0
 

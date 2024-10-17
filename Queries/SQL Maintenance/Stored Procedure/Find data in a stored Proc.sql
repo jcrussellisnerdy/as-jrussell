@@ -1,8 +1,8 @@
 DECLARE @sqlcmd       VARCHAR(max),
         @TableName    VARCHAR(255) ='',
-		@definition        VARCHAR(150) = 'INSERT INT',
+		@definition        VARCHAR(150) = 'execute as ',
 		@type_desc        VARCHAR(150) = '',
-        @DatabaseName VARCHAR(100) ='Unitrac',
+        @DatabaseName VARCHAR(100) ='unitrac',
 
         @DryRun       INT = 0
 

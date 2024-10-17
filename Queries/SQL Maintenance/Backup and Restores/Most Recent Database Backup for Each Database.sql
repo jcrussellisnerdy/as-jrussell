@@ -125,7 +125,7 @@ ORDER BY
 
 IF @WhatIF = 0
   BEGIN
-      IF @DBNAME = '?'
+      IF (@DBNAME = '?' OR  @DBNAME ='')
         IF @Verbose = 1
           BEGIN
               SELECT DISTINCT [Server],

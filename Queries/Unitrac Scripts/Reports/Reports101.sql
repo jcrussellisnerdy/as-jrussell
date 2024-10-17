@@ -11,6 +11,9 @@ GROUP BY	STATUS_CD
 --DROP TABLE #tmpRHID
 --SELECT * FROM #tmpRHID
 ----Place reports that are in error into a temp table
+IF Object_id(N'tempdb..#tmpRHID') IS NOT NULL
+  DROP TABLE #tmpRHID
+
 SELECT L.NAME_TX [Lender Name],
        R.NAME_TX [Report Name],
        rh.REPORT_DATA_XML.value('(/ReportData/Report/WorkItemId/@value)[1]', 'varchar(500)') AS [WI.ID],
@@ -35,9 +38,18 @@ FROM REPORT_HISTORY rh
     LEFT JOIN REPORT R
         ON R.ID = rh.REPORT_ID
 WHERE rh.STATUS_CD = 'ERR'
-      AND CAST(rh.UPDATE_DT AS DATE) >= CAST(GETDATE()-4 AS DATE)
+      AND CAST(rh.UPDATE_DT AS DATE) >= CAST(GETDATE() AS DATE)
 ORDER BY rh.MSG_LOG_TX DESC;
 
+
+select * from #tmpRHID
+order by UPDATE_DT desc 
+
+SELECT COUNT(ID), CAST(UPDATE_DT AS date) 
+FROM REPORT_HISTORY
+WHERE STATUS_CD = 'ERR'
+AND MSG_LOG_TX='Error in GenerateReport: The request failed with HTTP status 503: Server Error.'
+GROUP BY  CAST(UPDATE_DT AS date) 
 
 --Breakdown of errors by report name
 SELECT COUNT(*) [Counts],
@@ -59,7 +71,7 @@ WHERE T.REPORT_ID IS NULL
 --Implementation if you need to restore the reports to a PEND status
 
 SELECT * 
-INTO UniTracHDStorage..CHG011793
+
 FROM dbo.REPORT_HISTORY
 WHERE 
     ID IN (SELECT id FROM #tmpRHID )
@@ -220,3 +232,18 @@ WHERE
 
 
 
+
+	SELECT COUNT(ID), CAST(UPDATE_DT AS date), MAX(ID) 
+FROM REPORT_HISTORY
+WHERE STATUS_CD = 'ERR'
+AND MSG_LOG_TX='Error in GenerateReport: The request failed with HTTP status 503: Server Error.'
+--AND CAST(UPDATE_DT AS date) < '2024-05-14'
+GROUP BY  CAST(UPDATE_DT AS date) 
+
+
+
+
+
+SELECT top 1 * 
+FROM PROCESS_LOG_ITEM
+where RELATE_ID = '40620719'

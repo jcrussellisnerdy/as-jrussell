@@ -43,3 +43,4 @@ ELSE
 						    Or command Like 'DBCC%'
       PRINT 'EC2 OR ON-PREM INSTANCE'
   END 
+

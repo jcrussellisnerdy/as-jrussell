@@ -68,27 +68,56 @@ ELSE
 
       INSERT INTO #IOWarningResults
       EXEC Xp_readerrorlog
-        0,
         2,
+        1,
         N'';
 
       INSERT INTO #IOWarningResults
       EXEC Xp_readerrorlog
+        3,
         1,
-        2,
         N'';
+
+		      INSERT INTO #IOWarningResults
+      EXEC Xp_readerrorlog
+        4,
+        1,
+        N'';
+
+		      INSERT INTO #IOWarningResults
+      EXEC Xp_readerrorlog
+        5,
+        1,
+        N'';
+		      INSERT INTO #IOWarningResults
+      EXEC Xp_readerrorlog
+        6,
+        1,
+        N'';		       
+
+
+
+
+
   END
 
-SELECT *
+SELECT  
+  FORMAT(LogDate, 'dddd, MMMM dd, yyyy hh:mm tt'),
+
+ ProcessInfo, LogText
 FROM   #IOWarningResults
+WHERE ProcessInfo not in ('Logon','Backup')
 order by logdate desc 
+
+
+
+
 
 
 
 /*
 SELECT *
 FROM #IOWarningResults
-
 ORDER BY LogDate DESC 
 
 select GETDATE()
@@ -108,3 +137,17 @@ ORDER BY LogDate DESC
 
 
 
+--DECLARE @auth_mode INT;
+
+--EXEC xp_instance_regread 
+--    N'HKEY_LOCAL_MACHINE', 
+--    N'Software\Microsoft\MSSQLServer\MSSQLServer', 
+--    N'LoginMode', 
+--    @auth_mode OUTPUT;
+
+--SELECT 
+--    CASE @auth_mode 
+--        WHEN 1 THEN 'Windows Authentication'
+--        WHEN 2 THEN 'SQL Server and Windows Authentication'
+--        ELSE 'Unknown Authentication Mode'
+--    END AS AuthenticationMode;

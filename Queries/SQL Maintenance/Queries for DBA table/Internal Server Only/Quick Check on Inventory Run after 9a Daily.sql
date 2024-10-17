@@ -1,14 +1,14 @@
-IF (SELECT DISTINCT 1
-    --SELECT *
-    FROM   msdb.dbo.sysjobs sj
-           JOIN msdb.dbo.sysjobhistory sh
-             ON sh.job_id = sj.job_id
-    WHERE  sj.name = 'InventoryDWH-HarvestDaily'
-           AND run_date IN (SELECT Cast(Cast(Datepart(year, Getdate()) AS VARCHAR)
-                                        + RIGHT('0' + Cast (Datepart(month, Getdate()) AS VARCHAR), 2)
-                                        + RIGHT('0' + Cast (Datepart(day, Getdate()) AS VARCHAR), 2) AS NUMERIC(10, 0)))) = 1
-  BEGIN
-      PRINT 'Why are you looking here when you have work to do on the other tab!'
+--IF (SELECT DISTINCT 1
+--    --SELECT *
+--    FROM   msdb.dbo.sysjobs sj
+--          LEFT JOIN msdb.dbo.sysjobhistory sh
+--             ON sh.job_id = sj.job_id
+--    WHERE  sj.name = 'InventoryDWH-HarvestDaily'
+--           AND run_date IN (SELECT Cast(Cast(Datepart(year, Getdate()) AS VARCHAR)
+--                                        + RIGHT('0' + Cast (Datepart(month, Getdate()) AS VARCHAR), 2)
+--                                        + RIGHT('0' + Cast (Datepart(day, Getdate()) AS VARCHAR), 2) AS NUMERIC(10, 0)))) = 1
+--  BEGIN
+--      PRINT 'Why are you looking here when you have work to do on the other tab!'
 
       SELECT Count(*) [Failed Linked Servers]
       --SELECT [MachineName],Name [SRV_NAME],[Data_source],[Provider_string],[Remote_name],LNK.[Status]
@@ -131,44 +131,44 @@ IF (SELECT DISTINCT 1
              AND EmailTestStatus = 'FAILED'
              AND Cast(I.HarvestDate AS DATE) >= Cast(Getdate() AS DATE)
 
-      ----UIPA-TST-DB1  will be removed once we determines whom controls the storage.
-      SELECT SQLServerName [Offending Server],
-             ServerLocation,
-             Concat('Start-DbaAgentJob -SqlInstance ', SQLServerName, ' -Job DBA-HarvestDaily'),
-             Concat('C:\GitHub\DBA-PowerShell\DBA-Tools\DBA_Tools\Harvest-Inventory.ps1 -TargetHost ', SQLServerName, ' -targetInvServer "DBA-SQLPRD-01.colo.as.local\I01" -targetInvDB "InventoryDWH" -Force 1 -dryRun 0')
-      --select *
-      FROM   [InventoryDWH].[inv].[Instance] I
-      WHERE  
-	  Cast(HarvestDate AS DATE) != Cast(Getdate() AS DATE)
-             AND ServerEnvironment <> '_DCOM'
-             AND ( ServerLocation IN ( 'ON-PREM', 'AWS-EC2', '' )
-                    OR ServerLocation IS NULL )
+   --   ----UIPA-TST-DB1  will be removed once we determines whom controls the storage.
+   --   SELECT SQLServerName [Offending Server],
+   --          ServerLocation,
+   --          Concat('Start-DbaAgentJob -SqlInstance ', SQLServerName, ' -Job DBA-HarvestDaily'),
+   --          Concat('C:\GitHub\DBA-PowerShell\DBA-Tools\DBA_Tools\Harvest-Inventory.ps1 -TargetHost ', SQLServerName, ' -targetInvServer "DBA-SQLPRD-01.colo.as.local\I01" -targetInvDB "InventoryDWH" -Force 1 -dryRun 0')
+   --   --select *
+   --   FROM   [InventoryDWH].[inv].[Instance] I
+   --   WHERE  
+	  --Cast(HarvestDate AS DATE) != Cast(Getdate() AS DATE)
+   --          AND ServerEnvironment <> '_DCOM'
+   --          AND ( ServerLocation IN ( 'ON-PREM', 'AWS-EC2', '' )
+   --                 OR ServerLocation IS NULL )
 
-      IF Object_id(N'tempdb..#GetDatabaseNoApplication') IS NOT NULL
-        DROP TABLE #GetDatabaseNoApplication
+      --IF Object_id(N'tempdb..#GetDatabaseNoApplication') IS NOT NULL
+      --  DROP TABLE #GetDatabaseNoApplication
 
-      CREATE TABLE #GetDatabaseNoApplication
-        (
-           [InstanceName]    NVARCHAR(100),
-           [DatabaseName]    NVARCHAR(100),
-           [InstanceID]      VARCHAR(3),
-           [DatabaseID]      VARCHAR(3),
-           [ApplicationID]   VARCHAR(3),
-           [PossibleAppName] NVARCHAR(250),
-           [Score]           INT,
-           [Action]          NVARCHAR(max)
-        );
+      --CREATE TABLE #GetDatabaseNoApplication
+      --  (
+      --     [InstanceName]    NVARCHAR(100),
+      --     [DatabaseName]    NVARCHAR(100),
+      --     [InstanceID]      VARCHAR(3),
+      --     [DatabaseID]      VARCHAR(3),
+      --     [ApplicationID]   VARCHAR(3),
+      --     [PossibleAppName] NVARCHAR(250),
+      --     [Score]           INT,
+      --     [Action]          NVARCHAR(max)
+      --  );
 
-      INSERT INTO #GetDatabaseNoApplication
-      EXEC InventoryDWH.amp.Getdatabasenoapplication
+      --INSERT INTO #GetDatabaseNoApplication
+      --EXEC InventoryDWH.amp.Getdatabasenoapplication
 
-      SELECT *
-      FROM   #GetDatabaseNoApplication
-      WHERE  Score >= '2'
-      UNION
-      SELECT *
-      FROM   #GetDatabaseNoApplication
-      WHERE  PossibleAppName <> ''
+      --SELECT *
+      --FROM   #GetDatabaseNoApplication
+      --WHERE  Score >= '2'
+      --UNION
+      --SELECT *
+      --FROM   #GetDatabaseNoApplication
+      --WHERE  PossibleAppName <> ''
 
       SELECT Concat('UPDATE [InventoryDWH].[inv].[Instance] SET ServerStatus = ''DOWN'' , ServerEnvironment = ''_DCOM'', Comments = ''DCOM-', Comments, ''' WHERE Comments = ''', Comments, '''')
       --select *
@@ -176,24 +176,24 @@ IF (SELECT DISTINCT 1
       WHERE  [Comments] IS NOT NULL
              AND [Comments] <> ''
              AND Comments NOT LIKE '%DCOM%'
-  END
-ELSE
-  BEGIN
-DECLARE @NextRunTime DATETIME = 
-    CASE 
-        WHEN GETDATE() <= CAST(CONVERT(VARCHAR, GETDATE(), 101) + ' 07:30' AS DATETIME) THEN
-            CAST(CONVERT(VARCHAR, GETDATE(), 101) + ' 07:30' AS DATETIME)
-        ELSE
-            DATEADD(DAY, 1, CAST(CONVERT(VARCHAR, GETDATE(), 101) + ' 07:30' AS DATETIME))
-    END;
+ -- END
+--ELSE
+--  BEGIN
+--DECLARE @NextRunTime DATETIME = 
+--    CASE 
+--        WHEN GETDATE() <= CAST(CONVERT(VARCHAR, GETDATE(), 101) + ' 07:30' AS DATETIME) THEN
+--            CAST(CONVERT(VARCHAR, GETDATE(), 101) + ' 07:30' AS DATETIME)
+--        ELSE
+--            DATEADD(DAY, 1, CAST(CONVERT(VARCHAR, GETDATE(), 101) + ' 07:30' AS DATETIME))
+--    END;
 
-DECLARE @TimeDifference INT = DATEDIFF(MINUTE, GETDATE(), @NextRunTime);
+--DECLARE @TimeDifference INT = DATEDIFF(MINUTE, GETDATE(), @NextRunTime);
 
-IF GETDATE() <= @NextRunTime
-    PRINT 'Harvester has not run today yet; please come back after it starts at 7:30 AM CT that is in ' + CAST(@TimeDifference AS VARCHAR) + ' minutes.'
-ELSE
-    PRINT 'Harvester has not run today yet; please come back after it starts at 7:30 AM CT that is in ' + CAST(@TimeDifference AS VARCHAR) + ' minutes.'
+--IF GETDATE() <= @NextRunTime
+--    PRINT 'Harvester has not run today yet; please come back after it starts at 7:30 AM CT that is in ' + CAST(@TimeDifference AS VARCHAR) + ' minutes.'
+--ELSE
+--    PRINT 'Harvester has not run today yet; please come back after it starts at 7:30 AM CT that is in ' + CAST(@TimeDifference AS VARCHAR) + ' minutes.'
 
-    END 
+--    END 
    
 

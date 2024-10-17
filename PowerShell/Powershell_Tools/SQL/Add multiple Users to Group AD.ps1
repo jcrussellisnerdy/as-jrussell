@@ -1,9 +1,10 @@
 ﻿# Replace 'GroupName' with the name of the AD group you want to add members to
-$groupName = 'SQL_OCR_ADMIN_TOOL' 
+$groupName = '' 
         #Snowflake Data Warehouse - User
+        #SQL_RFPL_SSAS
 
 # Replace 'Member1' and 'Member2' with the usernames of the users you want to add
-$membersToAdd =  'cPierson'
+$membersToAdd =  'kmirza'
 
 # Add members to the AD group
 $membersToAdd | ForEach-Object {
@@ -15,5 +16,8 @@ $membersToAdd | ForEach-Object {
 # Retrieve members of the AD group
 $groupMembers = Get-ADGroupMember -Identity $groupName
 
-# Display members' details
-$groupMembers | Select-Object   @{Name='Username'; Expression={$groupName}}, SamAccountName, Name, ObjectClass |Where-Object SamAccountName -eq $membersToAdd
+
+# Get the group membership for the specified username and filter for group names like 'SQL_*SSAS'
+Get-ADPrincipalGroupMembership -Identity $username | 
+    Where-Object { $_.Name -like 'SQL_*' } |
+    Select-Object SamAccountName,  @{Name='Username'; Expression={$username}}

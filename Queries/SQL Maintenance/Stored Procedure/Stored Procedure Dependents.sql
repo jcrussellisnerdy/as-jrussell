@@ -1,10 +1,12 @@
 DECLARE @sqlcmd VARCHAR(MAX)
 DECLARE @DatabaseName SYSNAME 
 DECLARE @Name VARCHAR(100) =''
-DECLARE @ObjectName VARCHAR(100)= 'log'
+DECLARE @ObjectName VARCHAR(100)= 'OperatorEmail'
 DECLARE @DryRun INT = 0
 
 
+
+EXEC [DBA].[deploy].[SetDatabaseMail] @DryRun = 0, @recipient = 'joseph.russell@alliedsolutions.net',  @Debug =1
 -- Create a temporary table to store the combined results
 IF OBJECT_ID(N'tempdb..#CombinedResults') IS NOT NULL
   DROP TABLE #CombinedResults
@@ -82,4 +84,5 @@ SELECT
 WHERE  DatabaseName like '%'+ @Name + '%'
 AND (ProcedureName like '%'+ @ObjectName + '%'
 OR TableName like '%'+ @ObjectName+ '%')
-Order by DatabaseName ASC, ProcedureName ASC, LastExecutionTime DESC
+--AND LastExecutionTime is not null 
+Order by LastExecutionTime DESC

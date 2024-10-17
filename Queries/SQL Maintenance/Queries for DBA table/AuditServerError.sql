@@ -1,4 +1,4 @@
-﻿
+
 DECLARE @username NVARCHAR(50)=''
 DECLARE @ClientHostName NVARCHAR(50)=''
 DECLARE @Error NVARCHAR(20) = ''
@@ -9,54 +9,54 @@ DECLARE @DBName NVARCHAR(50)=''
 
 IF @username <> '' 
   BEGIN
-  SELECT   FORMAT(DATEADD(HOUR, -5, TimeStampUTC), 'dddd, MMMM dd, yyyy hh:mm tt')[Database Time],*
-      FROM   dba.info.AuditError A
+      SELECT *
+      FROM   dba.info.AuditServerError A
       WHERE  Username LIKE '%' + @username + '%'
              AND @DBName LIKE '%' + @DBName + '%'
       ORDER  BY TimeStampUTC DESC
   END
 ELSE IF @DBName <> '' AND @DatabaseIncluded = 0
   BEGIN
-  SELECT  FORMAT(DATEADD(HOUR, -5, TimeStampUTC), 'dddd, MMMM dd, yyyy hh:mm tt')[Database Time],*
-      FROM   dba.info.AuditError A
+      SELECT *
+      FROM   dba.info.AuditServerError A
       WHERE  DatabaseName IN ( @DBName )
       ORDER  BY TimeStampUTC DESC
   END
 ELSE IF @DBName <> '' AND @DatabaseIncluded = 1 
   BEGIN
-  SELECT   FORMAT(DATEADD(HOUR, -5, TimeStampUTC), 'dddd, MMMM dd, yyyy hh:mm tt')[Database Time],*
-      FROM   dba.info.AuditError A
+      SELECT *
+      FROM   dba.info.AuditServerError A
       WHERE  DatabaseName NOT IN ( @DBName )
       ORDER  BY TimeStampUTC DESC
   END
 ELSE IF @BEGINDATE <> '' 
   BEGIN
-  SELECT   FORMAT(DATEADD(HOUR, -5, TimeStampUTC), 'dddd, MMMM dd, yyyy hh:mm tt')[Database Time],*
-      FROM   dba.info.AuditError A
+      SELECT *
+      FROM   dba.info.AuditServerError A
       WHERE  TimeStampUTC BETWEEN @BEGINDATE AND @ENDDATE
              AND @DBName LIKE '%' + @DBName + '%'
       ORDER  BY TimeStampUTC DESC
   END
   ELSE IF @Error <> '' AND @DatabaseIncluded = 0
   BEGIN
-   SELECT   FORMAT(DATEADD(HOUR, -5, TimeStampUTC), 'dddd, MMMM dd, yyyy hh:mm tt')[Database Time],*
-      FROM   dba.info.AuditError A
+      SELECT *
+      FROM   dba.info.AuditServerError A
       WHERE  ErrorMessage like '%' + @Error + '%'
              AND @DBName LIKE '%' + @DBName + '%'
       ORDER  BY TimeStampUTC DESC
   END
     ELSE IF @Error <> '' AND @DatabaseIncluded = 1
   BEGIN
-    SELECT   FORMAT(DATEADD(HOUR, -5, TimeStampUTC), 'dddd, MMMM dd, yyyy hh:mm tt')[Database Time],*
-      FROM   dba.info.AuditError A
+      SELECT *
+      FROM   dba.info.AuditServerError A
       WHERE  ErrorMessage like '%' + @Error + '%'
              AND @DBName NOT LIKE '%' + @DBName + '%'
       ORDER  BY TimeStampUTC DESC
   END
 ELSE
   BEGIN
-      SELECT TOP 10           FORMAT(DATEADD(HOUR, -5, TimeStampUTC), 'dddd, MMMM dd, yyyy hh:mm tt')[Database Time],*
-      FROM   dba.info.AuditError A
+      SELECT         DATEADD(HOUR, -6, TimeStampUTC) [Database Time],*
+      FROM   dba.info.AuditServerError A
       WHERE  @DBName LIKE '%' + @DBName + '%'
       ORDER  BY TimeStampUTC DESC
   END

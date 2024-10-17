@@ -221,3 +221,6 @@ where TotalElapsedTime_min > 120  AND ServerEnvironment IN ('PRD','PROD')
 
 --EXEC [DBA].[Backup].[BackupReport] @BackupType = 'FULL', @DryRun = 1
 --EXEC [DBA].[Backup].[BackupReport] @BackupType = 'LOG', @DryRun = 1
+
+
+EXEC DBA.DBO.SP_WHOISACTIVE  --@get_task_info =2,@get_plans =2 ,  @get_avg_time=1;

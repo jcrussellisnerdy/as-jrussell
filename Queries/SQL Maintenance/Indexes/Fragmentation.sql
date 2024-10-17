@@ -1,8 +1,9 @@
-USE [DatabaseName]
+USE [Unitrac]
 
 
 DECLARE @db_id SMALLINT= Db_id((SELECT Db_name()));;
-DECLARE @object_id INT = Object_id(N'dbo.TableName');
+DECLARE @object_id INT = Object_id(N'dbo.INTERACTION_HISTORY');
+DECLARE @index_name VARCHAR(100)= ''
 DECLARE @MIN INT ='5';
 DECLARE @MAX INT = '35';
 DECLARE @mode VARCHAR(10) ='LIMITED';--modes are (LIMITED/SAMPLED/DETAILED)
@@ -18,12 +19,8 @@ ELSE
              SI.name                    AS [IndexName],
              IPS.Index_type_desc,
              IPS.avg_fragmentation_in_percent,
-             IPS.avg_fragment_size_in_pages,
-             IPS.avg_page_space_used_in_percent,
-             IPS.record_count,
-             IPS.ghost_record_count,
-             IPS.fragment_count,
-             IPS.avg_fragment_size_in_pages,
+                 ISNULL(IPS.fragment_count,0) AS fragment_count, 
+            ISNULL(IPS.avg_fragment_size_in_pages,0) AS avg_fragment_size_in_pages, 
              CASE
                WHEN IPS.Index_type_desc IN ('NONCLUSTERED INDEX', 'CLUSTERED INDEX')
                     AND IPS.avg_fragmentation_in_percent BETWEEN @MIN AND @MAX THEN Concat('BEGIN TRY   ALTER INDEX [', SI.name, '] ON [', Object_name(IPS.object_id), '] REORGANIZE 	  END TRY  
@@ -50,9 +47,9 @@ ELSE
                ON IPS.object_id = SI.object_id
                   AND IPS.index_id = SI.index_id
       WHERE  ST.is_ms_shipped = 0
+	  AND SI.name LIKE '%'+ @index_name +'%'
       ORDER  BY 1,
                 5
   END
 
 GO 
-
