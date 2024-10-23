@@ -22,13 +22,29 @@ ALTER PROCEDURE [action].[FragStatsMonitor] (@database_name SYSNAME = NULL,
                                           @MIN           INT ='60',
                                           @WhatIF        BIT = 1)
 AS
-    DECLARE @SQLCMD NVARCHAR(MAX)
 
   /*
+    ######################################################################
+		Examples
+    ######################################################################
   
     EXEC [Perfstats]. [action].[FragStatsMonitor] @database_name ='Unitrac', @table_name = 'INTERACTION_HISTORY',@WhatIf=0
   
   */
+
+    /*
+    ######################################################################
+		Declarations
+    ######################################################################
+    */
+
+      DECLARE @SQLCMD NVARCHAR(MAX)
+
+    /*
+    ######################################################################
+					   Produce information from table 
+    ######################################################################
+    */
   BEGIN
       IF @database_name IS NOT NULL
         BEGIN
@@ -76,6 +92,11 @@ END
 '
         END
       ELSE
+    /*
+    ######################################################################
+					    Missing Variable 
+    ######################################################################
+    */
         BEGIN
             PRINT 'WARNING: PLEASE PROVIDE A DATABASE NAME'
         END

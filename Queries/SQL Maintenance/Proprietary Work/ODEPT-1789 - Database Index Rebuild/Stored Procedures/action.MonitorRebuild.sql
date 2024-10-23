@@ -22,15 +22,29 @@ AS
   BEGIN
 
   
-    /*
+  /*
+    ######################################################################
+		Examples
+    ######################################################################
      
         EXEC [Perfstats]. [action].[MonitorRebuild] @database_name ='Unitrac',@WhatIf=0
     
      */
+
+    /*
+    ######################################################################
+		Declarations
+    ######################################################################
+    */
+
       DECLARE @SQLCMD NVARCHAR(MAX)
 
-      /* Content of stored procedure */
-      IF @database_name IS NOT NULL
+	      /*
+    ######################################################################
+		Content of stored procedure 
+    ######################################################################
+    */
+           IF @database_name IS NOT NULL
         BEGIN
             SELECT @sqlcmd = ' USE [' + @database_name + ']
 

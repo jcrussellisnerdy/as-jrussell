@@ -4,8 +4,9 @@ DECLARE @sqlcmd       VARCHAR(max),
         @EndDate      VARCHAR(20),
         @Type         VARCHAR(1) = 'D',
         @DBNAME       VARCHAR(50) = '',
+        @Max          INT = 0,
         @Verbose      INT = 0,
-        @WhatIF       INT = 0
+        @WhatIF       INT = 1
 
 IF Object_id(N'tempdb..#LastBackup') IS NOT NULL
   DROP TABLE #LastBackup
@@ -123,69 +124,81 @@ ORDER BY
       WHERE  DatabaseName = @databaseName
   END
 
-IF @WhatIF = 0
+IF @Max = 0
   BEGIN
-      IF (@DBNAME = '?' OR  @DBNAME ='')
-        IF @Verbose = 1
-          BEGIN
-              SELECT DISTINCT [Server],
+      SELECT DatabaseName,
+             Max([Last backup Date]) [Last backup Date]
+      FROM   #tmp
+      GROUP  BY DatabaseName
+      ORDER  BY [Last backup Date] DESC
+  END
+ELSE
+  BEGIN
+      IF @WhatIF = 0
+        BEGIN
+            IF ( @DBNAME = '?'
+                  OR @DBNAME = '' )
+              IF @Verbose = 1
+                BEGIN
+                    SELECT DISTINCT [Server],
+                                    type,
+                                    DatabaseName,
+                                    Max(last_db_backup_date) [Last backup Date],
+                                    [physical_device_name],
+                                    [filename]
+                    FROM   #LastBackup
+                    GROUP  BY [Server],
                               type,
                               DatabaseName,
-                              Max(last_db_backup_date) [Last backup Date],
                               [physical_device_name],
                               [filename]
-              FROM   #LastBackup
-              GROUP  BY [Server],
-                        type,
-                        DatabaseName,
-                        [physical_device_name],
-                        [filename]
-              ORDER  BY Max(last_db_backup_date) DESC
-          END
-        ELSE
-          BEGIN
-              SELECT DISTINCT [Server],
+                    ORDER  BY Max(last_db_backup_date) DESC
+                END
+              ELSE
+                BEGIN
+                    SELECT DISTINCT [Server],
+                                    type,
+                                    DatabaseName,
+                                    Max(last_db_backup_date) [Last backup Date]
+                    FROM   #LastBackup
+                    GROUP  BY [Server],
                               type,
                               DatabaseName,
-                              Max(last_db_backup_date) [Last backup Date]
-              FROM   #LastBackup
-              GROUP  BY [Server],
-                        type,
-                        DatabaseName,
-                        [physical_device_name],
-                        [filename]
-              ORDER  BY Max(last_db_backup_date) DESC
-          END
-      ELSE IF @Verbose = 1
-        BEGIN
-            SELECT DISTINCT [Server],
+                              [physical_device_name],
+                              [filename]
+                    ORDER  BY Max(last_db_backup_date) DESC
+                END
+            ELSE IF @Verbose = 1
+              BEGIN
+                  SELECT DISTINCT [Server],
+                                  type,
+                                  DatabaseName,
+                                  Max(last_db_backup_date) [Last backup Date],
+                                  [physical_device_name],
+                                  [filename]
+                  FROM   #LastBackup
+                  WHERE  DatabaseName = @DBNAME
+                  GROUP  BY [Server],
                             type,
                             DatabaseName,
-                            Max(last_db_backup_date) [Last backup Date],
                             [physical_device_name],
                             [filename]
-            FROM   #LastBackup
-            WHERE  DatabaseName = @DBNAME
-            GROUP  BY [Server],
-                      type,
-                      DatabaseName,
-                      [physical_device_name],
-                      [filename]
-            ORDER  BY Max(last_db_backup_date) DESC
-        END
-      ELSE
-        BEGIN
-            SELECT DISTINCT [Server],
+                  ORDER  BY Max(last_db_backup_date) DESC
+              END
+            ELSE
+              BEGIN
+                  SELECT DISTINCT [Server],
+                                  type,
+                                  DatabaseName,
+                                  Max(last_db_backup_date) [Last backup Date]
+                  FROM   #LastBackup
+                  WHERE  DatabaseName = @DBNAME
+                  GROUP  BY [Server],
                             type,
                             DatabaseName,
-                            Max(last_db_backup_date) [Last backup Date]
-            FROM   #LastBackup
-            WHERE  DatabaseName = @DBNAME
-            GROUP  BY [Server],
-                      type,
-                      DatabaseName,
-                      [physical_device_name],
-                      [filename]
-            ORDER  BY Max(last_db_backup_date) DESC
+                            [physical_device_name],
+                            [filename]
+                  ORDER  BY Max(last_db_backup_date) DESC
+              END
         END
   END 

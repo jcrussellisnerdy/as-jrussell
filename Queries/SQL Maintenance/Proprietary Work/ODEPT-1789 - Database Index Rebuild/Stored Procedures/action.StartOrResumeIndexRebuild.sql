@@ -14,18 +14,16 @@ ALTER PROCEDURE [action].[StartOrResumeIndexRebuild]
     @database_name SYSNAME = NULL,
     @index_name NVARCHAR(200) = NULL,
     @table_name NVARCHAR(200) = NULL,
+	 @Debug BIT = 0,
     @WhatIf INT = 1
 AS
 BEGIN
-    DECLARE @version NVARCHAR(128);
-    DECLARE @SQLCMD NVARCHAR(MAX);
-    DECLARE @startTime DATETIME;
-    DECLARE @endTime DATETIME;
-    DECLARE @duration INT = 0;  -- Default to 0
-    DECLARE @status NVARCHAR(50) = 'Failure'; -- Default to Failure
 
-	
-    /*
+  /*
+    ######################################################################
+		Examples
+    ######################################################################
+  
     EXEC [Perfstats]. [action].[StartOrResumeIndexRebuild] @database_name ='Unitrac', @index_name = 'PK_INTERACTION_HISTORY', @table_name = 'INTERACTION_HISTORY', @WhatIF=1, @minutes =1
     
     
@@ -34,10 +32,35 @@ BEGIN
     
     EXEC [Perfstats]. [action].[StartOrResumeIndexRebuild] @database_name ='Unitrac', @index_name = 'IDX_IH_RELATE_ID', @table_name = 'Interaction_History', @WhatIF=0
     */
+	    IF( @Debug = 0 ) SET NOCOUNT ON;
+    SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED;
+    /*
+    ######################################################################
+		Declarations
+    ######################################################################
+    */
+	DECLARE @version NVARCHAR(128);
+    DECLARE @SQLCMD NVARCHAR(MAX);
+    DECLARE @startTime DATETIME;
+    DECLARE @endTime DATETIME;
+    DECLARE @duration INT = 0;  -- Default to 0
+    DECLARE @status NVARCHAR(50) = 'Failure'; -- Default to Failure
+
     -- Log the start time
     SET @startTime = GETDATE();
 
-    -- Check if instance is RDS
+	/*
+    ######################################################################
+					    Is this an RDS instance ?
+    ######################################################################
+    */
+	DECLARE @IsRDS int
+    DECLARE @IsRDSsql nVARCHAR(MAX) = 'USE MSDB; SELECT @IsRDS = count(name) FROM sys.objects WHERE object_id = OBJECT_ID(N''dbo.rds_backup_database'') AND type in (N''P'', N''PC'')'
+            
+    EXEC sp_executesql @IsRDSsql, N'@IsRDS int out', @IsRDS OUT;  
+
+    IF( @Debug = 1 ) PRINT 'Instance IsRDS: '+ convert(char(1), @IsRDS)
+
     IF EXISTS (SELECT 1 FROM sys.databases WHERE name = 'rdsadmin')
     BEGIN
         PRINT 'RDS instance detected. Operation cannot proceed.';
@@ -47,7 +70,11 @@ BEGIN
         RETURN;
     END
 
-    -- Check for SQL version compatibility
+	/*
+    ######################################################################
+					    Check for SQL version compatibility
+    ######################################################################
+    */
     SELECT @version = CONVERT(NVARCHAR, SERVERPROPERTY('ProductVersion'));
 
     IF @database_name IS NULL OR @index_name IS NULL OR @table_name IS NULL OR @database_name = '' OR @index_name = '' OR @table_name = ''
@@ -63,7 +90,11 @@ BEGIN
         END
         ELSE
         BEGIN
-            -- Construct the dynamic SQL
+	/*
+    ######################################################################
+					    Construct the dynamic SQL
+    ######################################################################
+    */
             SET @SQLCMD = '
                 USE [' + @database_name + '];
 
@@ -90,8 +121,11 @@ BEGIN
                     PRINT ''Error occurred: '' + @ErrorMessage + ''. Severity: '' + CAST(@ErrorSeverity AS NVARCHAR) + ''. State: '' + CAST(@ErrorState AS NVARCHAR);
                 END CATCH;
             ';
-
-            -- Execute the dynamic SQL and pass the status variable
+	/*
+    ######################################################################
+			Execute the dynamic SQL and pass the status variable
+    ######################################################################
+    */
             IF @WhatIf = 0
             BEGIN
                 EXEC sp_executesql 
@@ -105,12 +139,18 @@ BEGIN
             END;
         END
     END
-
-    -- Log the end time and calculate duration
+	/*
+    ######################################################################
+			Log the end time and calculate duration
+    ######################################################################
+    */
     SET @endTime = GETDATE();
     SET @duration = ISNULL(DATEDIFF(MINUTE, @startTime, @endTime), 0); -- Set duration to 0 if DATEDIFF returns NULL
-
-    -- Insert log data
+	/*
+    ######################################################################
+			 Insert log data
+    ######################################################################
+    */
     INSERT INTO [Perfstats].[dbo].[IndexRebuildLog] (DatabaseName, TableName, IndexName, ExecutionDate, DurationMinutes, [Status],[User])
     VALUES (UPPER(@database_name),UPPER(@table_name), UPPER(@index_name), @startTime, @duration, @status, (SELECT SYSTEM_USER));
 END;

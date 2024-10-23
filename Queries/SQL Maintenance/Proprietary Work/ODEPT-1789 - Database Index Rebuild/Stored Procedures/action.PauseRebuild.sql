@@ -22,17 +22,33 @@ ALTER PROCEDURE [action].[PauseRebuild] (@database_name SYSNAME = NULL,
                                           @WhatIf        INT = 1,
                                           @Force         INT =1)
 AS
-    DECLARE @SQLCMD NVARCHAR(MAX)
-    /*
 
+    /*
+    ######################################################################
+		Examples
+    ######################################################################
 	  EXEC [Perfstats]. [action].[PauseRebuild] @database_name ='Unitrac', @index_name = 'IDX_IH_RELATE_ID', @table_name = 'INTERACTION_HISTORY',@WhatIf=0
 
     EXEC [Perfstats]. [action].[PauseRebuild] @database_name ='Unitrac', @index_name = 'IDX_IH_RELATE_ID', @table_name = 'INTERACTION_HISTORY',@Force=0
 
 	    EXEC [Perfstats]. [action].[PauseRebuild] @database_name ='Unitrac', @index_name = 'IDX_IH_RELATE_ID', @table_name = 'INTERACTION_HISTORY',@Force=0,@WhatIf=0
     */
+
+
+    /*
+    ######################################################################
+		Declarations
+    ######################################################################
+    */
+	    DECLARE @SQLCMD NVARCHAR(MAX)
+
+
   BEGIN
-      /* Content of stored procedure */
+    /*
+    ######################################################################
+					    Missing Variable - Failure
+    ######################################################################
+    */
       IF @database_name IS NULL
           OR @index_name IS NULL
           OR @table_name IS NULL
@@ -46,7 +62,12 @@ AS
         END
       ELSE
         BEGIN
--- Construct dynamic SQL for pausing the index and error handling
+
+    /*
+    ######################################################################
+		Construct dynamic SQL for pausing the index and error handling
+    ######################################################################
+    */
 SELECT @sqlcmd = 'USE [' + @database_name + ']; ' 
               + 'BEGIN TRY ' 
               + '    ALTER INDEX [' + @index_name + '] ON [dbo].[' + @table_name + '] PAUSE; ' 
@@ -70,7 +91,11 @@ SELECT @sqlcmd = 'USE [' + @database_name + ']; '
 
       IF @Force = 0
         BEGIN
--- Construct dynamic SQL for aborting the index operation and error handling
+    /*
+    ######################################################################
+		Construct dynamic SQL for aborting the index and error handling
+    ######################################################################
+    */
 SELECT @sqlcmd = 'USE [' + @database_name + ']; ' 
               + 'BEGIN TRY ' 
               + '    ALTER INDEX [' + @index_name + '] ON [dbo].[' + @table_name + '] ABORT; ' 
