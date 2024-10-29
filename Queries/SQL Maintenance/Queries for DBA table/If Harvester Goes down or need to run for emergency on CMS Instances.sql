@@ -185,8 +185,8 @@ ELSE
         2,
         N'';
   END
-
 IF Object_id(N'tempdb..#LRT') IS NOT NULL
+
   DROP TABLE #LRT
 
 CREATE TABLE #LRT
@@ -253,29 +253,37 @@ SELECT *
 FROM   #SpaceDrive
 where [Free Space %] <= 5
 
-  SELECT  * 
+SELECT *
 FROM   #DatafileSize
-WHERE [MAX Growth MB]  NOT IN ('Unlimited', '2 TB')
-AND CASE WHEN TYPE NOT IN ('LOG', 'ROWS') THEN (CAST (REPLACE([MAX Growth MB], 'MB','') AS INT)+1) ELSE CAST (REPLACE([MAX Growth MB], 'MB','') AS INT) END<= CONVERT(INT,ABS([CurrentSizeMB])) 
-AND DatabaseName <> 'tempdb'
-AND TYPE in ('ROWS','LOG')
+WHERE  [MAX Growth MB] NOT IN ( 'Unlimited', '2 TB' )
+       AND CASE
+             WHEN TYPE NOT IN ( 'LOG', 'ROWS' ) THEN ( Cast (Replace([MAX Growth MB], 'MB', '') AS INT)
+                                                       + 1 )
+             ELSE Cast (Replace([MAX Growth MB], 'MB', '') AS INT)
+           END < CONVERT(INT, Abs([CurrentSizeMB]))
+       AND DatabaseName <> 'tempdb'
+       AND TYPE IN ( 'ROWS', 'LOG' )
 UNION
-SELECT * 
+SELECT  *
 FROM   #DatafileSize
-WHERE [MAX Growth MB]  NOT IN ('Unlimited', '2 TB')
-AND CASE WHEN TYPE NOT IN ('LOG', 'ROWS') THEN (CAST (REPLACE([MAX Growth MB], 'MB','') AS INT)+1) ELSE CAST (REPLACE([MAX Growth MB], 'MB','') AS INT) END<= CONVERT(INT,ABS([CurrentSizeMB]))
-AND  [Free Space %] <= 5
-AND TYPE in ('ROWS','LOG')
+WHERE  [MAX Growth MB] NOT IN ( 'Unlimited', '2 TB' )
+       AND CASE
+             WHEN TYPE NOT IN ( 'LOG', 'ROWS' ) THEN ( Cast (Replace([MAX Growth MB], 'MB', '') AS INT)
+                                                       + 1 )
+             ELSE Cast (Replace([MAX Growth MB], 'MB', '') AS INT)
+           END <= CONVERT(INT, Abs([CurrentSizeMB]))
+       AND [Free Space %] <= 5
+       AND TYPE IN ( 'ROWS', 'LOG' )
 ORDER  BY [MAX Growth MB] ASC,
-          [Free Space %] ASC 
+          [Free Space %] ASC
 		  
 		  
-select * from #LRT L
-join [DBA].[info].[Instance] I on I.SQLServerName=L.ServerName
-where TotalElapsedTime_min > 120  AND ServerEnvironment IN ('PRD','PROD') 
+SELECT *
+FROM   #LRT L
+WHERE  L.TotalElapsedTime_min > 120
 
 SELECT ServerEnvironment, LogDate,
-       ProcessInfo,
+       ProcessInfo,	
        LogText
 FROM   #IOWarningResults L
 cross apply [DBA].[info].[Instance] I 

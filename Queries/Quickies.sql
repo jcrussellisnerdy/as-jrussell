@@ -29,3 +29,8 @@ EXEC [PerfStats]. [dbo].[CaptureAGLagStats] @DryRun = 1
 
 
 --EXEC DBA.DBO.SP_WHOISACTIVE  @get_task_info =2,@get_plans =2 ,  @get_avg_time=1;
+
+
+
+
+

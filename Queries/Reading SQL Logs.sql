@@ -106,7 +106,7 @@ SELECT
 
  ProcessInfo, LogText
 FROM   #IOWarningResults
-WHERE ProcessInfo not in ('Logon','Backup')
+--WHERE ProcessInfo not in ('Logon','Backup')
 order by logdate desc 
 
 

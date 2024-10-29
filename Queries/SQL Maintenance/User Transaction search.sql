@@ -27,7 +27,8 @@ FROM fn_dblog (NULL,NULL)
 INNER JOIN(SELECT [Transaction ID] AS tid
 FROM fn_dblog(NULL,NULL)
 WHERE [Transaction Name] LIKE 'DROPOBJ%')fd ON [Transaction ID] = fd.tid
-
+AND
+	(SELECT SUSER_SNAME ([Transaction SID])) is not null
 
 
 
