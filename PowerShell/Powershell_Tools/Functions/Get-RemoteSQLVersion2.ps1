@@ -17,25 +17,7 @@
     # Script block to execute remotely
     $scriptBlock = {
         param ($instanceName, $commonPaths, $fileName)
-        
-        # Function to get SQL Server version using sqlcmd
-        function Get-SQLVersionFromSQLCMD {
-            param ($serverInstance)
-            
-            $query = "SELECT @@VERSION;"
-            
-            try {
-                # Execute SQLCMD and capture the result
-                $result = sqlcmd -S $serverInstance -Q $query -h -1
-                if ($result) {
-                    return $result
-                } else {
-                    return "Unable to retrieve version"
-                }
-            } catch {
-                return "SQLCMD execution failed"
-            }
-        }
+
 
         # Loop through each path and search for the file
         foreach ($path in $commonPaths) {
@@ -43,9 +25,7 @@
                 $files = Get-ChildItem -Path $path -Recurse -Filter $fileName -ErrorAction SilentlyContinue
                 if ($files) {
                     foreach ($file in $files) {
-                        # Get SQL Server version for the instance
-                        $sqlVersion = Get-SQLVersionFromSQLCMD -serverInstance $instanceName
-                        "$($file.FullName) - SQL Version: $sqlVersion"
+                        "$($file.FullName) "
                     }
                 }
             }
@@ -57,4 +37,4 @@
 }
 
 # Example usage
- Get-RemoteSQLVersion -remoteServer "UTQA-UTL1" -instanceName "SQLInstanceName"
+ Get-RemoteSQLVersion -remoteServer "UTSTAGE-UTL1" -instanceName "SQLInstanceName"

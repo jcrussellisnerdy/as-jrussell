@@ -1,6 +1,17 @@
 USE msdb;
 GO
 
+
+DECLARE @job_name nvarchar(255) = 'Report: UniTrac Escrow Report'
+
+
+IF EXISTS (select * from sys.databases where name = 'rdsadmin') 
+BEGIN 
+EXEC msdb.dbo.sp_help_job @job_name = @job_name
+
+END 
+ELSE
+BEGIN 
 SELECT 
   j.name AS Job_Name,
   jh.run_date AS Run_Date,
@@ -21,12 +32,6 @@ SELECT
   END AS Run_Status
 FROM msdb.dbo.sysjobs j
 INNER JOIN msdb.dbo.sysjobhistory jh ON j.job_id = jh.job_id
-where jh.run_status not in  (1,2,3,4) 
-and run_date >= '20240625' 
-and   jh.step_name <> '(Job outcome)'
-AND   j.name NOT LIKE 'dba%'
-AND   j.name NOT LIKE 'pERFMON%'
-AND   j.name NOT LIKE 'OLA%'
-AND   j.name NOT LIKE 'HDTStorag%'
+where j.name = @job_name
 ORDER BY j.name, jh.run_date DESC;
-GO
+END 

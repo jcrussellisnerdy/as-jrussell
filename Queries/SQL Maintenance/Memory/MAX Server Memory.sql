@@ -88,7 +88,7 @@ SELECT -- @PhyMemoryMB AS PhyMemoryMB,
 
      --   @CurrMaxMemMB AS CurrMaxMemMB,
 
-        @CurrMaxMemMB/1024 AS CurrMaxMemGB,
+   --     @CurrMaxMemMB/1024 AS CurrMaxMemGB,
 
        (@PhyMemoryMB -  @CurrMaxMemMB)/1024 AS [ActualMemAllocatedOSGB],
 

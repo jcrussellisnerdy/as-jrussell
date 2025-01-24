@@ -1,8 +1,8 @@
 DECLARE @sqlcmd VARCHAR(max)
 DECLARE @Location NVARCHAR(25) = '' --ON-PREM, EC2, RDS
-DECLARE @Application NVARCHAR(100) = 'iqq'
+DECLARE @Application NVARCHAR(100) = ''
 DECLARE @DBName NVARCHAR(50) = ''
-DECLARE @ServerEnvironment VARCHAR(10) = 'prd' ---DEV, TST, STG,ADMIN, PRD
+DECLARE @ServerEnvironment VARCHAR(10) = '' ---DEV, TST, STG,ADMIN, PRD
 DECLARE @Machine NVARCHAR(100) = '' --ServerName
 DECLARE @SQLServername VARCHAR(100) ='' --SQL Instance Name
 DECLARE @DB INT = 0 --- 1 is enabled to give exact name of @DBNAME else will give the all the names that have @DBNAME and names that are like it
@@ -35,7 +35,7 @@ IF @SQLServername <> ''
 				   ELSE SQLServerName
 				   END
 				   END
-				   		 ORDER BY [Connection String] ASC
+				   	
 			--select top 1 * 
 	FROM   [InventoryDWH].[inv].[Instance] I
 				   JOIN [InventoryDWH].[inv].[Database] D
@@ -47,8 +47,11 @@ IF @SQLServername <> ''
 			OR MACHINENAME = '''
                        + @SQLServername + ''')
 			 AND ServerStatus <> ''DOWN''
+			 	   AND DatabaseName='''
+                       + @DBName
+                       + ''' 
 			 AND State = ''ONLINE''
-			 ORDER BY [Connection String] ASC
+			
 			 '
 
       IF @DryRun = 0

@@ -1,6 +1,6 @@
 DECLARE @sqlcmd       VARCHAR(max),
         @Factor       VARCHAR(4) ='.250', --a factor to be applied to the target size for every time DBCC SHRINKFILE is called.
-        @DatabaseName VARCHAR(100) ='UiPathInsights'-- Database Name
+        @DatabaseName VARCHAR(100) =''-- Database Name
         ,
         @logicalname  NVARCHAR(100)  --if this blank it pull from below. If there are multiple files on DB you want to use this
         ,

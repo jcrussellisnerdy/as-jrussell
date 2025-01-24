@@ -3,10 +3,11 @@ DECLARE @sqlcmd       VARCHAR(max),
         @StartDate    VARCHAR(20) = '',
         @EndDate      VARCHAR(20),
         @Type         VARCHAR(1) = 'D',
-        @DBNAME       VARCHAR(50) = '',
-        @Max          INT = 0,
-        @Verbose      INT = 0,
-        @WhatIF       INT = 1
+        @DBNAME       VARCHAR(125) = '',
+        @NotBackedup  VARCHAR(125),
+        @Max          INT = 1,
+        @Verbose      INT = 1,
+        @WhatIF       INT = 0
 
 IF Object_id(N'tempdb..#LastBackup') IS NOT NULL
   DROP TABLE #LastBackup
@@ -89,7 +90,8 @@ AND  msdb.dbo.backupset.database_name = '''
                        + @DatabaseName
                        + '''
 AND  msdb.dbo.backupset.backup_finish_date BETWEEN  '''
-                       + @StartDate + ''' AND ''' + @EndDate + '''
+                       + @StartDate + ''' AND ''' + @EndDate
+                       + '''
 GROUP BY 
    msdb.dbo.backupset.database_name  , msdb.dbo.backupset.type, msdb.dbo.backupmediafamily.physical_device_name,  LEFT(
         SUBSTRING(
@@ -100,10 +102,7 @@ GROUP BY
         LEN(physical_device_name) - CHARINDEX(''.'', REVERSE(physical_device_name)) + 1
     )
 ORDER BY  
-  MAX(msdb.dbo.backupset.backup_finish_date) DESC
-  
-
-  '
+  MAX(msdb.dbo.backupset.backup_finish_date) DESC'
 
       IF @WhatIF = 1
         BEGIN
@@ -124,13 +123,58 @@ ORDER BY
       WHERE  DatabaseName = @databaseName
   END
 
+-- Check for databases not backed up within the time frame
+DECLARE @NotBackedUpCount INT;
+
+SELECT @NotBackedUpCount = Count(*)
+FROM   sys.databases D
+       LEFT JOIN #LastBackup LB
+              ON D.name = LB.DatabaseName
+WHERE  D.database_id > 4 -- Exclude system databases
+       AND ( LB.last_db_backup_date IS NULL
+              OR LB.last_db_backup_date < @StartDate );
+
+SELECT @NotBackedup = D.name
+FROM   sys.databases D
+       LEFT JOIN #LastBackup LB
+              ON D.name = LB.DatabaseName
+WHERE  D.database_id > 4
+       AND ( LB.last_db_backup_date IS NULL
+              OR LB.last_db_backup_date < @StartDate );
+
+IF @Type = 'D'
+BEGIN
+IF @NotBackedUpCount > 0  
+  BEGIN
+      PRINT 'Databases not backed up within the specified time frame: '
+            + @NotBackedup;
+  END
+ELSE
+  BEGIN
+      PRINT 'All databases backed up in a good time frame.';
+  END;
+END 
+
 IF @Max = 0
+   AND @WhatIF = 0
   BEGIN
       SELECT DatabaseName,
-             Max([Last backup Date]) [Last backup Date]
-      FROM   #tmp
+             Max([last_db_backup_date]) [Last backup Date]
+      FROM   #LastBackup
+      WHERE  DatabaseName LIKE '%' + @DBNAME + '%'
       GROUP  BY DatabaseName
       ORDER  BY [Last backup Date] DESC
+  END
+ELSE IF @Max = 0
+   AND @WhatIF = 1
+  BEGIN
+      PRINT ( ' SELECT DatabaseName,
+             Max([last_db_backup_date]) [Last backup Date]
+      FROM   #LastBackup
+	  WHERE  DatabaseName LIKE ''%' + @DBNAME
+              + '%''
+      GROUP  BY DatabaseName
+      ORDER  BY [Last backup Date] DESC' )
   END
 ELSE
   BEGIN

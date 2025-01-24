@@ -3,9 +3,10 @@ FROM sys.databases AS d
 
 USE [master]
 GO
+
 SELECT * FROM sys.certificates
 
-
+select @@SERVERNAME
 SELECT * FROM sys.symmetric_keys WHERE symmetric_key_id = 101
 
 USE [master]
@@ -27,7 +28,7 @@ GO
 BACKUP MASTER KEY TO FILE = 'E:\EncryptionKey\exportedmasterkey'   
     ENCRYPTION BY PASSWORD = '';   
 GO
-*/
+
 
 --Creation of Cert
 USE master;
@@ -60,7 +61,7 @@ TO FILE = 'E:\EncryptionKey\ds_sqltest_14_master_TDE_Certificate.cer'
 WITH PRIVATE KEY (file='E:\EncryptionKey\ds_sqltest_14_master_TDE_Certificate.pvk',
 ENCRYPTION BY PASSWORD='');
 
-
+*/
 
 
 --Turn on Encryption (if more than one database; do one at a time) 

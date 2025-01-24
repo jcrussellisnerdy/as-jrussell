@@ -12,6 +12,7 @@ IF @username <> ''
       FROM   dba.info.AuditLogin A
       WHERE  Username LIKE '%' + @username + '%'
              AND ClientHostName LIKE '%' + @ClientHostName + '%'
+             AND DatabaseName LIKE '%' + @DBName + '%'
       ORDER  BY TimeStampUTC DESC
   END
 ELSE IF @DBName <> ''

@@ -1,12 +1,11 @@
 DECLARE @sqlcmd VARCHAR(MAX)
 DECLARE @DatabaseName SYSNAME 
 DECLARE @Name VARCHAR(100) =''
-DECLARE @ObjectName VARCHAR(100)= 'OperatorEmail'
+DECLARE @ObjectName VARCHAR(100)= 'Q'
 DECLARE @DryRun INT = 0
 
 
 
-EXEC [DBA].[deploy].[SetDatabaseMail] @DryRun = 0, @recipient = 'joseph.russell@alliedsolutions.net',  @Debug =1
 -- Create a temporary table to store the combined results
 IF OBJECT_ID(N'tempdb..#CombinedResults') IS NOT NULL
   DROP TABLE #CombinedResults

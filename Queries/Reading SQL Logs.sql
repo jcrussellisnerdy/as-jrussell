@@ -105,8 +105,10 @@ SELECT
   FORMAT(LogDate, 'dddd, MMMM dd, yyyy hh:mm tt'),
 
  ProcessInfo, LogText
+--SELECT  LogText, COUNT(*)
 FROM   #IOWarningResults
 --WHERE ProcessInfo not in ('Logon','Backup')
+--GROUP BY LogText 
 order by logdate desc 
 
 

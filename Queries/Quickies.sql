@@ -9,6 +9,9 @@ EXEC [HDTStorage].[archive].[CreateStorageSchema] @WhatIf = 1, @Debug =1
 SELECT * FROM [PerfStats].[utag].[AGLAgStats]
 WHERE CURRENT_DT >= CAST(GETDATE()-7 AS DATE)
 order by current_dt desc
+
+
+      EXEC [PerfStats].[dbo].[CaptureErrorLogFile] @WhatIF= 0 
 */
 select SQLServerName from dba.info.Instance
 /*Shows server information*/ 
@@ -29,8 +32,6 @@ EXEC [PerfStats]. [dbo].[CaptureAGLagStats] @DryRun = 1
 
 
 --EXEC DBA.DBO.SP_WHOISACTIVE  @get_task_info =2,@get_plans =2 ,  @get_avg_time=1;
-
-
 
 
 
