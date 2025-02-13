@@ -27,11 +27,10 @@ EXEC [PerfStats].[dbo].[CaptureDriveUsage] @WhatIf = 1
 /*Shows all the linked servers*/ 
 EXEC [DBA].[info].[getLinkedServer] @DryRun = 1
 /*Shows the AG information*/ 
-EXEC [PerfStats]. [dbo].[CaptureAGLagStats] @DryRun = 1
-
-
+EXEC [PerfStats]. [dbo].[CaptureAGLagStats] @WhatIf = 1
 
 --EXEC DBA.DBO.SP_WHOISACTIVE  @get_task_info =2,@get_plans =2 ,  @get_avg_time=1;
 
+--EXEC master.dbo.sp_who3
 
 

@@ -5,8 +5,8 @@ DECLARE @sqlcmd       VARCHAR(max),
         @Type         VARCHAR(1) = 'D',
         @DBNAME       VARCHAR(125) = '',
         @NotBackedup  VARCHAR(125),
-        @Max          INT = 1,
-        @Verbose      INT = 1,
+        @Max          INT = 0,
+        @Verbose      INT = 0,
         @WhatIF       INT = 0
 
 IF Object_id(N'tempdb..#LastBackup') IS NOT NULL
@@ -24,15 +24,31 @@ CREATE TABLE #LastBackup
   );
 
 /* 
+
+	Backup type. Can be:
+
+D = Database
+I = Differential database
+L = Log
+F = File or filegroup
+G =Differential file
+P = Partial
+Q = Differential partial
+
+Can be NULL.
+
+
+
 -- In a world the DBA maintenance tables doesn't exist this can be used. 
 INSERT INTO #TempDatabases (DatabaseName, IsProcessed)
 SELECT name, 0 -- SELECT *
 FROM   sys.databases
 ORDER  BY database_id
 */
-IF @StartDate IS NULL
-    OR @StartDate = ''
-  SET @StartDate = Getdate() - 7
+--IF @StartDate IS NULL
+--    OR @StartDate = ''
+
+
 
 IF @EndDate IS NULL
     OR @EndDate = ''
@@ -67,8 +83,24 @@ WHILE EXISTS(SELECT *
       FROM   #TempDatabases
       WHERE  IsProcessed = 0
 
+
       -- Prepare SQL Statement
+
       SELECT @sqlcmd = '	
+
+	    DECLARE  @StartDate    VARCHAR(20), @NotBackedUpCount INT;
+
+  SELECT @StartDate=
+  CASE
+    WHEN Monday = ''DIFF'' THEN Getdate() -7
+    WHEN Monday = ''FULL'' THEN Getdate() -1
+    ELSE Getdate() -1                        
+  END
+FROM dba.[backup].Schedule
+where DatabaseName ='''
+                       + @DatabaseName
+                       + '''
+
 SELECT  
    CONVERT(CHAR(100), SERVERPROPERTY(''Servername'')) AS Server, msdb..backupset.type,
    msdb.dbo.backupset.database_name,  
@@ -89,8 +121,7 @@ WHERE msdb..backupset.type = ''' + @Type
 AND  msdb.dbo.backupset.database_name = '''
                        + @DatabaseName
                        + '''
-AND  msdb.dbo.backupset.backup_finish_date BETWEEN  '''
-                       + @StartDate + ''' AND ''' + @EndDate
+AND  msdb.dbo.backupset.backup_finish_date BETWEEN  @StartDate AND ''' + @EndDate
                        + '''
 GROUP BY 
    msdb.dbo.backupset.database_name  , msdb.dbo.backupset.type, msdb.dbo.backupmediafamily.physical_device_name,  LEFT(
@@ -103,6 +134,18 @@ GROUP BY
     )
 ORDER BY  
   MAX(msdb.dbo.backupset.backup_finish_date) DESC'
+
+  DECLARE @NotBackedUpCount INT;
+
+  SELECT @StartDate=
+  CASE
+    WHEN Monday = 'DIFF' THEN Getdate() -7
+    WHEN Monday = 'FULL' THEN Getdate() -1
+    ELSE Getdate() -1                        
+  END
+  --SELECT *
+FROM dba.[backup].Schedule
+where DatabaseName IN (SELECT DatabaseName from #TempDatabases) 
 
       IF @WhatIF = 1
         BEGIN
@@ -124,36 +167,54 @@ ORDER BY
   END
 
 -- Check for databases not backed up within the time frame
-DECLARE @NotBackedUpCount INT;
+DECLARE @Temp TABLE (Name NVARCHAR(100));
+
 
 SELECT @NotBackedUpCount = Count(*)
+--select LB.last_db_backup_date , *
 FROM   sys.databases D
+JOIN DBA.[backup].Schedule S ON S.DatabaseName = D.name
        LEFT JOIN #LastBackup LB
               ON D.name = LB.DatabaseName
 WHERE  D.database_id > 4 -- Exclude system databases
-       AND ( LB.last_db_backup_date IS NULL
-              OR LB.last_db_backup_date < @StartDate );
+    AND d.name not in ('HDTSTORAGE', 'DBA', 'PERFSTATS')   AND replica_id IS NULL
+	AND LB.last_db_backup_date<=  CASE
+    WHEN s.Monday = 'DIFF' THEN Getdate() -7
+    WHEN S.Monday = 'FULL' THEN Getdate() -1
+    ELSE Getdate() -1                        
+  END
+   OR LB.last_db_backup_date is null 
 
-SELECT @NotBackedup = D.name
+INSERT INTO @Temp (Name) 
+SELECT D.name
+--SELECT	Monday,LB.last_db_backup_date , CASE  WHEN s.Monday = 'DIFF' THEN Getdate() -7    WHEN S.Monday = 'FULL' THEN Getdate() -1    ELSE Getdate() -1     END,D.Name
+--select *
 FROM   sys.databases D
+JOIN DBA.[backup].Schedule S ON S.DatabaseName = D.name
        LEFT JOIN #LastBackup LB
               ON D.name = LB.DatabaseName
-WHERE  D.database_id > 4
-       AND ( LB.last_db_backup_date IS NULL
-              OR LB.last_db_backup_date < @StartDate );
+WHERE  D.database_id > 4 -- Exclude system databases
+    AND d.name not in ('HDTSTORAGE', 'DBA', 'PERFSTATS')   AND replica_id IS NULL
+	AND LB.last_db_backup_date <=  CASE
+    WHEN s.Monday = 'DIFF' THEN Getdate() -7
+    WHEN S.Monday = 'FULL' THEN Getdate() -1
+    ELSE Getdate() -1                        
+  END OR LB.last_db_backup_date is null 
 
 IF @Type = 'D'
+  BEGIN
+WHILE EXISTS (SELECT 1 FROM @Temp)
 BEGIN
-IF @NotBackedUpCount > 0  
-  BEGIN
-      PRINT 'Databases not backed up within the specified time frame: '
-            + @NotBackedup;
-  END
-ELSE
-  BEGIN
-      PRINT 'All databases backed up in a good time frame.';
-  END;
-END 
+    SELECT TOP 1 @NotBackedup = Name FROM @Temp;
+         PRINT 'Databases not backed up within the specified time frame: '+ @NotBackedup;
+    DELETE FROM @Temp WHERE Name = @NotBackedup;
+END
+        END
+      ELSE
+        BEGIN
+            PRINT 'All databases backed up in a good time frame.';
+        END;
+
 
 IF @Max = 0
    AND @WhatIF = 0
@@ -246,3 +307,5 @@ ELSE
               END
         END
   END 
+
+

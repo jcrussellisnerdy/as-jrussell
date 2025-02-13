@@ -2,21 +2,17 @@ DECLARE @DatabaseName NVARCHAR(128) = '' -- Change this to your database
 DECLARE @BackupPath NVARCHAR(255) = '' -- Full Path with extension is fine
 DECLARE @FileName NVARCHAR(500)
 DECLARE @FileIndex INT = 1
-DECLARE @FileCount INT 
 DECLARE @VerifyCommand NVARCHAR(MAX)
 DECLARE @DryRun INT =0 -- Change to 0 to execute, anything else prints the commands
 
-IF @FileCount is null  Set @FileCount = 8
 -- Remove any existing "_X.bak" from @BackupPath
-IF @BackupPath LIKE '%_[0-9].bak' OR @BackupPath LIKE '%_.bak'  
-BEGIN  
-    SET @BackupPath = LEFT(@BackupPath, LEN(@BackupPath) - CHARINDEX('_', REVERSE(@BackupPath)))  
-END
+IF @BackupPath LIKE '%_[0-9].bak'
+    SET @BackupPath = LEFT(@BackupPath, LEN(@BackupPath) - CHARINDEX('_', REVERSE(@BackupPath)))
 
 -- Store 8 backup file paths
 DECLARE @BackupFiles TABLE (ID INT IDENTITY(1,1), FilePath NVARCHAR(500))
 
-WHILE @FileIndex <= @FileCount
+WHILE @FileIndex <= 8
 BEGIN
     SET @FileName = @BackupPath + '_'+ CAST(@FileIndex AS NVARCHAR(10)) + '.bak'
     INSERT INTO @BackupFiles (FilePath) VALUES (@FileName)
