@@ -1,10 +1,10 @@
-DECLARE @DatabaseName NVARCHAR(128) = '' -- Change this to your database
-DECLARE @BackupPath NVARCHAR(255) = '' -- Full Path with extension is fine
+DECLARE @DatabaseName NVARCHAR(128) = 'UNITRAC_MORTGAGE' -- Change this to your database
+DECLARE @BackupPath NVARCHAR(255) = '\\dbbkprdawstgy01.as.local\alss3sqlsprd01\sqlsprdawcl02$UTAG\UNITRAC_MORTGAGE\FULL\sqlsprdawcl02$UTAG_UniTrac_Maintenance_FULL_20250213_002222_1.bak' -- Full Path with extension is fine
 DECLARE @FileName NVARCHAR(500)
 DECLARE @FileIndex INT = 1
 DECLARE @FileCount INT 
 DECLARE @VerifyCommand NVARCHAR(MAX)
-DECLARE @DryRun INT =0 -- Change to 0 to execute, anything else prints the commands
+DECLARE @DryRun INT =1 -- Change to 0 to execute, anything else prints the commands
 
 IF @FileCount is null  Set @FileCount = 8
 -- Remove any existing "_X.bak" from @BackupPath

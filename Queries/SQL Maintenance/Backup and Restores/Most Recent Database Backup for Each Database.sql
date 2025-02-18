@@ -1,3 +1,11 @@
+IF NOT EXISTS (SELECT *
+           FROM   sys.databases
+           WHERE  name = 'rdsadmin')
+		   BEGIN 
+
+
+
+
 DECLARE @sqlcmd       VARCHAR(max),
         @DatabaseName SYSNAME,
         @StartDate    VARCHAR(20) = '',
@@ -5,9 +13,9 @@ DECLARE @sqlcmd       VARCHAR(max),
         @Type         VARCHAR(1) = 'D',
         @DBNAME       VARCHAR(125) = '',
         @NotBackedup  VARCHAR(125),
-        @Max          INT = 0,
-        @Verbose      INT = 0,
-        @WhatIF       INT = 0
+        @Max          INT = 1, --0 gives just the most recent backup for each DB, Else on the message side also tells you what DBs failed in a timely manner.
+        @Verbose      INT = 0, --Max 1 and Verbose 1 will give the network path and filename
+        @WhatIF       INT = 0 --0 Excutes the query else pr
 
 IF Object_id(N'tempdb..#LastBackup') IS NOT NULL
   DROP TABLE #LastBackup
@@ -94,7 +102,7 @@ WHILE EXISTS(SELECT *
   CASE
     WHEN Monday = ''DIFF'' THEN Getdate() -7
     WHEN Monday = ''FULL'' THEN Getdate() -1
-    ELSE Getdate() -1                        
+    ELSE Getdate() -1                       
   END
 FROM dba.[backup].Schedule
 where DatabaseName ='''
@@ -309,3 +317,4 @@ ELSE
   END 
 
 
+END

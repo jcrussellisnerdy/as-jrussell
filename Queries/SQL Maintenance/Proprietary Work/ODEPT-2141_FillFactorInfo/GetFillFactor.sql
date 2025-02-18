@@ -15,20 +15,46 @@ IF NOT EXISTS (SELECT *
 GO
 
 /* Alter Stored Procedure */
-ALTER PROCEDURE [GetFillFactor] (@FillFactor   NVARCHAR(100) = 80,
-                                 @DatabaseName VARCHAR(100)='',
-                                 @TableName    VARCHAR(255) ='',
-                                 @IndexName    VARCHAR(255) ='',
-                                 @SchemaName   VARCHAR(255) ='',
-                                 @DryRun       BIT = 1-- If 0, applies changes
+ALTER PROCEDURE [dbo].[GetFillFactor] (@FillFactor   NVARCHAR(100) = 0,
+                                       @DatabaseName VARCHAR(100)='',
+                                       @TableName    VARCHAR(255) ='',
+                                       @IndexName    VARCHAR(255) ='',
+                                       @SchemaName   VARCHAR(255) ='',
+                                       @Verbose      BIT = 1,-- If 0, applies changes
+                                       @DryRun       BIT = 1-- If 0, applies changes
 )
 AS
   BEGIN
+      /*
+      ######################################################################
+        Examples
+      ######################################################################
+      
+      EXEC PerfStats.DBO.[GetFillFactor] @Dryrun  =1, @Verbose = 0 ---SHOWS CODE 
+      EXEC PerfStats.DBO.[GetFillFactor] @Dryrun  =1, @Verbose = 1 ---RUN DATA
+      EXEC PerfStats.DBO.[GetFillFactor] @Dryrun  =0---MERGE
+      EXEC PerfStats.DBO.[GetFillFactor] @Dryrun  =0, @Verbose = 0 ---SHOWS ONLY THE MERGE CODE
+      EXEC PerfStats.DBO.[GetFillFactor] @FillFactor=80 --Fill Factor Variable only works by itself 
+      EXEC PerfStats.DBO.[GetFillFactor] @DatabaseName='DBA', @TableName = 'auditScanBatchData' ,@IndexName ='PK__auditSca__6031F9F82F426E0D',@SchemaName='dbo'
+	  EXEC PerfStats.DBO.[GetFillFactor] @DatabaseName='DBA', @TableName = 'auditScanBatchData' ,@IndexName ='PK__auditSca__6031F9F82F426E0D',@SchemaName='dbo', @Verbose = 0 
+      
+      */
       SET NOCOUNT ON;
 
-      DECLARE @DbName SYSNAME,
-              @SQL    NVARCHAR(MAX);
+      /*
+      ######################################################################
+      Make Declares
+      ######################################################################
+      */
+      DECLARE @DbName   SYSNAME,
+              @SQL      NVARCHAR(MAX),
+              @SQLMerge NVARCHAR(4000)
 
+  /*
+  ######################################################################
+  Create and Populate Temp Table
+  ######################################################################
+  */
       -- Temp table to store index details
       CREATE TABLE #FillFactorCheck
         (
@@ -36,7 +62,8 @@ AS
            SchemaName        SYSNAME,
            TableName         SYSNAME,
            IndexName         SYSNAME,
-           CurrentFillFactor INT
+           CurrentFillFactor INT,
+           CurrentTime       DATETIME DEFAULT Getdate()
         );
 
       -- Temp table to store databases
@@ -46,6 +73,11 @@ AS
            IsProcessed  BIT
         );
 
+      /*
+      ######################################################################
+      Data Gathering
+      ######################################################################
+      */
       INSERT INTO #Databases
                   (DatabaseName,
                    IsProcessed)
@@ -53,15 +85,12 @@ AS
              0
       FROM   sys.databases
       WHERE  state_desc = 'ONLINE'
-             AND database_id > 4; -- Excludes system DBs
-
-      -- Loop through databases
-      -- Loop through the remaining databases
+             AND database_id > 4; -- Change to use DBA.[info].[Database]
+      --Loop
       WHILE EXISTS(SELECT *
                    FROM   #Databases
                    WHERE  IsProcessed = 0)
         BEGIN
-            -- Fetch 1 DatabaseName where IsProcessed = 0
             SELECT TOP 1 @DbName = DatabaseName
             FROM   #Databases
             WHERE  IsProcessed = 0
@@ -75,20 +104,27 @@ AS
                 DB_NAME() AS DatabaseName,
                 SCHEMA_NAME(o.schema_id) AS SchemaName,
                 OBJECT_NAME(i.object_id) AS TableName,
-                   ISNULL(i.name, ''NoIndexName'') AS IndexName,
-                i.fill_factor
+                   ISNULL(i.name, ''NoIndex'') AS IndexName,
+				   i.fill_factor, GETDATE()
             FROM sys.indexes i
             JOIN sys.objects o ON i.object_id = o.object_id
             WHERE o.type IN (''U'', ''V'');';
 
-            -- You know what we do here if it's 1 then it'll give us code and 0 executes it
-            IF @DryRun = 0
+            /*
+            ######################################################################
+            Processing
+            ######################################################################
+            */
+            IF @Verbose <> 0
               BEGIN
                   EXEC ( @SQL)
               END
             ELSE
               BEGIN
-                  PRINT ( @SQL )
+                  IF @DryRun <> 0
+                    BEGIN
+                        PRINT ( @SQL )
+                    END
               END
 
             UPDATE #Databases
@@ -96,56 +132,123 @@ AS
             WHERE  DatabaseName = @DbName
         END;
 
+      /*
+      ######################################################################
+      Merge
+      ######################################################################
+      */
+      SET @SQLMerge ='
+ MERGE [PerfStats].[FillFactor] AS Target
+USING #FillFactorCheck AS Source
+ON Target.DatabaseName = Source.DatabaseName
+   AND Target.SchemaName = Source.SchemaName
+   AND Target.TableName = Source.TableName
+   AND Target.IndexName = Source.IndexName
+WHEN MATCHED THEN UPDATE SET
+    Target.CurrentFillFactor = Source.CurrentFillFactor,
+    Target.CurrentTime = Source.CurrentTime  -- Update CurrentTime if needed
+WHEN NOT MATCHED THEN INSERT (
+    DatabaseName,
+    SchemaName,
+    TableName,
+    IndexName,
+    CurrentFillFactor,
+    CurrentTime
+)
+VALUES (
+    Source.DatabaseName,
+    Source.SchemaName,
+    Source.TableName,
+    Source.IndexName,
+    Source.CurrentFillFactor,
+    Source.CurrentTime
+);
+
+
+'
+
       IF @DryRun = 0
         BEGIN
-            BEGIN
-                -- Rest of the code for filtering and displaying data from #FillFactorCheck (same as before)
-                IF @TableName <> ''
-                  BEGIN
-                      SELECT *
-                      FROM   #FillFactorCheck
-                      WHERE  [TableName] = @TableName
-                             AND DatabaseName LIKE '%' + @DatabaseName + '%'
-                             AND [IndexName] LIKE '%' + @IndexName + '%'
-                             AND [SchemaName] LIKE '%' + @SchemaName + '%'
-                  END
-                ELSE IF @DatabaseName <> ''
-                  BEGIN
-                      SELECT *
-                      FROM   #FillFactorCheck
-                      WHERE  DatabaseName = @DatabaseName
-                             AND [TableName] LIKE '%' + @TableName + '%'
-                             AND [IndexName] LIKE '%' + @IndexName + '%'
-                             AND [SchemaName] LIKE '%' + @SchemaName + '%'
-                  END
-                ELSE IF @SchemaName <> ''
-                  BEGIN
-                      SELECT *
-                      FROM   #FillFactorCheck
-                      WHERE  [SchemaName] = @SchemaName
-                             AND [TableName] LIKE '%' + @TableName + '%'
-                             AND [IndexName] LIKE '%' + @IndexName + '%'
-                             AND DatabaseName LIKE '%' + @DatabaseName + '%'
-                  END
-                ELSE IF @IndexName <> ''
-                  BEGIN
-                      SELECT *
-                      FROM   #FillFactorCheck
-                      WHERE  [IndexName] = @IndexName
-                             AND DatabaseName LIKE '%' + @DatabaseName + '%'
-                             AND [TableName] LIKE '%' + @TableName + '%'
-                             AND [SchemaName] LIKE '%' + @SchemaName + '%'
-                  END
-                ELSE
-                  BEGIN
-                      SELECT *
-                      FROM   #FillFactorCheck
-                  END
-            END
+            IF @Verbose <> 0
+              BEGIN
+                  EXEC (@SQLMerge)
+				  PRINT 'Data Inserted or Updated'
+              END
+            ELSE
+              /*
+              ######################################################################
+              Merge P
+              ######################################################################
+              */
+              BEGIN
+                  PRINT ( @SQLMerge )
+              END
         END
+      /*
+      ######################################################################
+      Display information
+      ######################################################################
+      */
       ELSE
         BEGIN
-            PRINT ( '      IF Object_id(N''tempdb..#FillFactorCheck'') IS NOT NULL
+		IF @Verbose <> 0
+		BEGIN
+          IF @DatabaseName <> ''
+              BEGIN
+                  SELECT *
+                  FROM   #FillFactorCheck
+                  WHERE  DatabaseName = @DatabaseName
+                         AND [TableName] LIKE '%' + @TableName + '%'
+                         AND [IndexName] LIKE '%' + @IndexName + '%'
+                         AND [SchemaName] LIKE '%' + @SchemaName + '%'
+              END 
+            ELSE IF @SchemaName <> ''
+              BEGIN
+                  SELECT *
+                  FROM   #FillFactorCheck
+                  WHERE  [SchemaName] = @SchemaName
+                         AND [TableName] LIKE '%' + @TableName + '%'
+                         AND [IndexName] LIKE '%' + @IndexName + '%'
+                         AND DatabaseName LIKE '%' + @DatabaseName + '%'
+              END 
+            ELSE IF @TableName <> ''
+              BEGIN
+                  SELECT *
+                  FROM   #FillFactorCheck
+                  WHERE  [TableName] = @TableName
+                         AND DatabaseName LIKE '%' + @DatabaseName + '%'
+                         AND [IndexName] LIKE '%' + @IndexName + '%'
+                         AND [SchemaName] LIKE '%' + @SchemaName + '%'
+              END
+            ELSE IF @IndexName <> ''
+              BEGIN
+                  SELECT *
+                  FROM   #FillFactorCheck
+                  WHERE  [IndexName] = @IndexName
+                         AND DatabaseName LIKE '%' + @DatabaseName + '%'
+                         AND [TableName] LIKE '%' + @TableName + '%'
+                         AND [SchemaName] LIKE '%' + @SchemaName + '%'
+              END
+            ELSE IF @FillFactor <> ''
+              BEGIN
+                  SELECT *
+                  FROM   #FillFactorCheck
+                  WHERE  [CurrentFillFactor] >= @FillFactor
+              END
+            ELSE IF @IndexName = ''
+               AND @DatabaseName = ''
+               AND @SchemaName = ''
+               AND @TableName = ''
+               AND @FillFactor = ''
+               AND @Verbose <> 0
+              BEGIN
+                  SELECT *
+                  FROM   #FillFactorCheck
+              END
+END
+           ELSE  
+              BEGIN
+                  PRINT ( '      IF Object_id(N''tempdb..#FillFactorCheck'') IS NOT NULL
         DROP TABLE #FillFactorCheck;
       CREATE TABLE #FillFactorCheck
         (
@@ -157,55 +260,87 @@ AS
         )
      INSERT INTO #FillFactorCheck' )
 
-            PRINT ( @SQL );
-
-                           IF @TableName <> ''
-                  BEGIN
-                    PRINT ('  SELECT *
+                  IF @DatabaseName <> ''
+                    BEGIN
+                        PRINT ( '  SELECT *
                       FROM   #FillFactorCheck
-                      WHERE  [TableName] = '''+@TableName+'''
-                             AND DatabaseName LIKE ''%' + @DatabaseName + '%''
-                             AND [IndexName] LIKE ''%' + @IndexName + '%''
-                             AND [SchemaName] LIKE ''%' + @SchemaName + '%''')
-                  END
-                ELSE IF @DatabaseName <> ''
-                  BEGIN
-                    PRINT ('  SELECT *
+                      WHERE  [DatabaseName] = '''
+                                + @DatabaseName
+                                + '''
+                             AND TableName  LIKE ''%'
+                                + @TableName
+                                + '%''
+                             AND [IndexName] LIKE ''%'
+                                + @IndexName
+                                + '%''
+                             AND [SchemaName] LIKE ''%'
+                                + @SchemaName + '%''' )
+                    END
+                  ELSE IF @SchemaName <> ''
+                    BEGIN
+                        PRINT ( '  SELECT *
                       FROM   #FillFactorCheck
-                      WHERE  [TDatabaseName] = '''+@DatabaseName+'''
-							 AND [TableName] LIKE ''%' + @TableName + '%''
-                             AND [IndexName] LIKE ''%' + @IndexName + '%''
-                             AND [SchemaName] LIKE ''%' + @SchemaName + '%''')
-
-           
-                  END
-                ELSE IF @SchemaName <> ''
-                  BEGIN
-                    PRINT ('  SELECT *
+                      WHERE  [SchemaName] = '''
+                                + @SchemaName
+                                + '''
+                             AND DatabaseName LIKE ''%'
+                                + @DatabaseName
+                                + '%''
+                             AND [IndexName] LIKE ''%'
+                                + @IndexName
+                                + '%''
+                             AND [TableName] LIKE ''%'
+                                + @TableName + '%''' )
+                    END
+                  ELSE  IF @TableName <> ''
+                    BEGIN
+                        PRINT ( '  SELECT *
                       FROM   #FillFactorCheck
-                      WHERE  [SchemaName] = '''+@SchemaName+'''
-                             AND DatabaseName LIKE ''%' + @DatabaseName + '%''
-                             AND [IndexName] LIKE ''%' + @IndexName + '%''
-                             AND [TableName] LIKE ''%' + @TableName + '%''')
-                  END
-                ELSE IF @IndexName <> ''
-                  BEGIN
-                    PRINT ('  SELECT *
+                      WHERE  [TableName] = '''
+                                + @TableName
+                                + '''
+                             AND DatabaseName LIKE ''%'
+                                + @DatabaseName
+                                + '%''
+                             AND [IndexName] LIKE ''%'
+                                + @IndexName
+                                + '%''
+                             AND [SchemaName] LIKE ''%'
+                                + @SchemaName + '%''' )
+                    END
+                  ELSE  IF @IndexName <> ''
+                    BEGIN
+                        PRINT ( '  SELECT *
                       FROM   #FillFactorCheck
-                      WHERE  [IndexName] = '''+@IndexName+'''
-                             AND DatabaseName LIKE ''%' + @DatabaseName + '%''
-                             AND [TableName] LIKE ''%' + @TableName + '%''
-                             AND [SchemaName] LIKE ''%' + @SchemaName + '%''')
-                  END
-                ELSE
-                  BEGIN
-                   PRINT ('   SELECT *
-                      FROM   #FillFactorCheck ')
-                  END
-        END
+                      WHERE  [IndexName] = '''
+                                + @IndexName
+                                + '''
+                             AND DatabaseName LIKE ''%'
+                                + @DatabaseName
+                                + '%''
+                             AND [TableName] LIKE ''%'
+                                + @TableName
+                                + '%''
+                             AND [SchemaName] LIKE ''%'
+                                + @SchemaName + '%''' )
+                    END
+					                  ELSE IF @FillFactor <> '' 
+                    BEGIN
+                        PRINT ( '  SELECT *
+                      FROM   #FillFactorCheck
+                           WHERE  [CurrentFillFactor] = '''
+                                + @FillFactor +'''')
+                    END
+                  ELSE IF @IndexName = ''
+                     AND @DatabaseName = ''
+                     AND @SchemaName = ''
+                     AND @TableName = ''
+                     AND @FillFactor = '0'
+                    BEGIN
+                        PRINT ( '   SELECT *
+                      FROM   #FillFactorCheck ' )
+                    END
+              END
 
-
-		---Put Merge here
-
-
-  END; 
+  END
+  END
