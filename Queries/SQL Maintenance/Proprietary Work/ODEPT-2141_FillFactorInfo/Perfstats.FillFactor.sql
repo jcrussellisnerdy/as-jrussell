@@ -4,7 +4,7 @@ GO
 SET ANSI_NULLS ON;
 SET QUOTED_IDENTIFIER ON;
 
-/* Creat table if it does not exist */
+
 IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[PerfStats].[FillFactor]') AND type in (N'U'))
 BEGIN
   CREATE TABLE [PerfStats].[FillFactor](

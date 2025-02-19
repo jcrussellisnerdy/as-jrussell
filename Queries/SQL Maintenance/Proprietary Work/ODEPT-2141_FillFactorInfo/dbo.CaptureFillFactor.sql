@@ -4,24 +4,24 @@ GO
 
 IF NOT EXISTS (SELECT *
                FROM   sys.objects
-               WHERE  object_id = Object_id(N'[dbo].[GetFillFactor]')
+               WHERE  object_id = Object_id(N'[dbo].[CaptureFillFactor]')
                       AND type IN ( N'P', N'PC' ))
   BEGIN
       /* Create Empty Stored Procedure */
       EXEC dbo.Sp_executesql
-        @statement = N'CREATE PROCEDURE [dbo].[GetFillFactor] AS RETURN 0;';
+        @statement = N'CREATE PROCEDURE [dbo].[CaptureFillFactor] AS RETURN 0;';
   END;
 
 GO
 
 /* Alter Stored Procedure */
-ALTER PROCEDURE [dbo].[GetFillFactor] (@FillFactor   NVARCHAR(100) = 0,
+ALTER PROCEDURE [dbo].[CaptureFillFactor] (@FillFactor   NVARCHAR(100) = 0,
                                        @DatabaseName VARCHAR(100)='',
                                        @TableName    VARCHAR(255) ='',
                                        @IndexName    VARCHAR(255) ='',
                                        @SchemaName   VARCHAR(255) ='',
                                        @Verbose      BIT = 1,-- If 0, applies changes
-                                       @DryRun       BIT = 1-- If 0, applies changes
+                                       @WhatIf       BIT = 1-- If 0, applies changes
 )
 AS
   BEGIN
@@ -30,13 +30,13 @@ AS
         Examples
       ######################################################################
       
-      EXEC PerfStats.DBO.[GetFillFactor] @Dryrun  =1, @Verbose = 0 ---SHOWS CODE 
-      EXEC PerfStats.DBO.[GetFillFactor] @Dryrun  =1, @Verbose = 1 ---RUN DATA
-      EXEC PerfStats.DBO.[GetFillFactor] @Dryrun  =0---MERGE
-      EXEC PerfStats.DBO.[GetFillFactor] @Dryrun  =0, @Verbose = 0 ---SHOWS ONLY THE MERGE CODE
-      EXEC PerfStats.DBO.[GetFillFactor] @FillFactor=80 --Fill Factor Variable only works by itself 
-      EXEC PerfStats.DBO.[GetFillFactor] @DatabaseName='DBA', @TableName = 'auditScanBatchData' ,@IndexName ='PK__auditSca__6031F9F82F426E0D',@SchemaName='dbo'
-	  EXEC PerfStats.DBO.[GetFillFactor] @DatabaseName='DBA', @TableName = 'auditScanBatchData' ,@IndexName ='PK__auditSca__6031F9F82F426E0D',@SchemaName='dbo', @Verbose = 0 
+      EXEC PerfStats.DBO.[CaptureFillFactor] @WhatIf  =1, @Verbose = 0 ---SHOWS CODE 
+      EXEC PerfStats.DBO.[CaptureFillFactor] @WhatIf  =1, @Verbose = 1 ---RUN DATA
+      EXEC PerfStats.DBO.[CaptureFillFactor] @WhatIf  =0---MERGE
+      EXEC PerfStats.DBO.[CaptureFillFactor] @WhatIf  =0, @Verbose = 0 ---SHOWS ONLY THE MERGE CODE
+      EXEC PerfStats.DBO.[CaptureFillFactor] @FillFactor=80 --Fill Factor Variable only works by itself 
+      EXEC PerfStats.DBO.[CaptureFillFactor] @DatabaseName='DBA', @TableName = 'auditScanBatchData' ,@IndexName ='PK__auditSca__6031F9F82F426E0D',@SchemaName='dbo'
+	  EXEC PerfStats.DBO.[CaptureFillFactor] @DatabaseName='DBA', @TableName = 'auditScanBatchData' ,@IndexName ='PK__auditSca__6031F9F82F426E0D',@SchemaName='dbo', @Verbose = 0 
       
       */
       SET NOCOUNT ON;
@@ -81,11 +81,11 @@ AS
       INSERT INTO #Databases
                   (DatabaseName,
                    IsProcessed)
-      SELECT name,
+      SELECT DatabaseName,
              0
-      FROM   sys.databases
-      WHERE  state_desc = 'ONLINE'
-             AND database_id > 4; -- Change to use DBA.[info].[Database]
+      FROM DBA.INFO.[Database]
+      WHERE  STATE = 'ONLINE'
+             AND DatabaseType = 'USER';
       --Loop
       WHILE EXISTS(SELECT *
                    FROM   #Databases
@@ -121,7 +121,7 @@ AS
               END
             ELSE
               BEGIN
-                  IF @DryRun <> 0
+                  IF @WhatIf <> 0
                     BEGIN
                         PRINT ( @SQL )
                     END
@@ -137,37 +137,37 @@ AS
       Merge
       ######################################################################
       */
-      SET @SQLMerge ='
- MERGE [PerfStats].[FillFactor] AS Target
-USING #FillFactorCheck AS Source
-ON Target.DatabaseName = Source.DatabaseName
-   AND Target.SchemaName = Source.SchemaName
-   AND Target.TableName = Source.TableName
-   AND Target.IndexName = Source.IndexName
-WHEN MATCHED THEN UPDATE SET
-    Target.CurrentFillFactor = Source.CurrentFillFactor,
-    Target.CurrentTime = Source.CurrentTime  -- Update CurrentTime if needed
-WHEN NOT MATCHED THEN INSERT (
-    DatabaseName,
-    SchemaName,
-    TableName,
-    IndexName,
-    CurrentFillFactor,
-    CurrentTime
-)
-VALUES (
-    Source.DatabaseName,
-    Source.SchemaName,
-    Source.TableName,
-    Source.IndexName,
-    Source.CurrentFillFactor,
-    Source.CurrentTime
-);
+				  SET @SQLMerge ='
+			 MERGE [PerfStats].[FillFactor] AS Target
+			USING #FillFactorCheck AS Source
+			ON Target.DatabaseName = Source.DatabaseName
+			   AND Target.SchemaName = Source.SchemaName
+			   AND Target.TableName = Source.TableName
+			   AND Target.IndexName = Source.IndexName
+			WHEN MATCHED THEN UPDATE SET
+				Target.CurrentFillFactor = Source.CurrentFillFactor,
+				Target.CurrentTime = Source.CurrentTime  -- Update CurrentTime if needed
+			WHEN NOT MATCHED THEN INSERT (
+				DatabaseName,
+				SchemaName,
+				TableName,
+				IndexName,
+				CurrentFillFactor,
+				CurrentTime
+			)
+			VALUES (
+				Source.DatabaseName,
+				Source.SchemaName,
+				Source.TableName,
+				Source.IndexName,
+				Source.CurrentFillFactor,
+				Source.CurrentTime
+			);
 
 
-'
+			'
 
-      IF @DryRun = 0
+      IF @WhatIf = 0
         BEGIN
             IF @Verbose <> 0
               BEGIN
