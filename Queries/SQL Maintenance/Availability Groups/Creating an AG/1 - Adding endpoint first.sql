@@ -1,5 +1,5 @@
 --Adding endpoint first
-
+/*
 IF NOT EXISTS (SELECT * from sys.endpoints WHERE [name] = 'Hadr_endpoint')
     BEGIN
         CREATE ENDPOINT [Hadr_endpoint]
@@ -26,9 +26,9 @@ BEGIN
     ALTER ENDPOINT [Hadr_endpoint] STATE = STARTED
 END
  
-
+ */
 
 
 -- SELECT servicename, process_id, startup_type_desc, status_desc,
---last_startup_time, service_account
---FROM sys.dm_server_services WITH (NOLOCK) OPTION (RECOMPILE);
+last_startup_time, service_account
+FROM sys.dm_server_services WITH (NOLOCK) OPTION (RECOMPILE);

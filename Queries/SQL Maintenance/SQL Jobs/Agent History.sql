@@ -2,7 +2,13 @@ USE msdb;
 GO
 
 
-DECLARE @job_name nvarchar(255) = 'Report: UniTrac Escrow Report'
+DECLARE @job_name nvarchar(255) = 'HDTStorage-PurgeTableMaintenance'
+DECLARE @Date NVARCHAR(10)  = ''
+
+IF (@Date = '' OR @Date IS NULL)
+BEGIN
+SELECT @Date = FORMAT(GETDATE(), 'yyyyMMdd')
+END 
 
 
 IF EXISTS (select * from sys.databases where name = 'rdsadmin') 
@@ -33,5 +39,6 @@ SELECT
 FROM msdb.dbo.sysjobs j
 INNER JOIN msdb.dbo.sysjobhistory jh ON j.job_id = jh.job_id
 where j.name = @job_name
+AND Run_Date >= @Date 
 ORDER BY j.name, jh.run_date DESC;
 END 
