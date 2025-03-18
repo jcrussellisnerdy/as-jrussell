@@ -13,6 +13,7 @@ DECLARE @sqlcmd       VARCHAR(max),
         @Type         VARCHAR(1) = 'D',
         @DBNAME       VARCHAR(125) = '',
         @NotBackedup  VARCHAR(125),
+		@Env VARCHAR(10),
         @Max          INT = 1, --0 gives just the most recent backup for each DB, Else on the message side also tells you what DBs failed in a timely manner.
         @Verbose      INT = 0, --Max 1 and Verbose 1 will give the network path and filename
         @WhatIF       INT = 0 --0 Excutes the query else pr
@@ -57,6 +58,7 @@ ORDER  BY database_id
 --    OR @StartDate = ''
 
 
+SELECT @env = ServerEnvironment from dba.info.Instance
 
 IF @EndDate IS NULL
     OR @EndDate = ''
@@ -96,8 +98,10 @@ WHILE EXISTS(SELECT *
 
       SELECT @sqlcmd = '	
 
-	    DECLARE  @StartDate    VARCHAR(20), @NotBackedUpCount INT;
+	    DECLARE  @StartDate    VARCHAR(20),@Env VARCHAR(10), @NotBackedUpCount INT;
 
+
+		
   SELECT @StartDate=
   CASE
     WHEN Monday = ''DIFF'' THEN Getdate() -7
@@ -142,6 +146,8 @@ GROUP BY
     )
 ORDER BY  
   MAX(msdb.dbo.backupset.backup_finish_date) DESC'
+
+
 
   DECLARE @NotBackedUpCount INT;
 
@@ -214,7 +220,7 @@ IF @Type = 'D'
 WHILE EXISTS (SELECT 1 FROM @Temp)
 BEGIN
     SELECT TOP 1 @NotBackedup = Name FROM @Temp;
-         PRINT 'Databases not backed up within the specified time frame: '+ @NotBackedup+ ' this database is on instance named: ' +@@ServerName ;
+         PRINT 'Databases not backed up within the specified time frame: '+ @NotBackedup+ ' this database is on instance named: ' +@@ServerName + ' which is in the  '+ @Env+' environment.';
     DELETE FROM @Temp WHERE Name = @NotBackedup;
 END
         END
@@ -318,3 +324,4 @@ ELSE
 
 
 END
+
