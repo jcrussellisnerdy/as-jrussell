@@ -336,35 +336,5 @@ ORDER BY FORMAT(LogDate, 'yyyy-MM-dd hh:mm:ss tt') DESC
 	
 
 
-	SELECT ag.name, ar.replica_server_name,  agd.synchronization_state_desc,*
-FROM sys.availability_groups ag
-JOIN sys.availability_replicas ar ON ag.group_id = ar.group_id
-JOIN sys.dm_hadr_database_replica_states agd ON ar.replica_id = agd.replica_id;
-
-
-
-
-
-
-SELECT replica_id, is_local, synchronization_health_desc
-FROM sys.dm_hadr_availability_replica_states;
-
---DECLARE @auth_mode INT;
-
---EXEC xp_instance_regread 
---    N'HKEY_LOCAL_MACHINE', 
---    N'Software\Microsoft\MSSQLServer\MSSQLServer', 
---    N'LoginMode', 
---    @auth_mode OUTPUT;
-
---SELECT 
---    CASE @auth_mode 
---        WHEN 1 THEN 'Windows Authentication'
---        WHEN 2 THEN 'SQL Server and Windows Authentication'
---        ELSE 'Unknown Authentication Mode'
---    END AS AuthenticationMode;
-
-
-
 
 
