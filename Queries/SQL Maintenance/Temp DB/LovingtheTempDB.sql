@@ -1,5 +1,11 @@
 USE tempdb
 
+
+
+
+DECLARE @Percentage DECIMAL(5, 2)
+DECLARE @Dryrun BIT = 1
+DECLARE @Verbose BIT = 1
 DECLARE @BASEPATH NVARCHAR(300)
 DECLARE @SQL_SCRIPT NVARCHAR(1000)
 DECLARE @CORES INT
@@ -8,9 +14,35 @@ DECLARE @SIZE INT
 DECLARE @GROWTH INT
 DECLARE @ISPERCENT INT
 DECLARE @LogFile NVARCHAR(10)
-DECLARE @Percentage DECIMAL(5, 2) = 0.20;
 DECLARE @ServerLocation NVARCHAR(10)
-DECLARE @Dryrun BIT = 1
+DECLARE @InstanceName NVARCHAR(255);
+DECLARE @InstanceLocation NVARCHAR(255);
+DECLARE @InstanceEnvironment NVARCHAR(255);
+DECLARE @CurrentLogFileSizeMB INT;
+DECLARE @StartingLogFileSizeMB INT;
+DECLARE @AvgStartingTempDataSizeMB INT;
+DECLARE @AvgCurrentTempDataSizeMB INT;
+DECLARE @TotalSizeGB DECIMAL(18, 2);
+DECLARE @DataFileNeeded NVARCHAR(500);
+DECLARE @UsableSpaceGB DECIMAL(18, 2);
+DECLARE @AmountPerDataFileGB DECIMAL(18, 2);
+DECLARE @LogFileAllocation NVARCHAR(50);
+
+
+IF @Percentage IS NULL
+    OR @Percentage = ''
+  BEGIN
+SELECT @Percentage = CASE
+                    WHEN ServerLocation = @ServerLocation
+                         AND ServerEnvironment NOT IN ( 'PRD', 'PROD', 'ADMIN', 'ADM' ) THEN '.20'
+                    WHEN ServerLocation = @ServerLocation
+                         AND ServerEnvironment IN ( 'PRD', 'PROD', 'ADMIN', 'ADM' ) THEN '.25'
+                    ELSE '.20'
+                  END
+--select *
+FROM   dba.info.Instance
+END 
+
 
 SELECT @LogFile = CASE
                     WHEN ServerLocation = @ServerLocation
@@ -79,7 +111,29 @@ WHERE  database_id = 2
 IF @ISPERCENT = 0
   SET @GROWTH = @GROWTH * 8
 
+IF Object_id('tempdb..#TempDBUsage', 'U') IS NOT NULL
+  DROP TABLE #TempDBUsage;
+
+CREATE TABLE #TempDBUsage
+  (
+     InstanceName              NVARCHAR(255),
+     InstanceLocation          NVARCHAR(255),
+     InstanceEnvironment       NVARCHAR(255),
+     CurrentLogFileSizeMB      INT,
+     StartingLogFileSizeMB     INT,
+     AvgStartingTempDataSizeMB INT,
+     AvgCurrentTempDataSizeMB  INT,
+     TotalSizeGB               DECIMAL(18, 2),
+     DataFileNeeded            NVARCHAR(500),
+     UsableSpaceForDriveGB     DECIMAL(18, 2),
+     AmountPerDatafileGB       DECIMAL(18, 2),
+     LogFileGB                 NVARCHAR(50)
+  );
+
+
+
 ---force this to only show for either just dryrun or just verbose if dryrun is 0 this isn't needed
+INSERT INTO #TempDBUsage
 SELECT Isnull(I.SQlServername, @@SERVERNAME)                                                                                                                                                                                                                             [InstanceName],
        Isnull(ServerLocation, 'Research')                                                                                                                                                                                                                                [InstanceLocation],
        Isnull(ServerEnvironment, 'Research')                                                                                                                                                                                                                             [InstanceEnvironment],
@@ -130,6 +184,65 @@ WHERE  Db_name(m.database_id) = 'tempdb'
        AND ( ( d.size * 8 ) / 1024 ) <= ( @LogFile * 1024 )
        AND ServerLocation = @ServerLocation
 
+SELECT @InstanceName = InstanceName,
+       @InstanceLocation = InstanceLocation,
+       @InstanceEnvironment = InstanceEnvironment,
+       @CurrentLogFileSizeMB = CurrentLogFileSizeMB,
+       @StartingLogFileSizeMB = StartingLogFileSizeMB,
+       @AvgStartingTempDataSizeMB = AvgStartingTempDataSizeMB,
+       @AvgCurrentTempDataSizeMB = AvgCurrentTempDataSizeMB,
+       @TotalSizeGB = TotalSizeGB,
+       @DataFileNeeded = DataFileNeeded,
+       @UsableSpaceGB = UsableSpaceForDriveGB,
+       @AmountPerDataFileGB = AmountPerDatafileGB,
+       @LogFileAllocation = LogFileGB
+FROM   #TempDBUsage;
+
+IF @CORES > @FILECOUNT
+
+
+      IF @Verbose = 0
+        BEGIN
+            SELECT *
+            FROM   #TempDBUsage
+        END
+      ELSE IF @DryRun <> 0
+        BEGIN
+            PRINT 'InstanceLocation: ' + @InstanceLocation;
+
+            PRINT 'InstanceEnvironment: '
+                  + @InstanceEnvironment;
+
+            PRINT 'CurrentLogFileSizeMB: '
+                  + Cast(@CurrentLogFileSizeMB AS NVARCHAR);
+
+            PRINT 'StartingLogFileSizeMB: '
+                  + Cast(@StartingLogFileSizeMB AS NVARCHAR);
+
+            PRINT 'AvgStartingTempDataSizeMB: '
+                  + Cast(@AvgStartingTempDataSizeMB AS NVARCHAR);
+
+            PRINT 'AvgCurrentTempDataSizeMB: '
+                  + Cast(@AvgCurrentTempDataSizeMB AS NVARCHAR);
+
+            PRINT 'Total Size (GB): '
+                  + Cast(@TotalSizeGB AS NVARCHAR);
+
+            PRINT 'Usable space for drive (GB): '
+                  + Cast(@UsableSpaceGB AS NVARCHAR);
+
+            PRINT 'Amount per datafile (GB): '
+                  + Cast(@AmountPerDataFileGB AS NVARCHAR);
+
+            PRINT 'Data File Needed: ' +    LTRIM(RTRIM(REPLACE(@DataFileNeeded, CHAR(10) + CHAR(13), ' ')));
+
+            PRINT 'LogFile Allocation: ' + @LogFileAllocation+
+			'
+			' 
+        END
+
+
+
 IF @CORES > @FILECOUNT
   BEGIN
       WHILE @CORES > @FILECOUNT
@@ -144,13 +257,13 @@ IF @CORES > @FILECOUNT
                               + Rtrim(Cast(@CORES AS NCHAR))
                               + ',
                                SIZE = '
-                              + Rtrim(Cast(@SIZE AS NCHAR))  ---need to populate the amount from query above
+                              + Rtrim(Cast(CAST(@UsableSpaceGB * 1024 AS INT) AS NCHAR)) 
                               + 'MB,
                                FILEGROWTH = '
                               + Rtrim(Cast(@GROWTH AS NCHAR))
 
             IF @ISPERCENT = 1
-              SET @SQL_SCRIPT = @SQL_SCRIPT + '%'
+              SET @SQL_SCRIPT =@SQL_SCRIPT + 'KB'
             ELSE
               SET @SQL_SCRIPT = @SQL_SCRIPT + 'KB'
 
@@ -164,25 +277,12 @@ IF @CORES > @FILECOUNT
             ELSE
               BEGIN
                   PRINT ( @SQL_SCRIPT )
-/*
-
-
-	      PRINT 'InstanceName: ' + @InstanceName;
-    PRINT 'InstanceLocation: ' + @InstanceLocation;
-    PRINT 'InstanceEnvironment: ' + @InstanceEnvironment;
-    PRINT 'CurrentLogFileSizeMB: ' + @CurrentLogFileSizeMB;
-    PRINT 'StartingLogFileSizeMB: ' + @StartingLogFileSizeMB;
-    PRINT 'AvgStartingTempDataSizeMB: ' + @AvgStartingTempDataSizeMB;
-    PRINT 'AvgCurrentTempDataSizeMB: ' + @AvgCurrentTempDataSizeMB;
-    PRINT 'Total Size (GB): ' + @TotalSizeGB;
-    PRINT 'Usable space for drive (GB): ' + @UsableSpaceGB;
-    PRINT 'Amount per datafile (GB): ' + @AmountPerDataFileGB;
-    PRINT 'Data File Needed: ' + @DataFileNeeded;
-    PRINT 'LogFile Allocation: ' + @LogFileAllocation;
-
-	*/
-
-			
               END
         END
+
   END 
+
+
+
+
+
