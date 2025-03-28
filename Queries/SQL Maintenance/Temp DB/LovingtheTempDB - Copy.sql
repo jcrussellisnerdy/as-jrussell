@@ -1,12 +1,14 @@
 USE DBA
 
+
+
 ---Variables that can be altered 
 DECLARE @Percentage DECIMAL(5, 2) =NULL
 DECLARE @Dryrun BIT = 0
-DECLARE @Verbose BIT = 1
+DECLARE @Verbose BIT = 0
+
+
 ----Embedded into Stored Proc
-DECLARE @CurrentFileSize NVARCHAR(10)
-DECLARE @CurrentLogSize NVARCHAR(10)
 DECLARE @ServerLocation NVARCHAR(10)
 DECLARE @LogFile NVARCHAR(10)
 DECLARE @CORES INT
@@ -15,7 +17,7 @@ DECLARE @FILECOUNT INT
 DECLARE @SIZE INT
 DECLARE @GROWTH INT
 DECLARE @ISPERCENT INT
-DECLARE @InstanceName NVARCHAR(255)
+DECLARE @InstanceName NVARCHAR(255);
 DECLARE @InstanceLocation NVARCHAR(255)
 DECLARE @InstanceEnvironment NVARCHAR(255)
 DECLARE @CurrentLogFileSizeMB INT
@@ -28,36 +30,23 @@ DECLARE @DataFileNeeded NVARCHAR(500)
 DECLARE @AmountPerDataFileGB DECIMAL(18, 2)
 DECLARE @LogFileAllocation NVARCHAR(50)
 DECLARE @SQL_SCRIPT NVARCHAR(1000)
-DECLARE @FileName NVARCHAR(255)
-DECLARE @PathFileName NVARCHAR(255);
 
-SELECT @CurrentFileSize = Max(( d.size * 8 ) / 1024)
---SELECT *
-FROM   sys.master_files AS m
-       JOIN tempdb.sys.database_files AS d
-         ON m.file_id = d.file_id
-WHERE  D.type = 0
 
-SELECT @CurrentLogSize = Max(( d.size * 8 ) / 1024)
---SELECT *
-FROM   sys.master_files AS m
-       JOIN tempdb.sys.database_files AS d
-         ON m.file_id = d.file_id
-WHERE  D.type = 1
 
 IF @Percentage IS NULL
     OR @Percentage = ''
   BEGIN
-      SELECT @Percentage = CASE
-                             WHEN ServerLocation = @ServerLocation
-                                  AND ServerEnvironment NOT IN ( 'PRD', 'PROD', 'ADMIN', 'ADM' ) THEN '.20'
-                             WHEN ServerLocation = @ServerLocation
-                                  AND ServerEnvironment IN ( 'PRD', 'PROD', 'ADMIN', 'ADM' ) THEN '.25'
-                             ELSE '.20'
-                           END
-      --select *
-      FROM   dba.info.Instance
-  END
+SELECT @Percentage = CASE
+                    WHEN ServerLocation = @ServerLocation
+                         AND ServerEnvironment NOT IN ( 'PRD', 'PROD', 'ADMIN', 'ADM' ) THEN '.20'
+                    WHEN ServerLocation = @ServerLocation
+                         AND ServerEnvironment IN ( 'PRD', 'PROD', 'ADMIN', 'ADM' ) THEN '.25'
+                    ELSE '.20'
+                  END
+--select *
+FROM   dba.info.Instance
+END 
+
 
 SELECT @LogFile = CASE
                     WHEN ServerLocation = @ServerLocation
@@ -145,6 +134,8 @@ CREATE TABLE #TempDBUsage
      LogFileGB                 NVARCHAR(50)
   );
 
+
+
 ---force this to only show for either just dryrun or just verbose if dryrun is 0 this isn't needed
 INSERT INTO #TempDBUsage
 SELECT Isnull(I.SQlServername, @@SERVERNAME)                                                                                                                                                                                                                             [InstanceName],
@@ -211,64 +202,54 @@ SELECT @InstanceName = InstanceName,
        @LogFileAllocation = LogFileGB
 FROM   #TempDBUsage;
 
-IF @CORES > @FILECOUNT
-    OR Cast(@AmountPerDataFileGB * 1024 AS INT) <> @CurrentFileSize
-    OR @CurrentLogSize <> @LogFileAllocation
-  IF @Verbose = 0
-     AND @Dryrun <> 0
-    BEGIN
-        SELECT *
-        FROM   #TempDBUsage
-    END
-  ELSE
-    BEGIN
-        PRINT 'InstanceLocation: ' + @InstanceLocation;
+IF @CORES > @FILECOUNT --- let's make this a few IFs to see if this will work.
 
-        PRINT 'InstanceEnvironment: '
-              + @InstanceEnvironment;
 
-        PRINT 'CurrentLogFileSizeMB: '
-              + Cast(@CurrentLogFileSizeMB AS NVARCHAR);
+      IF @Verbose = 0
+        BEGIN
+            SELECT *
+            FROM   #TempDBUsage
+        END
+      ELSE IF @DryRun <> 0
+        BEGIN
+            PRINT 'InstanceLocation: ' + @InstanceLocation;
 
-        PRINT 'StartingLogFileSizeMB: '
-              + Cast(@StartingLogFileSizeMB AS NVARCHAR);
+            PRINT 'InstanceEnvironment: '
+                  + @InstanceEnvironment;
 
-        PRINT 'AvgStartingTempDataSizeMB: '
-              + Cast(@AvgStartingTempDataSizeMB AS NVARCHAR);
+            PRINT 'CurrentLogFileSizeMB: '
+                  + Cast(@CurrentLogFileSizeMB AS NVARCHAR);
 
-        PRINT 'AvgCurrentTempDataSizeMB: '
-              + Cast(@AvgCurrentTempDataSizeMB AS NVARCHAR);
+            PRINT 'StartingLogFileSizeMB: '
+                  + Cast(@StartingLogFileSizeMB AS NVARCHAR);
 
-        PRINT 'Total Size (GB): '
-              + Cast(@TotalSizeGB AS NVARCHAR);
+            PRINT 'AvgStartingTempDataSizeMB: '
+                  + Cast(@AvgStartingTempDataSizeMB AS NVARCHAR);
 
-        PRINT 'Usable space for drive (GB): '
-              + Cast(@UsableSpaceGB AS NVARCHAR);
+            PRINT 'AvgCurrentTempDataSizeMB: '
+                  + Cast(@AvgCurrentTempDataSizeMB AS NVARCHAR);
 
-        PRINT 'Amount per datafile (GB): '
-              + Cast(@AmountPerDataFileGB AS NVARCHAR);
+            PRINT 'Total Size (GB): '
+                  + Cast(@TotalSizeGB AS NVARCHAR);
 
-        PRINT 'Data File Needed: '
-              + Ltrim(Rtrim(Replace(@DataFileNeeded, Char(10) + Char(13), ' ')));
+            PRINT 'Usable space for drive (GB): '
+                  + Cast(@UsableSpaceGB AS NVARCHAR);
 
-        PRINT 'LogFile Allocation: ' + @LogFileAllocation
-              + '
+            PRINT 'Amount per datafile (GB): '
+                  + Cast(@AmountPerDataFileGB AS NVARCHAR);
+
+            PRINT 'Data File Needed: ' +    LTRIM(RTRIM(REPLACE(@DataFileNeeded, CHAR(10) + CHAR(13), ' ')));
+
+            PRINT 'LogFile Allocation: ' + @LogFileAllocation+
 			'
-    END
+			' 
+        END
 
-IF Object_id(N'tempdb..#TempFileNames') IS NOT NULL
-  DROP TABLE #TempFileNames
 
-CREATE TABLE #TempFileNames
-  (
-     [Name]            NVARCHAR(100),
-     [TempLogFileName] NVARCHAR(255),
-     IsProcessed       BIT
-  )
-BEGIN TRY
-    IF @CORES > @FILECOUNT
-    BEGIN
-        WHILE @CORES > @FILECOUNT
+
+IF @CORES > @FILECOUNT
+  BEGIN
+      WHILE @CORES > @FILECOUNT
         BEGIN
             SET @SQL_SCRIPT = N'ALTER DATABASE tempdb
                 ADD FILE (
@@ -280,81 +261,7 @@ BEGIN TRY
                               + Rtrim(Cast(@CORES AS NCHAR))
                               + ',
                                SIZE = '
-                              + Rtrim(Cast(Cast(@UsableSpaceGB * 1024 AS INT) AS NCHAR))
-                              + 'MB,
-                               FILEGROWTH = '
-                              + Rtrim(Cast(@GROWTH AS NCHAR))
-
-            IF @ISPERCENT = 1
-                SET @SQL_SCRIPT = @SQL_SCRIPT + 'KB'
-            ELSE
-                SET @SQL_SCRIPT = @SQL_SCRIPT + 'KB'
-
-            SET @SQL_SCRIPT = @SQL_SCRIPT + ')'
-            SET @CORES = @CORES - 1
-
-            IF @DryRun = 0
-            BEGIN
-                -- EXEC (@SQL_SCRIPT)
-                PRINT 'SUCCESS: Files Successfully Created!  File named: tempdev' + Rtrim(Cast(@CORES AS NCHAR))
-            END
-            ELSE
-            BEGIN
-                PRINT (@SQL_SCRIPT)
-            END
-        END
-    END
-END TRY
-BEGIN CATCH
-    PRINT 'ERROR: ' + ERROR_MESSAGE()
-    PRINT 'Error Number: ' + CAST(ERROR_NUMBER() AS NVARCHAR)
-    PRINT 'Error Severity: ' + CAST(ERROR_SEVERITY() AS NVARCHAR)
-    PRINT 'Error State: ' + CAST(ERROR_STATE() AS NVARCHAR)
-    PRINT 'Error Line: ' + CAST(ERROR_LINE() AS NVARCHAR)
-    PRINT 'Procedure: ' + ISNULL(ERROR_PROCEDURE(), 'N/A')
-END CATCH
-
-BEGIN TRY
-IF Cast(@AmountPerDataFileGB * 1024 AS INT) <> @CurrentFileSize
-  BEGIN
-      INSERT INTO #TempFileNames
-                  ([Name],
-                   [TempLogFileName],
-                   IsProcessed)
-      SELECT name,
-             RIGHT(physical_name, Charindex('\', Reverse(physical_name)) - 1),
-             0
-      --SELECT *
-      FROM   sys.master_files AS m
-      WHERE  Db_name(m.database_id) = 'tempdb'
-             AND m.type = 0
-
-      SELECT @FileName = [name],
-             @PathFileName = [TempLogFileName]
-      FROM   #TempFileNames
-
-      WHILE EXISTS(SELECT *
-                   FROM   #TempFileNames
-                   WHERE  IsProcessed = 0)
-        BEGIN
-            SELECT TOP 1 @PathFileName = [TempLogFileName]
-            FROM   #TempFileNames
-            WHERE  IsProcessed = 0
-
-            SELECT TOP 1 @FileName = [name]
-            FROM   #TempFileNames
-            WHERE  IsProcessed = 0
-
-            SET @SQL_SCRIPT = N'ALTER DATABASE tempdb
-                MODIFY FILE (
-                               FILENAME = '''
-                              + @BASEPATH + @PathFileName
-                              + ''',
-                               NAME = '''
-                              + @FileName
-                              + ''',
-                               SIZE = '
-                              + Rtrim(Cast(Cast(@AmountPerDataFileGB * 1024 AS INT) AS NCHAR))
+                              + Rtrim(Cast(CAST(@UsableSpaceGB * 1024 AS INT) AS NCHAR)) 
                               + 'MB,
                                FILEGROWTH = '
                               + Rtrim(Cast(@GROWTH AS NCHAR))
@@ -369,104 +276,18 @@ IF Cast(@AmountPerDataFileGB * 1024 AS INT) <> @CurrentFileSize
 
             IF @DryRun = 0
               BEGIN
-                  --   EXEC (@SQL_SCRIPT)
-                  PRINT  'SUCCESS: Table File Modified for '+ @FileName 
+               --   EXEC (@SQL_SCRIPT)
+			   Print 'You made to the end of the game Mario thanks for saving the Princess!!!!'
               END
             ELSE
               BEGIN
                   PRINT ( @SQL_SCRIPT )
               END
-
-            UPDATE #TempFileNames
-            SET    IsProcessed = 1
-            WHERE  [TempLogFileName] = @PathFileName
         END
-  END
-  END TRY
-BEGIN CATCH
-    PRINT 'ERROR: ' + ERROR_MESSAGE()
-    PRINT 'Error Number: ' + CAST(ERROR_NUMBER() AS NVARCHAR)
-    PRINT 'Error Severity: ' + CAST(ERROR_SEVERITY() AS NVARCHAR)
-    PRINT 'Error State: ' + CAST(ERROR_STATE() AS NVARCHAR)
-    PRINT 'Error Line: ' + CAST(ERROR_LINE() AS NVARCHAR)
-    PRINT 'Procedure: ' + ISNULL(ERROR_PROCEDURE(), 'N/A')
-END CATCH
 
-
-BEGIN TRY
-IF @CurrentLogSize <> @LogFileAllocation
-  BEGIN
-      INSERT INTO #TempFileNames
-                  ([Name],
-                   [TempLogFileName],
-                   IsProcessed)
-      SELECT name,
-             RIGHT(physical_name, Charindex('\', Reverse(physical_name)) - 1),
-             0
-      --SELECT *
-      FROM   sys.master_files AS m
-      WHERE  Db_name(m.database_id) = 'tempdb'
-             AND m.type = 1
-
-      SELECT @FileName = [name],
-             @PathFileName = [TempLogFileName]
-      FROM   #TempFileNames
-
-      WHILE EXISTS(SELECT *
-                   FROM   #TempFileNames
-                   WHERE  IsProcessed = 0)
-        BEGIN
-            SELECT TOP 1 @PathFileName = [TempLogFileName]
-            FROM   #TempFileNames
-            WHERE  IsProcessed = 0
-
-            SELECT TOP 1 @FileName = [name]
-            FROM   #TempFileNames
-            WHERE  IsProcessed = 0
-
-            SET @SQL_SCRIPT = N'ALTER DATABASE tempdb
-                MODIFY FILE (
-                               FILENAME = '''
-                              + @BASEPATH + @PathFileName
-                              + ''',
-                               NAME = '''
-                              + @FileName
-                              + ''',
-                               SIZE = '
-                              + Rtrim(Cast(Cast(@LogFile * 1024 AS INT) AS NCHAR))
-                              + 'MB,
-                               FILEGROWTH = '
-                              + Rtrim(Cast(@GROWTH AS NCHAR))
-
-            IF @ISPERCENT = 1
-              SET @SQL_SCRIPT =@SQL_SCRIPT + 'KB'
-            ELSE
-              SET @SQL_SCRIPT = @SQL_SCRIPT + 'KB'
-
-            SET @SQL_SCRIPT = @SQL_SCRIPT + ')'
-            SET @CORES = @CORES - 1
-
-            IF @DryRun = 0
-              BEGIN
-                  --   EXEC (@SQL_SCRIPT)
-                    PRINT  'SUCCESS: Table File Modified for '+ @FileName 
-              END
-            ELSE
-              BEGIN
-                  PRINT ( @SQL_SCRIPT )
-              END
-
-            UPDATE #TempFileNames
-            SET    IsProcessed = 1
-            WHERE  [TempLogFileName] = @PathFileName
-        END
   END 
-  END TRY
-BEGIN CATCH
-    PRINT 'ERROR: ' + ERROR_MESSAGE()
-    PRINT 'Error Number: ' + CAST(ERROR_NUMBER() AS NVARCHAR)
-    PRINT 'Error Severity: ' + CAST(ERROR_SEVERITY() AS NVARCHAR)
-    PRINT 'Error State: ' + CAST(ERROR_STATE() AS NVARCHAR)
-    PRINT 'Error Line: ' + CAST(ERROR_LINE() AS NVARCHAR)
-    PRINT 'Procedure: ' + ISNULL(ERROR_PROCEDURE(), 'N/A')
-END CATCH
+
+
+
+
+
