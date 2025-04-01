@@ -109,7 +109,7 @@
              AND FreePct <= CASE
                               WHEN Path LIKE '%:\SQL\Data0%\Data0%'
                                    AND ServerEnvironment NOT IN ( '_DCOM', 'PRD', 'ADMIN' ) THEN '5'
-                              WHEN Path LIKE '%:\SQL\Data0%\Data0%' THEN '10'
+                              WHEN Path LIKE '%:\SQL\Data0%\Data0%' THEN '7'
                               WHEN MachineName IN ( 'WWW-DB-01\WWWSITECOREPROD' ) THEN '10'
                               WHEN MachineName IN ( 'APP-DEPLOY' )
                                    AND Path = 'E:\Data' THEN '3'

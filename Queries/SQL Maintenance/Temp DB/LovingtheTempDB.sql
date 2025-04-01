@@ -4,7 +4,7 @@ USE DBA
 DECLARE @Percentage  NVARCHAR(5)
 DECLARE @FileGrowth INT
 DECLARE @Dryrun BIT = 1
-DECLARE @Verbose BIT =0
+DECLARE @Verbose BIT =1
 DECLARE @Force BIT = 1
 ----Embedded into Stored Proc
 DECLARE @IsPercentEnabled NVARCHAR(3)
@@ -83,7 +83,7 @@ IF @FileGrowth IS NULL
   BEGIN
       SELECT @FileGrowth = CASE
                              WHEN ServerEnvironment NOT IN ( 'PRD', 'PROD', 'ADMIN', 'ADM' ) THEN '524288' --500 MB
-                             WHEN ServerEnvironment IN ( 'PRD', 'PROD', 'ADMIN', 'ADM' ) THEN '1024000' --1 GB
+                             WHEN ServerEnvironment IN ( 'PRD', 'PROD', 'ADMIN', 'ADM' ) THEN '1048576' --1 GB
                              ELSE '524288'
                            END
       --select *
@@ -241,10 +241,13 @@ FROM   #TempDBUsage;
 
       IF @Force = 0
         BEGIN
-            PRINT 'InstanceLocation: ' + @InstanceLocation;
+             PRINT 'InstanceLocation: ' + @InstanceLocation;
 
             PRINT 'InstanceEnvironment: '
                   + @InstanceEnvironment;
+
+            PRINT 'Data File Needed: '
+                  + Ltrim(Rtrim(Replace(@DataFileNeeded, Char(10) + Char(13), ' ')));
 
             PRINT 'Tempdb Percentage Enabled: '
                   + @IsPercentEnabled;
@@ -255,29 +258,29 @@ FROM   #TempDBUsage;
             PRINT 'StartingLogFileSizeMB: '
                   + Cast(@StartingLogFileSizeMB AS NVARCHAR);
 
-            PRINT 'AvgStartingTempDataSizeMB: '
+            PRINT 'StartingTempDataSizeMB: '
                   + Cast(@AvgStartingTempDataSizeMB AS NVARCHAR);
 
-            PRINT 'AvgCurrentTempDataSizeMB: '
-                  + Cast(@AvgCurrentTempDataSizeMB AS NVARCHAR);
+            PRINT 'LargestCurrentTempDataSizeMB: '
+                  + Cast(@CurrentFileSize AS NVARCHAR);
 
             PRINT 'Total Size of drive (GB): '
-                  + Cast(CAST (@TotalSizeGB AS INT) AS NVARCHAR);
+                  + Cast(Cast (@TotalSizeGB AS INT) AS NVARCHAR);
 
             PRINT 'Percentage of drive excluded from consumption: '
                   + Cast(Cast((Cast(@Percentage AS DECIMAL(5, 2))* 100) AS INT) AS NVARCHAR)
                   + '%';
 
             PRINT 'Usable space for drive (GB): '
-                  + Cast(CAST (@UsableSpaceGB AS INT) AS NVARCHAR);
+                  + Cast(Cast (@UsableSpaceGB AS INT) AS NVARCHAR);
+
+            PRINT 'Amount of file growth (GB): '
+                  + Cast(Cast(Cast(@FileGrowth AS INT)/1024.0/1024.0 AS DECIMAL (5, 2) ) AS NVARCHAR)
 
             PRINT 'Amount per datafile (GB): '
-                  + Cast(CAST (@AmountPerDataFileGB AS INT) AS NVARCHAR);
+                  + Cast(Cast (@AmountPerDataFileGB AS INT) AS NVARCHAR);
 
-            PRINT 'Data File Needed: '
-                  + Ltrim(Rtrim(Replace(@DataFileNeeded, Char(10) + Char(13), ' ')));
-
-            PRINT 'LogFile Allocation (GB): ' +  @Logfile
+            PRINT 'LogFile Allocation (GB): ' + @Logfile
         END
 IF @CORES > @FILECOUNT
     OR Cast(@AmountPerDataFileGB * 1024 AS INT) <> @CurrentFileSize
@@ -291,10 +294,13 @@ IF @CORES > @FILECOUNT
     END
   ELSE
     BEGIN
-            PRINT 'InstanceLocation: ' + @InstanceLocation;
+                       PRINT 'InstanceLocation: ' + @InstanceLocation;
 
             PRINT 'InstanceEnvironment: '
                   + @InstanceEnvironment;
+
+            PRINT 'Data File Needed: '
+                  + Ltrim(Rtrim(Replace(@DataFileNeeded, Char(10) + Char(13), ' ')));
 
             PRINT 'Tempdb Percentage Enabled: '
                   + @IsPercentEnabled;
@@ -305,29 +311,29 @@ IF @CORES > @FILECOUNT
             PRINT 'StartingLogFileSizeMB: '
                   + Cast(@StartingLogFileSizeMB AS NVARCHAR);
 
-            PRINT 'AvgStartingTempDataSizeMB: '
+            PRINT 'StartingTempDataSizeMB: '
                   + Cast(@AvgStartingTempDataSizeMB AS NVARCHAR);
 
-            PRINT 'AvgCurrentTempDataSizeMB: '
-                  + Cast(@AvgCurrentTempDataSizeMB AS NVARCHAR);
+            PRINT 'LargestCurrentTempDataSizeMB: '
+                  + Cast(@CurrentFileSize AS NVARCHAR);
 
             PRINT 'Total Size of drive (GB): '
-                  + Cast(CAST (@TotalSizeGB AS INT) AS NVARCHAR);
+                  + Cast(Cast (@TotalSizeGB AS INT) AS NVARCHAR);
 
             PRINT 'Percentage of drive excluded from consumption: '
                   + Cast(Cast((Cast(@Percentage AS DECIMAL(5, 2))* 100) AS INT) AS NVARCHAR)
                   + '%';
 
             PRINT 'Usable space for drive (GB): '
-                  + Cast(CAST (@UsableSpaceGB AS INT) AS NVARCHAR);
+                  + Cast(Cast (@UsableSpaceGB AS INT) AS NVARCHAR);
+
+            PRINT 'Amount of file growth (GB): '
+                  + Cast(Cast(Cast(@FileGrowth AS INT)/1024.0/1024.0 AS DECIMAL (5, 2) ) AS NVARCHAR)
 
             PRINT 'Amount per datafile (GB): '
-                  + Cast(CAST (@AmountPerDataFileGB AS INT) AS NVARCHAR);
+                  + Cast(Cast (@AmountPerDataFileGB AS INT) AS NVARCHAR);
 
-            PRINT 'Data File Needed: '
-                  + Ltrim(Rtrim(Replace(@DataFileNeeded, Char(10) + Char(13), ' ')));
-
-            PRINT 'LogFile Allocation (GB): ' +  @Logfile
+            PRINT 'LogFile Allocation (GB): ' + @Logfile
 			+ ' 
 			
 			'
