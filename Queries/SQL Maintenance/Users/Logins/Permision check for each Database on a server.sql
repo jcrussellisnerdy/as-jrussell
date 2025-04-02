@@ -2,7 +2,7 @@ DECLARE @sqlcmdValidation VARCHAR(1000)
 DECLARE @sqlcmdValidation2 VARCHAR(400)
 DECLARE @sqlcmdValidation3 VARCHAR(1000)
 DECLARE @DatabaseName SYSNAME
-DECLARE @AppRole VARCHAR(100) = ''
+DECLARE @AppRole VARCHAR(100) = 'ELDREDGE_A\SQL_INFO_ReadOnly'
 
 
 
@@ -26,9 +26,9 @@ CREATE TABLE #TempDatabases
 -- Insert the databases to exclude into the temporary table
 INSERT INTO #TempDatabases (DatabaseName, IsProcessed)
 SELECT name, 0 -- SELECT *
-FROM   sys.databases
-WHERE  database_id >= 4
-AND name NOT IN ('DBA', 'Perfstats')
+      FROM   [DBA].[backup].[Schedule]  S
+	  join sys.databases D on S.DatabaseName = D.name
+WHERE DatabaseType = 'USER'  
 ORDER  BY database_id
 
 WHILE EXISTS( SELECT * FROM #TempDatabases WHERE IsProcessed = 0 )
