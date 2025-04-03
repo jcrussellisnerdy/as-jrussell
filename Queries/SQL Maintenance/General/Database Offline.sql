@@ -1,82 +1,98 @@
-/* DECLARE ALL variables at the top */
-DECLARE @SQL VARCHAR(max)
+DECLARE @SQL VARCHAR(1000)
 DECLARE @DatabaseName SYSNAME
+DECLARE @DBName NVARCHAR(10) = ''
 DECLARE @DryRun BIT = 1 --1 preview / 0 executes it 
-DECLARE @Revert BIT = 1
--- Create a temporary table to store the databases
+DECLARE @Revert BIT = 1 -- 0 reverts back ONLINE
 IF Object_id(N'tempdb..#TempDatabases') IS NOT NULL
   DROP TABLE #TempDatabases
+
 CREATE TABLE #TempDatabases
   (
      DatabaseName SYSNAME,
-     IsProcessed BIT
+     IsProcessed  BIT
   )
 
-/* 
--- In a world the DBA maintenance tables doesn't exist this can be used. 
-INSERT INTO #TempDatabases (DatabaseName, IsProcessed)
-SELECT name, 0 -- SELECT *
-FROM   sys.databases
-ORDER  BY database_id
-*/
-
+IF @DBName IS NULL
+    OR @DBName = ''
+  BEGIN
       INSERT INTO #TempDatabases
                   (DatabaseName,
                    IsProcessed)
       SELECT DatabaseName,
              0 -- SELECT *
-      FROM   [DBA].[backup].[Schedule]  S
-	left  join sys.databases D on S.DatabaseName = D.name
-	  WHERE state_desc =(CASE WHEN @Revert = 0 THEN 'OFFLINE' ELSE 'ONLINE' END) -- Only process online databases
-AND DatabaseType = 'USER'
-
--- Loop through the remaining databases
-WHILE EXISTS( SELECT * FROM #TempDatabases WHERE IsProcessed = 0 )
+      FROM   [DBA].[backup].[Schedule] S
+             LEFT JOIN sys.databases D
+                    ON S.DatabaseName = D.name
+      WHERE  state_desc = ( CASE
+                              WHEN @Revert = 0 THEN 'OFFLINE'
+                              ELSE 'ONLINE'
+                            END )
+             AND DatabaseType = 'USER'
+  END
+ELSE
   BEGIN
+      INSERT INTO #TempDatabases
+                  (DatabaseName,
+                   IsProcessed)
+      SELECT DatabaseName,
+             0 -- SELECT *
+      FROM   [DBA].[backup].[Schedule] S
+             LEFT JOIN sys.databases D
+                    ON S.DatabaseName = D.name
+      WHERE  state_desc = ( CASE
+                              WHEN @Revert = 0 THEN 'OFFLINE'
+                              ELSE 'ONLINE'
+                            END )
+             AND DatabaseName = @DBName
+  END
 
-    -- Fetch 1 DatabaseName where IsProcessed = 0
-    SELECT Top 1 @DatabaseName = DatabaseName FROM #TempDatabases WHERE IsProcessed = 0 
-    -- Prepare SQL Statement
+WHILE EXISTS(SELECT *
+             FROM   #TempDatabases
+             WHERE  IsProcessed = 0)
+  BEGIN
+      SELECT TOP 1 @DatabaseName = DatabaseName
+      FROM   #TempDatabases
+      WHERE  IsProcessed = 0
 
-
-IF @Revert = 0
-BEGIN
-    SELECT @SQL = '
+      IF @Revert = 0
+        BEGIN
+            SELECT @SQL = '
 USE [master]
 
-IF NOT EXISTS(select * from sys.databases where name = ''' + @DatabaseName + ''' AND state_desc = ''ONLINE'')
+IF NOT EXISTS(select * from sys.databases where name = '''
+                          + @DatabaseName + ''' AND state_desc = ''ONLINE'')
 BEGIN
- ALTER DATABASE [' + @DatabaseName + '] '+'SET ONLINE
+ ALTER DATABASE ['
+                          + @DatabaseName + '] ' + 'SET ONLINE
  END
 '
-END
-ELSE 
-BEGIN 
-    SELECT @SQL = '
+        END
+      ELSE
+        BEGIN
+            SELECT @SQL = '
 USE [master]
 
-IF EXISTS(select * from sys.databases where name = ''' + @DatabaseName + ''' AND state_desc = ''ONLINE'')
+IF EXISTS(select * from sys.databases where name = '''
+                          + @DatabaseName + ''' AND state_desc = ''ONLINE'')
 BEGIN
- ALTER DATABASE [' + @DatabaseName + '] '+'SET OFFLINE
+ ALTER DATABASE ['
+                          + @DatabaseName + '] ' + 'SET OFFLINE
  END
 '
-END
+        END
 
-    -- You know what we do here if it's 1 then it'll give us code and 0 executes it
-    IF @DryRun = 0
+      IF @DryRun = 0
         BEGIN
             PRINT ( @DatabaseName )
+
             EXEC ( @SQL)
         END
-    ELSE
+      ELSE
         BEGIN
             PRINT ( @SQL )
         END
-    -- Update table
-    UPDATE  #TempDatabases 
-    SET IsProcessed = 1
-    WHERE DatabaseName = @databaseName
-  END
 
-
-  
+      UPDATE #TempDatabases
+      SET    IsProcessed = 1
+      WHERE  DatabaseName = @databaseName
+  END 
