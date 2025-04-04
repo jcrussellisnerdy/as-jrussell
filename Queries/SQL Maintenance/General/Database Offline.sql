@@ -27,7 +27,7 @@ IF @DBName IS NULL
                               WHEN @Revert = 0 THEN 'OFFLINE'
                               ELSE 'ONLINE'
                             END )
-             AND DatabaseType = 'USER'
+             AND DatabaseType = 'USER'  
   END
 ELSE
   BEGIN

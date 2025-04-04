@@ -497,7 +497,7 @@ IF( @IsRDS != 1 )
       END CATCH
 
       BEGIN TRY
-          IF @CurrentLogSize > Cast(@LogFile * 1024 AS INT) ----Logs File aren't standard 
+          IF @CurrentLogSize < Cast(@LogFile * 1024 AS INT) ----Logs File aren't standard 
             BEGIN
                 INSERT INTO #TempFileNames
                             ([Name],

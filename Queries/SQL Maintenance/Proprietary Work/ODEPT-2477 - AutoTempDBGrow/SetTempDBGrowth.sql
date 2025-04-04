@@ -27,9 +27,6 @@ AS
       ######################################################################
       Examples
       ######################################################################
-      
-      
-      
       exec  [DBA].[deploy].[SetTempDBGrowth] --Shows data on the system and code that would be done 
       exec  [DBA].[deploy].[SetTempDBGrowth] @Verbose= 0 --Pulls table of the all the data about the temp DB
       exec  [DBA].[deploy].[SetTempDBGrowth] @Percentage= '0.95' ---What ever the percentage entered in it will cut 
@@ -37,7 +34,8 @@ AS
 										from that and divide the rest up for the datafiles. Percent need to be convert to decimals.
       exec  [DBA].[deploy].[SetTempDBGrowth] @FileGrowth= '262144' ---What ever the percentage entered in it will 
 										  place as the file and log grow file.  Sizes need to be in KB
-      exec  [DBA].[deploy].[SetTempDBGrowth] @Dryrun = 0 ---Does the work
+      exec  [DBA].[deploy].[SetTempDBGrowth] @Force = 0 ---Even if all criteria met this will give you info on system
+	   exec  [DBA].[deploy].[SetTempDBGrowth] @Dryrun = 0 ---Does the work
       */
       SET ANSI_NULLS ON;
       SET QUOTED_IDENTIFIER ON;
@@ -576,7 +574,7 @@ AS
             END CATCH
 
             BEGIN TRY
-                IF @CurrentLogSize > Cast(@LogFile * 1024 AS INT) ----Logs File aren't standard 
+                IF @CurrentLogSize < Cast(@LogFile * 1024 AS INT) ----Logs File aren't standard 
                   BEGIN
                       INSERT INTO #TempFileNames
                                   ([Name],
