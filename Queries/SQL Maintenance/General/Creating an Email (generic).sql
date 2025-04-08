@@ -1,10 +1,17 @@
-DECLARE @EmailSubject AS VARCHAR(100)
-DECLARE @Profile AS VARCHAR(200)
-declare @Email AS  VARCHAR(200)
-DECLARE @body NVARCHAR(MAX)
+DECLARE @EmailSubject AS VARCHAR(100) = 'test'
+DECLARE @Profile AS VARCHAR(200) 
+declare @Email AS  VARCHAR(200) = 'joseph.russell@alliedsolutions.net'
+DECLARE @body NVARCHAR(MAX) = 'Hi'
+ 
+
+select @Profile = name from msdb.dbo.sysmail_profile
+		 order by last_mod_datetime desc 
 
 
-		 
+		
+
+
+
 
  
 		 EXEC msdb.dbo.sp_send_dbmail @profile_name = @profile,

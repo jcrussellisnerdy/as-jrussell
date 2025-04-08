@@ -55,7 +55,6 @@ EXEC [PerfStats]. [dbo].[CaptureAGLagStats]
 
 
 
-
 /*
 
 PurgeConfig
@@ -68,8 +67,6 @@ PurgeStorageSchema -
 SetPurgeConfig - 
 
 */
-
-
 
 
 
