@@ -8,18 +8,10 @@ select @Profile = name from msdb.dbo.sysmail_profile
 		 order by last_mod_datetime desc 
 
 
-		
-
-
-
-
- 
-		 EXEC msdb.dbo.sp_send_dbmail @profile_name = @profile,
+EXEC msdb.dbo.sp_send_dbmail @profile_name = @profile,
 						@recipients = @Email,
 						@subject = @EmailSubject,
 						@body = @body
-
-
 
 
 
@@ -39,5 +31,14 @@ BEGIN
 		
 EXEC msdb.dbo.sysmail_help_profile_sp;
 
+
+
+
+
+						use DBA
+						SELECT * FROM INFO.EMAIL
+
+
+						        EXEC [DBA].[info].[GetEmailStatus] @dryRun = 0
 
 		*/
