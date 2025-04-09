@@ -1,5 +1,8 @@
 ## Hi there 👋
 
+
+I am a dad and hubby first then I have the blessed ability to do the current work life of as a Senior DBA
+
 <!--
 **as-jrussell/as-jrussell** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
