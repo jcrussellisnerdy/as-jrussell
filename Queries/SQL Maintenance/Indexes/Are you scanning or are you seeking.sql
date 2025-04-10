@@ -1,5 +1,5 @@
-DECLARE @DatabaseName VARCHAR(100) ='RepoPlusAnalytics',
-        @TableName    VARCHAR(255) ='IsoClaimData',
+DECLARE @DatabaseName VARCHAR(100) ='DataWarehouse_5',
+        @TableName    VARCHAR(255) ='Dim_Product',
 		@IndexName  VARCHAR(255) ='',
         @sqlcmd       VARCHAR(max),
         @DryRun       INT = 0

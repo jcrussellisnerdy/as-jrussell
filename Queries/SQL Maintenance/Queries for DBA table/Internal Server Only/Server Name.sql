@@ -1,11 +1,11 @@
 DECLARE @sqlcmd VARCHAR(max)
 DECLARE @Location NVARCHAR(25) = '' --ON-PREM, EC2, RDS
 DECLARE @Application NVARCHAR(100) = ''
-DECLARE @DBName NVARCHAR(50) = ''
-DECLARE @ServerEnvironment VARCHAR(10) = 'tst' ---DEV, TST, STG,ADMIN, PRD
+DECLARE @DBName NVARCHAR(50) = 'ivos'
+DECLARE @ServerEnvironment VARCHAR(10) = '' ---DEV, TST, STG,ADMIN, PRD
 DECLARE @Machine NVARCHAR(100) = '' --ServerName
 DECLARE @SQLServername VARCHAR(100) ='' --SQL Instance Name
-DECLARE @DB INT = 0 --- 1 is enabled to give exact name of @DBNAME else will give the all the names that have @DBNAME and names that are like it
+DECLARE @DB INT = 1 --- 1 is enabled to give exact name of @DBNAME else will give the all the names that have @DBNAME and names that are like it
 DECLARE @DryRun INT = 0
 
 IF @SQLServername <> ''

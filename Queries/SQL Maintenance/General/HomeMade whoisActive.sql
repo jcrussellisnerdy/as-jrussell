@@ -16,6 +16,8 @@ CREATE TABLE #LRT (
     [text] NVARCHAR(MAX)  
 );
 
+
+
 INSERT INTO #LRT
 SELECT 'Customer Usage', [ServerName]         =@@SERVERNAME,
        DatabaseName         = Db_name(r.database_id),

@@ -123,7 +123,7 @@
                             END
 
       SELECT DISTINCT Count(*) [Failed Emails]
-      --select DISTINCT I.SQLSERVERNAME,ServerLocation,  E.ServerEnvironment, I.Local_Net_Address,	E.EmailTestStatus
+      --select DISTINCT I.SQLSERVERNAME,ServerLocation,  E.ServerEnvironment, I.Local_Net_Address,	E.EmailTestStatus, e.EmailTestSendDate
       FROM   [InventoryDWH].[Info].[vw_Email] E
              JOIN [InventoryDWH].[inv].Instance I
                ON I.SQLSERVERNAME = E.SQLServerName
