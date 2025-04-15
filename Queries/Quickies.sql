@@ -30,6 +30,10 @@ order by current_dt desc
 
  
 */
+select MachineName+'.'+DomainName [FDQN]
+from dba.info.host 
+
+
 select SQLServerName, MachineName, ServerEnvironment, ServerLocation from dba.info.Instance
 /*Shows server information*/ 
 EXEC [DBA].[info].[GetInstance] @DryRun = 1
