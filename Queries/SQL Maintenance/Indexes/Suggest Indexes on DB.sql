@@ -1,5 +1,5 @@
-DECLARE @DatabaseName VARCHAR(100) ='Perfstats',
-        @TableName    VARCHAR(255) ='QueryPlanHistory',
+DECLARE @DatabaseName VARCHAR(100) ='',
+        @TableName    VARCHAR(255) ='',
         @sqlcmd       VARCHAR(max),
         @DryRun       INT = 0
 

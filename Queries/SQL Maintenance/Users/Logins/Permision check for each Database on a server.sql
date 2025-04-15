@@ -3,7 +3,7 @@ DECLARE @sqlcmdValidation2 VARCHAR(400)
 DECLARE @sqlcmdValidation3 VARCHAR(1000)
 DECLARE @DatabaseName SYSNAME
 DECLARE @DBName VARCHAR(100) 
-DECLARE @AppRole VARCHAR(100) = 'ELDREDGE_A\SQL_UTRC_Development_Team'
+DECLARE @AppRole VARCHAR(100) = 'ELDREDGE_A\svc_ider_prd01'
 DECLARE @Dryrun BIT = 0
 
 IF Object_id(N'tempdb..#1') IS NOT NULL

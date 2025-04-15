@@ -102,19 +102,20 @@ ELSE
   END
 
 SELECT  
-  FORMAT(LogDate, 'dddd, MMMM dd, yyyy hh:mm tt'),
-
+  --FORMAT(LogDate, 'dddd, MMMM dd, yyyy hh:mm tt'),
+  logdate,
  ProcessInfo, LogText
 --SELECT  LogText, COUNT(*)
 FROM   #IOWarningResults
 --WHERE ProcessInfo not in ('Logon','Backup')
+WHERE processinfo in ('Logon') 
 --GROUP BY LogText 
 order by logdate desc 
 
 
 
 
-
+--Login failed for user 'ELDREDGE_A\SQL2000'. Reason: Failed to open the explicitly specified database. [CLIENT: <local machine>]  
 
 
 
