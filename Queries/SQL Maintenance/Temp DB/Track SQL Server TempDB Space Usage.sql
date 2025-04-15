@@ -1,9 +1,9 @@
 use tempdb
 
 	DECLARE @QUERY NVARCHAR(MAX) = ''
-	,  @TempSize int = 10 ---Count are MBs
+	,  @TempSize int = 0 ---Count are MBs
 
-SELECT  concat('kill ', SS.session_id),SS.session_id ,        SS.database_id ,
+SELECT  concat('kill ', SS.session_id),SS.session_id , DB_NAME(SS.database_id)[DatabaseName] ,
         CAST(SS.user_objects_alloc_page_count / 128 AS DECIMAL(15, 2)) [Total Allocation User Objects MB] ,
         CAST(( SS.user_objects_alloc_page_count
                - SS.user_objects_dealloc_page_count ) / 128 AS DECIMAL(15, 2)) [Net Allocation User Objects MB] ,
@@ -28,7 +28,7 @@ FROM    sys.dm_db_session_space_usage SS
                - SS.user_objects_dealloc_page_count ) / 128 AS DECIMAL(15, 2))  >=  @TempSize
 SELECT  TS.session_id ,
         TS.request_id ,
-        TS.database_id ,
+     DB_NAME(TS.database_id)[DatabaseName] ,
         CAST(TS.user_objects_alloc_page_count / 128 AS DECIMAL(15, 2)) [Total Allocation User Objects MB] ,
         CAST(( TS.user_objects_alloc_page_count
                - TS.user_objects_dealloc_page_count ) / 128 AS DECIMAL(15, 2)) [Net Allocation User Objects MB] ,
@@ -54,8 +54,9 @@ FROM    sys.dm_db_task_space_usage TS
                - TS.user_objects_dealloc_page_count ) / 128 AS DECIMAL(15, 2)) >=  @TempSize
 
 
+
 SELECT  COALESCE(T1.session_id, T2.session_id) [session_id] ,        T1.request_id ,
-        COALESCE(T1.database_id, T2.database_id) [database_id],
+        COALESCE(DB_NAME(T1.database_id), DB_NAME(T2.database_id))[DatabaseName],
         COALESCE(T1.[Total Allocation User Objects], 0)
         + T2.[Total Allocation User Objects] [Total Allocation User Objects] ,
         COALESCE(T1.[Net Allocation User Objects], 0)

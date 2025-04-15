@@ -15,6 +15,8 @@ IF NOT EXISTS (SELECT *
 
 GO
 
+
+
 /* Alter Stored Procedure */
 ALTER PROCEDURE [deploy].[SetTempDBGrowth](@Percentage NVARCHAR(5) =NULL,
                                        @FileGrowth INT =NULL,
@@ -29,7 +31,7 @@ AS
       ######################################################################
       exec  [DBA].[deploy].[SetTempDBGrowth] --Shows data on the system and code that would be done 
       exec  [DBA].[deploy].[SetTempDBGrowth] @Verbose= 0 --Pulls table of the all the data about the temp DB
-      exec  [DBA].[deploy].[SetTempDBGrowth] @Percentage= '0.95' ---What ever the percentage entered in it will cut 
+      exec  [DBA].[deploy].[SetTempDBGrowth] @Percentage= '0.30' ---What ever the percentage entered in it will cut 
 										that part of out the drive and use the remaining then subtract the log file 
 										from that and divide the rest up for the datafiles. Percent need to be convert to decimals.
       exec  [DBA].[deploy].[SetTempDBGrowth] @FileGrowth= '262144' ---What ever the percentage entered in it will 
@@ -446,7 +448,7 @@ AS
                                               + Rtrim(Cast(@CORES AS NCHAR))
                                               + ',
                                SIZE = '
-                                              + Rtrim(Cast(Cast(@UsableSpaceGB * 1024 AS INT) AS NCHAR))
+                                              + Rtrim(Cast(Cast(@AmountPerDataFileGB * 1024 AS INT) AS NCHAR))
                                               + 'MB,
                                FILEGROWTH = '
                                               + Rtrim(Cast(@FileGrowth AS NCHAR))
