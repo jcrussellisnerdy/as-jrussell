@@ -16,7 +16,7 @@ INSERT INTO #TempAgentJobs (JobName, IsProcessed)
 SELECT s.name, 0 -- SELECT *
 FROM msdb..sysjobs s
 LEFT JOIN master.sys.syslogins l ON s.owner_sid = l.sid
-WHERE   ISNULL(l.name, s.owner_sid) <> 'sa'
+--WHERE   ISNULL(l.name, s.owner_sid) <> 'sa'
 ORDER  BY s.name
 -- Loop through the remaining databases
 WHILE EXISTS( SELECT * FROM #TempAgentJobs WHERE IsProcessed = 0 )

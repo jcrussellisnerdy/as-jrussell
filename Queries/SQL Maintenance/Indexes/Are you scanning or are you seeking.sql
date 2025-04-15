@@ -1,5 +1,5 @@
-DECLARE @DatabaseName VARCHAR(100) ='DataWarehouse_5',
-        @TableName    VARCHAR(255) ='Dim_Product',
+DECLARE @DatabaseName VARCHAR(100) ='',
+        @TableName    VARCHAR(255) ='',
 		@IndexName  VARCHAR(255) ='',
         @sqlcmd       VARCHAR(max),
         @DryRun       INT = 0
