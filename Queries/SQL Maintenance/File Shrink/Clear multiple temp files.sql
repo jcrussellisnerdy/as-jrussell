@@ -3,12 +3,12 @@ DECLARE @sqlcmd       VARCHAR(max),
         @logicalname  NVARCHAR(100),
         @DatabaseName VARCHAR(100),
         @Factor       VARCHAR(4) ='.250',--a factor to be applied to the target size for every time DBCC SHRINKFILE is called.
-        @SIZE         NVARCHAR(100) = 1024,--size of temp file in MB
+        @SIZE         NVARCHAR(100) = 11264,--size of temp file in MB
         @TYPE         NVARCHAR(10) = 'ROWS'--rows (databases) , log (logs) 
         ,
-        @Force        INT = 1 --0 Runs script. PLEASE ONLY USE AS NECESSARY DOING THIS WILL REMOVE ANY AND ALL TEMP FILES CURRENTLY ON DRIVE
+        @Force        INT = 0 --0 Runs script. PLEASE ONLY USE AS NECESSARY DOING THIS WILL REMOVE ANY AND ALL TEMP FILES CURRENTLY ON DRIVE
         ,
-        @DryRun       INT = 1 --0 Runs script; 1 shows query
+        @DryRun       INT = 0 --0 Runs script; 1 shows query
 SELECT @DatabaseName = name
 FROM   sys.databases
 WHERE  database_id = (SELECT Db_id('tempdb'))
@@ -54,6 +54,10 @@ use [' + @DatabaseName + ']
 	DBCC FREESYSTEMCACHE (''ALL'')
 	DBCC FREESESSIONCACHE
 
+
+
+	 DBCC SHRINKFILE(''' + @logicalname + ''',11264)
+
 '
 
             SELECT @sqlcmd = '
@@ -86,12 +90,16 @@ END;'
               BEGIN
                   EXEC ( @sqlcmdforce)
               END
+			  ELSE
+			                BEGIN
+                  PRINT ( @sqlcmdforce)
+              END
 
             IF @DryRun = 0
               BEGIN
                   PRINT ( @logicalname )
 
-                  EXEC ( @SQLcmd)
+                --  EXEC ( @SQLcmd)
               END
             ELSE
               BEGIN

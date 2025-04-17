@@ -20,7 +20,8 @@ SELECT
                     WHEN ([io_stall] / ([num_of_reads] + [num_of_writes])) < 501 THEN 'Yikes!'
                ELSE 'YIKES!!'
                END 
-         END, 
+         END
+,
    [AvgBPerRead] =
         CASE WHEN [num_of_reads] = 0
             THEN 0 ELSE ([num_of_bytes_read] / [num_of_reads]) END,
@@ -33,8 +34,11 @@ SELECT
                 (([num_of_bytes_read] + [num_of_bytes_written]) /
                 ([num_of_reads] + [num_of_writes])) END,
    LEFT ([mf].[physical_name], 2) AS [Drive],
-   DB_NAME ([vfs].[database_id]) AS [DB],
-   [mf].[physical_name]
+      [mf].[physical_name],mf.type_desc AS file_type,
+   DB_NAME ([vfs].[database_id]) AS [DB]
+
+
+
 FROM
    sys.dm_io_virtual_file_stats (NULL,NULL) AS [vfs]
    JOIN sys.master_files AS [mf]
