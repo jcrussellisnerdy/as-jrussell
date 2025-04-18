@@ -74,6 +74,3 @@ SetPurgeConfig -
 
 
 
-
-dffsf
-mybutt 
